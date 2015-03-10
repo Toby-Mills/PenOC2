@@ -1,0 +1,483 @@
+﻿/* IMPORTS
+----------------------------------------------------------*/
+@import "elements.less";
+
+
+/* VARIABLES
+----------------------------------------------------------*/
+@phone-width: 640;
+@monitor-width: 768;
+@widemonitor-width: 1024;
+@superwidemonitor-width: 1366;
+
+@superwidemonitor: ~"only screen and (min-width: @{superwidemonitor-width}px)";
+@widemonitor: ~"only screen and (min-width:@{widemonitor-width}px) and (max-width: @{superwidemonitor-width}px)";
+@monitor: ~"only screen and (min-width:@{monitor-width}px) and (max-width: @{widemonitor-width}px)";
+@tablet: ~"only screen and (min-width:@{phone-width}px) and (max-width: @{monitor-width}px)";
+@phone: ~"only screen and (max-width: @{phone-width}px)";
+
+/* Original*/
+@verylight: #BED4Df;
+@light: #78A3B9;
+@medium: #4C5D75;
+@dark: #323E4E;
+@verydark: #2D3032;
+
+
+/* Royal Blue Green
+@verylight: #C4E1FC;
+@light: #63AFF7;
+@medium: #0C7DE9;
+@dark: #074887;
+@verydark: #021426;
+*/
+
+/* 
+@verylight: #B3EFB7;
+@light: #5EDE68;
+@medium: #24B32F;
+@dark: #125E18;
+@verydark: #010902;
+*/
+
+/* DEFAULTS
+----------------------------------------------------------*/
+body
+{
+    background: @verylight;
+    font-size: 16px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: @dark;
+	background-image: url('../../Images/background.png');
+}
+
+body
+{
+//	@media @superwidemonitor
+//	{
+//			font-size: 1.3em;
+//	}
+//
+//	@media @widemonitor
+//	{
+//			font-size: 1.2em;
+//	}
+//
+//	@media @monitor
+//	{
+//			font-size: 1.10em;
+//	}
+//
+//	@media @tablet
+//	{
+//			font-size: 1.0em;
+//	}
+//
+//	@media @phone
+//	{
+//			font-size: 0.9em;
+//	}
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    color: @dark;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+.page
+{
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    border-color: #496077;
+    background-color: white;
+    margin: 10px auto 0px auto;
+    width: 98%;
+
+	@media @monitor
+	{
+		max-width: 960px;
+	}
+
+	@media @widemonitor, @superwidemonitor
+	{
+		max-width: 1200px;
+	}
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: @dark;
+    width: 100%;
+
+}
+
+.header h1
+{
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: white;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.main
+{
+    /*padding: 0px 12px;
+    margin: 12px 8px 8px 8px;*/
+    min-height: 1000px;
+	overflow: auto;
+	background-color: @verylight;
+}
+
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+    width: 200px;
+    min-height: 200px;
+}
+
+.footer
+{
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.menu
+{
+    padding: 4px 0 0 8px;
+    background-color: @light;
+	overflow: auto;
+
+	@media @phone, @tablet {
+		text-align: center;
+	}
+}
+
+div.menu ul
+{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+
+	@media @phone {
+		display: none; 
+	}
+}
+
+div.menu select {
+  display: none;
+  width: 95%;
+  margin-bottom: 6px;
+
+  @media @phone {
+	display: inline-block;
+	}
+}
+
+div.menu ul li a, div.menu ul li a:visited
+{
+	.border-radius(5px, 0, 0, 5px);
+    background-color: @medium;
+    border: 1px @dark solid;
+	border-bottom: none;
+    color: white;
+    display: inline-block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+	float:left;
+	margin-right: 1px;
+}
+
+div.menu ul li a.selected
+{
+    color: @verydark;
+	font-weight: bold;
+	background-color: @verylight;
+}
+
+div.menu ul li a:hover
+{
+    text-decoration: none;
+	.drop-shadow(0px, 0px, 5px, 0.8);
+}
+
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+ul
+{
+	margin: 5px;
+}
+
+/* PENOC CLASSES
+----------------------------------------------------------*/
+.structure
+{
+    padding:0px;
+    border:0px;
+    margin:0px;
+    box-sizing:border-box;
+    }
+ 
+.OneThird
+{
+	width:33%;
+	float:left;
+
+	@media @phone, @tablet
+	{
+		width: 100%;
+	}     
+}
+
+.TwoThirds
+{
+	width:67%;
+	float:left;
+
+	@media @phone, @tablet
+	{
+		width: 100%;
+	}     
+}
+    
+.eventTitle
+{
+    font-size: 1.4em;
+    font-weight: bold;
+    }
+    
+.fieldName
+{
+    font-size: 1.1em;
+    font-weight: bold;
+    }
+
+ .headerLeft
+{
+	float: left;
+	
+	@media @phone, @tablet
+	{
+		float: none;
+		text-align: center;
+	} 
+}
+
+.headerRight
+{
+	float: right;
+	max-height: 120px;
+	overflow: hidden;
+	
+	@media @phone, @tablet
+	{
+		float: none;
+		text-align: center;
+	} 
+}
+
+.nextEventBox
+{
+    .gradient(@medium, @light, @medium);
+	.rounded(5px);
+    padding: 2px 8px 2px 8px;
+    margin: 8px;
+    display: inline-block;
+	font-size: 0.9em;
+	color:white;
+	.user-select(none);
+}
+
+.nextEventBox:hover
+{
+	.box-shadow(0px 0px 8px white);
+}
+
+a.noDecoration
+{
+text-decoration:none;
+}
+
+a.noDecoration:visited{
+     color: inherit;
+}
+
+/* CARDS
+----------------------------------------------------------*/
+
+.card
+{
+	border: 1px solid @verylight;
+	.rounded(6px);
+	.drop-shadow(0, 1px, 5px, 0.2);
+	padding: 8px;
+	margin: 10px;
+	background-color: white;
+	overflow: auto;
+}
+
+.card .cardTitle
+{
+	font-size: 1.3em;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+.card .cardDate
+{
+	font-size: 1em;
+	font-variant: small-caps;
+}
+
+/* EVENT LIST
+----------------------------------------------------------*/
+.EventList > .Title
+{
+}
+
+.EventList .Summary
+{
+	font-size: 0.8em;
+}
+
+.EventList hr
+{
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.EventList div.Event
+{
+	padding: 5px;
+}
+
+.EventList div.Event:hover
+{
+	background-color: @verylight;
+}
+
+.EventList hr:first-child
+{
+	display:none;
+}
+
+/* NEWS LIST
+----------------------------------------------------------*/
+.NewsList .Date
+{
+	font-size: 0.8em;
+}
+
+.thumbnailMap{
+	height: 200px;
+	border: 1px solid @light;
+	margin: 8px; 
+	.box-shadow(2px 2px 8px @verylight);
+
+		@media @phone
+	{
+		height: 100px;
+	} 
+		@media @tablet
+	{
+		height: 150px;
+	} 
+}
