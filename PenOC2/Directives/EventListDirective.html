@@ -1,9 +1,0 @@
-﻿<div id="divEventList" class="EventList">
-        <hr ng-repeat-start="event in eventList" />
-        <a  ng-repeat-end href="Events.aspx" class="noDecoration">
-            <div class="Event">
-                <span class="Title">{{ event.name }}</span><br />
-                <span class="Summary">{{ event.date | jsonDate:"dd MMM" }} | {{ event.venue }}</span>
-            </div>
-        </a>
-</div>

@@ -1,7 +1,7 @@
-﻿var EventService = EventService || {};
+﻿var EventsService = EventsService || {};
 
     //----------------------------------------------------------------------------
-    EventService.loadResults = function (intCourse) {
+    EventsService.courseResults = function (intCourse) {
         var result = '';
 
         $.ajax({
@@ -22,7 +22,7 @@
     };
 
     //----------------------------------------------------------------------------
-    EventService.recentEvents = function (intCount) {
+    EventsService.recentEvents = function (intCount) {
         var result = '';
 
         $.ajax({
@@ -43,7 +43,28 @@
     };
 
     //----------------------------------------------------------------------------
-    EventService.upcomingEvents = function (intCount) {
+    EventsService.recentEventsWithResults = function (intCount) {
+        var result = '';
+
+        $.ajax({
+            async: false,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            url: 'Web Services/Events.asmx/RecentEventsWithResults',
+            data: '{"intCount": ' + intCount + '}',
+            dataType: 'json',
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            },
+            success: function (msg) {
+                result = (eval(msg.d));
+            }
+        });
+        return result;
+    };
+
+    //----------------------------------------------------------------------------
+    EventsService.upcomingEvents = function (intCount) {
         var result = '';
 
         $.ajax({
@@ -64,7 +85,7 @@
     };
 
     //----------------------------------------------------------------------------
-    EventService.loadEventCourses = function (intEvent) {
+    EventsService.eventCourses = function (intEvent) {
         var self = this;
         var result = '';
 
@@ -80,16 +101,13 @@
             },
             success: function (msg) {
                 result = eval(msg.d);
-//                result.forEach(function (objCourse) {
-//                    objCourse.results = self.loadResults(objCourse.courseID);
-//                })
             }
         });
         return result;
     };
 
     //----------------------------------------------------------------------------
-    EventService.loadEvent = function (intEvent) {
+    EventsService.eventDetails = function (intEvent) {
         var self = this;
         var result = '';
 
@@ -105,14 +123,13 @@
             },
             success: function (msg) {
                 result = eval(msg.d)[0];
-                result.courses = self.loadEventCourses(intEvent);
             }
         });
         return result;
     };
 
     //----------------------------------------------------------------------------
-    EventService.mostRecentEventID = function () {
+    EventsService.mostRecentEventID = function () {
         var result = '';
 
         $.ajax({
@@ -132,7 +149,7 @@
         return result;
     };
     //----------------------------------------------------------------------------
-    EventService.nextEventID = function () {
+    EventsService.nextEventID = function () {
         var result = '';
 
         $.ajax({

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("9dc65703-2f8c-4cf0-bc1c-0724afb7b795")>
+<Assembly: EdmSchemaAttribute("ee7d7f75-e964-4aee-a109-cebe3447cb47")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblCompetitor_lutCategory", "lutCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutCategory), "tblCompetitor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblCompetitor), True)>
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblEvent_lutClub", "lutClub", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutClub), "tblEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblEvent), True)>
@@ -4283,6 +4283,31 @@ Public Partial Class tblResult
     End Sub
 
     Private Partial Sub OnintPointsChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property strRaceNumber() As Global.System.String
+        Get
+            Return _strRaceNumber
+        End Get
+        Set
+            OnstrRaceNumberChanging(value)
+            ReportPropertyChanging("strRaceNumber")
+            _strRaceNumber = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("strRaceNumber")
+            OnstrRaceNumberChanged()
+        End Set
+    End Property
+
+    Private _strRaceNumber As Global.System.String
+    Private Partial Sub OnstrRaceNumberChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnstrRaceNumberChanged()
     End Sub
 
     #End Region

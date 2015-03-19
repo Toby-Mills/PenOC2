@@ -43,7 +43,10 @@ Public Class EventDetails
                      .planner = Planner.strFirstName & " " & Planner.strSurname,
                     .maxPoints = OEvent.intMaxPoints,
                     .directions = OEvent.strDirections,
-                    .club = OEvent.lutClub.strShortName
+                    .club = OEvent.lutClub.strShortName,
+                    .courseDescriptions = OEvent.strCourses,
+                    .cost = OEvent.strCost,
+                    .notes = OEvent.strSpecialNote
                     }).Take(1)
 
             strReturn = serializer.Serialize(qryEvent)
@@ -95,8 +98,8 @@ Public Class EventDetails
     End Function
 
     <WebMethod()> _
- <ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
-    Public Function UpcomingEvents(intCount As Integer) As String
+<ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
+    Public Function RecentEventsWithResults(intCount As Integer) As String
         Dim qryEvent As System.Data.Objects.ObjectQuery
         Dim serializer As JavaScriptSerializer
         Dim strReturn As String
@@ -109,8 +112,53 @@ Public Class EventDetails
                        From Controller In Controllers.DefaultIfEmpty
                        Group Join Planner In db.tblCompetitors On OEvent.intPlanner Equals Planner.idCompetitor Into Planners = Group
                        From Planner In Planners.DefaultIfEmpty()
+                       Order By OEvent.dteDate Descending
+                       Let courses = (From OCourse In db.tblCourses Join OResult In db.tblResults On OCourse.idCourse Equals OResult.intCourse Select OCourse.intEvent)
+            Where (courses.Contains(OEvent.idEvent))
+                    Select New With _
+                    {.eventID = OEvent.idEvent,
+                    .name = OEvent.strName,
+                    .date = CDate(OEvent.dteDate),
+                    .venueID = OEvent.intVenue,
+                    .venue = OEvent.tblVenue.strName,
+                    .controllerID = OEvent.intController,
+                    .controller = Controller.strFirstName & " " & Controller.strSurname,
+                    .plannerID = OEvent.intPlanner,
+                     .planner = Planner.strFirstName & " " & Planner.strSurname,
+                    .maxPoints = OEvent.intMaxPoints,
+                    .directions = OEvent.strDirections,
+                    .club = OEvent.lutClub.strShortName
+                    }).Take(intCount)
+
+
+            strReturn = serializer.Serialize(qryEvent)
+
+        End Using
+
+        Return strReturn
+
+    End Function
+
+    <WebMethod()> _
+ <ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
+    Public Function UpcomingEvents(intCount As Integer) As String
+        Dim dteDate As Date
+        Dim qryEvent As System.Data.Objects.ObjectQuery
+        Dim serializer As JavaScriptSerializer
+        Dim strReturn As String
+
+        dteDate = Today
+
+        serializer = New JavaScriptSerializer
+
+        Using db As New PenOC2.PenocEntities()
+            qryEvent = (From OEvent In db.tblEvents
+                       Group Join Controller In db.tblCompetitors On OEvent.intController Equals Controller.idCompetitor Into Controllers = Group
+                       From Controller In Controllers.DefaultIfEmpty
+                       Group Join Planner In db.tblCompetitors On OEvent.intPlanner Equals Planner.idCompetitor Into Planners = Group
+                       From Planner In Planners.DefaultIfEmpty()
                        Order By OEvent.dteDate Ascending
-            Where (OEvent.dteDate >= Today)
+            Where (OEvent.dteDate >= dteDate)
                     Select New With _
                     {.eventID = OEvent.idEvent,
                     .name = OEvent.strName,
@@ -190,7 +238,11 @@ Public Class EventDetails
                             {.courseID = Result.intCourse,
                              .name = Competitor.strReadOnlyFullName,
                              .time = Result.dteTime,
-                             .position = Result.intPosition}
+                             .position = Result.intPosition,
+                             .points = Result.intPoints,
+                             .comments = Result.strComment,
+                             .raceNumber = Result.strRaceNumber,
+                             .dsq = Result.blnDisqualified}
 
             strReturn = serializer.Serialize(qryResults)
 

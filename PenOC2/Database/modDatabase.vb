@@ -1,3 +1,0 @@
-﻿Module modDatabase
-
-End Module

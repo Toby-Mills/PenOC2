@@ -287,6 +287,7 @@
           <Property Name="strComment" Type="nvarchar" MaxLength="255" />
           <Property Name="intPosition" Type="int" />
           <Property Name="intPoints" Type="int" />
+          <Property Name="strRaceNumber" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tblSplit">
           <Key>
@@ -797,6 +798,7 @@
           <Property Name="intPosition" Type="Int32" />
           <Property Name="intPoints" Type="Int32" />
           <NavigationProperty Name="tblSplits" Relationship="PenocModel.FK_tblSplit_tblResult" FromRole="tblResult" ToRole="tblSplit" />
+          <Property Type="String" Name="strRaceNumber" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblSplit">
           <Key>
@@ -1220,6 +1222,7 @@
           <EntitySetMapping Name="tblResults">
             <EntityTypeMapping TypeName="PenocModel.tblResult">
               <MappingFragment StoreEntitySet="tblResult">
+                <ScalarProperty Name="strRaceNumber" ColumnName="strRaceNumber" />
                 <ScalarProperty Name="intCompetitor" ColumnName="intCompetitor" />
                 <ScalarProperty Name="intCourse" ColumnName="intCourse" />
                 <ScalarProperty Name="intClub" ColumnName="intClub" />

@@ -22,7 +22,7 @@
 @medium: #4C5D75;
 @dark: #323E4E;
 @verydark: #2D3032;
-
+@DSQ: #FFCCCC;
 
 /* Royal Blue Green
 @verylight: #C4E1FC;
@@ -44,42 +44,42 @@
 ----------------------------------------------------------*/
 body
 {
-    background: @verylight;
-    font-size: 16px;
+    font-size: 20px;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
     padding: 0px;
     color: @dark;
-	background-image: url('../../Images/background.png');
+	background-image: url('../Images/background.png');
 }
 
-body
+/*body
 {
-//	@media @superwidemonitor
-//	{
-//			font-size: 1.3em;
-//	}
-//
-//	@media @widemonitor
-//	{
-//			font-size: 1.2em;
-//	}
-//
-//	@media @monitor
-//	{
-//			font-size: 1.10em;
-//	}
-//
-//	@media @tablet
-//	{
-//			font-size: 1.0em;
-//	}
-//
-//	@media @phone
-//	{
-//			font-size: 0.9em;
-//	}
+	@media @superwidemonitor
+	{
+			font-size: 1.3em;
+	}
+
+	@media @widemonitor
+	{
+			font-size: 1.2em;
+	}
+
+	@media @monitor
+	{
+			font-size: 1.10em;
+	}
+
+	@media @tablet
+	{
+			font-size: 1.0em;
+	}
+
+	@media @phone
+	{
+			font-size: 0.9em;
+	}
 }
+*/
 
 p
 {
@@ -156,14 +156,9 @@ first child of the left and right table columns */
 	}
 }
 
-.header
+.container
 {
-    position: relative;
-    margin: 0px;
-    padding: 0px;
-    background: @dark;
-    width: 100%;
-
+	background-color: @light;
 }
 
 .header h1
@@ -204,13 +199,12 @@ first child of the left and right table columns */
 }
 
 
-/* TAB MENU   
+/* MENU   
 ----------------------------------------------------------*/
 
 div.menu
 {
     padding: 4px 0 0 8px;
-    background-color: @light;
 	overflow: auto;
 
 	@media @phone, @tablet {
@@ -242,18 +236,22 @@ div.menu select {
 
 div.menu ul li a, div.menu ul li a:visited
 {
-	.border-radius(5px, 0, 0, 5px);
+	.border-radius(5px, 0, 5px, 0);
     background-color: @medium;
     border: 1px @dark solid;
-	border-bottom: none;
+	//border-bottom: none;
     color: white;
     display: inline-block;
     line-height: 1.35em;
-    padding: 4px 20px;
+    padding-left:  20px;
+	padding-right:  20px;
+	padding-bottom: 4px;
+	padding-top: 2px;
     text-decoration: none;
     white-space: nowrap;
 	float:left;
-	margin-right: 1px;
+	margin-right: 6px;
+	margin-bottom: 6px;
 }
 
 div.menu ul li a.selected
@@ -269,6 +267,18 @@ div.menu ul li a:hover
 	.drop-shadow(0px, 0px, 5px, 0.8);
 }
 
+
+/* BOOTSTRAP TABS
+----------------------------------------------------------*/
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover
+{
+	border-bottom-color: white;
+}
+
+.nav > li > a:focus, .nav > li > a:hover
+{
+	outline: none;
+}
 
 /* FORM ELEMENTS   
 ----------------------------------------------------------*/
@@ -315,28 +325,6 @@ ul
     margin:0px;
     box-sizing:border-box;
     }
- 
-.OneThird
-{
-	width:33%;
-	float:left;
-
-	@media @phone, @tablet
-	{
-		width: 100%;
-	}     
-}
-
-.TwoThirds
-{
-	width:67%;
-	float:left;
-
-	@media @phone, @tablet
-	{
-		width: 100%;
-	}     
-}
     
 .eventTitle
 {
@@ -405,13 +393,61 @@ a.noDecoration:visited{
 
 .card
 {
-	border: 1px solid @verylight;
 	.rounded(6px);
 	.drop-shadow(0, 1px, 5px, 0.2);
-	padding: 8px;
-	margin: 10px;
+	padding: 15px;
+	margin: 1%;
 	background-color: white;
 	overflow: auto;
+}
+.card.small
+{
+	width:31%;
+
+	@media @monitor, @tablet
+	{
+		width: 48%;
+	}  
+
+	@media @phone
+	{
+		width: 98%;
+	}     
+}
+
+.card.medium
+{
+	width:64%;
+
+	@media @monitor, @tablet
+	{
+		width: 48%;
+	}  
+
+	@media @phone
+	{
+		width: 98%;
+	}     
+}
+
+.card.large
+{
+	width:98%;  
+}
+
+.card.first
+{
+	.box-shadow(0px 0px 12px @verydark);
+	background-image: url("../Images/NewCard.png");
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+
+}
+
+.card.clickable:hover
+{
+	cursor: pointer; cursor: hand;
+	.box-shadow(0px 0px 12px @verydark);
 }
 
 .card .cardTitle
@@ -426,6 +462,13 @@ a.noDecoration:visited{
 	font-size: 1em;
 	font-variant: small-caps;
 }
+
+.card.eventlist ul
+{
+	list-style: none;
+	padding:0px;
+}
+
 
 /* EVENT LIST
 ----------------------------------------------------------*/
@@ -480,4 +523,93 @@ a.noDecoration:visited{
 	{
 		height: 150px;
 	} 
+}
+
+/* MODAL DIALOG
+----------------------------------------------------------*/
+body .modal-dialog.large
+{
+	width: 80%;
+}
+
+.modal-header.title
+{
+	background-color: @verylight;
+}
+
+.modal-header.title h4
+{
+	color: @medium;
+	font-weight: bold;
+}
+
+.modal-header.title button.close
+{
+	color: @verydark;
+	font-weight: bold;
+}
+
+.modal-header h4
+{
+	color: @light;
+	font-weight: bold;
+}
+
+/* RESULT SUMMARY TABLE
+----------------------------------------------------------*/
+body div.card table.resultSummary
+{
+	width: 100%;
+}
+
+table.resultSummary th
+{
+	padding: 2px;
+	font-weight: bold;
+}
+
+div.resultCourseList
+{
+	float: left;
+	text-align: right;
+}
+
+div.resultCompetitorList
+{
+	float: left;
+	text-align: right;
+	border: 1px;
+	margin-left: -1px;
+}
+
+div.resultCourseList ul
+{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+}
+
+div.resultCourseList ul li a
+{
+    border: solid 1px;
+}
+
+/*---RESULT TABLE---
+----------------------------------------------------------*/
+table.resultTable{
+	cell-padding: 2px;
+	margin: auto;
+	width: 100%;
+}
+
+table.resultTable tr.dsq
+{
+	background-color: @DSQ;
+}
+
+table.resultTable td.number, table.resultTable th.number
+{
+	text-align: right;
+	padding-right: 10px;
 }

@@ -1,9 +1,0 @@
-﻿<div id="divNewsList" class="NewsList">
-    <div ng-repeat="newsItem in newsList">
-        <div class="card">
-            <span class="cardTitle">{{ newsItem.title }}</span><br />
-            <span class="Date">{{ newsItem.date | jsonDate:"dd MMM yyyy" }}</span>
-            <p ng-bind-html="newsItem.news | unsafe"></p>
-        </div>
-    </div>
-</div>

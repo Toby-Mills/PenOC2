@@ -47,6 +47,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -95,30 +99,29 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Controllers\EventNoticeController.js" />
-    <Content Include="Controllers\NewsEditorController.js" />
-    <Content Include="Directives\EventListDirective.html" />
-    <Content Include="Directives\EventListDirective.js" />
-    <Content Include="Directives\EventResults.html" />
-    <Content Include="Directives\EventResults.js" />
-    <Content Include="Directives\NewsListDirective.html" />
-    <Content Include="Directives\NewsListDirective.js" />
-    <Content Include="Directives\ResultList.html" />
-    <Content Include="Directives\ResutList.js" />
-    <Content Include="Directives\TinyMceDirective.js" />
+    <Content Include="Cards.js" />
+    <Content Include="EventResults.js" />
+    <Content Include="EventDetails.js" />
+    <Content Include="Global.js" />
+    <Content Include="Home.js" />
     <Content Include="Images\CapeTownMap.png" />
     <Content Include="Images\Forest.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="NewsEditor.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="Events.aspx" />
-    <Content Include="Controllers\EventResultsController.js" />
     <Content Include="Images\background.JPG" />
-    <Content Include="Images\background.png" />
+    <Content Include="Site.Master.js" />
+    <Content Include="Styles\Images\background.png" />
+    <Content Include="Scripts\bootstrap-modal.js" />
     <Content Include="Scripts\less-1.7.0.min.js" />
     <Content Include="Services\EventsService.js" />
     <Content Include="Services\NewsService.js" />
+    <Content Include="Styles\CSS\jquery-ui.min.css" />
+    <Content Include="Styles\CSS\jquery-ui.structure.min.css" />
+    <Content Include="Styles\CSS\jquery-ui.theme.min.css" />
     <Content Include="Styles\CSS\Site.css" />
+    <Content Include="Styles\Images\NewCard.png" />
     <Content Include="Web Services\Events.asmx" />
     <Content Include="Home.aspx" />
     <None Include="Styles\LESS\elements.less" />
@@ -175,6 +178,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="clsOrderedDictionary.vb" />
     <Compile Include="NewsEditor.aspx.designer.vb">
       <DependentUpon>NewsEditor.aspx</DependentUpon>
     </Compile>
@@ -189,7 +193,6 @@
       <DependentUpon>Results.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Database\modDatabase.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
