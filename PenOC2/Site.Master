@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>PenOC | Peninsula Orienteering Club</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css"  href="Styles/CSS/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/CSS/jquery-ui.structure.min.css"/>
     <link rel="stylesheet" type="text/css" href="Styles/CSS/Site.css" />
-
-
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
-
 </head>
 <body>
     <form runat="server">
@@ -22,16 +21,15 @@
                     PenOC | Peninsula <span style="white-space: nowrap;">Orienteering Club</span></h1>
             </div>
             <div class="structure headerRight">
-                <div class="nextEventBox">
+                <div id="divNextEventBox" class="nextEventBox">
                     <div>
-                        <a href="events.aspx" class="noDecoration">
-                            <div>
-                                <span>Next Event:</span><br />
-                                <span style="font-weight: bold; white-space: nowrap;"></span>
-                                <br />
-                                <span></span>
-                            </div>
-                        </a>
+                        <div>
+                            <span>Next Event:</span><br />
+                            <span id="spanNextEventName" style="font-weight: bold; white-space: nowrap;"></span><br />
+                            <span id="spanNextEventVenue" style="font-weight: bold; white-space: nowrap;"></span>
+                            <br />
+                            <span id="spanNextEventDate" style="white-space: nowrap;"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,11 +41,10 @@
         <div class="menu">
             <ul>
                 <li><a id="home" href="Home.aspx">Home</a></li>
-                <li><a id="events" href="Events.aspx">Events</a></li>
                 <li><a id="results" href="Results.aspx">Results</a></li>
                 <li><a id="logs" href="Logs.aspx">Logs</a></li>
                 <li><a id="contact" href="ContactUs.aspx">Contact Us</a></li>
-                <li><a id="news" href="NewsEditor.aspx">News Editor</a></li>
+                <li><a id="admin" href="Admin.aspx">Admin</a></li>
             </ul>
         </div>
         <div style="clear: both;">

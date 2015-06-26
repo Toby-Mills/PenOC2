@@ -1,43 +1,56 @@
 ﻿var EventResults = EventResults || {};
 
-EventResults.showEvent = function (intEvent) {
+//--------------------------------------------------------
+EventResults.buildEventResults = function (intEvent, intCourse, intCompetitor, objPromise) {
     var strCard = "";
     var strTabs = "";
     var strResults = "";
     var blnFirst = false;
-    var divModalContainer;
+    var divModalContent;
     var objEvent;
 
     objEvent = EventsService.eventDetails(intEvent);
     Global.addEventCourses(objEvent);
     Global.addCourseResults(objEvent.courses);
 
-    divModalContainer = Global.modalContainer();
+    strCard += "<div style='padding: 8px; float:left;'>" + objEvent.venueName + " : ";
+    strCard += "" + Global.parseDate(objEvent.eventDate).displayDate();
+    strCard += "</div>";
 
-    strCard += "<div class='modal-dialog large'>";
-    strCard += "<div class='modal-content'>";
-    strCard += "<div class='modal-header title'>";
-    strCard += "<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>";
-    strCard += "<h4 class='modal-title'>" + objEvent.name + "</h4>";
-    strCard += "</div>";
-    strCard += "<div class='modal-body'>" + objEvent.venue + " : ";
-    strCard += "" + Global.displayDate(Global.parseDate(objEvent.date));
-    strCard += "</div>";
+    if (objEvent.controllerFullName > "") {
+        strCard += "<div class='pill' style='float:right;'><div class='left'>Controller:</div><div class='right'><span id='controller' class='edit-textbox'>" + objEvent.controllerFullName + "</span></div></div>";
+    }
+
+    if (objEvent.plannerFullName > "") {
+        strCard += "<div class='pill' style='float:right;'><div class='left'>Planner:</div><div class='right'><span class='edit-textbox'>" + objEvent.plannerFullName + "</span></div></div>";
+    }
+    strCard += "<div style='clear:both;'></div>";
 
     strTabs = strTabs + "<div><ul class='nav nav-tabs'>"
-    strResults = strResults + "<div class='tab-content' style='padding-left: 30px; padding-right: 30px;'>"
+    strResults = strResults + "<div class='tab-content'>"
+
+    if (objEvent.plannerReport > "") {
+        strTabs = strTabs + "<li><a data-toggle='tab' href='#plannerReport'>Planner's Report</a></li>";
+        strResults = strResults + "<div id='plannerReport' class='tab-pane fade in'>"
+        strResults = strResults + "<p>" + objEvent.plannerReport + "</p></div>";
+    }
+
+    if (objEvent.controllerReport > "") {
+        strTabs = strTabs + "<li><a data-toggle='tab' href='#controllerReport'>Controller's Report</a></li>";
+        strResults = strResults + "<div id='controllerReport' class='tab-pane fade in'><p>" + objEvent.controllerReport + "</p></div>";
+    }
 
     blnFirst = true;
     objEvent.courses.forEach(function (course) {
         if (course.results.length > 0) {
             strTabs = strTabs + "<li";
-            strResults = strResults + "<div id='course" + course.courseID + "' class='tab-pane fade in";
-            if (blnFirst) {
+            strResults = strResults + "<div id='course" + course.courseID + "' style='overflow: hidden;' class='tab-pane fade in";
+            if (course.courseID == intCourse || blnFirst && intCourse == undefined) {
                 strTabs = strTabs + " class='active'";
                 strResults = strResults + " active";
             }
             strTabs = strTabs + "><a data-toggle='tab' href='#course" + course.courseID + "'>" + course.name + "</a></li>";
-            strResults = strResults + "'><p>" + EventResults.courseResult(course) + "</p></div>";
+            strResults = strResults + "'><p>" + EventResults.courseResult(course, intCompetitor) + "</p></div>";
             blnFirst = false;
         }
     });
@@ -47,54 +60,79 @@ EventResults.showEvent = function (intEvent) {
     strCard = strCard + strTabs;
     strCard = strCard + strResults;
 
-    strCard += "<div class='modal-footer'>";
-    strCard += "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
-    strCard += "</div>";
-    strCard += "</div>";
-    strCard += "</div>";
+    Modal.setTitle(objEvent.eventName);
+    Modal.setBody(strCard);
 
-    divModalContainer.html(strCard);
+    Modal.setEditButtonVisible(true, EventResults.startEditing);
 
-    $('#divModalContainer').modal('show');
-
+    Modal.show("event", { "intEvent": intEvent, "intCourse": intCourse, "intCompetitor": intCompetitor }, objEvent.eventName);
 
 }
 
-EventResults.courseResult = function (course) {
-    var strTable = "";
+//--------------------------------------------------------
+EventResults.showEvent = function (intEvent, intCourse, intCompetitor, objPromise) {
+    EventResults.buildEventResults(intEvent, intCourse, intCompetitor)
 
-    strTable = strTable + "<div style='padding-bottom: 10px'>";
-    strTable = strTable + course.name + " (" + Global.displayDistance(course.length) + ", " + course.climb + "m climb)";
-    strTable = strTable + "</div>";
+    EventResults.competitorClickHandler();
 
-    strTable = strTable + "<table class='resultTable table-striped'>";
-    strTable = strTable + "<tr>";
-    strTable = strTable + "<th>Pos.</th>";
-    strTable = strTable + "<th>Competitor</th>";
-    strTable = strTable + "<th class='number'>Time</th>";
-    strTable = strTable + "<th class='number'>Points</th>";
-    strTable = strTable + "<th>Race Num.</th>";
-    strTable = strTable + "<th>Comments</th>";
-    strTable = strTable + "</tr>";
+    if (objPromise != undefined) { objPromise() };
+}
 
-    course.results.forEach(function (result) {
 
-        if (result.dsq) {
-            strTable = strTable + "<tr class='dsq'>";
-            strTable = strTable + "<td>DSQ</td>";
-        } else {
-            strTable = strTable + "<tr>";
-            strTable = strTable + "<td>" + result.position + "</td>";
-        }
-        
-        strTable = strTable + "<td>" + result.name + "</td>";
-        strTable = strTable + "<td class='number'>" + Global.displayTime(Global.parseDate(result.time)) + "</td>";
-        strTable = strTable + "<td class='number'>" + result.points + "</td>";
-        strTable = strTable + "<td>" + result.raceNumber + "</td>";
-        strTable = strTable + "<td>" + result.comments + "</td>";
-        strTable = strTable + "</tr>";
+//--------------------------------------------------------
+EventResults.editEvent = function (intEvent, objPromise) {
+    EventResults.buildEventResults(intEvent)
+    InlineEditing.startEditing($("body"));
+
+    if (objPromise != undefined) { objPromise() };
+}
+
+//--------------------------------------------------------
+EventResults.courseResult = function (course, intCompetitor) {
+    var strReturn = "";
+
+    strReturn = strReturn + "<div style='padding-bottom: 10px'>";
+    strReturn = strReturn + course.name;
+    if (course.length != null || course.climb != null) {
+        strReturn += " (" + Global.displayDistance(course.length) + ", " + course.climb + "m climb)";
+    }
+
+    strReturn = strReturn + "</div>";
+
+    strReturn = strReturn + ResultTable.createTable(course.results, ResultTable.enTableColumns_Event, intCompetitor);
+
+    return strReturn;
+}
+
+//--------------------------------------------------------
+EventResults.competitorClickHandler = function () {
+    $(".resultTable tbody").on("click", "td.competitor span", function (event) {
+        var objTarget;
+        objTarget = $(this).closest("td.competitor");
+        intCompetitor = objTarget.attr("idCompetitor");
+
+        setTimeout(function () { CompetitorResults.showCompetitor(intCompetitor) }, 100);
     });
-    strTable = strTable + "</table>";
+};
 
-    return strTable;
+//--------------------------------------------------------
+EventResults.startEditing = function () {
+    InlineEditing.startEditing($("#divModalContainer"));
+    Modal.setEditButtonVisible(false);
+    Modal.setSaveButtonVisible(true, EventResults.saveEdits);
+    Modal.setCancelButtonVisible(true, EventResults.cancelEdits);
+    $("#controller").autocomplete({ source: Autocomplete.competitors, appendTo: "#divModalContainer" });
+}
+
+//--------------------------------------------------------
+EventResults.saveEdits = function () {
+    Modal.setEditButtonVisible(true, EventResults.startEditing);
+    Modal.setSaveButtonVisible(false);
+    Modal.setCancelButtonVisible(false);
+}
+//--------------------------------------------------------
+EventResults.cancelEdits = function () {
+    Modal.setEditButtonVisible(true, EventResults.startEditing);
+    Modal.setSaveButtonVisible(false);
+    Modal.setCancelButtonVisible(false);
 }

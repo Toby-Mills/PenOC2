@@ -1,8 +1,11 @@
 ﻿Public Class Home
-    Inherits System.Web.UI.Page
+    Inherits PenocPage
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Page_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
+
+
+        Me.InjectJavascriptTag("https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js")
+        Me.InjectJavascriptTag("Home.js")
 
     End Sub
-
 End Class

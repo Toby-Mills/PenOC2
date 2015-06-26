@@ -29,9 +29,13 @@ Home.initialiseMasonryContainer = function () {
 /*----Display Cards----*/
 Home.displayCards = function () {
     var blnFirst;
+    var divAbout;
+    var divNextEvents;
 
     $("#divCardList").append(Cards.nextEventsCard);
-    NextEventsClickHandler("divNextEvents");
+    Home.resizeNextEventCard();
+    Home.nextEventsPageResizeHandler();
+    Home.nextEventsClickHandler();
 
     Home.cards.sort(function (cardA, cardB) { return cardA.date > cardB.date ? -1 : cardA.date < cardB.date ? 1 : 0; });
     blnFirst = true;
@@ -46,10 +50,17 @@ Home.displayCards = function () {
     ResultsClickHandler();
 }
 
-/*----Next Events Card Click Handler ---*/
-function NextEventsClickHandler(strContainerID) {
+/*---Resive NextEvents Card------*/
+Home.resizeNextEventCard = function () {
+    divNextEvents = $("#divNextEvents");
+    divAbout = $("#divAbout")
+    divNextEvents.css("min-height", divAbout.outerHeight() + 1);
+}
 
-    $("#" + strContainerID).on("click", "a", function (event) {
+/*----Next Events Card Click Handler ---*/
+Home.nextEventsClickHandler = function() {
+
+    $("#divNextEvents").on("click", "a", function (event) {
         var objTarget;
 
         event.preventDefault();
@@ -58,6 +69,13 @@ function NextEventsClickHandler(strContainerID) {
 
     });
  }
+
+/*----Next Events Card Page Resize Handler ---*/
+Home.nextEventsPageResizeHandler = function () {
+
+    $(window).resize(Home.resizeNextEventCard);
+
+}
 
 
  /*----Next Events Card Click Handler ---*/
@@ -68,8 +86,8 @@ function NextEventsClickHandler(strContainerID) {
 
          event.preventDefault();
          objTarget = $(this);
-         EventResults.showEvent(objTarget.attr("idEvent"));
-
+         Processing.display(objTarget);
+         setTimeout(function () { EventResults.showEvent(objTarget.attr("idEvent"), undefined , undefined , function () { Processing.hide(); }) }, 100);
      });
  }
 

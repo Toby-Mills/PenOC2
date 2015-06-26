@@ -3,20 +3,8 @@
 Global.months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 Global.days = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
 
-/*---Modal Container---*/
-Global.modalContainer = function () {
-    var divModalContainer;
-
-    divModalContainer = $("#divModalContainer");
-
-    if (!divModalContainer.length > 0) {
-        strElement = "<div class='modal fade' id='divModalContainer' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'></div>";
-        $("body").append(strElement);
-        divModalContainer = $("#divModalContainer");
-    }
-
-    return divModalContainer;
-}
+Global.recentPast = new Date().setMonth(new Date().getMonth() - 6);
+Global.nearFuture = new Date().setMonth(new Date().getMonth() + 6);
 
 /*---Number.pad---*/
 Number.prototype.pad = function (size) {
@@ -26,12 +14,12 @@ Number.prototype.pad = function (size) {
 }
 
 /*----Parse Date----*/
-Global.parseDate = function parseDate(strDate) {
+Global.parseDate = function parseDate(dteDate) {
     var dateReturn;
 
-    if (strDate != null) {
-        dateReturn = new Date(parseInt(strDate.substring(6)));
-    }else{
+    if (dteDate != null) {
+        dateReturn = new Date(parseInt(dteDate.substring(6)));
+    } else {
         dateReturn = new Date(0);
     }
     return dateReturn;
@@ -39,43 +27,36 @@ Global.parseDate = function parseDate(strDate) {
 
 
 /*----Display Date----*/
-Global.displayDate = function displayDate(dateDate) {
-    var dateNow;
-    var dateFuture;
-    var datePast;
+Date.prototype.displayDate = function displayDate() {
     var strReturn;
-    var blnLongDate = true;
 
-    dateNow = new Date();
-
-    dateFuture = new Date();
-    dateFuture.setMonth(dateNow.getMonth() + 9);
-
-    datePast = new Date;
-    datePast.setMonth(dateNow.getMonth() - 9);
-
-    if (dateDate < datePast || dateDate > dateFuture) {
-        blnLongDate = true;
+    if (this < Global.recentPast || this > Global.nearFuture) {
+        strReturn = this.displayDateLong();
     } else {
-        blnLongDate = false;
+        strReturn = this.displayDateShort();
     }
-
-    if (blnLongDate == true) {
-        strReturn = dateDate.getDate() + " " + Global.months[dateDate.getMonth()] + " " + dateDate.getFullYear();
-    } else {
-        strReturn = Global.days[dateDate.getDay()] + " " + dateDate.getDate() + " " + Global.months[dateDate.getMonth()];
-    }
-
 
     return strReturn;
 }
 
+Date.prototype.displayDateShort = function displayDateShort() {
+    var strReturn;
+    strReturn = Global.days[this.getDay()] + " " + this.getDate() + " " + Global.months[this.getMonth()];
+    return strReturn;
+}
+
+Date.prototype.displayDateLong = function displayDateLong() {
+    var strReturn;
+    strReturn = this.getDate() + " " + Global.months[this.getMonth()] + " '" + ((this.getFullYear() - 2000).pad(2));
+    return strReturn;
+ }
+
 /*----Display Time----*/
-Global.displayTime = function displayTime(dateDate) {
+Date.prototype.displayTime = function displayTime() {
     var strReturn;
 
     //dateDate.setHours(dateDate.getHours + 2);//Time Zone adjustment
-    strReturn = dateDate.getHours() + ":" + dateDate.getMinutes().pad(2) + ":" + dateDate.getSeconds().pad(2);
+    strReturn = this.getHours() + ":" + this.getMinutes().pad(2) + ":" + this.getSeconds().pad(2);
 
     return strReturn;
 }
@@ -110,3 +91,131 @@ Global.displayDistance = function (intMetres) {
 
     return strReturn;
 }
+
+String.prototype.doesNotContain = function (arg) {
+    return this.indexOf(arg) == -1;
+};
+
+//--------------------------------------------------------
+Global.addLogResults = function (objLog) {
+    var objLogResults;
+    var intMaxResults = 0;
+    var intPosition = 0;
+
+    intMaxResults = objLog.eventCount - objLog.disregardWorst;
+    objLogResults = LogsService.LogResults(objLog.logID);
+
+    //Add events
+    if (objLog.events == undefined) {
+        objLog.events = LogsService.LogEvents(objLog.logID);
+    };
+
+    //insert points for planners & controllers
+    objLog.events.forEach(function (objEvent) {
+        objLogResults.forEach(function (objCompetitor) {
+            if (objEvent.plannerID === objCompetitor.competitorID || objEvent.controllerID === objCompetitor.competitorID) {
+                //calculate the average points of results already recorded
+                var intTotalPoints = 0;
+                var intTotalEvents = 0;
+                //sort descending to find top 3 results
+                objCompetitor.results.sort(function (result1, result2) { return result1.points > result2.points ? -1 : result1.points < result2.points ? 1 : 0; });
+                objCompetitor.results.forEach(function (courseResult) {
+                    if (intTotalEvents < 3) {
+                        intTotalPoints += courseResult.points;
+                        intTotalEvents++;
+                    }
+                });
+                //add average of best 3 results to organiser
+                if (intTotalEvents > 0) {
+                    intOrganiserPoints = Math.round(intTotalPoints / intTotalEvents)
+                    objCompetitor.results.push({ "eventID": objEvent.eventID, "points": intOrganiserPoints, "organiser": true });
+                }
+            }
+        });
+    });
+
+    objLogResults.forEach(function (objCompetitor) {
+        var intResultsToIgnore = 0;
+        var intPointsToDeduct = 0;
+        var intTotalPoints = 0;
+
+        //flag results to be ignored
+        if (objCompetitor.results.length > intMaxResults) {
+            //check how many results to ignore for this competitor
+            intResultsToIgnore = objCompetitor.results.length - intMaxResults;
+            //sort the results from smallest to greatest number of points
+            objCompetitor.results.sort(function (result1, result2) { return result1.points < result2.points ? -1 : result1.points > result2.points ? 1 : 0; });
+            for (i = 0; i < intResultsToIgnore; i++) {
+                objCompetitor.results[i].deduct = true;
+                intPointsToDeduct += objCompetitor.results[i].points;
+            }
+        }
+
+        objCompetitor.results.forEach(function (result) {
+            intTotalPoints += result.points;
+        });
+        intTotalPoints = intTotalPoints - intPointsToDeduct;
+        objCompetitor.totalPoints = intTotalPoints;
+
+    });
+
+    objLogResults.sort(function (objCompetitor1, objCompetitor2) {
+        if (objCompetitor1.totalPoints > objCompetitor2.totalPoints) {
+            return -1;
+        }
+        if (objCompetitor1.totalPoints < objCompetitor2.totalPoints) {
+            return 1;
+        }
+        return 0;
+    });
+
+    objLogResults.forEach(function (objCompetitor) {
+        intPosition++;
+        objCompetitor.position = intPosition;
+    });
+
+    objLog.results = objLogResults;
+}
+
+    Global.CompetitorCategory = function CompetitorCategory(intGender, dteDateOfBirth){
+        var strReturn ="";
+        var intYears;
+
+        if(dteDateOfBirth !== undefined){
+        intYears = (new Date().getFullYear() - dteDateOfBirth.getFullYear())
+            switch (intGender){
+                case 1: //male
+                   if(intYears <= 12){strReturn = "M12"}
+                   else if(intYears <= 16){strReturn = "M16"}
+                   else if(intYears <= 20){strReturn = "M20"}
+                   else if(intYears < 40){strReturn = "M21"}
+                   else if(intYears < 50){strReturn = "M40"}
+                   else if(intYears < 60){strReturn = "M50"}
+                   else if(intYears < 70){strReturn = "M60"}
+                   else if(intYears < 80){strReturn = "M70"}
+                   else if(intYears < 90){strReturn = "M80"}
+                   else if(intYears < 100){strReturn = "M90"}
+                case 2: //female
+                   if(intYears <= 12){strReturn = "W12"}
+                   else if(intYears <= 16){strReturn = "W16"}
+                   else if(intYears <= 20){strReturn = "W20"}
+                   else if(intYears < 35){strReturn = "W21"}
+                   else if(intYears < 45){strReturn = "W35"}
+                   else if(intYears < 55){strReturn = "W45"}
+                   else if(intYears < 65){strReturn = "W55"}
+                   else if(intYears < 75){strReturn = "W65"}
+                   else if(intYears < 85){strReturn = "W75"}
+                   else if(intYears < 95){strReturn = "W85"}
+                case 3: //group
+                    strReturn = "Group";
+                default:
+                    strReturn = "";
+            }
+        }else{
+            strReturn = "";
+        }
+
+        return strReturn;
+
+    }
+

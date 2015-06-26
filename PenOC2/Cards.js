@@ -8,10 +8,10 @@ Cards.nextEventsCard = function () {
     var strEventLI;
 
     strCard = "<div id='divNextEvents' class='card small eventlist'><span class='cardTitle'>Upcoming Events</span><ul>"
-    jsonEvents = EventsService.upcomingEvents(5);
+    jsonEvents = EventsService.upcomingEvents(5000);
     jsonEvents.forEach(function (event) {
-        dateEvent = Global.parseDate(event.date);
-        strEventLI = "<li><a href='' idEvent='" + event.eventID + "'>" + Global.displayDate(dateEvent) + " : " + event.venue + "</a></li>"
+        dateEvent =Global.parseDate( event.eventDate);
+        strEventLI = "<li><a href='' idEvent='" + event.eventID + "'>" + dateEvent.displayDate() + " : " + event.venueName + "</a></li>"
         strCard = strCard + strEventLI;
     });
     strCard = strCard + "</ul></div>"
@@ -30,7 +30,7 @@ Cards.newsCards = function (cardStack) {
     jsonNews.forEach(function (newsItem) {
 
         dateItem = Global.parseDate(newsItem.date);
-        strItemDate = Global.displayDate(dateItem);
+        strItemDate = dateItem.displayDate();
         strCard = "<div class='card ";
         if (newsItem.news.length > 800) {
             strCard = strCard + "large";
@@ -41,7 +41,7 @@ Cards.newsCards = function (cardStack) {
         }
         strCard = strCard + "'><div style='float:right;'><span class='cardDate' style='white-space: nowrap;'>";
         strCard = strCard + strItemDate;
-        strCard = strCard + "</span></div><div style='float:left;'><span class='cardTitle'>";
+        strCard = strCard + "</span></div><img src='Styles/Images/NewsCard.png' class='cardIcon' title='News' /><div><span class='cardTitle'>";
         strCard = strCard + newsItem.title;
         strCard = strCard + "</span></div><div style='clear:both;'>"
         if (newsItem.news.length > 2000) {
@@ -62,34 +62,39 @@ Cards.resultsCards = function (cardStack) {
     var strEventDate;
     var strCard;
 
-    jsonNews = EventsService.recentEventsWithResults(20);
+    jsonNews = EventsService.recentEventsWithResults(10);
     jsonNews.forEach(function (recentEvent) {
         event = EventsService.eventDetails(recentEvent.eventID);
         Global.addEventCourses(event);
         Global.addCourseResults(event.courses);
-        dateEvent = Global.parseDate(event.date);
-        strEventDate = Global.displayDate(dateEvent);
+        dateEvent = Global.parseDate(event.eventDate);
+        strEventDate = dateEvent.displayDate();
         strCard = "<div class='card small clickable results' idEvent='" + event.eventID + "'>";
         strCard = strCard + "<div style='float:right;'><span class='cardDate' style='white-space: nowrap;'>";
         strCard = strCard + strEventDate;
-        strCard = strCard + "</span></div><div style='float:left;'><span class='cardTitle'>";
-        strCard = strCard + event.name;
+        strCard = strCard + "</span></div><img src='Styles/Images/ResultsCard.png' class='cardIcon' title='Results'/><div><span class='cardTitle'>";
+        strCard = strCard + event.eventName;
         strCard = strCard + "</span></div>"
         strCard = strCard + "<table class='resultSummary'>";
+        strCard = strCard + "<thead>";
         strCard = strCard + "<tr>";
         strCard = strCard + "<th>Course</th>";
         strCard = strCard + "<th>Winner</th>";
         strCard = strCard + "<th>Time</th>";
         strCard = strCard + "</tr>"
+        strCard = strCard + "</thead>";
+
+        strCard = strCard + "<tbody>";
         event.courses.forEach(function (course) {
             if (course.results.length > 0) {
                 strCard = strCard + "<tr>";
                 strCard = strCard + "<td>" + course.name + "</td>";
-                strCard = strCard + "<td>" + course.results[0].name + "</td>";
-                strCard = strCard + "<td>" + Global.displayTime(Global.parseDate(course.results[0].time)) + "</td>";
+                strCard = strCard + "<td>" + course.results[0].competitorName + "</td>";
+                strCard = strCard + "<td>" + Global.parseDate(course.results[0].time).displayTime() + "</td>";
                 strCard = strCard + "</tr>"
             }
         });
+        strCard = strCard + "</tbody>";
         strCard = strCard + "</table>";
         strCard = strCard + "</div>";
         cardStack.push({ date: dateEvent, card: strCard });

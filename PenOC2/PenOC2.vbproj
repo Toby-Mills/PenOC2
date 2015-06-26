@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -99,29 +100,50 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Admin.aspx" />
+    <Content Include="Admin.js" />
     <Content Include="Cards.js" />
+    <Content Include="CompetitorResults.js" />
+    <Content Include="HTMLPage2.htm" />
+    <Content Include="HTMLPage3.htm" />
+    <Content Include="InlineEditing.js" />
+    <Content Include="LogResults.js" />
     <Content Include="EventResults.js" />
     <Content Include="EventDetails.js" />
     <Content Include="Global.js" />
     <Content Include="Home.js" />
+    <Content Include="HTMLPage1.htm" />
     <Content Include="Images\CapeTownMap.png" />
     <Content Include="Images\Forest.png" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Logs.aspx" />
+    <Content Include="Logs.js" />
+    <Content Include="Modal.js" />
+    <Content Include="Processing.js" />
+    <Content Include="ResultTable.js" />
+    <Content Include="Scripts\jquery.extensions.js" />
     <Content Include="NewsEditor.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="Events.aspx" />
     <Content Include="Images\background.JPG" />
+    <Content Include="Results.js" />
+    <Content Include="Scripts\jquery.autocomplete.min.js" />
+    <Content Include="Web Services\Autocomplete.js" />
+    <Content Include="Web Services\Competitors.asmx" />
+    <Content Include="Web Services\CompetitorsService.js" />
+    <Content Include="Web Services\LogsService.js" />
     <Content Include="Site.Master.js" />
     <Content Include="Styles\Images\background.png" />
     <Content Include="Scripts\bootstrap-modal.js" />
     <Content Include="Scripts\less-1.7.0.min.js" />
-    <Content Include="Services\EventsService.js" />
-    <Content Include="Services\NewsService.js" />
+    <Content Include="Web Services\EventsService.js" />
+    <Content Include="Web Services\NewsService.js" />
     <Content Include="Styles\CSS\jquery-ui.min.css" />
     <Content Include="Styles\CSS\jquery-ui.structure.min.css" />
-    <Content Include="Styles\CSS\jquery-ui.theme.min.css" />
     <Content Include="Styles\CSS\Site.css" />
     <Content Include="Styles\Images\NewCard.png" />
+    <Content Include="Styles\Images\ResultsCard.png" />
+    <Content Include="Web Services\Autocomplete.asmx" />
     <Content Include="Web Services\Events.asmx" />
     <Content Include="Home.aspx" />
     <None Include="Styles\LESS\elements.less" />
@@ -131,6 +153,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Web Services\Logs.asmx" />
     <Content Include="Web Services\News.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -178,13 +201,30 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Admin.aspx.designer.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="clsOrderedDictionary.vb" />
+    <Compile Include="Logs.aspx.designer.vb">
+      <DependentUpon>Logs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logs.aspx.vb">
+      <DependentUpon>Logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="NewsEditor.aspx.designer.vb">
       <DependentUpon>NewsEditor.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewsEditor.aspx.vb">
       <DependentUpon>NewsEditor.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PenocPage.vb">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Results.aspx.designer.vb">
       <DependentUpon>Results.aspx</DependentUpon>
@@ -207,6 +247,14 @@
       <DependentUpon>Events.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Web Services\Autocomplete.asmx.vb">
+      <DependentUpon>Autocomplete.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Web Services\Competitors.asmx.vb">
+      <DependentUpon>Competitors.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Web Services\Events.asmx.vb">
       <DependentUpon>Events.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -219,7 +267,7 @@
     </Compile>
     <Compile Include="Home.aspx.vb">
       <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -251,6 +299,10 @@
     <Compile Include="Site.Master.vb">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web Services\Logs.asmx.vb">
+      <DependentUpon>Logs.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Web Services\News.asmx.vb">
       <DependentUpon>News.asmx</DependentUpon>

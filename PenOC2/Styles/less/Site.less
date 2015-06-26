@@ -22,23 +22,14 @@
 @medium: #4C5D75;
 @dark: #323E4E;
 @verydark: #2D3032;
+
+@clickable: lighten(#FFC88A, 20%);
+@highlight: #FF3300;
 @DSQ: #FFCCCC;
+@selected: rgb(247, 246, 201);
 
-/* Royal Blue Green
-@verylight: #C4E1FC;
-@light: #63AFF7;
-@medium: #0C7DE9;
-@dark: #074887;
-@verydark: #021426;
-*/
+@superlight: lighten(@verylight, 15%);
 
-/* 
-@verylight: #B3EFB7;
-@light: #5EDE68;
-@medium: #24B32F;
-@dark: #125E18;
-@verydark: #010902;
-*/
 
 /* DEFAULTS
 ----------------------------------------------------------*/
@@ -52,34 +43,38 @@ body
 	background-image: url('../Images/background.png');
 }
 
-/*body
+body
 {
 	@media @superwidemonitor
 	{
-			font-size: 1.3em;
+			font-size: 1.7em;
+			//color: red;
 	}
 
 	@media @widemonitor
 	{
-			font-size: 1.2em;
+			font-size: 1.5em;
+			//color: blue;
 	}
 
 	@media @monitor
 	{
-			font-size: 1.10em;
+			font-size: 1.50em;
+			//color: green;
 	}
 
 	@media @tablet
 	{
-			font-size: 1.0em;
+			font-size: 1.3em;
+			//color: purple;
 	}
 
 	@media @phone
 	{
-			font-size: 0.9em;
+			font-size: 1.2em;
+			//color: pink;
 	}
 }
-*/
 
 p
 {
@@ -224,13 +219,20 @@ div.menu ul
 	}
 }
 
+div.menu li
+{
+	@media @phone, @tablet {
+		display: inline; 
+	}
+}
+
 div.menu select {
   display: none;
   width: 95%;
   margin-bottom: 6px;
 
   @media @phone {
-	display: inline-block;
+	display: inline;
 	}
 }
 
@@ -252,6 +254,10 @@ div.menu ul li a, div.menu ul li a:visited
 	float:left;
 	margin-right: 6px;
 	margin-bottom: 6px;
+
+		@media @phone, @tablet {
+		float: none;
+	}
 }
 
 div.menu ul li a.selected
@@ -261,7 +267,7 @@ div.menu ul li a.selected
 	background-color: @verylight;
 }
 
-div.menu ul li a:hover
+body.no-touch div.menu ul li a:hover
 {
     text-decoration: none;
 	.drop-shadow(0px, 0px, 5px, 0.8);
@@ -270,14 +276,22 @@ div.menu ul li a:hover
 
 /* BOOTSTRAP TABS
 ----------------------------------------------------------*/
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, body.no-touch .nav-tabs > li.active > a:hover
 {
 	border-bottom-color: white;
+	border-top-color: @highlight;
+	border-top-width: 3px;
+	padding-top: 8px;
 }
 
-.nav > li > a:focus, .nav > li > a:hover
+.nav > li > a:focus, body.no-touch .nav > li > a:hover
 {
 	outline: none;
+}
+
+.tab-content
+{
+	padding: 1%;
 }
 
 /* FORM ELEMENTS   
@@ -341,17 +355,20 @@ ul
  .headerLeft
 {
 	float: left;
+	max-width: 66%;
 	
 	@media @phone, @tablet
 	{
 		float: none;
 		text-align: center;
+		max-width: none;
 	} 
 }
 
 .headerRight
 {
 	float: right;
+	max-width: 33%;
 	max-height: 120px;
 	overflow: hidden;
 	
@@ -359,13 +376,16 @@ ul
 	{
 		float: none;
 		text-align: center;
+		max-width: none;
 	} 
 }
 
 .nextEventBox
 {
-    .gradient(@medium, @light, @medium);
+    .gradient(@medium, @medium, @dark);
 	.rounded(5px);
+	min-width:200px;
+	//max-width:400px;
     padding: 2px 8px 2px 8px;
     margin: 8px;
     display: inline-block;
@@ -374,9 +394,10 @@ ul
 	.user-select(none);
 }
 
-.nextEventBox:hover
+body.no-touch .nextEventBox:hover
 {
 	.box-shadow(0px 0px 8px white);
+	cursor: pointer; cursor: hand;
 }
 
 a.noDecoration
@@ -386,6 +407,117 @@ text-decoration:none;
 
 a.noDecoration:visited{
      color: inherit;
+}
+
+/* TABLES
+----------------------------------------------------------*/
+table
+{
+	border-collapse: separate;
+}
+
+th
+{
+	vertical-align: bottom;
+}
+
+th, td
+{
+	border: 1px solid;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.no-touch tr, .no-touch th, .no-touch td, .no-touch colgroup
+{
+	transition: background 0.5s, border-color 0.5s;
+}
+
+thead tr:nth-child(2)
+{
+  font-size: 0.8em;
+}
+
+thead tr
+{
+	background-color: rgba(255, 255, 255, 0);
+}
+
+thead tr th
+{
+	border-color: rgba(255, 255, 255, 0);
+}
+
+thead tr:first-child th
+{
+	border-top-color: @light;
+}
+
+thead tr:last-child th
+{
+	border-bottom-color: @light;
+}
+
+tbody tr:nth-child(odd)
+{
+	background-color:  #f9f9f9;
+}
+
+tbody tr:nth-child(odd) td
+{
+	border-color:  #f9f9f9;
+}
+
+tbody tr:nth-child(even)
+{
+  background-color: @superlight;
+}
+
+tbody tr:nth-child(even) td{
+	border-color:  @superlight;
+}
+
+tbody tr.highlight td
+{
+	border-color: @light;
+	border-left-color: @verylight;
+	border-right-color: @verylight;
+	background: @verylight;
+}
+
+tbody tr.selected td
+{
+	background-color: @selected;
+	border-top-color: darken(@selected, 20%);
+	border-bottom-color: darken(@selected, 20%);
+	border-left-color: @selected;
+	border-right-color: @selected;
+}
+
+tbody td.selected
+{
+	background-color: @selected;
+	border-color: darken(@selected, 20%);
+}
+
+colgroup.highlight 
+{
+	background: @superlight;
+}
+
+
+
+td.number, th.number
+{
+	text-align: right;
+}
+
+th.date, td.date
+{
+	text-align: right;
+	white-space: nowrap;
 }
 
 /* CARDS
@@ -400,6 +532,7 @@ a.noDecoration:visited{
 	background-color: white;
 	overflow: auto;
 }
+
 .card.small
 {
 	width:31%;
@@ -444,7 +577,7 @@ a.noDecoration:visited{
 
 }
 
-.card.clickable:hover
+body.no-touch .card.clickable:hover
 {
 	cursor: pointer; cursor: hand;
 	.box-shadow(0px 0px 12px @verydark);
@@ -455,6 +588,13 @@ a.noDecoration:visited{
 	font-size: 1.3em;
 	font-variant: small-caps;
 	font-weight: bold;
+}
+
+.card .cardSubTitle
+{
+	font-size: 1.1em;
+	font-variant: small-caps;
+	font-weight: normal;
 }
 
 .card .cardDate
@@ -469,37 +609,46 @@ a.noDecoration:visited{
 	padding:0px;
 }
 
+img.cardIcon
+{
+	margin-top:8px;
+	margin-right: 6px;
+	float: left;
+	height: 24px;
+}
+
 
 /* EVENT LIST
 ----------------------------------------------------------*/
-.EventList > .Title
+.eventList
 {
+	background-color: @light;
 }
 
-.EventList .Summary
+.eventList .event
 {
-	font-size: 0.8em;
+	clear: both;
+	background-color: #FFFFFF;
+	padding: 8px;
+	margin: 8px;
+	overflow: auto;
 }
 
-.EventList hr
+.eventList .event .name
 {
-	margin-bottom: 0px;
-	margin-top: 0px;
+	float: left;
+	font-weight: bold;
 }
 
-.EventList div.Event
+.eventList .event .date
 {
-	padding: 5px;
+	float: right;
 }
 
-.EventList div.Event:hover
+.eventList .event .venue
 {
-	background-color: @verylight;
-}
-
-.EventList hr:first-child
-{
-	display:none;
+	clear: both;
+	float: left;
 }
 
 /* NEWS LIST
@@ -527,26 +676,100 @@ a.noDecoration:visited{
 
 /* MODAL DIALOG
 ----------------------------------------------------------*/
+.modal-backdrop
+{
+	position: fixed;
+}
+
 body .modal-dialog.large
 {
+	@media @superwidemonitor
+	{
+			width: 80%;
+	}
+
+	@media @widemonitor
+	{
+			width: 80%;
+	}
+
+	@media @monitor
+	{
+			width: 100%;
+			margin: auto;
+	}
+
+	@media @tablet
+	{
+			width: 100%;
+			margin: auto;
+	}
+
+	@media @phone
+	{
+			width: 100%;
+			margin: auto;
+	}
 	width: 80%;
 }
 
 .modal-header.title
 {
 	background-color: @verylight;
+	overflow: auto;
+	font-size: 2em;
 }
 
 .modal-header.title h4
 {
 	color: @medium;
 	font-weight: bold;
+	float: left;
 }
 
-.modal-header.title button.close
+.modal-header.title button
 {
-	color: @verydark;
-	font-weight: bold;
+	color: @medium;
+	background-color:@verylight;
+	border-color: @light;
+	margin: 4px;
+	margin-top: 10px;
+}
+
+.modal-header.title button.back
+{
+	float: left;
+	margin-right: 12px;
+}
+
+.modal-header.title button.modal-close
+{
+	float: right;
+}
+
+.modal-header.title button.edit
+{
+	float: right;
+}
+
+.modal-header.title button.save
+{
+	float: right;
+	color: black;
+	background-color: desaturate(lighten(green, 30%), 20%);
+}
+
+.modal-header.title button.cancel
+{
+	float: right;
+	color: black;
+	background-color: lighten(red, 30%);
+}
+
+ .modal-header.title button:hover
+{
+	color: @dark;
+	background-color:@light;
 }
 
 .modal-header h4
@@ -568,31 +791,12 @@ table.resultSummary th
 	font-weight: bold;
 }
 
-div.resultCourseList
-{
-	float: left;
-	text-align: right;
+table.resultSummary tbody tr{
+  background-color: transparent;
 }
 
-div.resultCompetitorList
-{
-	float: left;
-	text-align: right;
-	border: 1px;
-	margin-left: -1px;
-}
-
-div.resultCourseList ul
-{
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-    width: auto;
-}
-
-div.resultCourseList ul li a
-{
-    border: solid 1px;
+table.resultSummary td{
+  border: none;
 }
 
 /*---RESULT TABLE---
@@ -608,8 +812,130 @@ table.resultTable tr.dsq
 	background-color: @DSQ;
 }
 
-table.resultTable td.number, table.resultTable th.number
+table.resultTable tr.dsq td
 {
-	text-align: right;
-	padding-right: 10px;
+	border-color: @DSQ;
+}
+
+/* PILL
+----------------------------------------------------------*/
+
+div.pill
+{
+	margin: 10px; 
+	border-radius: 6px; 
+	border: 1px solid rgb(221, 221, 221); 
+	border-image: none; 
+	float: left;
+	display: table;
+}
+
+div.pill div
+{
+	padding: 4px 12px 4px 8px;
+	white-space: nowrap;
+	float: left;
+}
+
+div.pill div.left
+{
+	background-color: rgba(234, 243, 251, 1);
+}
+
+div.pill div.right
+{
+	display: table-cell;
+vertical-align: middle;
+}
+
+div.pill div.right div.inner
+{
+	 display: inline-block;
+	
+}
+
+/*---LOG TABLE---
+----------------------------------------------------------*/
+table.logTable{
+	cell-padding: 2px;
+	margin: auto;
+	width: 100%;
+}
+
+table.logTable thead tr:last-child
+{
+	border-bottom: 1px solid @light;
+}
+
+table.logTable colgroup.points
+{
+	border-right: 1px solid @light;
+}
+
+table.logTable colgroup.event
+{
+	border-right: 1px solid @verylight;
+}
+
+table.logTable thead tr th.eventName
+{
+	max-width: 200px;
+	font-size: 0.8em;
+}
+
+td.deduct
+{
+	color:red;
+}
+
+.logTable td.organiser
+{
+	background-color:rgb(197, 251, 197);
+	border-color:rgb(197, 251, 197);
+}
+
+span.eventCount
+{
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+/*---PROCESSING---
+----------------------------------------------------------*/
+
+.processing
+{
+	background-color: rgba(100,100,250,0.1);
+}
+
+#divProcessing
+{
+	position: absolute;
+	text-align: center;
+}
+
+#divProcessing .helper
+{
+	display:inline-block;
+	height: 100%;
+	vertical-align:middle;
+}
+
+#divProcessing img
+{
+	height:50px;
+}
+
+/*---CLICKABLE---
+----------------------------------------------------------*/
+
+span.clickable
+{
+border-bottom: 1pt dashed @light;
+}
+
+span.clickable:hover
+{
+border-bottom: 1pt solid @medium;
+cursor: pointer;
 }
