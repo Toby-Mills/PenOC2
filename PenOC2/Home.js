@@ -7,22 +7,28 @@ Home.cards = new Array();
 $(document).ready(function () {
 
     setCurrentTab('home');
+    setSocialButtons('http://www.penoc.org.za', 'PenOC Website');
     Cards.newsCards(Home.cards);
     Cards.resultsCards(Home.cards);
     Home.displayCards();
+    $("#divMap").append(GoogleMaps.linkImage({ "centerLat": -30.77, "centerLong": 23.69, "zoom": 4, "width": 200, "height": 200, "addMarker": true, "markerLat": -33.925804, "markerLong": 18.427486 }));
+    WhatIsClickHandler();
+    Hook.respond();
     Home.initialiseMasonryContainer();
-
 })
-
 
 /*----Initialise Masonry----*/
 Home.initialiseMasonryContainer = function () {
-    var $container = $('#masonryContainer');
+    var $container = $('#divBase');
     // initialize
     $container.masonry({
-        columnWidth: '.card.small',
+        columnWidth: '.card.small-card',
         gutter: 0,
         itemSelector: '.card'
+    });
+    $container.imagesLoaded().progress(function () {
+        $container.masonry('layout');
+        Home.resizeNextEventCard();
     });
 }
 
@@ -48,13 +54,18 @@ Home.displayCards = function () {
     });
 
     ResultsClickHandler();
+    NewsClickHandler();
 }
 
 /*---Resive NextEvents Card------*/
 Home.resizeNextEventCard = function () {
     divNextEvents = $("#divNextEvents");
-    divAbout = $("#divAbout")
-    divNextEvents.css("min-height", divAbout.outerHeight() + 1);
+    if (!Global.isPhone) {
+        divAbout = $("#divAbout")
+        divNextEvents.css("min-height", divAbout.outerHeight() + 1);
+    } else {
+        divNextEvents.css("min-height", "");
+    }
 }
 
 /*----Next Events Card Click Handler ---*/
@@ -82,12 +93,38 @@ Home.nextEventsPageResizeHandler = function () {
  function ResultsClickHandler() {
 
      $(".card.results").on("click", function (event) {
-         var objTarget;
+         var objResultsCard;
+         var objCourseRow;
+         var intCourse;
 
          event.preventDefault();
-         objTarget = $(this);
-         Processing.display(objTarget);
-         setTimeout(function () { EventResults.showEvent(objTarget.attr("idEvent"), undefined , undefined , function () { Processing.hide(); }) }, 100);
+         objCourseRow = $(event.target).closest(".course");
+         if (objCourseRow.length > 0) {
+             intCourse = objCourseRow.attr("courseId");
+         }
+         objResultsCard = $(this);
+         Processing.display(objResultsCard);
+         setTimeout(function () { EventResults.showEvent(objResultsCard.attr("idEvent"), intCourse, undefined, function () { Processing.hide(); }) }, 100);
      });
  }
 
+ /*----Next Events Card Click Handler ---*/
+ function NewsClickHandler() {
+
+     $(".card.news").delegate(".news-more", "click", function (event) {
+         var objTarget;
+         var objCard;
+
+         event.preventDefault();
+         objTarget = $(this);
+         objCard = objTarget.closest(".card.news");
+         NewsItem.showNewsItem(objCard.attr("idNewsItem"));
+     });
+ }
+
+ /*----WhatIs Click Handler ---*/
+ function WhatIsClickHandler() {
+     $("#spanWhatIs").click(function () {
+         WhatIs.show();
+     });
+ }

@@ -213,16 +213,18 @@
         Return strReturn
     End Function
 
-    Public Shared Sub InjectJavascriptTag(page As Web.UI.Page, strURL As String)
+    Public Shared Sub InjectJavascriptTag(page As Web.UI.Page, strURL As String, Optional blnAsync As Boolean = False, Optional blnDefer As Boolean = False)
         Dim js As New HtmlGenericControl("script")
 
         js.Attributes("type") = "text/javascript"
         js.Attributes("src") = strURL
+        If blnAsync Then js.Attributes("async") = "true"
+        If blnDefer Then js.Attributes("defer") = "true"
         page.Header.Controls.Add(js)
 
     End Sub
 
-    Public Sub InjectJavascriptTag(strURL As String)
+    Public Sub InjectJavascriptTag(strURL As String, Optional blnAsync As Boolean = False, Optional blnDefer As Boolean = False)
 
         InjectJavascriptTag(Me.Page, strURL)
 

@@ -126,7 +126,7 @@ Modal.modalFooterDiv = function () {
     divModalFooter = divModalContent.find(".modal-footer");
 
     if (!divModalFooter.length > 0) {
-        divModalContent.append("<div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'><span class='glyphicon glyphicon glyphicon-remove'></span> CLOSE</button></div>");
+        divModalContent.append("<div class='modal-footer'><div id='divModalSocial'></div><button type='button' class='btn btn-default' data-dismiss='modal'><span class='glyphicon glyphicon glyphicon-remove'></span> CLOSE</button></div>");
         divModalFooter = divModalContent.find(".modal-footer");
     }
 
@@ -266,4 +266,9 @@ Modal.NavigateBack = function () {
             LogResults.showLog(objData.intLog);
             break;
     }
+}
+
+Modal.setSocialButtons = function addModalBackButton(strUrl, strDescription) {
+    $("#divModalSocial").empty();
+    Social.addSocialBar($("#divModalSocial"), strUrl, strDescription);
 }

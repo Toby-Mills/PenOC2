@@ -34,10 +34,16 @@ CompetitorResults.showCompetitor = function (intCompetitor, objPromise) {
 
     Modal.setTitle(objCompetitor.fullName);
     Modal.setBody(strResults);
-
+    Modal.setSocialButtons(Hook.createURL(Hook.competitorResults, intCompetitor), "PenOC Competitor Results");
     CompetitorResults.ResultClickHandler();
 
     Modal.show("competitor", { "intCompetitor": intCompetitor }, objCompetitor.fullName);
+
+
+    ga('send', 'pageview', {
+        page: '/CompetitorResults',
+        title: 'Competitor Results'
+    });
 
     if (objPromise != undefined) { objPromise() };
 };

@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     setCurrentTab('logs');
+    setSocialButtons('http://www.penoc.org.za/logs', 'PenOC Website - Log Results');
     Logs.displayLogs();
     LogClickHandler();
     Logs.initialiseMasonryContainer();
@@ -9,10 +10,10 @@ $(document).ready(function () {
 
 /*----Initialise Masonry----*/
 Logs.initialiseMasonryContainer = function () {
-    var $container = $('#divLogList');
+    var $container = $('#divBase');
     // initialize
     $container.masonry({
-        columnWidth: '.card.small',
+        columnWidth: '.card',
         gutter: 0,
         itemSelector: '.card'
     });
@@ -23,11 +24,11 @@ Logs.displayLogs = function () {
     var objLogResults;
     var strLogs = "";
 
-    objLogs = LogsService.AllLogs();
+    objLogs = LogsService.recentLogs(14);
 
     objLogs.forEach(function (Log) {
-        strLogs = "<div idLog='" + Log.logID + "' class='small card log clickable'><div class='cardTitle' style='float: left;'>" + Log.name + " (" + Log.year + ")</div><div class='cardSubTitle' style='float: right;'>" + Log.eventCount + " events</div><div style='clear: both;'></div></div>"
-        $("#divLogList").append(strLogs)
+        strLogs = "<div idLog='" + Log.logID + "' class='card small-card log clickable'><div class='cardTitle' style='float: left;'><span class='clickable'>" + Log.name + " (" + Log.year + ")</span></div><div class='cardSubTitle' style='float: right;'>" + Log.eventCount + " events</div><div style='clear: both;'></div></div>"
+        $("#divBase").append(strLogs)
     });
 
     objLogs.forEach(function (Log) {

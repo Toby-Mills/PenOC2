@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <div id="masonryContainer">
-        <div id="divEvents" class="card small" style="overflow: hidden;">
+        <div id="divEvents" class="card small-card" style="overflow: hidden;">
             <span class="cardTitle">Events</span>
             <ul>
                 <li><a>Create a new Event</a></li>
@@ -10,14 +10,14 @@
                 <li><a>Import Results</a></li>
             </ul>
         </div>
-        <div id="divNews" class="card small" style="overflow: hidden;">
+        <div id="divNews" class="card small-card" style="overflow: hidden;">
             <span class="cardTitle">News</span>
             <ul>
                 <li><a>Create a new News Item</a></li>
                 <li><a>Edit a News Item</a></li>
             </ul>
         </div>
-        <div id="divCompetitors" class="card small" style="overflow: hidden;">
+        <div id="divCompetitors" class="card small-card" style="overflow: hidden;">
             <span class="cardTitle">Competitors</span>
             <ul>
                 <li><a>Create a Competitor</a></li>

@@ -6,6 +6,7 @@
 
         Me.InjectJavascriptTag("https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js")
         Me.InjectJavascriptTag("Home.js")
+        Me.InjectJavascriptTag("WhatIs.js")
 
     End Sub
 End Class

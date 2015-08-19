@@ -49,13 +49,13 @@ ResultTable.createTable = function createTable(objResults, enColumns, intCompeti
     if (enColumns & ResultTable.enumTableColumn.time) {
         strHeader += "<th class='number'>Time</th>";
     }
-    if (enColumns & ResultTable.enumTableColumn.points) {
+    if (enColumns & ResultTable.enumTableColumn.points && !Global.isPhone) {
         strHeader += "<th class='number'>Points</th>";
     }
-    if (enColumns & ResultTable.enumTableColumn.raceNumber) {
+    if (enColumns & ResultTable.enumTableColumn.raceNumber && !Global.isPhone) {
         strHeader += "<th>Race Num.</th>";
     }
-    if (enColumns & ResultTable.enumTableColumn.comments) {
+    if (enColumns & ResultTable.enumTableColumn.comments && !Global.isPhone) {
         strHeader += "<th>Comments</th>";
     }
 
@@ -118,14 +118,14 @@ ResultTable.createTable = function createTable(objResults, enColumns, intCompeti
         }
 
         //Points
-        if (enColumns & ResultTable.enumTableColumn.points) {
+        if (enColumns & ResultTable.enumTableColumn.points && !Global.isPhone) {
             strRow += "<td class='number'><span class='edit-textbox'>"
             if (result.points > 0) { strRow += result.points }
             strRow += "</span></td>";
         }
 
         //Race Number
-        if (enColumns & ResultTable.enumTableColumn.raceNumber) {
+        if (enColumns & ResultTable.enumTableColumn.raceNumber && !Global.isPhone) {
             strRow += "<td><span class='edit-textbox'>"
             if (result.raceNumber != null) {
                 strRow += result.raceNumber;
@@ -134,7 +134,7 @@ ResultTable.createTable = function createTable(objResults, enColumns, intCompeti
         }
 
         //Comments
-        if (enColumns & ResultTable.enumTableColumn.comments) {
+        if (enColumns & ResultTable.enumTableColumn.comments && !Global.isPhone) {
             strRow += "<td><span class='edit-textbox'>"
             if (result.comments != null) {
                 strRow += result.comments;

@@ -23,7 +23,18 @@
 @dark: #323E4E;
 @verydark: #2D3032;
 
-@clickable: lighten(#FFC88A, 20%);
+
+/* New? */
+
+@body:lighten(@primary, 30%);
+@base:rgba(255, 255, 255, 0.7);
+@primary: rgba(76, 174, 76, 1);
+@primaryText: white;
+@text: #303030;
+@cardBackground: white;
+
+@clickable: #337ab7;
+@clickableHover: #23527c;
 @highlight: #FF3300;
 @DSQ: #FFCCCC;
 @selected: rgb(247, 246, 201);
@@ -31,16 +42,19 @@
 @superlight: lighten(@verylight, 15%);
 
 
-/* DEFAULTS
+/* DEFAULTS 
 ----------------------------------------------------------*/
 body
 {
-    font-size: 20px;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
     padding: 0px;
-    color: @dark;
-	background-image: url('../Images/background.png');
+    color: @text;
+	background-color: @body;
+	background-position: center top;
+	background-repeat: repeat-y;
+	background-attachment: fixed;
+	background-image: url("../../Images/Background/background-07.JPG");
 }
 
 body
@@ -82,6 +96,10 @@ p
     line-height: 1.6em;
 }
 
+a:hover
+{
+	//text-decoration: none;
+}
 
 /* HEADINGS   
 ----------------------------------------------------------*/
@@ -90,13 +108,13 @@ h1, h2, h3, h4, h5, h6
     color: @dark;
     font-variant: small-caps;
     text-transform: none;
-    font-weight: 200;
     margin-bottom: 0px;
 }
 
 h1
 {
     font-size: 1.6em;
+	font-weight: 300;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -151,14 +169,18 @@ first child of the left and right table columns */
 	}
 }
 
-.container
+.base
 {
-	background-color: @light;
+	background-color: @base;
+}
+
+.header
+{
+	background-color: @primary;
 }
 
 .header h1
 {
-    font-weight: 700;
     margin: 0px;
     padding: 0px 0px 0px 20px;
     color: white;
@@ -199,18 +221,16 @@ first child of the left and right table columns */
 
 div.menu
 {
-    padding: 4px 0 0 8px;
+    padding: 10px 0 10px 8px;
 	overflow: auto;
 
-	@media @phone, @tablet {
-		text-align: center;
-	}
 }
 
 div.menu ul
 {
     list-style: none;
     margin: 0px;
+	margin-top:20px;
     padding: 0px;
     width: auto;
 
@@ -238,21 +258,19 @@ div.menu select {
 
 div.menu ul li a, div.menu ul li a:visited
 {
-	.border-radius(5px, 0, 5px, 0);
-    background-color: @medium;
-    border: 1px @dark solid;
-	//border-bottom: none;
-    color: white;
+	.rounded(5px);
+    color: @text;
+	font-weight: 600;
     display: inline-block;
     line-height: 1.35em;
-    padding-left:  20px;
-	padding-right:  20px;
+    padding-left:  2ch;
+	padding-right:  2ch;
 	padding-bottom: 4px;
 	padding-top: 2px;
     text-decoration: none;
     white-space: nowrap;
 	float:left;
-	margin-right: 6px;
+	margin-right: 1ch;
 	margin-bottom: 6px;
 
 		@media @phone, @tablet {
@@ -262,9 +280,9 @@ div.menu ul li a, div.menu ul li a:visited
 
 div.menu ul li a.selected
 {
-    color: @verydark;
 	font-weight: bold;
-	background-color: @verylight;
+	color:white;
+	background-color: @primary;
 }
 
 body.no-touch div.menu ul li a:hover
@@ -273,6 +291,10 @@ body.no-touch div.menu ul li a:hover
 	.drop-shadow(0px, 0px, 5px, 0.8);
 }
 
+body.no-touch div.menu ul li a.selected:hover
+{
+.drop-shadow(0px, 0px, 0px, 0);
+}
 
 /* BOOTSTRAP TABS
 ----------------------------------------------------------*/
@@ -369,7 +391,6 @@ ul
 {
 	float: right;
 	max-width: 33%;
-	max-height: 120px;
 	overflow: hidden;
 	
 	@media @phone, @tablet
@@ -380,24 +401,30 @@ ul
 	} 
 }
 
-.nextEventBox
+.card.nextEventBox
 {
-    .gradient(@medium, @medium, @dark);
-	.rounded(5px);
 	min-width:200px;
-	//max-width:400px;
-    padding: 2px 8px 2px 8px;
     margin: 8px;
     display: inline-block;
-	font-size: 0.9em;
-	color:white;
+	//font-size: 0.9em;
 	.user-select(none);
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
 body.no-touch .nextEventBox:hover
 {
-	.box-shadow(0px 0px 8px white);
+	.box-shadow(0px 0px 8px #333333);
 	cursor: pointer; cursor: hand;
+}
+
+.nextEventBox span
+{
+whitespace: nowrap;
+}
+
+.nextEventBox #spanNextEventDate
+{
+	float: right;
 }
 
 a.noDecoration
@@ -408,6 +435,7 @@ text-decoration:none;
 a.noDecoration:visited{
      color: inherit;
 }
+
 
 /* TABLES
 ----------------------------------------------------------*/
@@ -428,6 +456,7 @@ th, td
 	padding-bottom: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
+	vertical-align: top;
 }
 
 .no-touch tr, .no-touch th, .no-touch td, .no-touch colgroup
@@ -529,11 +558,11 @@ th.date, td.date
 	.drop-shadow(0, 1px, 5px, 0.2);
 	padding: 15px;
 	margin: 1%;
-	background-color: white;
-	overflow: auto;
+	background-color: @cardBackground;
+	overflow: hidden;
 }
 
-.card.small
+.card.small-card
 {
 	width:31%;
 
@@ -548,7 +577,7 @@ th.date, td.date
 	}     
 }
 
-.card.medium
+.card.medium-card
 {
 	width:64%;
 
@@ -563,14 +592,13 @@ th.date, td.date
 	}     
 }
 
-.card.large
+.card.large-card
 {
 	width:98%;  
 }
 
 .card.first
 {
-	.box-shadow(0px 0px 12px @verydark);
 	background-image: url("../Images/NewCard.png");
 	background-repeat: no-repeat;
 	background-size: 20px 20px;
@@ -609,6 +637,11 @@ body.no-touch .card.clickable:hover
 	padding:0px;
 }
 
+.card.eventlist li
+{
+	padding:5px;
+}
+
 img.cardIcon
 {
 	margin-top:8px;
@@ -620,10 +653,6 @@ img.cardIcon
 
 /* EVENT LIST
 ----------------------------------------------------------*/
-.eventList
-{
-	background-color: @light;
-}
 
 .eventList .event
 {
@@ -658,20 +687,24 @@ img.cardIcon
 	font-size: 0.8em;
 }
 
-.thumbnailMap{
-	height: 200px;
-	border: 1px solid @light;
-	margin: 8px; 
-	.box-shadow(2px 2px 8px @verylight);
+.card div.news-more
+{
+	position: absolute;
+	bottom: 0px;
+	width: 102%;
+	left: 0px;
+	background-color: fadeout(lighten(@primary, 20%), 10%);
+		transition: background-color 0.5s;
 
-		@media @phone
-	{
-		height: 100px;
-	} 
-		@media @tablet
-	{
-		height: 150px;
-	} 
+		text-align: center;
+		height: 2em;
+		border-top: solid 1px @primary;
+}
+
+.card div.news-more:hover
+{
+	background-color: @primary;
+			color: @primaryText;
 }
 
 /* MODAL DIALOG
@@ -715,23 +748,23 @@ body .modal-dialog.large
 
 .modal-header.title
 {
-	background-color: @verylight;
+	background-color: @primary;
 	overflow: auto;
 	font-size: 2em;
 }
 
 .modal-header.title h4
 {
-	color: @medium;
+	color: @primaryText;
 	font-weight: bold;
 	float: left;
 }
 
 .modal-header.title button
 {
-	color: @medium;
-	background-color:@verylight;
-	border-color: @light;
+	color: @primaryText;
+	background-color: fadeout(@primaryText, 70%);
+	border: solid 1px fadeout(@primaryText, 70%);
 	margin: 4px;
 	margin-top: 10px;
 }
@@ -768,8 +801,8 @@ body .modal-dialog.large
 
  .modal-header.title button:hover
 {
-	color: @dark;
-	background-color:@light;
+	border: solid 1px white;
+	background-color:rgba(255, 255, 255, 0.1);
 }
 
 .modal-header h4
@@ -867,7 +900,7 @@ table.logTable thead tr:last-child
 	border-bottom: 1px solid @light;
 }
 
-table.logTable colgroup.points
+table.logTable td.points
 {
 	border-right: 1px solid @light;
 }
@@ -882,6 +915,28 @@ table.logTable thead tr th.eventName
 	max-width: 200px;
 	font-size: 0.8em;
 }
+
+table.logTable thead tr th.rotate
+{
+	padding: 0px;
+	margin: 0px;
+	width: 50px;
+	vertical-align: top;
+	text-align: left;
+	border-left-color: @light;
+	border-top: none;
+	}
+
+.logTable th.rotate div
+{
+	padding: 0px;
+	margin: 0px;
+	transform:rotate(-90deg);
+	transform-origin: 10px 10px;
+	-webkit-transform:rotate(-90deg);
+	-webkit-transform-origin: 10px 10px;
+}
+
 
 td.deduct
 {
@@ -931,11 +986,138 @@ span.eventCount
 
 span.clickable
 {
-border-bottom: 1pt dashed @light;
+color: @clickable;
+//border-bottom: 1pt dashed @clickable;
 }
 
 span.clickable:hover
 {
-border-bottom: 1pt solid @medium;
+color: @clickableHover;
+border-bottom: 1pt solid @clickableHover;
 cursor: pointer;
+}
+
+/*---CALENDAR---
+----------------------------------------------------------*/
+
+div.calendar-icon
+{
+	border: 1px solid black;
+	border-radius: 4px;
+	margin-right: 10px;
+	width: 13ch;
+	overflow: hidden;
+	.drop-shadow(2px, 2px, 4px, 0.5) 
+}
+
+div.calendar-icon div
+{
+	padding: 2px;
+}
+
+div.calendar-date div
+{
+
+	text-align: center;
+}
+
+div.calendar-icon div.calendar-icon-month
+{
+	background-color: rgb(246, 68, 55);
+	color: white;
+	font-weight: 600;
+}
+
+div.calendar-icon div.calendar-icon-date
+{
+	background-color: white;
+	font-weight: 700;
+	font-size: 2em;
+	height: 4ch;
+}
+
+div.calendar-date-day
+{
+	font-weight: 300;
+	width: 13ch;
+}
+
+div.map:hover
+{
+	.drop-shadow(0px, 0px, 8px, 1);
+	
+}
+
+/*----CONTACT US
+----------------------------*/
+div#divContactDetails h1
+{
+	font-weight: 600;
+	font-size: 1.1em;
+}
+
+div#divContactDetails h1 img
+{
+	height: 30px;
+}
+
+div#divContactDetails div
+{
+margin: 2em;
+}
+
+/*----HOME
+----------------------------*/
+div#divAbout #divMap
+{
+	float: left;
+	margin-right:2ch;
+	margin-bottom:2ch;
+	border: 1px solid @light;
+	margin: 8px; 
+	.box-shadow(2px 2px 8px @verylight);
+}
+
+div#divAbout #divMap img
+{
+	height: 200px;
+
+	@media @phone
+	{
+		height: 100px;
+	} 
+	@media @tablet
+	{
+		height: 150px;
+	} 
+}
+
+/*----WHAT IS
+----------------------------*/
+#divWhatIs img
+{
+margin:20px;
+}
+
+#divWhatIs h1
+{
+	font-weight: 600;
+}
+
+/*----SOCIAL
+----------------------------*/
+div.social
+{
+	max-width:140px;
+}
+
+.social img
+{
+	height: 2em;
+	margin: 4px;
+}
+
+#divModalSocial
+{
+float: left;
 }

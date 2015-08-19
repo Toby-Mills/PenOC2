@@ -60,13 +60,17 @@ EventResults.buildEventResults = function (intEvent, intCourse, intCompetitor, o
     strCard = strCard + strTabs;
     strCard = strCard + strResults;
 
-    Modal.setTitle(objEvent.eventName);
+    Modal.setTitle(objEvent.eventName || objEvent.venueName);
     Modal.setBody(strCard);
-
-    Modal.setEditButtonVisible(true, EventResults.startEditing);
+    Modal.setSocialButtons(Hook.createURL(Hook.eventResults, intEvent), "PenOC Event Results");
+    //Modal.setEditButtonVisible(true, EventResults.startEditing);
 
     Modal.show("event", { "intEvent": intEvent, "intCourse": intCourse, "intCompetitor": intCompetitor }, objEvent.eventName);
 
+    ga('send', 'pageview', {
+        page: '/EventResults',
+        title: 'Event Results'
+    });
 }
 
 //--------------------------------------------------------

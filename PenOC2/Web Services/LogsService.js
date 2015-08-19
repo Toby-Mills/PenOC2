@@ -1,15 +1,15 @@
 ﻿var LogsService = LogsService || {};
 
 //----------------------------------------------------------------------------
-LogsService.AllLogs = function () {
+LogsService.recentLogs = function (intCount) {
     var result = '';
 
     $.ajax({
         async: false,
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
-        url: 'Web Services/Logs.asmx/AllLogs',
-        data: '{}',
+        url: 'Web Services/Logs.asmx/RecentLogs',
+        data: '{"intCount": ' + intCount + '}',
         dataType: 'json',
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);

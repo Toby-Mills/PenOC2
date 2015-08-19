@@ -4,7 +4,9 @@ Results.venues = Autocomplete.venues();
 
 $(document).ready(function () {
     setCurrentTab('results');
-    $("#divEventList").append(Results.EventsList());
+    setSocialButtons('http://www.penoc.org.za/results', 'PenOC Website - Event Results');
+    $("#divBase").append(Results.EventsList());
+    Global.extendToBottom($("#divBase"));
     EventsClickHandler();
     FilterChangeHandler();
 });
@@ -18,7 +20,7 @@ Results.EventsList = function () {
     objResults.forEach(function (PastEvent) {
         strDivResult = "<div class='event card clickable' idEvent = '" + PastEvent.eventID + "'>";
         strDivResult += "<div class='cardTitle'>";
-        strDivResult += "<span>"
+        strDivResult += "<span class='clickable'>"
         if (PastEvent.name != null) {
             strDivResult += PastEvent.name;
         } else {

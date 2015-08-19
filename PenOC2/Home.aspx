@@ -1,21 +1,39 @@
 ﻿<%@ Page Language="vb" MasterPageFile="~/Site.Master" AutoEventWireup="false" CodeBehind="Home.aspx.vb" Inherits="PenOC2.Home" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <meta property="og:url" content="http://www.penoc.org.za/Home.aspx" />
+    <meta property="og:title" content="PenOC Home Page" />
+    <meta property="og:description" content="Peninsula Orienteering Club" />
+</asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <div id="masonryContainer">
-        <div id="divAbout" class="card medium" style="overflow: hidden;">
-            <span class="cardTitle">About the club</span>
-            <p>
-                PenOC is the Peninsula Orienteering Club, based in Cape Town, South Africa</p>
-            <a class="noDecoration" href="https://www.google.com/maps/place/Cape+Town/@-30.7798467,23.6903413,6z/data=!4m2!3m1!1s0x1dcc500f8826eed7:0x687fe1fc2828aa87"
-                target="_blank">
-                <img src="Images/CapeTownMap.png" class="thumbnailMap" style="float: left;" /></a>
-                <p>Orienteering events are held regularly throughout
-            the year, and visitors are welcome.</p>
-            <p>Our email list will keep you informed of event details and results as they become available.
-            To subscribe, send an email to: <a href='mailto:penoc+subscribe@googlegroups.com'><span>penoc+subscribe@</span><span>googlegroups.com</span></a>
-            </p>
+    <!--<div id="masonryContainer">-->
+    <div id="divAbout" class="card medium-card" style="overflow: hidden;">
+        <span class="cardTitle">About the club</span>
+        <p>
+            PenOC is the Peninsula Orienteering Club, based in Cape Town, South Africa</p>
+        <div id="divMap">
         </div>
-        <div id="divCardList">
-        </div>
+        <p>
+            Orienteering events are held regularly throughout the year, and visitors are welcome.</p>
+        <span class="cardTitle" style="white-space: nowrap;">What is Orienteering?</span>
+        <p>
+            An exciting outdoor adventure sport which involves walking or running whilst navigating around a course using a detailed map and sometimes
+            a compass.</p>
+        <p>
+            The aim is to navigate between a set of control points, deciding on the best route to complete the course in the quickest time.</p>
+        <p>
+            It does not matter how young, old or fit you are - you can run, walk or jog the course and progress at your own pace.</p>
+        <span id='spanWhatIs' class='clickable'>read more...</span></p> <span class="cardTitle">Stay in touch</span>
+        <p>
+            Our email list will keep you informed of event details and results as they become available. To subscribe, send an email to: <a href='mailto:penoc+subscribe@googlegroups.com'>
+                penoc+subscribe@googlegroups.com</a>
+        </p>
+        <p>
+            <a href="https://www.facebook.com/groups/penoc/" target="_blank">
+                <img src="Images/socialIcons/facebook.svg" style="height: 2em; margin-right: 5px;" /></a>Join us to discuss results and other topics
+            on <a href="https://www.facebook.com/groups/penoc/" target="_blank">facebook</a></p>
     </div>
+    <div id="divCardList">
+    </div>
+    <!--</div>-->
 </asp:Content>

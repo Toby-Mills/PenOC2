@@ -3,32 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>PenOC | Peninsula Orienteering Club</title>
+    <meta property="og:image" content="http://www.penoc.org.za/Images/WhatIs/OrienteeringMapAndCompass.jpg" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css"  href="Styles/CSS/jquery-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="Styles/CSS/jquery-ui.structure.min.css"/>
+    <link rel="stylesheet" type="text/css" href="Styles/CSS/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/CSS/jquery-ui.structure.min.css" />
     <link rel="stylesheet" type="text/css" href="Styles/CSS/Site.css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
+    </asp:ContentPlaceHolder></head>
 <body>
     <form runat="server">
-    <div class="header container">
-        <div>
+    <div class="header">
+        <div class="container">
             <div class="structure headerLeft">
                 <h1>
-                    PenOC | Peninsula <span style="white-space: nowrap;">Orienteering Club</span></h1>
+                    <span style='font-weight: 600;'>PenOC&nbsp;&nbsp;&nbsp;&nbsp;</span><span>Peninsula </span><span style="white-space: nowrap;">Orienteering
+                        Club</span></h1>
             </div>
             <div class="structure headerRight">
-                <div id="divNextEventBox" class="nextEventBox">
+                <div id="divNextEventBox" class="card nextEventBox">
                     <div>
                         <div>
-                            <span>Next Event:</span><br />
-                            <span id="spanNextEventName" style="font-weight: bold; white-space: nowrap;"></span><br />
-                            <span id="spanNextEventVenue" style="font-weight: bold; white-space: nowrap;"></span>
+                            <span>Next Event: </span><span id="spanNextEventDate"></span>
                             <br />
-                            <span id="spanNextEventDate" style="white-space: nowrap;"></span>
+                            <span id="spanNextEventName" class="clickable" style="font-weight: bold;"></span>
+                            <br />
                         </div>
                     </div>
                 </div>
@@ -37,23 +37,24 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container base">
         <div class="menu">
+            <div style="float: right; padding: 3px;" id="divSocial">
+            </div>
             <ul>
-                <li><a id="home" href="Home.aspx">Home</a></li>
-                <li><a id="results" href="Results.aspx">Results</a></li>
-                <li><a id="logs" href="Logs.aspx">Logs</a></li>
-                <li><a id="contact" href="ContactUs.aspx">Contact Us</a></li>
-                <li><a id="admin" href="Admin.aspx">Admin</a></li>
+                <li><a id="home" href="Home.aspx">HOME</a></li>
+                <li><a id="calendar" href="Calendar.aspx">CALENDAR</a></li>
+                <li><a id="results" href="Results.aspx">RESULTS</a></li>
+                <li><a id="logs" href="Logs.aspx">LOGS</a></li>
+                <li><a id="contact" href="ContactUs.aspx">CONTACT US</a></li>
+                <!--<li><a id="admin" href="Admin.aspx">ADMIN</a></li>-->
             </ul>
         </div>
         <div style="clear: both;">
         </div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    </div>
-    <div class="clear">
-    </div>
-    <div class="footer">
+        <div id="divBase">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
     </div>
     </form>
 </body>

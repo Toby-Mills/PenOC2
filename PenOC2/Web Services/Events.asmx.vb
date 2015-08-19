@@ -12,6 +12,44 @@ Imports System.Web.Script.Serialization
 Public Class EventDetails
     Inherits System.Web.Services.WebService
 
+
+    Private Class OEvent
+        Public Property eventID As Integer
+        Public Property eventName As String
+        Public Property eventDate As DateTime
+        Public Property venueID As Nullable(Of Integer)
+        Public Property venueName As String
+        Public Property controllerID As Nullable(Of Integer)
+        Public Property controllerFullName As String
+        Public Property controllerReport As String
+        Public Property plannerID As Nullable(Of Integer)
+        Public Property plannerFullName As String
+        Public Property plannerReport As String
+        Public Property eventMaximumPoints As Nullable(Of Integer)
+        Public Property eventDirections As String
+        Public Property eventStarts As String
+        Public Property eventClub As String
+        Public Property eventCourseDescriptions As String
+        Public Property eventCost As String
+        Public Property eventNotes As String
+        Public Property eventLatitude As Nullable(Of Decimal)
+        Public Property eventLongitude As Nullable(Of Decimal)
+
+    End Class
+
+    Private Class Course
+        Public Property eventID As Integer
+        Public Property courseID As Integer
+        Public Property name As String
+        Public Property order As Nullable(Of Integer)
+        Public Property length As Nullable(Of Integer)
+        Public Property climb As Nullable(Of Integer)
+        Public Property controls As Nullable(Of Integer)
+        Public Property difficulty As String
+        Public Property winnerFullName As String
+        Public Property winnerTime As Nullable(Of DateTime)
+    End Class
+
     Private Class CourseResult
         Public Property competitorID As Integer
         Public Property competitorName As String
@@ -28,27 +66,6 @@ Public Class EventDetails
         Public Property comments As String
         Public Property raceNumber As String
         Public Property dsq As Boolean
-    End Class
-
-    Private Class OEvent
-        Public Property eventID As Integer
-        Public Property eventName As String
-        Public Property eventDate As DateTime
-        Public Property venueID As Nullable(Of Integer)
-        Public Property venueName As String
-        Public Property controllerID As Nullable(Of Integer)
-        Public Property controllerFullName As String
-        Public Property controllerReport As String
-        Public Property plannerID As Nullable(Of Integer)
-        Public Property plannerFullName As String
-        Public Property plannerReport As String
-        Public Property eventMaximumPoints As Nullable(Of Integer)
-        Public Property eventDirections As String
-        Public Property eventClub As String
-        Public Property eventCourseDescriptions As String
-        Public Property eventCost As String
-        Public Property eventNotes As String
-
     End Class
 
     Private Function EventsQuery(funcWhere As System.Func(Of OEvent, Boolean), funcSort As System.Func(Of OEvent, Long), objComparer As IComparer(Of Long), intMaxRecords As Integer) As String
@@ -78,10 +95,13 @@ Public Class EventDetails
                                 .plannerReport = OEvent.strPlannerReport,
                                 .eventMaximumPoints = OEvent.intMaxPoints,
                                 .eventDirections = OEvent.strDirections,
+                                .eventStarts = OEvent.strStarts,
                                 .eventClub = OEvent.lutClub.strShortName,
                                 .eventCourseDescriptions = OEvent.strCourses,
                                 .eventCost = OEvent.strCost,
-                                .eventNotes = OEvent.strSpecialNote
+                                .eventNotes = OEvent.strSpecialNote,
+                                .eventLatitude = OEvent.decCoordinateLat,
+                                .eventLongitude = OEvent.decCoordinateLong
                     }).Where(funcWhere).OrderBy(funcSort, objComparer).Take(intMaxRecords)
 
             strReturn = serializer.Serialize(qryEvent)
@@ -208,35 +228,68 @@ Public Class EventDetails
         Return strReturn
     End Function
 
-    <WebMethod()> _
-   <ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
-    Public Function EventCourses(eventID As Integer) As String
-        Dim intEvent As Integer
-        Dim qryCourses As System.Data.Objects.ObjectQuery
+    Private Function CoursesQuery(funcWhere As System.Func(Of Course, Boolean), funcSort As System.Func(Of Course, Long), objComparer As IComparer(Of Long)) As String
+        Dim qryCourse As IEnumerable(Of Course)
         Dim serializer As JavaScriptSerializer
         Dim strReturn As String
 
         serializer = New JavaScriptSerializer
-        intEvent = eventID
 
         Using db As New PenOC2.PenocEntities()
+            qryCourse = (From Course In db.tblCourses
+                        Group Join CourseResult In db.tblResults On CourseResult.intCourse Equals Course.idCourse Into Results = Group
+                        From Result In Results.OrderBy(Function(myResult) myResult.intPosition).Take(1)
+                        Join Competitor In db.tblCompetitors On Competitor.idCompetitor Equals Result.intCompetitor
+                        Select New Course() With _
+                               {.eventID = Course.intEvent,
+                               .courseID = Course.idCourse,
+                                .name = Course.strName,
+                                .order = Course.intListOrder,
+                                .length = Course.intLength,
+                                .climb = Course.intClimb,
+                                .controls = Course.intControls,
+                                .difficulty = Course.lutTechnical.strTechnical,
+                               .winnerFullName = Competitor.strReadOnlyFullName,
+                                .winnerTime = Result.dteTime
+                                   }).Where(funcWhere).OrderBy(funcSort, objComparer)
 
-            qryCourses = From Course In db.tblCourses
-                         Where Course.intEvent = intEvent
-                         Select New With _
-                                {.eventID = Course.intEvent,
-                                .courseID = Course.idCourse,
-                                 .name = Course.strName,
-                                 .order = Course.intListOrder,
-                                 .length = Course.intLength,
-                                 .climb = Course.intClimb,
-                                 .controls = Course.intControls,
-                                 .difficulty = Course.lutTechnical.strTechnical
-                                    }
-
-            strReturn = serializer.Serialize(qryCourses)
+            strReturn = serializer.Serialize(qryCourse)
 
         End Using
+
+        Return strReturn
+
+    End Function
+
+    <WebMethod()> _
+   <ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
+    Public Function EventCourses(eventID As Integer) As String
+        Dim strReturn As String
+
+        Dim objWhere As System.Func(Of Course, Boolean)
+        Dim objSort As System.Func(Of Course, Long)
+
+        objWhere = Function(objCourse As Course) objCourse.eventID = eventID
+        objSort = Function(objCourse As Course) objCourse.order OrElse 1
+
+        strReturn = CoursesQuery(objWhere, objSort, New ASC)
+
+        Return strReturn
+
+    End Function
+
+    <WebMethod()> _
+<ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
+    Public Function CourseDetails(courseID As Integer) As String
+        Dim strReturn As String
+
+        Dim objWhere As System.Func(Of Course, Boolean)
+        Dim objSort As System.Func(Of Course, Long)
+
+        objWhere = Function(objCourse As Course) objCourse.courseID = courseID
+        objSort = Function(objCourse As Course) 1
+
+        strReturn = CoursesQuery(objWhere, objSort, New ASC)
 
         Return strReturn
 
@@ -289,6 +342,22 @@ Public Class EventDetails
         Dim objSort As System.Func(Of CourseResult, Long)
 
         objWhere = Function(objCourseResult As CourseResult) objCourseResult.courseID = courseID
+        objSort = Function(objCourseResult As CourseResult) objCourseResult.position
+
+        strReturn = ResultsQuery(objWhere, objSort, New ASC)
+
+        Return strReturn
+
+    End Function
+
+    <WebMethod()> _
+<ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
+    Public Function CourseWinner(courseID As Integer) As String
+        Dim strReturn As String
+        Dim objWhere As System.Func(Of CourseResult, Boolean)
+        Dim objSort As System.Func(Of CourseResult, Long)
+
+        objWhere = Function(objCourseResult As CourseResult) objCourseResult.courseID = courseID AndAlso objCourseResult.position = 1
         objSort = Function(objCourseResult As CourseResult) objCourseResult.position
 
         strReturn = ResultsQuery(objWhere, objSort, New ASC)

@@ -8,6 +8,9 @@
 
         objPenocPage.InjectJavascriptTag("https://code.jquery.com/jquery-2.1.3.min.js")
         objPenocPage.InjectJavascriptTag("Scripts/jquery.extensions.js")
+        objPenocPage.InjectJavascriptTag("Scripts/jquery.truncate.js")
+        objPenocPage.InjectJavascriptTag("Scripts/imagesloaded.js")
+        objPenocPage.InjectJavascriptTag("Scripts/GoogleMaps.js")
         objPenocPage.InjectJavascriptTag("Site.Master.js")
         objPenocPage.InjectJavascriptTag("Modal.js")
         objPenocPage.InjectJavascriptTag("Processing.js")
@@ -16,16 +19,19 @@
         objPenocPage.InjectJavascriptTag("ResultTable.js")
         objPenocPage.InjectJavascriptTag("EventResults.js")
         objPenocPage.InjectJavascriptTag("EventDetails.js")
+        objPenocPage.InjectJavascriptTag("NewsItem.js")
         objPenocPage.InjectJavascriptTag("InlineEditing.js")
+        objPenocPage.InjectJavascriptTag("social.js")
         objPenocPage.InjectJavascriptTag("CompetitorResults.js")
         objPenocPage.InjectJavascriptTag("Web Services/NewsService.js")
         objPenocPage.InjectJavascriptTag("Web Services/EventsService.js")
         objPenocPage.InjectJavascriptTag("Web Services/LogsService.js")
         objPenocPage.InjectJavascriptTag("Web Services/CompetitorsService.js")
         objPenocPage.InjectJavascriptTag("Web Services/Autocomplete.js")
+        objPenocPage.InjectJavascriptTag("Hook.js")
         objPenocPage.InjectJavascriptTag("http://code.jquery.com/ui/1.11.4/jquery-ui.min.js")
         objPenocPage.InjectJavascriptTag("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
-
+        objPenocPage.InjectJavascriptTag("https://apis.google.com/js/platform.js", True, True)
 
 
     End Sub

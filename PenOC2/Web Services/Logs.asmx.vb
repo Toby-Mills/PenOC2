@@ -15,7 +15,7 @@ Public Class Logs1
 
     <WebMethod()> _
        <ScriptMethod(ResponseFormat:=ResponseFormat.Json)> _
-    Public Function AllLogs() As String
+    Public Function RecentLogs(intCount As Integer) As String
         Dim qryLog As System.Data.Objects.ObjectQuery
         Dim serializer As JavaScriptSerializer
         Dim strReturn As String
@@ -37,7 +37,7 @@ Public Class Logs1
                     .disregardWorst = Log.intDisregardWorst,
                     .courseCount = Log.tblCourses.Count,
                     .eventCount = LogEvents.Count
-                    })
+                    }).Take(intCount)
 
             strReturn = serializer.Serialize(qryLog)
 

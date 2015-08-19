@@ -202,6 +202,8 @@
           <Property Name="intMaxPoints" Type="int" />
           <Property Name="intOrganisingClub" Type="int" />
           <Property Name="strCost" Type="varchar" MaxLength="500" />
+          <Property Name="decCoordinateLat" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="decCoordinateLong" Type="decimal" Precision="9" Scale="6" />
         </EntityType>
         <EntityType Name="tblEvent_EventType">
           <Key>
@@ -328,7 +330,7 @@
           <Property Name="strName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'PenOC.dbo.tblWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'Penoc.dbo.tblWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="tblWorkItem">
           <Key>
@@ -707,6 +709,8 @@
           <NavigationProperty Name="lutClub" Relationship="PenocModel.FK_tblEvent_lutClub" FromRole="tblEvent" ToRole="lutClub" />
           <NavigationProperty Name="tblCourses" Relationship="PenocModel.FK_tblCourse_tblEvent" FromRole="tblEvent" ToRole="tblCourse" />
           <NavigationProperty Name="tblVenue" Relationship="PenocModel.FK_tblEvent_tblVenue" FromRole="tblEvent" ToRole="tblVenue" />
+          <Property Type="Decimal" Name="decCoordinateLat" Precision="9" Scale="6" />
+          <Property Type="Decimal" Name="decCoordinateLong" Precision="9" Scale="6" />
         </EntityType>
         <EntityType Name="tblEvent_EventType">
           <Key>
@@ -1118,6 +1122,8 @@
           <EntitySetMapping Name="tblEvents">
             <EntityTypeMapping TypeName="PenocModel.tblEvent">
               <MappingFragment StoreEntitySet="tblEvent">
+                <ScalarProperty Name="decCoordinateLong" ColumnName="decCoordinateLong" />
+                <ScalarProperty Name="decCoordinateLat" ColumnName="decCoordinateLat" />
                 <ScalarProperty Name="idEvent" ColumnName="idEvent" />
                 <ScalarProperty Name="strName" ColumnName="strName" />
                 <ScalarProperty Name="dteDate" ColumnName="dteDate" />

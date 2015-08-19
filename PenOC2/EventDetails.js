@@ -16,6 +16,20 @@ EventDetails.showEvent = function (intEvent) {
     }
 
     strElement += "<div class='modal-header'>";
+    strElement += "<h4 class='modal-title'>Date & Time:</h4>";
+    strElement += "</div>";
+    strElement += "<div class='modal-body'><b>Date</b>: "
+    strElement += Global.parseDate(objEvent.eventDate).displayDate();
+    strElement += "<br />"
+    strElement += "<b>Starts</b>: "
+    if (objEvent.eventStarts > "") {
+        strElement += objEvent.eventStarts;
+    } else {
+        strElement += EventDetails.NoDetailsYet
+    }
+    strElement += "</div>"
+
+    strElement += "<div class='modal-header'>";
     strElement += "<h4 class='modal-title'>Courses:</h4>";
     strElement += "</div>";
     strElement += "<div class='modal-body'>"
@@ -42,6 +56,14 @@ EventDetails.showEvent = function (intEvent) {
     strElement += "<h4 class='modal-title'>Directions:</h4>";
     strElement += "</div>";
     strElement += "<div class='modal-body'>"
+    if (objEvent.eventLatitude != undefined) {
+        var mapOptions = { "centerLat": objEvent.eventLatitude, "centerLong": objEvent.eventLongitude, "zoom": 10, "height": 100, "width": 100, "addMarker": true };
+        strElement += "<div class='map' style='float:left;margin-right:3ch; margin-bottom: 3ch;'>";
+        strElement += "<a target='_blank' href='" + GoogleMaps.mapURL(mapOptions) + "'>";
+        strElement += GoogleMaps.staticMapImage(mapOptions);
+        strElement += "</a>";
+        strElement += "</div>";
+    }
     if (objEvent.eventDirections > "") {
         strElement += objEvent.eventDirections;
     } else {
@@ -49,8 +71,13 @@ EventDetails.showEvent = function (intEvent) {
     }
     strElement += "</div>"
 
-    Modal.setTitle(objEvent.eventName);
+    Modal.setTitle(objEvent.eventName + ' (' + Global.parseDate(objEvent.eventDate).displayDate() + ')');
     Modal.setBody(strElement);
+    Modal.setSocialButtons(Hook.createURL(Hook.eventDetails, intEvent), "PenOC Event Details");
     Modal.show();
 
+    ga('send', 'pageview', {
+        page: '/EventDetails',
+        title: 'Event Details'
+    });
 }

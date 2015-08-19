@@ -102,19 +102,88 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Admin.aspx" />
     <Content Include="Admin.js" />
+    <Content Include="Calendar.aspx" />
+    <Content Include="Calendar.js" />
     <Content Include="Cards.js" />
     <Content Include="CompetitorResults.js" />
-    <Content Include="HTMLPage2.htm" />
-    <Content Include="HTMLPage3.htm" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="ContactUs.js" />
+    <Content Include="Hook.js" />
+    <Content Include="Images\Background\background-00.jpg" />
+    <Content Include="Images\Background\background-01.jpg" />
+    <Content Include="Images\Background\background-02.jpg" />
+    <Content Include="Images\Background\background-03.jpg" />
+    <Content Include="Images\Background\background-04.jpg" />
+    <Content Include="Images\Background\background-05.jpg" />
+    <Content Include="Images\Background\background-06.jpg" />
+    <Content Include="Images\Background\background-07.jpg" />
+    <Content Include="Images\Background\background-08.jpg" />
+    <Content Include="Images\Background\background-09.jpg" />
+    <Content Include="Images\Competitor.png" />
+    <Content Include="Images\news\20140702 NGOM Course 4 H60.jpg" />
+    <Content Include="Images\news\20140702 NGOM E Winner H60.jpg" />
+    <Content Include="Images\news\20140703 AOM Sprint course 2 H60.jpg" />
+    <Content Include="Images\news\20140703 Sprint B start last box.jpg" />
+    <Content Include="Images\news\20140703 Sprint C penultimate pose.jpg" />
+    <Content Include="Images\news\24838_383780195963_599515963_4257780_248195_s.jpg" />
+    <Content Include="Images\news\Big 5 O Jan 2012 035.jpg" />
+    <Content Include="Images\news\Big 5 O Jan 2012 075.jpg" />
+    <Content Include="Images\news\Big 5 O Jan 2012 088.jpg" />
+    <Content Include="Images\news\facebook.jpg" />
+    <Content Include="Images\news\Flags1.jpg" />
+    <Content Include="Images\news\GOC2010.gif" />
+    <Content Include="Images\news\GOC2010.jpg" />
+    <Content Include="Images\news\GOC2010a.jpg" />
+    <Content Include="Images\news\GOC2010small.jpg" />
+    <Content Include="Images\news\GrabouwDamDirections2008.JPG" />
+    <Content Include="Images\news\Highlands.jpg" />
+    <Content Include="Images\news\in_action.jpg" />
+    <Content Include="Images\news\Jean_Louis1.jpg" />
+    <Content Include="Images\news\KobusSilvaTrophy.jpg" />
+    <Content Include="Images\news\Martin_Ake.jpg" />
+    <Content Include="Images\news\Martin_Ake1.jpg" />
+    <Content Include="Images\news\MillsFamily.jpg" />
+    <Content Include="Images\news\PaulMaceyAndDort.jpg" />
+    <Content Include="Images\news\penoc comm 2008.jpg" />
+    <Content Include="Images\news\penoc comm.JPG" />
+    <Content Include="Images\news\Ruedi.jpg" />
+    <Content Include="Images\news\Ruedi1.jpg" />
+    <Content Include="Images\news\Ruedi2.jpg" />
+    <Content Include="Images\news\SA champs shirt female.png" />
+    <Content Include="Images\news\SA champs shirt male.png" />
+    <Content Include="Images\news\SAchampsRelay2012.JPG" />
+    <Content Include="Images\news\sciencentre.JPG" />
+    <Content Include="Images\news\Sept 2009 056.jpg" />
+    <Content Include="Images\news\WCOC_prize_giving.jpg" />
+    <Content Include="Images\news\winners.jpg" />
+    <Content Include="Images\news\Winter.jpg" />
+    <Content Include="Images\processing.gif" />
+    <Content Include="Images\socialIcons\email.svg" />
+    <Content Include="Images\socialIcons\facebook.svg" />
+    <Content Include="Images\socialIcons\facebook_full.jpg" />
+    <Content Include="Images\socialIcons\twitter.svg" />
+    <Content Include="Images\WhatIs\Orienteering Family.jpg" />
+    <Content Include="Images\WhatIs\Orienteering kids.jpg" />
+    <Content Include="Images\WhatIs\Orienteering Louise Oram.jpg" />
+    <Content Include="Images\WhatIs\Orienteering Running 2.jpg" />
+    <Content Include="Images\WhatIs\Orienteering Running.jpg" />
+    <Content Include="Images\WhatIs\OrienteeringMapAndCompass.jpg" />
+    <Content Include="Images\WhatIs\panoramic.png" />
     <Content Include="InlineEditing.js" />
+    <Content Include="social.js" />
+    <Content Include="start.aspx" />
+    <Content Include="WhatIs.htm" />
+    <Content Include="WhatIs.js" />
+    <Content Include="NewsItem.js" />
+    <Content Include="Scripts\GoogleMaps.js" />
+    <Content Include="Scripts\imagesloaded.js" />
+    <Content Include="Scripts\jquery.truncate.js" />
     <Content Include="LogResults.js" />
     <Content Include="EventResults.js" />
     <Content Include="EventDetails.js" />
     <Content Include="Global.js" />
     <Content Include="Home.js" />
-    <Content Include="HTMLPage1.htm" />
     <Content Include="Images\CapeTownMap.png" />
-    <Content Include="Images\Forest.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Logs.aspx" />
     <Content Include="Logs.js" />
@@ -128,6 +197,10 @@
     <Content Include="Images\background.JPG" />
     <Content Include="Results.js" />
     <Content Include="Scripts\jquery.autocomplete.min.js" />
+    <Content Include="Styles\Images\Email.svg" />
+    <Content Include="Styles\Images\Facebook.svg" />
+    <Content Include="Styles\Images\NewsCard.png" />
+    <Content Include="Styles\Images\Website.svg" />
     <Content Include="Web Services\Autocomplete.js" />
     <Content Include="Web Services\Competitors.asmx" />
     <Content Include="Web Services\CompetitorsService.js" />
@@ -146,6 +219,8 @@
     <Content Include="Web Services\Autocomplete.asmx" />
     <Content Include="Web Services\Events.asmx" />
     <Content Include="Home.aspx" />
+    <None Include="Images\news\MuizenbergScore2012.All.pdf" />
+    <None Include="Images\news\MuizenbergScore2012_CD.pdf" />
     <None Include="Styles\LESS\elements.less" />
     <None Include="Styles\LESS\Site.less" />
     <Content Include="Default.aspx" />
@@ -208,7 +283,21 @@
       <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Calendar.aspx.designer.vb">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Calendar.aspx.vb">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="clsOrderedDictionary.vb" />
+    <Compile Include="ContactUs.aspx.designer.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.aspx.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Logs.aspx.designer.vb">
       <DependentUpon>Logs.aspx</DependentUpon>
     </Compile>
@@ -245,6 +334,13 @@
     </Compile>
     <Compile Include="Events.aspx.vb">
       <DependentUpon>Events.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="start.aspx.designer.vb">
+      <DependentUpon>start.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="start.aspx.vb">
+      <DependentUpon>start.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Web Services\Autocomplete.asmx.vb">

@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ee7d7f75-e964-4aee-a109-cebe3447cb47")>
+<Assembly: EdmSchemaAttribute("67ca18a9-fb86-4731-b53a-2c7954a7afe7")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblCompetitor_lutCategory", "lutCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutCategory), "tblCompetitor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblCompetitor), True)>
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblEvent_lutClub", "lutClub", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutClub), "tblEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblEvent), True)>
@@ -2800,6 +2800,56 @@ Public Partial Class tblEvent
     End Sub
 
     Private Partial Sub OnstrCostChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property decCoordinateLat() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _decCoordinateLat
+        End Get
+        Set
+            OndecCoordinateLatChanging(value)
+            ReportPropertyChanging("decCoordinateLat")
+            _decCoordinateLat = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("decCoordinateLat")
+            OndecCoordinateLatChanged()
+        End Set
+    End Property
+
+    Private _decCoordinateLat As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OndecCoordinateLatChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OndecCoordinateLatChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property decCoordinateLong() As Nullable(Of Global.System.Decimal)
+        Get
+            Return _decCoordinateLong
+        End Get
+        Set
+            OndecCoordinateLongChanging(value)
+            ReportPropertyChanging("decCoordinateLong")
+            _decCoordinateLong = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("decCoordinateLong")
+            OndecCoordinateLongChanged()
+        End Set
+    End Property
+
+    Private _decCoordinateLong As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OndecCoordinateLongChanging(value As Nullable(Of Global.System.Decimal))
+    End Sub
+
+    Private Partial Sub OndecCoordinateLongChanged()
     End Sub
 
     #End Region

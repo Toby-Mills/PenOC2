@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-14 -14 48 48" enable-background="new -14 -14 48 48" xml:space="preserve">
+ <linearGradient id="SVGID_1_" x1="2.16886" y1="-1.79246" x2="2.16886" y2="-1.79246" gradientTransform="matrix(7.2338 0 0 -7.2338 -641.4998 -735.5619)">
+  <stop offset="0" stop-color="#4B71B8"/>
+  <stop offset="1" stop-color="#293F7E"/>
+ </linearGradient>
+ <g display="inline">
+  <title>Layer 1</title>
+  <path fill="url(#SVGID_1_)" d="m33.931,27.993c0,3.304 -2.689,5.983 -6.002,5.983h-36.011c-3.315,0 -6.001,-2.683 -6.001,-5.983v-35.921c0,-3.308 2.687,-5.988 6.001,-5.988h36.011c3.312,0 6.002,2.681 6.002,5.988v35.921l0,0z"/>
+  <rect id="svg_1" height="23.6" width="34.4" y="-1.6" x="-7.16" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#FFFFFF"/>
+  <path fill="#FFFFFF" stroke="#7f0000" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_3"/>
+ </g>
+ <g>
+  <title>Layer 2</title>
+  <path fill="none" stroke="url(#SVGID_1_)" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m-8.11723,-2.44314l18.43811,13.41469l18.51851,-13.78515" id="svg_4"/>
+  <line id="svg_5" y2="8.20087" x2="6.71616" y1="23.04804" x1="-8.34934" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="url(#SVGID_1_)" fill="none"/>
+  <line id="svg_6" y2="8.52839" x2="13.59389" y1="22.61136" x1="28.11354" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="url(#SVGID_1_)" fill="none"/>
+ </g>
+</svg>
