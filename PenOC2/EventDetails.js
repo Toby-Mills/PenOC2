@@ -16,9 +16,13 @@ EventDetails.showEvent = function (intEvent) {
     }
 
     strElement += "<div class='modal-header'>";
-    strElement += "<h4 class='modal-title'>Date & Time:</h4>";
+    strElement += "<h4 class='modal-title'>When & Where:</h4>";
     strElement += "</div>";
-    strElement += "<div class='modal-body'><b>Date</b>: "
+    strElement += "<div class='modal-body'>"
+    strElement += "<b>Venue</b>: "
+    strElement += objEvent.venueName;
+    strElement += "<br />"
+    strElement += "<b>Date</b>: "
     strElement += Global.parseDate(objEvent.eventDate).displayDate();
     strElement += "<br />"
     strElement += "<b>Starts</b>: "

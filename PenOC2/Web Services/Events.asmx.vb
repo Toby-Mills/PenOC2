@@ -41,7 +41,7 @@ Public Class EventDetails
         Public Property eventID As Integer
         Public Property courseID As Integer
         Public Property name As String
-        Public Property order As Nullable(Of Integer)
+        Public Property order As Integer
         Public Property length As Nullable(Of Integer)
         Public Property climb As Nullable(Of Integer)
         Public Property controls As Nullable(Of Integer)
@@ -270,7 +270,7 @@ Public Class EventDetails
         Dim objSort As System.Func(Of Course, Long)
 
         objWhere = Function(objCourse As Course) objCourse.eventID = eventID
-        objSort = Function(objCourse As Course) objCourse.order OrElse 1
+        objSort = Function(objCourse As Course) objCourse.order
 
         strReturn = CoursesQuery(objWhere, objSort, New ASC)
 
