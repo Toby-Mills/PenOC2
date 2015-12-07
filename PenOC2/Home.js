@@ -26,9 +26,9 @@ Home.initialiseMasonryContainer = function () {
         gutter: 0,
         itemSelector: '.card'
     });
-    $container.imagesLoaded().progress(function () {
-        $container.masonry('layout');
-        Home.resizeNextEventCard();
+    $container.imagesLoaded().always(function () {
+       Home.resizeNextEventCard();
+         $container.masonry('layout');
     });
 }
 
