@@ -237,10 +237,10 @@ Public Class EventDetails
 
         Using db As New PenOC2.PenocEntities()
             qryCourse = (From Course In db.tblCourses
-                        Group Join CourseResult In db.tblResults On CourseResult.intCourse Equals Course.idCourse Into Results = Group
-                        From Result In Results.OrderBy(Function(myResult) myResult.intPosition).Take(1)
-                        Join Competitor In db.tblCompetitors On Competitor.idCompetitor Equals Result.intCompetitor
-                        Select New Course() With _
+                         Group Join CourseResult In db.tblResults On CourseResult.intCourse Equals Course.idCourse Into Results = Group
+                         From Result In Results.OrderBy(Function(myResult) myResult.intPosition).Take(1)
+                         Join Competitor In db.tblCompetitors On Competitor.idCompetitor Equals Result.intCompetitor
+                         Select New Course() With
                                {.eventID = Course.intEvent,
                                .courseID = Course.idCourse,
                                 .name = Course.strName,
@@ -357,7 +357,7 @@ Public Class EventDetails
         Dim objWhere As System.Func(Of CourseResult, Boolean)
         Dim objSort As System.Func(Of CourseResult, Long)
 
-        objWhere = Function(objCourseResult As CourseResult) objCourseResult.courseID = courseID AndAlso objCourseResult.position = 1
+        objWhere = Function(objCourseResult As CourseResult) objCourseResult.courseID = courseID AndAlso objCourseResult.position = 1 AndAlso objCourseResult.dsq = False
         objSort = Function(objCourseResult As CourseResult) objCourseResult.position
 
         strReturn = ResultsQuery(objWhere, objSort, New ASC)

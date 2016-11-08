@@ -1,0 +1,83 @@
+<div *ngIf="oevent"> 
+    <form #oeventForm="ngForm" (ngSubmit)="oeventForm.reset();loadOEvent();">  
+        <button-bar [title]="'Event Notice: ' + oevent.name + ' | ' + oevent.venue" [buttons]="['save', 'cancel', 'next']" [nextText]="'Courses'"
+(saveClicked)="saveClicked()"  (cancelClicked)="cancelClicked()"  (nextClicked)="coursesClicked()"
+            [editing]="oeventForm.form.dirty"></button-bar>
+        <div class="row">
+            <div class="col-lg-4">
+                <dl>
+                    <dt><span for="name"> Name:</span></dt>
+                    <dd  [ngClass]="{'has-error':!name.valid}" ><input id="name" [(ngModel)]="oevent.name" class="form-control" name="name" #name="ngModel" required placeholder="event name (required)"/></dd>
+                    <dt>Date:</dt>
+                    <dd><input type="date" [(ngModel)]="oevent.date" class="form-control" name="date" /></dd>
+                    <dt>Venue:</dt>
+                    <dd>
+                        <select [(ngModel)]="oevent.venueId" class="form-control" name="venue">
+                            <option></option>
+                            <option *ngFor="let venue of venueList" [value]="venue.id">{{venue.name}}</option>
+                        </select>
+                    </dd>
+                    <dt>Club:</dt>
+                    <dd>
+                        <select [(ngModel)]="oevent.organizingClubId" class="form-control" name="club">
+                            <option></option>
+                            <option *ngFor="let club of clubList" [value]="club.id">{{club.name}}</option>
+                        </select>
+                    </dd>
+                    <dt>Planner:</dt>
+                    <dd>
+                        <competitor [competitorId]="oevent.plannerId" [peopleOnly]="true" (competitorIdChange)="plannerSelected($event.value)"></competitor>
+                    </dd>
+                    <dt>Controller:</dt>
+                    <dd>
+                        <competitor [competitorId]="oevent.controllerId" [peopleOnly]="true" (competitorIdChange)="controllerSelected($event.value)"></competitor>
+                    </dd> 
+                    <dt>Special Note:</dt>
+                    <dd><textarea rows="4" cols="50" [(ngModel)]="oevent.specialNote" class="form-control" name="specialNote"></textarea></dd>
+                </dl>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <dl>                
+                    <dt>Courses:</dt>
+                    <dd><textarea rows="8" cols="50" [(ngModel)]="oevent.courses" class="form-control"  name="courses"></textarea></dd>   
+                    <dt>Cost:</dt>
+                    <dd><textarea rows="9" cols="50" [(ngModel)]="oevent.cost" class="form-control" name="cost"></textarea></dd>                                             
+                </dl>            
+            </div> 
+            <div class="col-lg-4 col-md-6">
+                <dl>
+                    <dt>Directions:</dt>
+                    <dd><textarea rows="18" cols="50" [(ngModel)]="oevent.directions" class="form-control" name="directions"></textarea></dd>
+                    <dt>Location:</dt>
+                    <dd><span>Latitude:</span><input [(ngModel)]="oevent.coordinateLatitude" class="form-control" name="latitude" /><br />
+                        <span>Longitude:</span><input [(ngModel)]="oevent.coordinateLongitude" class="form-control" name="longitude" />
+                    </dd>
+                </dl>
+                <img class="img-responsive" [src]="'http://maps.google.com/maps/api/staticmap?center=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&markers=' + oevent.coordinateLatitude + ',' +  oevent.coordinateLongitude + '&zoom=10&size=300x300'" />
+            </div>          
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <dl>             
+                    <dt>Registration Time:</dt>
+                    <dd><input [(ngModel)]="oevent.registrationTime" class="form-control" name="registrationTime" /></dd>
+                    <dt>Start Times:</dt>
+                    <dd><input [(ngModel)]="oevent.startTime" class="form-control" name="startTime" /></dd>
+                    <dt>Courses Close:</dt>
+                    <dd><input [(ngModel)]="oevent.close" class="form-control" name="close" /></dd>              
+                    <dt>Max Points:</dt>
+                    <dd><input [(ngModel)]="oevent.maxPoints" class="form-control" name="maxPoints" /></dd>
+                </dl>
+            </div>
+            <div class="col-lg-6">
+                <dl>
+                    <dt>Planner Report:</dt>
+                    <dd><textarea rows="4" cols="50" [(ngModel)]="oevent.plannerReport" class="form-control" name="plannerReport"></textarea></dd>
+                    <dt>Controller Report:</dt>
+                    <dd><textarea rows="4" cols="50" [(ngModel)]="oevent.controllerReport" class="form-control" name="controllerReport"></textarea></dd>
+                </dl>
+            </div>
+        </div>
+    </form>
+</div>
+

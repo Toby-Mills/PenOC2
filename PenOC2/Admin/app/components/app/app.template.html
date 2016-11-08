@@ -1,0 +1,13 @@
+<div id="divPage" class="container">
+	<div style="margin-bottom:10px;" (click)="homeClicked()" style=":hover { color: red; }">
+		<h1>PenOC Website Admin</h1>
+	</div>
+	<ul class="nav nav-tabs">
+		<li [routerLinkActive]="['active']"><a routerLink="/events">Events</a></li>
+		<li [routerLinkActive]="['active']"><a routerLink="/news">News</a></li>
+	</ul>
+	<div>
+		<br>
+		<router-outlet></router-outlet>
+	</div>
+</div>

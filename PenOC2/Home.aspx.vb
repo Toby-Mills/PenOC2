@@ -4,7 +4,7 @@
     Private Sub Page_LoadComplete(sender As Object, e As System.EventArgs) Handles Me.LoadComplete
 
 
-        Me.InjectJavascriptTag("https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js")
+        Me.InjectJavascriptTag("Scripts/masonry-3.3.2.js")
         Me.InjectJavascriptTag("Home.js")
         Me.InjectJavascriptTag("WhatIs.js")
 

@@ -1,3 +1,6 @@
+packages/
+node_modules/
+
 #################
 ## Eclipse
 #################
@@ -130,7 +133,7 @@ publish/
 
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
-#packages/
+packages/
 
 # Windows Azure Build Output
 csx
@@ -213,3 +216,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+################
+## Node Packages
+################
+packages/

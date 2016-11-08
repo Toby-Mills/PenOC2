@@ -1,0 +1,10 @@
+#divTag{
+    border: 1px solid grey;
+    padding:2px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+input[type=file] + label:hover{
+cursor: pointer;
+}

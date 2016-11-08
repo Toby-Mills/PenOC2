@@ -1,0 +1,6 @@
+<input type="file" style="display: none" #fileInput name="file" id="file" class="inputfile" (change)="addFile()" />
+<label for="file" class="btn btn-primary">Upload image</label>
+<div *ngIf="tag >''" id="divTag">
+    <label id="tagLabel" #tagLabel>{{tag}}</label>
+    <button class="btn btn-primary" (click)="copy()"><span class="glyphicon glyphicon-copy"></span></button>
+</div>

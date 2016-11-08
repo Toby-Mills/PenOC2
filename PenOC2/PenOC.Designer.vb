@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("67ca18a9-fb86-4731-b53a-2c7954a7afe7")>
+<Assembly: EdmSchemaAttribute("9d8f2373-6441-41cd-8f35-0da08a0c01b4")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblCompetitor_lutCategory", "lutCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutCategory), "tblCompetitor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblCompetitor), True)>
 <Assembly: EdmRelationshipAttribute("PenocModel", "FK_tblEvent_lutClub", "lutClub", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(lutClub), "tblEvent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(tblEvent), True)>
