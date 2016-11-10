@@ -21,7 +21,7 @@
                 <td class='col-xs-2'><competitor [competitorId]="result.competitorId" (competitorIdChange)="setCompetitor(resultIndex, $event.value)" ></competitor></td>
                 <td class='col-xs-1'><select class='form-control' [(ngModel)]="result.clubId">
                     <option></option>
-                    <option *ngFor="let club of clubList" [value]="club.id">{{club.name}}</option>
+                    <option *ngFor="let club of clubList" [value]="club.id">{{club.shortName}}</option>
                 </select>
                 <td class='col-xs-1'><input [(ngModel)]="result.raceNumber" class="form-control" /></td>
                 <td class='col-xs-2'><input #time required [(ngModel)]="result.time" (blur)="correctTime(resultIndex, time.value);" class="form-control" /></td>

@@ -21,7 +21,7 @@
                     <dd>
                         <select [(ngModel)]="oevent.organizingClubId" class="form-control" name="club">
                             <option></option>
-                            <option *ngFor="let club of clubList" [value]="club.id">{{club.name}}</option>
+                            <option *ngFor="let club of clubList" [value]="club.id">{{club.shortName}}</option>
                         </select>
                     </dd>
                     <dt>Planner:</dt>

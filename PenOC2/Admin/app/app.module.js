@@ -24,6 +24,7 @@ var resultList_component_1 = require("./components/resultList/resultList.compone
 var newsList_component_1 = require("./components/newsList/newsList.component");
 var newsItem_component_1 = require("./components/newsItem/newsItem.component");
 var fileUpload_component_1 = require('./components/fileUpload/fileUpload.component');
+var lookupEditor_component_1 = require('./components/lookupEditor/lookupEditor.component');
 var resultTime_pipe_1 = require('./pipes/resultTime.pipe');
 var dateString_pipe_1 = require('./pipes/dateString.pipe');
 var course_service_1 = require('./services/course.service');
@@ -54,7 +55,8 @@ var AppModule = (function () {
                     { path: 'events/:eventId/courses/new', component: course_component_1.CourseComponent },
                     { path: 'news', component: newsList_component_1.NewsListComponent },
                     { path: 'news/:id', component: newsItem_component_1.NewsItemComponent },
-                    { path: 'news/new', component: newsItem_component_1.NewsItemComponent }
+                    { path: 'news/new', component: newsItem_component_1.NewsItemComponent },
+                    { path: 'lookups', component: lookupEditor_component_1.LookupEditorComponent }
                 ])],
             declarations: [app_component_1.AppComponent,
                 competitor_component_1.CompetitorComponent,
@@ -70,7 +72,8 @@ var AppModule = (function () {
                 newsItem_component_1.NewsItemComponent,
                 people_pipe_1.PeoplePipe,
                 matchingCompetitors_pipe_1.MatchingCompetitorsPipe,
-                fileUpload_component_1.FileUploadComponent],
+                fileUpload_component_1.FileUploadComponent,
+                lookupEditor_component_1.LookupEditorComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [oevent_service_1.OEventService,
                 course_service_1.CourseService,

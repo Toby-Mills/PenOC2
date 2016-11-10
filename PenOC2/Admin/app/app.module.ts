@@ -15,6 +15,7 @@ import { ResultListComponent } from "./components/resultList/resultList.componen
 import { NewsListComponent } from "./components/newsList/newsList.component";
 import { NewsItemComponent } from "./components/newsItem/newsItem.component";
 import { FileUploadComponent } from './components/fileUpload/fileUpload.component';
+import { LookupEditorComponent } from './components/lookupEditor/lookupEditor.component';
 
 import { resultTime } from './pipes/resultTime.pipe';
 import { DateString } from './pipes/dateString.pipe';
@@ -45,7 +46,8 @@ import { PeoplePipe } from './pipes/people.pipe';
       { path: 'events/:eventId/courses/new', component: CourseComponent },
       { path: 'news', component: NewsListComponent },
       { path: 'news/:id', component: NewsItemComponent },
-      { path: 'news/new', component: NewsItemComponent }
+      { path: 'news/new', component: NewsItemComponent },
+      { path: 'lookups', component: LookupEditorComponent }
     ])],       // module dependencies
   declarations: [AppComponent,
     CompetitorComponent,
@@ -61,7 +63,8 @@ import { PeoplePipe } from './pipes/people.pipe';
     NewsItemComponent,
     PeoplePipe,
     MatchingCompetitorsPipe,
-    FileUploadComponent],   // components and directives
+    FileUploadComponent,
+    LookupEditorComponent],   // components and directives
   bootstrap: [AppComponent],     // root component
   providers: [OEventService,
     CourseService,

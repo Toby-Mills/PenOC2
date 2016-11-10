@@ -21,6 +21,8 @@ var LookupService = (function () {
         this.technicalDifficultyList = new BehaviorSubject_1.BehaviorSubject(null);
         this.clubList = new BehaviorSubject_1.BehaviorSubject(null);
         this.venueList = new BehaviorSubject_1.BehaviorSubject(null);
+        this.headers = new http_1.Headers();
+        this.headers.append('Content-Type', 'application/json');
         this.getGenderList();
         this.getTechnicalDifficultyList();
         this.getClubList();
@@ -37,6 +39,28 @@ var LookupService = (function () {
         Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (clubData) {
             _this.clubList.next(clubData.json());
         }); });
+    };
+    LookupService.prototype.postClub = function (club) {
+        console.log('post');
+        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers }));
+    };
+    LookupService.prototype.putClub = function (club) {
+        console.log('put');
+        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers }));
+    };
+    LookupService.prototype.deleteClub = function (clubId) {
+        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId));
+    };
+    LookupService.prototype.postVenue = function (venue) {
+        console.log('post');
+        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers }));
+    };
+    LookupService.prototype.putVenue = function (venue) {
+        console.log('put');
+        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers }));
+    };
+    LookupService.prototype.deleteVenue = function (venueId) {
+        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId));
     };
     LookupService.prototype.getTechnicalDifficultyList = function () {
         var _this = this;

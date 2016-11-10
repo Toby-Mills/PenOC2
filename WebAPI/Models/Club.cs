@@ -5,9 +5,10 @@ using System.Web;
 
 namespace WebAPI.Models
 {
-    public class Venue
+    public class Club
     {
         public int id;
-        public string name;
+        public string shortName;
+        public string fullName;
     }
 }

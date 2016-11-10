@@ -27,7 +27,56 @@ namespace WebAPI.Controllers
 
             return Ok(venues);
         }
+        //---------------------------------------------------------------------------------
+        [HttpPost]
+        [Route("venues")]
+        public IHttpActionResult InsertVenue(Venue venue)
+        {
+            PenOCDataContext db = new PenOCDataContext();
+
+            tblVenue venueRecord = new tblVenue
+            {
+                strName = venue.name,
+
+            };
+
+            db.tblVenues.InsertOnSubmit(venueRecord);
+            db.SubmitChanges();
+
+            venue.id = venueRecord.idVenue;
+
+            return Ok(venue);
+        }
+        //---------------------------------------------------------------------------------
+        [HttpPut]
+        [Route("venues")]
+        public IHttpActionResult UpdateVenue(Venue venue)
+        {
+            PenOCDataContext db = new PenOCDataContext();
+
+            tblVenue venueRecord = db.tblVenues.Single(v => v.idVenue == venue.id);
+
+            venueRecord.strName = venue.name;
+
+            db.SubmitChanges();
+
+            return Ok(venue);
+        }
 
         //---------------------------------------------------------------------------------
+        [HttpDelete]
+        [Route("venues/{venueId}")]
+        public IHttpActionResult DeleteVenue(int venueId)
+        {
+            PenOCDataContext db = new PenOCDataContext();
+
+            IQueryable<tblVenue> queryResults = db.tblVenues.Where(venue => venue.idVenue == venueId);
+            db.tblVenues.DeleteAllOnSubmit(queryResults);
+
+            db.SubmitChanges();
+
+            return Ok();
+
+        }
     }
 }
