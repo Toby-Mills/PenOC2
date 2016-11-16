@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
-using System.Web.UI.WebControls;
 using WebAPI.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.IO;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Web.Http.Filters;
-using System.Web.Http.Controllers;
-
+using System.Web.Http.Cors;
 
 namespace WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class NewsItemController : ApiController
     {
-
+        
         private static IQueryable<NewsItem> QueryNewsItem()
         {
             PenOCDataContext db = new PenOCDataContext();
