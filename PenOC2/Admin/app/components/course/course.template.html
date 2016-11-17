@@ -3,7 +3,6 @@
     <form #courseForm="ngForm" (ngSubmit)="courseForm.reset();loadCourse();">  
 	<button-bar [title]="'Course: ' + course.name" [buttons]="['save', 'cancel']" (backClicked)="backClicked()" (saveClicked)="upsertCourse()"
 		(cancelClicked)="cancelClicked()" [editing]="courseForm.dirty" [valid]="courseForm.form.valid"></button-bar>
-        {{courseForm.form.valid}}
 	<div class='row'>
 		<div class='col-xs-12 col-md-4'>
 			<dl>

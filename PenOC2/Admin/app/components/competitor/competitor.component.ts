@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { LookupService } from '../../services/lookup.service';
 import { CompetitorService } from '../../services/competitor.service';
 import { CompetitorModel } from '../../models/competitor.model';
-
+import { PeoplePipe } from '../../pipes/people.pipe';
 import { Observable } from 'rxjs';
 
 //---------------------------------------------------------------------------------------
@@ -15,16 +15,18 @@ export class CompetitorComponent {
     @Input() competitorId: Number;
     @Input() peopleOnly: boolean = false;
     @Output() competitorIdChange = new EventEmitter();
+    @ViewChild("searchBox") searchBox: any;
 
     public competitor: CompetitorModel;
     public searchString: String = "";
     public searchActive: boolean;
-    public matchIndex: number;
+    public matchIndex: number = -1;
     public newCompetitor: CompetitorModel;
     public genderList: Array<Object>;
     public delayedDisplay: any;
     public delayedHide: any;
     public allCompetitors: CompetitorModel[];
+private searchInput: any;
 
     constructor(private lookupService: LookupService, private competitorService: CompetitorService) {
         this.competitor = new CompetitorModel;
@@ -35,6 +37,7 @@ export class CompetitorComponent {
         this.lookupService.genderList.subscribe(data => this.genderList = data);
 
         this.loadCompetitor();
+        this.searchInput = this.searchBox;
     }
 
     public loadCompetitor() {
@@ -53,7 +56,6 @@ export class CompetitorComponent {
     public delayedActivateSearch(active: boolean) {
         var self;
         self = this;
-
         if (active) {
             clearTimeout(self.delayedHide);
             self.delayedDisplay = setTimeout(function () {
@@ -68,7 +70,6 @@ export class CompetitorComponent {
     }
 
     public activateSearch(active: boolean) {
-
         if (active) {
             this.loadCompetitor();
             if (this.competitor) {
@@ -79,6 +80,15 @@ export class CompetitorComponent {
             this.newCompetitor = null;
         }
         this.searchActive = active;
+        if (active) {
+            var self;
+        self = this;
+            setTimeout(function () { self.searchInput.nativeElement.focus() }, 0);
+        }
+    }
+
+    public maintainActive() {
+        this.delayedActivateSearch(this.searchActive);
     }
 
     public lookupName(name: String) {
@@ -86,38 +96,44 @@ export class CompetitorComponent {
     }
 
     public selectCompetitor(competitor: CompetitorModel) {
-        this.competitor = competitor;
-        this.competitorId = this.competitor.id;
+        if (competitor) {
+            this.competitor = competitor;
+            this.competitorId = this.competitor.id;
+            this.searchString = competitor.fullName;
+        } else {
+            this.competitor = null;
+            this.competitorId = null;
+            this.searchString = '';
+        }
         this.competitorIdChange.emit({ value: this.competitor });
         this.activateSearch(false);
     }
 
-    public clearClicked(event: MouseEvent) {
-        if (event.detail == 1) { //event.detail = number of clicks. MouseEvent triggered by a keyPress will have detail = 0
-            this.clearCompetitor();
-        }
-    }
-
-    public clearCompetitor() {
-        this.competitor = null;
-        this.searchString = "";
-        this.competitorIdChange.emit({ value: this.competitor });
-    }
-
     public keyPressed(event) {
-        if (event.key == "ArrowDown") {
-            this.matchIndex++;
-        } else if (event.key == "ArrowUp") {
-            if (this.matchIndex > 0) {
-                this.matchIndex--;
-            }
-        } else if (event.key == "Enter") {
-            this.selectCompetitor(this.allCompetitors.filter(competitor => { return new RegExp(this.searchString.toLowerCase()).test(competitor.fullName.toLowerCase()) })[this.matchIndex])
+        switch (event.key) {
+            case "ArrowDown":
+                this.matchIndex++;
+                break;
+            case "ArrowUp":
+                if (this.matchIndex > 0) {
+                    this.matchIndex--;
+                }
+                break;
+            case "Enter":
+                var peopleOnly: PeoplePipe;
+                peopleOnly = new PeoplePipe();
+                this.selectCompetitor(peopleOnly.transform(this.allCompetitors, this.peopleOnly).filter(competitor => { return new RegExp(this.searchString.toLowerCase()).test(competitor.fullName.toLowerCase()) })[this.matchIndex]);
+                break;
+            case "Escape":
+                this.activateSearch(false);
+            default:
+                this.matchIndex = -1;
         }
     }
 
-    public newClicked() {
+    public newClicked(event: any) {
         this.newCompetitor = new CompetitorModel;
+        event.preventDefault();
     }
 
     public cancelNewCompetitor() {

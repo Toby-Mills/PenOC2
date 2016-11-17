@@ -14,7 +14,12 @@ var MatchingCompetitorsPipe = (function () {
     function MatchingCompetitorsPipe() {
     }
     MatchingCompetitorsPipe.prototype.transform = function (allCompetitors, searchString) {
-        return allCompetitors.filter(function (competitor) { return new RegExp(searchString.toLowerCase()).test(competitor.fullName.toLowerCase()); });
+        if (searchString == '') {
+            return [];
+        }
+        else {
+            return allCompetitors.filter(function (competitor) { return new RegExp(searchString.toLowerCase()).test(competitor.fullName.toLowerCase()); });
+        }
     };
     MatchingCompetitorsPipe = __decorate([
         core_1.Pipe({ name: 'matchingCompetitors' }), 

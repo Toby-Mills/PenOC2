@@ -1,7 +1,6 @@
 <button-bar [title]="'Results'"></button-bar> 
 <div *ngIf="!resultList">loading results...</div>
 <div *ngIf="resultList"> 
-    <input type="text" required [(ngModel)]="course.name"/>
     <div class="table-responsive" style="padding-bottom: 100px;">
         <table class="table table-striped table-hover">
             <tr>

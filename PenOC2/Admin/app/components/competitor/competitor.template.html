@@ -1,18 +1,18 @@
-<div id="container" (mouseenter)="delayedActivateSearch(true);" (mouseleave)="delayedActivateSearch(false);">
-    <div id="nameLabel"  class="competitor-label-box">
+<div id="container"  >
+    <div id="nameLabel" class="competitor-label-box" (click)="activateSearch(true);">
         <span *ngIf="competitor">{{competitor.fullName}}</span>
     </div>
-    <div id="nameTextBox" [hidden]="!searchActive"   class="competitor-lookup-panel">
-        <div (keyup)="keyPressed($event);">
-            <input id="searchBox" type="text" #searchBox [(ngModel)]="searchString" class="form-control search-input" name="fakeusername"/>
+    <div [hidden]="!searchActive" (mouseenter)="maintainActive();"  class="competitor-lookup-panel">
+        <div >
+            <input id="searchBox" type="text" #searchBox [(ngModel)]="searchString" (keyup)="keyPressed($event);" class="form-control search-input" name="fakeusername"/>
         </div>
         <div class="clear-button-container">
-            <button [hidden]="!searchString" class="btn btn-danger clear-button" (click)="clearClicked($event);"><span class="glyphicon glyphicon-remove" title="clear"></span></button>
-            <button [hidden]="searchString" class="btn btn-primary new-button" (click)="newClicked();"><span class="glyphicon glyphicon-plus" title="new"></span></button>
+            <button [hidden]="searchString" class="btn btn-primary new-button" (click)="newClicked($event);"><span class="glyphicon glyphicon-plus" title="new"></span></button>
         </div> 
         <div *ngIf="allCompetitors && !newCompetitor" class="match-list-container drop-panel"> 
             <ul>
-                <li *ngFor="let competitor of (allCompetitors | matchingCompetitors : searchString | people : peopleOnly ); let i = index" [ngClass]="{selected: i==matchIndex}" (click)="selectCompetitor(competitor)">{{competitor.fullName}}</li>
+                <li (click)="selectCompetitor(null)" ></li>
+                <li *ngFor="let competitor of (allCompetitors | matchingCompetitors : searchString | people : peopleOnly ); let i = index" [ngClass]="{selected: i==matchIndex}" (click)="selectCompetitor(competitor)" >{{competitor.fullName}}</li>
             </ul>
         </div>
         <div *ngIf="newCompetitor" class="new-competitor-panel drop-panel">
