@@ -22,52 +22,27 @@ var LookupEditorComponent = (function () {
         this.lookupService.venueList.subscribe(function (data) { return _this.venueList = data; });
     };
     LookupEditorComponent.prototype.saveClub = function (club, shortName, fullName) {
-        var _this = this;
         console.log(club);
         console.log(shortName);
         console.log(fullName);
         club.shortName = shortName;
         club.fullName = fullName;
-        this.lookupService.putClub(club).then(function (resp) {
-            resp.subscribe(function (clubData) {
-                _this.lookupService.getClubList();
-            });
-        });
+        this.lookupService.putClub(club);
     };
     LookupEditorComponent.prototype.deleteClub = function (club) {
-        var _this = this;
-        this.lookupService.deleteClub(club.id).then(function (obs) {
-            obs.subscribe(function (response) {
-                _this.lookupService.getClubList();
-            });
-        });
+        this.lookupService.deleteClub(club.id);
     };
     LookupEditorComponent.prototype.saveVenue = function (venue, name) {
-        var _this = this;
         venue.name = name;
-        this.lookupService.putVenue(venue).then(function (obs) {
-            obs.subscribe(function (resp) {
-                _this.lookupService.getVenueList();
-            });
-        });
+        this.lookupService.putVenue(venue);
     };
     LookupEditorComponent.prototype.createVenue = function (name) {
-        var _this = this;
         var venue = new venue_model_1.VenueModel();
         venue.name = name;
-        this.lookupService.postVenue(venue).then(function (obs) {
-            obs.subscribe(function (response) {
-                _this.lookupService.getVenueList();
-            });
-        });
+        this.lookupService.postVenue(venue);
     };
     LookupEditorComponent.prototype.deleteVenue = function (venue) {
-        var _this = this;
-        this.lookupService.deleteVenue(venue.id).then(function (obs) {
-            obs.subscribe(function (response) {
-                _this.lookupService.getVenueList();
-            });
-        });
+        this.lookupService.deleteVenue(venue.id);
     };
     LookupEditorComponent = __decorate([
         core_1.Component({

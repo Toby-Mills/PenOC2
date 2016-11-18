@@ -41,26 +41,22 @@ var LookupService = (function () {
         }); });
     };
     LookupService.prototype.postClub = function (club) {
-        console.log('post');
-        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers }));
+        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(this.getClubList);
     };
     LookupService.prototype.putClub = function (club) {
-        console.log('put');
-        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers }));
+        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(this.getClubList);
     };
     LookupService.prototype.deleteClub = function (clubId) {
-        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId));
+        Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId)).then(this.getClubList);
     };
     LookupService.prototype.postVenue = function (venue) {
-        console.log('post');
-        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers }));
+        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(this.getVenueList);
     };
     LookupService.prototype.putVenue = function (venue) {
-        console.log('put');
-        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers }));
+        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(this.getVenueList);
     };
     LookupService.prototype.deleteVenue = function (venueId) {
-        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId));
+        Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)).then(this.getVenueList);
     };
     LookupService.prototype.getTechnicalDifficultyList = function () {
         var _this = this;

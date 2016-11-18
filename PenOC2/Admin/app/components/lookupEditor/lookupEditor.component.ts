@@ -30,47 +30,27 @@ export class LookupEditorComponent {
         club.shortName = shortName;
         club.fullName = fullName;
 
-        this.lookupService.putClub(club).then(resp => {
-            resp.subscribe(clubData => {
-                this.lookupService.getClubList();
-            })
-        })
+        this.lookupService.putClub(club)
     }
 
     deleteClub(club: ClubModel) {
-        this.lookupService.deleteClub(club.id).then(obs => {
-            obs.subscribe(response => {
-                this.lookupService.getClubList();
-            })
-        })
+        this.lookupService.deleteClub(club.id)
     }
 
     saveVenue(venue: VenueModel, name: string) {
         venue.name = name;
 
-        this.lookupService.putVenue(venue).then(obs => {
-            obs.subscribe(resp => {
-                this.lookupService.getVenueList();
-            })
-        })
+        this.lookupService.putVenue(venue);
     }
 
     createVenue(name: string) {
         let venue = new VenueModel();
         venue.name = name;
 
-        this.lookupService.postVenue(venue).then(obs => {
-            obs.subscribe(response => {
-                this.lookupService.getVenueList();
-            })
-        })
+        this.lookupService.postVenue(venue)
     }
 
     deleteVenue(venue: VenueModel) {
-        this.lookupService.deleteVenue(venue.id).then(obs => {
-            obs.subscribe(response => {
-                this.lookupService.getVenueList();
-            })
-        })
+        this.lookupService.deleteVenue(venue.id)
     }
 }

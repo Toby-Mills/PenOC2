@@ -48,43 +48,39 @@ export class LookupService {
     }
 
     postClub(club: ClubModel) {
-        console.log('post');
-        return Promise.resolve(
+        Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        )
+        ).then(this.getClubList)
     }
 
     putClub(club: ClubModel) {
-        console.log('put');
-        return Promise.resolve(
+        Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        )
+        ).then(this.getClubList)
     }
 
     deleteClub(clubId: Number){
-        return Promise.resolve(
+        Promise.resolve(
             this.http.delete(this.urlService.apiUrl() +'/Clubs/' + clubId)
-        )
+        ).then(this.getClubList)
     }
 
     postVenue(venue: VenueModel) {
-        console.log('post');
-        return Promise.resolve(
+         Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
-        )
+        ).then(this.getVenueList )
     }
 
     putVenue(venue: VenueModel) {
-        console.log('put');
-        return Promise.resolve(
+Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
-        )
+        ).then(this.getVenueList )
     }
 
     deleteVenue(venueId: Number){
-        return Promise.resolve(
+        Promise.resolve(
             this.http.delete(this.urlService.apiUrl() +'/Venues/' + venueId)
-        )
+        ).then(this.getVenueList )
     }
 
     getTechnicalDifficultyList() {
