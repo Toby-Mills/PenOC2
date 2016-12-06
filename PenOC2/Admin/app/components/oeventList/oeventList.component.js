@@ -73,6 +73,9 @@ var OEventListComponent = (function () {
     OEventListComponent.prototype.oeventClick = function (oeventId) {
         this.router.navigate(['/events', oeventId]);
     };
+    OEventListComponent.prototype.newOEvent = function () {
+        this.router.navigate(['/events', '0']);
+    };
     OEventListComponent = __decorate([
         core_1.Component({
             selector: 'oevent-list',

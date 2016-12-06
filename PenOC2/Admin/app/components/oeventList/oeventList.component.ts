@@ -82,4 +82,7 @@ export class OEventListComponent {
     public oeventClick(oeventId: number) {
         this.router.navigate(['/events', oeventId])
     }
+    public newOEvent() {
+        this.router.navigate(['/events', '0'])
+    }
 }
