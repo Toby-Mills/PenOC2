@@ -61,21 +61,26 @@ window.location = $(this).find("option:selected").val();
 }
 
 function populateNextEvent() {
-var objEvent;
-var objControl;
+    var objEvent;
+    var objControl;
 
-objEvent = EventsService.nextEvent();
+    objEvent = EventsService.nextEvent();
+    objControl = $("#divNextEventBox")
 
-objControl = $("#divNextEventBox")
-objControl.attr("idEvent", objEvent.eventID);
-objControl = $("#spanNextEventName");
-objControl.text(objEvent.eventName);
-if (objEvent.eventName.doesNotContain(objEvent.venueName)) {
-objControl = $("#spanNextEventVenue");
-objControl.text(" (" + objEvent.venueName + ")");
-}
-objControl = $("#spanNextEventDate");
-objControl.text(Global.parseDate(objEvent.eventDate).displayDate());
+    if (objEvent) {
+        objControl.attr("idEvent", objEvent.eventID);
+        objControl = $("#spanNextEventName");
+        objControl.text(objEvent.eventName);
+        if (objEvent.eventName.doesNotContain(objEvent.venueName)) {
+            objControl = $("#spanNextEventVenue");
+            objControl.text(" (" + objEvent.venueName + ")");
+        }
+        objControl = $("#spanNextEventDate");
+        objControl.text(Global.parseDate(objEvent.eventDate).displayDate());
+    } else {
+        objControl = $("#spanNextEventName");
+        objControl.text('To be confirmed');
+    }
 }
 
 /*----Next Event Box Click Handler ---*/
