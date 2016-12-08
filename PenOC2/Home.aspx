@@ -29,9 +29,9 @@
                 penoc+subscribe@googlegroups.com</a>
         </p>
         <p>
-            <a href="https://www.facebook.com/groups/penoc/" target="_blank">
+            <a href="https://www.facebook.com/PeninsulaOrienteeringClub/" target="_blank">
                 <img src="Images/socialIcons/facebook.svg" style="height: 2em; margin-right: 5px;" /></a>Join us to discuss results and other topics
-            on <a href="https://www.facebook.com/groups/penoc/" target="_blank">facebook</a></p>
+            on <a href="https://www.facebook.com/PeninsulaOrienteeringClub/" target="_blank">facebook</a></p>
     </div>
     <div id="divCardList">
     </div>
