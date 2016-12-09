@@ -26,7 +26,7 @@ export class CompetitorComponent {
     public delayedDisplay: any;
     public delayedHide: any;
     public allCompetitors: CompetitorModel[];
-private searchInput: any;
+    private searchInput: any;
 
     constructor(private lookupService: LookupService, private competitorService: CompetitorService) {
         this.competitor = new CompetitorModel;
@@ -54,7 +54,7 @@ private searchInput: any;
     }
 
     public delayedActivateSearch(active: boolean) {
-        var self;
+        let self: any;
         self = this;
         if (active) {
             clearTimeout(self.delayedHide);
@@ -81,8 +81,8 @@ private searchInput: any;
         }
         this.searchActive = active;
         if (active) {
-            var self;
-        self = this;
+            let self: any;
+            self = this;
             setTimeout(function () { self.searchInput.nativeElement.focus() }, 0);
         }
     }
@@ -109,23 +109,30 @@ private searchInput: any;
         this.activateSearch(false);
     }
 
-    public keyPressed(event) {
+    public keyPressed(event: any) {
         switch (event.key) {
-            case "ArrowDown":
+            case 'ArrowDown':
                 this.matchIndex++;
                 break;
-            case "ArrowUp":
+            case 'ArrowUp':
                 if (this.matchIndex > 0) {
                     this.matchIndex--;
                 }
                 break;
-            case "Enter":
-                var peopleOnly: PeoplePipe;
+            case 'Enter':
+                let peopleOnly: PeoplePipe;
                 peopleOnly = new PeoplePipe();
-                this.selectCompetitor(peopleOnly.transform(this.allCompetitors, this.peopleOnly).filter(competitor => { return new RegExp(this.searchString.toLowerCase()).test(competitor.fullName.toLowerCase()) })[this.matchIndex]);
+                this.selectCompetitor(
+                    peopleOnly.transform(this.allCompetitors, this.peopleOnly)
+                        .filter(competitor => {
+                            return new RegExp(this.searchString.toLowerCase())
+                                .test(competitor.fullName.toLowerCase());
+                        })[this.matchIndex]
+                );
                 break;
-            case "Escape":
+            case 'Escape':
                 this.activateSearch(false);
+                break;
             default:
                 this.matchIndex = -1;
         }
@@ -141,8 +148,8 @@ private searchInput: any;
     }
 
     public saveNewCompetitor() {
-        if (this.newCompetitor.genderId == 3) { this.newCompetitor.firstName = ''; }
-        this.newCompetitor.fullName = (this.newCompetitor.firstName > "" ? this.newCompetitor.firstName + ' ' : '');
+        if (this.newCompetitor.genderId === 3) { this.newCompetitor.firstName = ''; }
+        this.newCompetitor.fullName = (this.newCompetitor.firstName > '' ? this.newCompetitor.firstName + ' ' : '');
         this.newCompetitor.fullName = this.newCompetitor.fullName + this.newCompetitor.surname;
         this.competitorService.postCompetitor(this.newCompetitor).subscribe(data => {
             this.selectCompetitor(data.json());

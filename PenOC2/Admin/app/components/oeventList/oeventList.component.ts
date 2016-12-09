@@ -1,5 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LookupService } from '../../services/lookup.service';
+﻿import { Component } from '@angular/core';
 import { OEventModel } from '../../models/oevent.model';
 import { OEventService } from '../../services/oevent.service';
 import { Router } from '@angular/router';
@@ -26,8 +25,8 @@ export class OEventListComponent {
     }
 
     public searchOEvents() {
-        var searchDateFrom: Date;
-        var searchDateTo: Date;
+        let searchDateFrom: Date;
+        let searchDateTo: Date;
 
         switch (this.searchDateRange) {
             case 'Current':
@@ -74,7 +73,7 @@ export class OEventListComponent {
             });
     }
 
-    public dateRangeChange(event) {
+    public dateRangeChange(event: any) {
         this.searchDateRange = event.target.value;
         this.searchOEvents();
     }

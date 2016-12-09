@@ -7,12 +7,12 @@ import { UploadService } from '../../services/upload.service';
     styleUrls: ['./app/components/fileUpload/fileUpload.style.css']
 })
 export class FileUploadComponent {
-    @ViewChild("fileInput") fileInput;
-    @ViewChild("tagLabel") tagLabel;
+    @ViewChild('fileInput') fileInput: any;
+    @ViewChild('tagLabel') tagLabel: any;
     public fileUrl: string;
-    public fi;
+    public fi: any;
     public tag: string;
-    @Input() tagStyle: string = "image";
+    @Input() tagStyle: string = 'image';
 
     constructor(private uploadService: UploadService) {
     }
@@ -20,8 +20,8 @@ export class FileUploadComponent {
     copy() {
         console.log(this.tagLabel.nativeElement.textContent);
 
-        var range = document.createRange();
-        var label = document.querySelector('#tagLabel');
+        let range = document.createRange();
+        let label = document.querySelector('#tagLabel');
 
         window.getSelection().removeAllRanges();
         range.selectNode(label);
@@ -29,8 +29,8 @@ export class FileUploadComponent {
 
         try {
             // Now that we've selected the anchor text, execute the copy command  
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
+            let successful = document.execCommand('copy');
+            let msg = successful ? 'successful' : 'unsuccessful';
             console.log('Copy command was ' + msg);
         } catch (err) {
             console.log('Oops, unable to copy');
@@ -50,7 +50,7 @@ export class FileUploadComponent {
                 .subscribe(res => {
                     this.fileUrl = JSON.parse(res.text()).Url;
                     this.fi.value = '';
-                    if (this.tagStyle == 'image') {
+                    if (this.tagStyle === 'image') {
                         this.tag = '<img src="' + this.fileUrl + '" />';
                     }
                 });

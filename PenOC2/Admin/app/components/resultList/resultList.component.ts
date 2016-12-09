@@ -1,9 +1,8 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { ResultService } from '../../services/result.service';
 import { CourseModel } from '../../models/course.model';
 import { ResultModel } from '../../models/result.model';
 import { CompetitorModel } from '../../models/competitor.model';
-import { CompetitorService } from '../../services/competitor.service';
 import { LookupService } from '../../services/lookup.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -20,13 +19,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class ResultListComponent implements ControlValueAccessor {
+    @Input() course: CourseModel;
+    public clubList: Array<any>;
     private resultList: ResultModel[];
     private propagateChange = (_: any) => {};
-public test: string;
-
-    @Input() course: CourseModel;
-
-    public clubList: Array<any>;
 
     public writeValue(value: ResultModel[]) {
         if (value !== undefined) {
@@ -34,7 +30,7 @@ public test: string;
         }
     }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
@@ -48,7 +44,7 @@ public test: string;
     }
 
     public renumberPostitions() {
-        this.resultList.map(function (result, index) { result.position = index + 1 })
+        this.resultList.map(function (result, index) { result.position = index + 1; });
     }
 
     public newResult(event: Event) {
@@ -75,9 +71,9 @@ public test: string;
             if (timeString.length < 6) {
                 timeString = new Array(6 - timeString.length + 1).join('0') + timeString;
             }
-            newTimeString = timeString.substr(4, 2); //seconds
-            newTimeString = timeString.substr(2, 2) + ':' + newTimeString; //minutes
-            newTimeString = timeString.substr(0, 2) + ':' + newTimeString; //hours
+            newTimeString = timeString.substr(4, 2); // seconds
+            newTimeString = timeString.substr(2, 2) + ':' + newTimeString; // minutes
+            newTimeString = timeString.substr(0, 2) + ':' + newTimeString; // hours
 
             this.resultList[index].time = newTimeString;
             this.propagateChange(this.resultList);
@@ -86,8 +82,8 @@ public test: string;
 
     public deleteResult(position: number) {
         this.resultList.splice(
-            this.resultList.findIndex(result => result.position == position), 1
-        )
+            this.resultList.findIndex(result => result.position === position), 1
+        );
         this.renumberPostitions();
         this.propagateChange(this.resultList);
     }

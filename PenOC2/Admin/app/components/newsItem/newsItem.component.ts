@@ -18,7 +18,7 @@ export class NewsItemComponent {
         this.loadNewsItem();
     }
 
-public loadNewsItem(){
+public loadNewsItem() {
 this.route.params.forEach((params: Params) => {
             let id = + params['id'];
             if (id > 0) {
@@ -26,9 +26,9 @@ this.route.params.forEach((params: Params) => {
                     data.subscribe((newsData) => {
                         this.newsItem = newsData.json()[0];
                         this.newsItem.date = new Date(this.newsItem.date).toISOString().substring(0, 10);
-                    })
-                })
-            }else{
+                    });
+                });
+            } else {
                 this.newsItem = new NewsModel();
             }
 
@@ -42,7 +42,7 @@ this.route.params.forEach((params: Params) => {
         this.loadNewsItem();
     }
 
-    public saveClicked(value) {
+    public saveClicked() {
         if (this.newsItem.id > 0) {
             this.saveNewsItem();
         } else {
@@ -59,7 +59,7 @@ this.route.params.forEach((params: Params) => {
     public createNewsItem(): void {
         this.newsService.postNewsItem(this.newsItem)
             .then(data => {
-                data.subscribe(() => { this.loadNewsItem() })
+                data.subscribe(() => { this.loadNewsItem(); });
             });
     }
 }

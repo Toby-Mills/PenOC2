@@ -13,7 +13,7 @@ var upload_service_1 = require('../../services/upload.service');
 var FileUploadComponent = (function () {
     function FileUploadComponent(uploadService) {
         this.uploadService = uploadService;
-        this.tagStyle = "image";
+        this.tagStyle = 'image';
     }
     FileUploadComponent.prototype.copy = function () {
         console.log(this.tagLabel.nativeElement.textContent);
@@ -45,18 +45,18 @@ var FileUploadComponent = (function () {
                 .subscribe(function (res) {
                 _this.fileUrl = JSON.parse(res.text()).Url;
                 _this.fi.value = '';
-                if (_this.tagStyle == 'image') {
+                if (_this.tagStyle === 'image') {
                     _this.tag = '<img src="' + _this.fileUrl + '" />';
                 }
             });
         }
     };
     __decorate([
-        core_1.ViewChild("fileInput"), 
+        core_1.ViewChild('fileInput'), 
         __metadata('design:type', Object)
     ], FileUploadComponent.prototype, "fileInput", void 0);
     __decorate([
-        core_1.ViewChild("tagLabel"), 
+        core_1.ViewChild('tagLabel'), 
         __metadata('design:type', Object)
     ], FileUploadComponent.prototype, "tagLabel", void 0);
     __decorate([

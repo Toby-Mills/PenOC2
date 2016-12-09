@@ -9,16 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//---------------------------------------------------------------------------------------
 var MatchingCompetitorsPipe = (function () {
     function MatchingCompetitorsPipe() {
     }
     MatchingCompetitorsPipe.prototype.transform = function (allCompetitors, searchString) {
-        if (searchString == '') {
+        if (searchString === '') {
             return [];
         }
         else {
-            return allCompetitors.filter(function (competitor) { return new RegExp(searchString.toLowerCase()).test(competitor.fullName.toLowerCase()); });
+            return allCompetitors.filter(function (competitor) {
+                return new RegExp(searchString.toLowerCase()).test(competitor.fullName.toLowerCase());
+            });
         }
     };
     MatchingCompetitorsPipe = __decorate([
