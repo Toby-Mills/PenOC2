@@ -58,15 +58,15 @@ var ResultListComponent = (function () {
             if (timeString.length < 6) {
                 timeString = new Array(6 - timeString.length + 1).join('0') + timeString;
             }
-            newTimeString = timeString.substr(4, 2); //seconds
-            newTimeString = timeString.substr(2, 2) + ':' + newTimeString; //minutes
-            newTimeString = timeString.substr(0, 2) + ':' + newTimeString; //hours
+            newTimeString = timeString.substr(4, 2); // seconds
+            newTimeString = timeString.substr(2, 2) + ':' + newTimeString; // minutes
+            newTimeString = timeString.substr(0, 2) + ':' + newTimeString; // hours
             this.resultList[index].time = newTimeString;
             this.propagateChange(this.resultList);
         }
     };
     ResultListComponent.prototype.deleteResult = function (position) {
-        this.resultList.splice(this.resultList.findIndex(function (result) { return result.position == position; }), 1);
+        this.resultList.splice(this.resultList.findIndex(function (result) { return result.position === position; }), 1);
         this.renumberPostitions();
         this.propagateChange(this.resultList);
     };

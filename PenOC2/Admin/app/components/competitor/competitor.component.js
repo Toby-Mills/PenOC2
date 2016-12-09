@@ -76,9 +76,9 @@ var CompetitorComponent = (function () {
         }
         this.searchActive = active;
         if (active) {
-            var self;
-            self = this;
-            setTimeout(function () { self.searchInput.nativeElement.focus(); }, 0);
+            var self_1;
+            self_1 = this;
+            setTimeout(function () { self_1.searchInput.nativeElement.focus(); }, 0);
         }
     };
     CompetitorComponent.prototype.maintainActive = function () {
@@ -104,21 +104,26 @@ var CompetitorComponent = (function () {
     CompetitorComponent.prototype.keyPressed = function (event) {
         var _this = this;
         switch (event.key) {
-            case "ArrowDown":
+            case 'ArrowDown':
                 this.matchIndex++;
                 break;
-            case "ArrowUp":
+            case 'ArrowUp':
                 if (this.matchIndex > 0) {
                     this.matchIndex--;
                 }
                 break;
-            case "Enter":
-                var peopleOnly;
+            case 'Enter':
+                var peopleOnly = void 0;
                 peopleOnly = new people_pipe_1.PeoplePipe();
-                this.selectCompetitor(peopleOnly.transform(this.allCompetitors, this.peopleOnly).filter(function (competitor) { return new RegExp(_this.searchString.toLowerCase()).test(competitor.fullName.toLowerCase()); })[this.matchIndex]);
+                this.selectCompetitor(peopleOnly.transform(this.allCompetitors, this.peopleOnly)
+                    .filter(function (competitor) {
+                    return new RegExp(_this.searchString.toLowerCase())
+                        .test(competitor.fullName.toLowerCase());
+                })[this.matchIndex]);
                 break;
-            case "Escape":
+            case 'Escape':
                 this.activateSearch(false);
+                break;
             default:
                 this.matchIndex = -1;
         }
@@ -132,10 +137,10 @@ var CompetitorComponent = (function () {
     };
     CompetitorComponent.prototype.saveNewCompetitor = function () {
         var _this = this;
-        if (this.newCompetitor.genderId == 3) {
+        if (this.newCompetitor.genderId === 3) {
             this.newCompetitor.firstName = '';
         }
-        this.newCompetitor.fullName = (this.newCompetitor.firstName > "" ? this.newCompetitor.firstName + ' ' : '');
+        this.newCompetitor.fullName = (this.newCompetitor.firstName > '' ? this.newCompetitor.firstName + ' ' : '');
         this.newCompetitor.fullName = this.newCompetitor.fullName + this.newCompetitor.surname;
         this.competitorService.postCompetitor(this.newCompetitor).subscribe(function (data) {
             _this.selectCompetitor(data.json());

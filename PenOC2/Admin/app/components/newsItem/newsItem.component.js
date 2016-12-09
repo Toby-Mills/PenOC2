@@ -44,7 +44,7 @@ var NewsItemComponent = (function () {
     NewsItemComponent.prototype.cancelClicked = function () {
         this.loadNewsItem();
     };
-    NewsItemComponent.prototype.saveClicked = function (value) {
+    NewsItemComponent.prototype.saveClicked = function () {
         if (this.newsItem.id > 0) {
             this.saveNewsItem();
         }
