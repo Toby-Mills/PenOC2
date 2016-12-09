@@ -30,7 +30,7 @@ Calendar.displayEvents = function () {
             strCard += "<div>" + objEvent.venueName + "</div>";
         }
 
-        if (objEvent.eventStarts.length > 0) {
+        if (objEvent.eventStarts != undefined) {
             strCard += "<div style='float: left;'>Starts: " + objEvent.eventStarts + "</div>";
         }
 
