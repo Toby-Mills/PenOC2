@@ -26,8 +26,29 @@
             <h1><img src="Styles/Images/Facebook.svg" />
                 Facebook</h1>
                 <span>Join in the discussion on Facebook:</span><br />
-            <span class="clickable"><a href="https://www.facebook.com/groups/penoc" target="_blank" >www.facebook.com/groups/penoc</a></span>
+            <span class="clickable"><a href="https://www.facebook.com/PeninsulaOrienteeringClub" target="_blank" >www.facebook.com/PeninsulaOrienteeringClub</a></span>
         </div>
+
+        <div>
+            <h1><img src="Styles/Images/Membership.svg" />
+                Membership</h1>
+                <span>To join the club, complete the</span><span class="clickable"><a href="https://goo.gl/forms/4CJ20P4N3FOnF8Ef2" target="_blank" >Membership Form</a></span><br />
+                <span>Subs can then be paid via EFT to the banking details below</span>
+        </div>
+
+        <div>
+            <h1><img src="Styles/Images/BankingDetails.svg" />
+                Banking Details</h1>
+                <span>Payments such as membership subs can be paid to:</span><br />
+            <dl>
+                <dt>Bank</dt><dd>Standard Bank</dd>
+                <dt>Branch</dt><dd>051001 (Adderley Street)</dd>
+                <dt>Name</dt><dd>Peninsula Orienteering Club</dd>
+                <dt>Account No.</dt><dd>07 427 3566</dd>
+            </dl>
+            
+        </div>
+
         <div>
             <h1><img src="Styles/Images/Website.svg" />
                 Website</h1>

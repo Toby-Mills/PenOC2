@@ -184,6 +184,8 @@
     <Content Include="Scripts\masonry-3.3.2.js" />
     <Content Include="social.js" />
     <Content Include="start.aspx" />
+    <Content Include="Styles\Images\BankingDetails.svg" />
+    <Content Include="Styles\Images\Membership.svg" />
     <Content Include="WhatIs.htm" />
     <Content Include="WhatIs.js" />
     <Content Include="NewsItem.js" />
