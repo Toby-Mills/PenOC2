@@ -4,9 +4,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NewsService } from '../../services/news.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'news-item',
-    templateUrl: './app/components/newsItem/newsItem.template.html',
-    styleUrls: ['./app/components/newsItem/newsItem.style.css']
+    templateUrl: './newsItem.template.html',
+    styleUrls: ['./newsItem.style.css']
 })
 export class NewsItemComponent {
     public newsItem: NewsModel;

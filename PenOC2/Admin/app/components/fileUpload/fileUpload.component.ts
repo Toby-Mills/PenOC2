@@ -2,9 +2,10 @@ import { Component, ViewChild, Input } from '@angular/core';
 import { UploadService } from '../../services/upload.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'file-upload',
-    templateUrl: './app/components/fileUpload/fileUpload.template.html',
-    styleUrls: ['./app/components/fileUpload/fileUpload.style.css']
+    templateUrl: './fileUpload.template.html',
+    styleUrls: ['./fileUpload.style.css']
 })
 export class FileUploadComponent {
     @ViewChild('fileInput') fileInput: any;

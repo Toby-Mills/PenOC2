@@ -3,9 +3,10 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-app',
-    templateUrl: './app/components/app/app.template.html',
-    styleUrls:['./app/components/app/app.style.css']
+    templateUrl: './app.template.html',
+    styleUrls: ['./app.style.css']
 })
 export class AppComponent {
     constructor(private router:Router){

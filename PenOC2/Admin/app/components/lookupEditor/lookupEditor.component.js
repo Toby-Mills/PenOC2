@@ -46,9 +46,10 @@ var LookupEditorComponent = (function () {
     };
     LookupEditorComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'lookup-editor',
-            templateUrl: './app/components/lookupEditor/lookupEditor.template.html',
-            styleUrls: ['./app/components/lookupEditor/lookupEditor.style.css']
+            templateUrl: './lookupEditor.template.html',
+            styleUrls: ['./lookupEditor.style.css']
         }), 
         __metadata('design:paramtypes', [lookup_service_1.LookupService])
     ], LookupEditorComponent);

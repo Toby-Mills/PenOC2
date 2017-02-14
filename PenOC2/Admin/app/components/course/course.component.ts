@@ -8,9 +8,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ResultListComponent } from '../resultList/resultList.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'course',
-    templateUrl: './app/components/course/course.template.html',
-    styleUrls: ['./app/components/course/course.style.css']
+    templateUrl: './course.template.html',
+    styleUrls: ['./course.style.css']
 })
 export class CourseComponent {
     public course: CourseModel;

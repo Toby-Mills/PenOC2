@@ -4,9 +4,10 @@ import { OEventService } from '../../services/oevent.service';
 import { Router } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'oevent-list',
-    templateUrl: './app/components/oeventList/oeventList.template.html',
-    styleUrls: ['./app/components/oeventList/oeventList.style.css']
+    templateUrl: './oeventList.template.html',
+    styleUrls: ['./oeventList.style.css']
 })
 export class OEventListComponent {
     public oeventList: OEventModel[];

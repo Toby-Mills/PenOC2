@@ -68,9 +68,10 @@ var NewsItemComponent = (function () {
     };
     NewsItemComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'news-item',
-            templateUrl: './app/components/newsItem/newsItem.template.html',
-            styleUrls: ['./app/components/newsItem/newsItem.style.css']
+            templateUrl: './newsItem.template.html',
+            styleUrls: ['./newsItem.style.css']
         }), 
         __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router, router_1.ActivatedRoute])
     ], NewsItemComponent);

@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
+    moduleId: module.id,
     selector: 'button-bar',
-    templateUrl: './app/components/buttonBar/buttonBar.template.html',
-    styleUrls: ['./app/components/buttonBar/buttonBar.style.css']
+    templateUrl: './buttonBar.template.html',
+    styleUrls: ['./buttonBar.style.css']
 })
 export class ButtonBarComponent {
     @Input() title: string;

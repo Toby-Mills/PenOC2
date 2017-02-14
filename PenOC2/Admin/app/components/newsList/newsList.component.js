@@ -31,9 +31,10 @@ var NewsListComponent = (function () {
     };
     NewsListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'news-list',
-            templateUrl: './app/components/newsList/newsList.template.html',
-            styleUrls: ['./app/components/newsList/newsList.style.css']
+            templateUrl: './newsList.template.html',
+            styleUrls: ['./newsList.style.css']
         }), 
         __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router])
     ], NewsListComponent);

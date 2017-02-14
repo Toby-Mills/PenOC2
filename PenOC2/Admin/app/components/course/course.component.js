@@ -103,9 +103,10 @@ var CourseComponent = (function () {
     ], CourseComponent.prototype, "results", void 0);
     CourseComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'course',
-            templateUrl: './app/components/course/course.template.html',
-            styleUrls: ['./app/components/course/course.style.css']
+            templateUrl: './course.template.html',
+            styleUrls: ['./course.style.css']
         }), 
         __metadata('design:paramtypes', [course_service_1.CourseService, result_service_1.ResultService, lookup_service_1.LookupService, router_1.Router, router_1.ActivatedRoute])
     ], CourseComponent);

@@ -7,9 +7,10 @@ import { LookupService } from '../../services/lookup.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
+    moduleId: module.id,
     selector: 'result-list',
-    templateUrl: './app/components/resultList/resultList.template.html',
-    styleUrls: ['./app/components/resultList/resultList.style.css'],
+    templateUrl: './resultList.template.html',
+    styleUrls: ['./resultList.style.css'],
     providers: [
     { 
       provide: NG_VALUE_ACCESSOR,

@@ -7,9 +7,10 @@ import { Observable } from 'rxjs';
 
 //---------------------------------------------------------------------------------------
 @Component({
+    moduleId: module.id,
     selector: 'competitor',
-    templateUrl: './app/components/competitor/competitor.template.html',
-    styleUrls: ['./app/components/competitor/competitor.style.css']
+    templateUrl: './competitor.template.html',
+    styleUrls: ['./competitor.style.css']
 })
 export class CompetitorComponent {
     @Input() competitorId: Number;

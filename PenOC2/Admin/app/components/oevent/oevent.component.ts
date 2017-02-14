@@ -6,9 +6,10 @@ import { OEventService } from '../../services/oevent.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'oevent',
-    templateUrl: './app/components/oevent/oevent.template.html',
-    styleUrls: ['./app/components/oevent/oevent.style.css']
+    templateUrl: './oevent.template.html',
+    styleUrls: ['./oevent.style.css']
 })
 export class OEventComponent {
     private oevent: OEventModel;

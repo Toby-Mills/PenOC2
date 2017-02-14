@@ -65,9 +65,10 @@ var FileUploadComponent = (function () {
     ], FileUploadComponent.prototype, "tagStyle", void 0);
     FileUploadComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'file-upload',
-            templateUrl: './app/components/fileUpload/fileUpload.template.html',
-            styleUrls: ['./app/components/fileUpload/fileUpload.style.css']
+            templateUrl: './fileUpload.template.html',
+            styleUrls: ['./fileUpload.style.css']
         }), 
         __metadata('design:paramtypes', [upload_service_1.UploadService])
     ], FileUploadComponent);

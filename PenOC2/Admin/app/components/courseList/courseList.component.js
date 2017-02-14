@@ -62,8 +62,9 @@ var CourseListComponent = (function () {
     };
     CourseListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'course-list',
-            templateUrl: './app/components/courseList/courseList.template.html'
+            templateUrl: './courseList.template.html'
         }), 
         __metadata('design:paramtypes', [oevent_service_1.OEventService, course_service_1.CourseService, router_1.Router, router_1.ActivatedRoute])
     ], CourseListComponent);

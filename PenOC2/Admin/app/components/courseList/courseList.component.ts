@@ -7,8 +7,9 @@ import { CourseModel } from '../../models/course.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'course-list',
-    templateUrl: './app/components/courseList/courseList.template.html'
+    templateUrl: './courseList.template.html'
 })
 export class CourseListComponent {
     oevent: OEventModel;

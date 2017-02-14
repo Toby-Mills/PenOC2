@@ -78,9 +78,10 @@ var OEventListComponent = (function () {
     };
     OEventListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'oevent-list',
-            templateUrl: './app/components/oeventList/oeventList.template.html',
-            styleUrls: ['./app/components/oeventList/oeventList.style.css']
+            templateUrl: './oeventList.template.html',
+            styleUrls: ['./oeventList.style.css']
         }), 
         __metadata('design:paramtypes', [oevent_service_1.OEventService, router_1.Router])
     ], OEventListComponent);

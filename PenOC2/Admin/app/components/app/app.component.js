@@ -19,9 +19,10 @@ var AppComponent = (function () {
     };
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'my-app',
-            templateUrl: './app/components/app/app.template.html',
-            styleUrls: ['./app/components/app/app.style.css']
+            templateUrl: './app.template.html',
+            styleUrls: ['./app.style.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);

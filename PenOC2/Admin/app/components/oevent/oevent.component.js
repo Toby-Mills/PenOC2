@@ -92,9 +92,10 @@ var OEventComponent = (function () {
     };
     OEventComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'oevent',
-            templateUrl: './app/components/oevent/oevent.template.html',
-            styleUrls: ['./app/components/oevent/oevent.style.css']
+            templateUrl: './oevent.template.html',
+            styleUrls: ['./oevent.style.css']
         }), 
         __metadata('design:paramtypes', [lookup_service_1.LookupService, oevent_service_1.OEventService, router_1.Router, router_1.ActivatedRoute])
     ], OEventComponent);

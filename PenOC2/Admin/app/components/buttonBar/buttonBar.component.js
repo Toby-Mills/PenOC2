@@ -85,9 +85,10 @@ var ButtonBarComponent = (function () {
     ], ButtonBarComponent.prototype, "cancelClicked", void 0);
     ButtonBarComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'button-bar',
-            templateUrl: './app/components/buttonBar/buttonBar.template.html',
-            styleUrls: ['./app/components/buttonBar/buttonBar.style.css']
+            templateUrl: './buttonBar.template.html',
+            styleUrls: ['./buttonBar.style.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ButtonBarComponent);

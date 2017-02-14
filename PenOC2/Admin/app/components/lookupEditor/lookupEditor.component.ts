@@ -4,9 +4,10 @@ import { ClubModel } from '../../models/club.model';
 import { VenueModel } from '../../models/venue.model';
 
 @Component({
+    moduleId: module.id,
     selector: 'lookup-editor',
-    templateUrl: './app/components/lookupEditor/lookupEditor.template.html',
-    styleUrls: ['./app/components/lookupEditor/lookupEditor.style.css']
+    templateUrl: './lookupEditor.template.html',
+    styleUrls: ['./lookupEditor.style.css']
 })
 export class LookupEditorComponent {
     public clubList: Array<ClubModel>;

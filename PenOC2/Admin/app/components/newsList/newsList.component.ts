@@ -4,9 +4,10 @@ import { NewsService } from '../../services/news.service';
 import { Router } from '@angular/router';
 
 @Component({
+    moduleId: module.id,
     selector: 'news-list',
-    templateUrl: './app/components/newsList/newsList.template.html',
-    styleUrls: ['./app/components/newsList/newsList.style.css']
+    templateUrl: './newsList.template.html',
+    styleUrls: ['./newsList.style.css']
 })
 export class NewsListComponent {
     private newsList: Array<NewsModel>= new Array();

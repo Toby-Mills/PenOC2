@@ -165,9 +165,10 @@ var CompetitorComponent = (function () {
     ], CompetitorComponent.prototype, "searchBox", void 0);
     CompetitorComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'competitor',
-            templateUrl: './app/components/competitor/competitor.template.html',
-            styleUrls: ['./app/components/competitor/competitor.style.css']
+            templateUrl: './competitor.template.html',
+            styleUrls: ['./competitor.style.css']
         }), 
         __metadata('design:paramtypes', [lookup_service_1.LookupService, competitor_service_1.CompetitorService])
     ], CompetitorComponent);

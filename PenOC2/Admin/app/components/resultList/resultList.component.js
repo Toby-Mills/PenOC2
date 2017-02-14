@@ -76,9 +76,10 @@ var ResultListComponent = (function () {
     ], ResultListComponent.prototype, "course", void 0);
     ResultListComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'result-list',
-            templateUrl: './app/components/resultList/resultList.template.html',
-            styleUrls: ['./app/components/resultList/resultList.style.css'],
+            templateUrl: './resultList.template.html',
+            styleUrls: ['./resultList.style.css'],
             providers: [
                 {
                     provide: forms_1.NG_VALUE_ACCESSOR,
