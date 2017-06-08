@@ -28,13 +28,18 @@ var OEventComponent = (function () {
     };
     OEventComponent.prototype.loadOEvent = function () {
         var _this = this;
+        var oEventDate;
         this.route.params.forEach(function (params) {
             var id = +params['eventId'];
             if (id > 0) {
                 _this.oeventService.getOEvent(id).then(function (data) {
                     data.subscribe(function (eventData) {
                         _this.oevent = eventData.json()[0];
-                        _this.oevent.date = new Date(_this.oevent.date).toISOString().substring(0, 10);
+                        oEventDate = new Date(_this.oevent.date);
+                        // add 2 hours (in milliseconds) for South African Time Zone
+                        oEventDate.setTime(oEventDate.getTime() + 2 * 60 * 60 * 1000);
+                        // truncate to only the date portion
+                        _this.oevent.date = oEventDate.toISOString().substring(0, 10);
                     });
                 });
             }

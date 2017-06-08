@@ -26,13 +26,20 @@ export class OEventComponent {
     }
 
     private loadOEvent() {
+        let oEventDate: Date;
+
         this.route.params.forEach((params: Params) => {
             let id = + params['eventId'];
             if (id > 0) {
                 this.oeventService.getOEvent(id).then((data) => {
                     data.subscribe((eventData) => {
                         this.oevent = eventData.json()[0];
-                        this.oevent.date = new Date(this.oevent.date).toISOString().substring(0, 10);
+                        oEventDate =  new Date(this.oevent.date);
+                         // add 2 hours (in milliseconds) for South African Time Zone
+                        oEventDate.setTime(oEventDate.getTime() + 2 * 60 * 60 * 1000);
+                        // truncate to only the date portion
+                        this.oevent.date =  oEventDate.toISOString().substring(0, 10);
+
                     })
                 })
             } else {
