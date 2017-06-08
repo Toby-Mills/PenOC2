@@ -24,18 +24,14 @@ export class LookupEditorComponent {
     }
 
     saveClub(club: ClubModel, shortName: string, fullName: string) {
-        console.log(club);
-        console.log(shortName);
-        console.log(fullName);
-
         club.shortName = shortName;
         club.fullName = fullName;
 
-        this.lookupService.putClub(club)
+        this.lookupService.putClub(club);
     }
 
     deleteClub(club: ClubModel) {
-        this.lookupService.deleteClub(club.id)
+        this.lookupService.deleteClub(club.id);
     }
 
     saveVenue(venue: VenueModel, name: string) {
@@ -48,10 +44,10 @@ export class LookupEditorComponent {
         let venue = new VenueModel();
         venue.name = name;
 
-        this.lookupService.postVenue(venue)
+        this.lookupService.postVenue(venue);
     }
 
     deleteVenue(venue: VenueModel) {
-        this.lookupService.deleteVenue(venue.id)
+        this.lookupService.deleteVenue(venue.id);
     }
 }

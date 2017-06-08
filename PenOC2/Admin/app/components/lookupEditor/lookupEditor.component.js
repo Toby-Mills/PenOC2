@@ -22,9 +22,6 @@ var LookupEditorComponent = (function () {
         this.lookupService.venueList.subscribe(function (data) { return _this.venueList = data; });
     };
     LookupEditorComponent.prototype.saveClub = function (club, shortName, fullName) {
-        console.log(club);
-        console.log(shortName);
-        console.log(fullName);
         club.shortName = shortName;
         club.fullName = fullName;
         this.lookupService.putClub(club);

@@ -49,25 +49,35 @@ export class LookupService {
     postClub(club: ClubModel) {
         Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        ).then(this.getClubList);
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getClubList();
+                });
+            });
     }
 
     putClub(club: ClubModel) {
         Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        ).then(this.getClubList);
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getClubList();
+                });
+            });
     }
 
     deleteClub(clubId: Number) {
         Promise.resolve(
-            this.http.delete(this.urlService.apiUrl() +'/Clubs/' + clubId)
-        ).then(this.getClubList);
+            this.http.delete(this.urlService.apiUrl() +' /Clubs/' + clubId)
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getClubList();
+                });
+            });
     }
 
     postVenue(venue: VenueModel) {
-         console.log(venue.name);
-         console.log('post Venue:' + this.urlService.apiUrl() + '/Venues');
-         Promise.resolve(
+        Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
         ).then(data => {
                 data.subscribe(response => {
