@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
-import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../services/url.service';
 import { ClubModel } from '../models/club.model';
@@ -50,37 +49,53 @@ export class LookupService {
     postClub(club: ClubModel) {
         Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        ).then(this.getClubList)
+        ).then(this.getClubList);
     }
 
     putClub(club: ClubModel) {
         Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
-        ).then(this.getClubList)
+        ).then(this.getClubList);
     }
 
-    deleteClub(clubId: Number){
+    deleteClub(clubId: Number) {
         Promise.resolve(
             this.http.delete(this.urlService.apiUrl() +'/Clubs/' + clubId)
-        ).then(this.getClubList)
+        ).then(this.getClubList);
     }
 
     postVenue(venue: VenueModel) {
+         console.log(venue.name);
+         console.log('post Venue:' + this.urlService.apiUrl() + '/Venues');
          Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
-        ).then(this.getVenueList )
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getVenueList();
+                });
+            });
     }
 
     putVenue(venue: VenueModel) {
-Promise.resolve(
+        console.log(venue.name);
+        console.log('put Venue:' + this.urlService.apiUrl() + '/Venues');
+        Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
-        ).then(this.getVenueList )
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getVenueList();
+                });
+            });
     }
 
-    deleteVenue(venueId: Number){
+    deleteVenue(venueId: Number) {
         Promise.resolve(
-            this.http.delete(this.urlService.apiUrl() +'/Venues/' + venueId)
-        ).then(this.getVenueList )
+            this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)
+        ).then(data => {
+                data.subscribe(response => {
+                    this.getVenueList();
+                });
+            });
     }
 
     getTechnicalDifficultyList() {
@@ -90,7 +105,7 @@ Promise.resolve(
             technicalDifficultyData => {
                 this.technicalDifficultyList.next(technicalDifficultyData.json());
             }
-        ))
+        ));
     }
 
     getGenderList() {
@@ -100,6 +115,6 @@ Promise.resolve(
             genderData => {
                 this.genderList.next(genderData.json());
             }
-        ))
+        ));
     }
 }

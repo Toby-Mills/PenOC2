@@ -50,13 +50,32 @@ var LookupService = (function () {
         Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId)).then(this.getClubList);
     };
     LookupService.prototype.postVenue = function (venue) {
-        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(this.getVenueList);
+        var _this = this;
+        console.log(venue.name);
+        console.log('post Venue:' + this.urlService.apiUrl() + '/Venues');
+        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
+            data.subscribe(function (response) {
+                _this.getVenueList();
+            });
+        });
     };
     LookupService.prototype.putVenue = function (venue) {
-        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(this.getVenueList);
+        var _this = this;
+        console.log(venue.name);
+        console.log('put Venue:' + this.urlService.apiUrl() + '/Venues');
+        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
+            data.subscribe(function (response) {
+                _this.getVenueList();
+            });
+        });
     };
     LookupService.prototype.deleteVenue = function (venueId) {
-        Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)).then(this.getVenueList);
+        var _this = this;
+        Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)).then(function (data) {
+            data.subscribe(function (response) {
+                _this.getVenueList();
+            });
+        });
     };
     LookupService.prototype.getTechnicalDifficultyList = function () {
         var _this = this;
