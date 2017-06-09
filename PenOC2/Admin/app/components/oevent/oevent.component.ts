@@ -17,7 +17,10 @@ export class OEventComponent {
     public clubList: Array<Object>;
     public loadOEventId: number;
 
-    constructor(private lookupService: LookupService, private oeventService: OEventService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private lookupService: LookupService,
+        private oeventService: OEventService,
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit(): any {
         this.lookupService.venueList.subscribe(venueData => this.venueList = venueData);
@@ -57,7 +60,7 @@ export class OEventComponent {
     }
 
     public coursesClicked() {
-        this.router.navigate(["/events", this.oevent.id, "courses"]);
+        this.router.navigate(['/events', this.oevent.id, 'courses']);
     }
 
     public plannerSelected(planner: CompetitorModel) {
@@ -88,7 +91,7 @@ export class OEventComponent {
     public saveOEvent(): void {
         this.oeventService.putOEvent(this.oevent)
             .then(data => {
-                data.subscribe()
+                data.subscribe();
             });
     }
 

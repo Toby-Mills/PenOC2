@@ -55,7 +55,7 @@ var OEventComponent = (function () {
         this.loadOEvent();
     };
     OEventComponent.prototype.coursesClicked = function () {
-        this.router.navigate(["/events", this.oevent.id, "courses"]);
+        this.router.navigate(['/events', this.oevent.id, 'courses']);
     };
     OEventComponent.prototype.plannerSelected = function (planner) {
         if (planner) {
