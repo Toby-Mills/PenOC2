@@ -84,15 +84,21 @@ var OEventComponent = (function () {
         }
     };
     OEventComponent.prototype.saveOEvent = function () {
+        var _this = this;
         this.oeventService.putOEvent(this.oevent)
             .then(function (data) {
-            data.subscribe();
+            data.subscribe(function (result) {
+                _this.loadOEvent();
+            });
         });
     };
     OEventComponent.prototype.createOEvent = function () {
+        var _this = this;
         this.oeventService.postOEvent(this.oevent)
             .then(function (data) {
-            data.subscribe();
+            data.subscribe(function (result) {
+                _this.loadOEvent();
+            });
         });
     };
     OEventComponent = __decorate([

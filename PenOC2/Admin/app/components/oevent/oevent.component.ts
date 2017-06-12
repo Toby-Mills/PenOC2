@@ -30,7 +30,6 @@ export class OEventComponent {
 
     private loadOEvent() {
         let oEventDate: Date;
-
         this.route.params.forEach((params: Params) => {
             let id = + params['eventId'];
             if (id > 0) {
@@ -43,12 +42,12 @@ export class OEventComponent {
                         // truncate to only the date portion
                         this.oevent.date =  oEventDate.toISOString().substring(0, 10);
 
-                    })
-                })
+                    });
+                });
             } else {
                 this.oevent = new OEventModel();
             }
-        })
+        });
     }
 
     public saveClicked() {
@@ -91,14 +90,18 @@ export class OEventComponent {
     public saveOEvent(): void {
         this.oeventService.putOEvent(this.oevent)
             .then(data => {
-                data.subscribe();
+                data.subscribe(result => {
+                    this.loadOEvent();
+                } );
             });
     }
 
     public createOEvent(): void {
         this.oeventService.postOEvent(this.oevent)
             .then(data => {
-                data.subscribe();
+                data.subscribe(result => {
+                    this.loadOEvent();
+                } );
             });
     }
 
