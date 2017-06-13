@@ -33,12 +33,12 @@ var NewsListComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'news-list',
-            templateUrl: './newsList.template.html',
-            styleUrls: ['./newsList.style.css']
+            templateUrl: './news-list.template.html',
+            styleUrls: ['./news-list.style.css']
         }), 
         __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router])
     ], NewsListComponent);
     return NewsListComponent;
 }());
 exports.NewsListComponent = NewsListComponent;
-//# sourceMappingURL=newsList.component.js.map
+//# sourceMappingURL=news-list.component.js.map

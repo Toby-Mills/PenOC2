@@ -5,17 +5,17 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
-import { ButtonBarComponent } from './components/buttonBar/buttonBar.component';
+import { ButtonBarComponent } from './components/button-bar/button-bar.component';
 import { CompetitorComponent } from './components/competitor/competitor.component';
-import { OEventComponent } from "./components/oevent/oevent.component";
-import { OEventListComponent } from "./components/oeventList/oeventList.component";
-import { CourseListComponent } from "./components/courseList/courseList.component";
-import { CourseComponent } from "./components/course/course.component";
-import { ResultListComponent } from "./components/resultList/resultList.component";
-import { NewsListComponent } from "./components/newsList/newsList.component";
-import { NewsItemComponent } from "./components/newsItem/newsItem.component";
-import { FileUploadComponent } from './components/fileUpload/fileUpload.component';
-import { LookupEditorComponent } from './components/lookupEditor/lookupEditor.component';
+import { OEventComponent } from './components/oevent/oevent.component';
+import { OEventListComponent } from './components/oevent-list/oevent-list.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { CourseComponent } from './components/course/course.component';
+import { ResultListComponent } from './components/resultList/resultList.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsItemComponent } from './components/newsItem/newsItem.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { LookupEditorComponent } from './components/lookup-editor/lookup-editor.component';
 
 import { resultTime } from './pipes/resultTime.pipe';
 import { DateString } from './pipes/dateString.pipe';

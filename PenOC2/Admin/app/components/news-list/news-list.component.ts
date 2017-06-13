@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'news-list',
-    templateUrl: './newsList.template.html',
-    styleUrls: ['./newsList.style.css']
+    templateUrl: './news-list.template.html',
+    styleUrls: ['./news-list.style.css']
 })
 export class NewsListComponent {
     private newsList: Array<NewsModel>= new Array();

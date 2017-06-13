@@ -1,5 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { OEventService } from '../../services/oevent.service';
 import { CourseService } from '../../services/course.service';
 import { OEventModel } from '../../models/oevent.model';
@@ -9,13 +8,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'course-list',
-    templateUrl: './courseList.template.html'
+    templateUrl: './course-list.template.html'
 })
 export class CourseListComponent {
     oevent: OEventModel;
     courseList: CourseModel[];
 
-    constructor(private oeventService: OEventService, private courseService: CourseService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private oeventService: OEventService, private courseService: CourseService, 
+        private router: Router, private route: ActivatedRoute) {
+     }
 
     ngOnInit() {
         this.route.params.forEach((params: Params) => {

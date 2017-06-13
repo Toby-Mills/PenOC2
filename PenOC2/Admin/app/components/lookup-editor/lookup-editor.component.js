@@ -45,12 +45,12 @@ var LookupEditorComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'lookup-editor',
-            templateUrl: './lookupEditor.template.html',
-            styleUrls: ['./lookupEditor.style.css']
+            templateUrl: './lookup-editor.template.html',
+            styleUrls: ['./lookup-editor.style.css']
         }), 
         __metadata('design:paramtypes', [lookup_service_1.LookupService])
     ], LookupEditorComponent);
     return LookupEditorComponent;
 }());
 exports.LookupEditorComponent = LookupEditorComponent;
-//# sourceMappingURL=lookupEditor.component.js.map
+//# sourceMappingURL=lookup-editor.component.js.map

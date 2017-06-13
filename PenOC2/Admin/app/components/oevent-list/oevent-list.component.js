@@ -80,12 +80,12 @@ var OEventListComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'oevent-list',
-            templateUrl: './oeventList.template.html',
-            styleUrls: ['./oeventList.style.css']
+            templateUrl: './oevent-list.template.html',
+            styleUrls: ['./oevent-list.style.css']
         }), 
         __metadata('design:paramtypes', [oevent_service_1.OEventService, router_1.Router])
     ], OEventListComponent);
     return OEventListComponent;
 }());
 exports.OEventListComponent = OEventListComponent;
-//# sourceMappingURL=oeventList.component.js.map
+//# sourceMappingURL=oevent-list.component.js.map

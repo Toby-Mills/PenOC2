@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'oevent-list',
-    templateUrl: './oeventList.template.html',
-    styleUrls: ['./oeventList.style.css']
+    templateUrl: './oevent-list.template.html',
+    styleUrls: ['./oevent-list.style.css']
 })
 export class OEventListComponent {
     public oeventList: OEventModel[];

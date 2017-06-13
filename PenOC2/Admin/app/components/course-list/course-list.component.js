@@ -64,11 +64,11 @@ var CourseListComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'course-list',
-            templateUrl: './courseList.template.html'
+            templateUrl: './course-list.template.html'
         }), 
         __metadata('design:paramtypes', [oevent_service_1.OEventService, course_service_1.CourseService, router_1.Router, router_1.ActivatedRoute])
     ], CourseListComponent);
     return CourseListComponent;
 }());
 exports.CourseListComponent = CourseListComponent;
-//# sourceMappingURL=courseList.component.js.map
+//# sourceMappingURL=course-list.component.js.map

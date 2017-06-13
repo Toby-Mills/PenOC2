@@ -3,43 +3,42 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
     moduleId: module.id,
     selector: 'button-bar',
-    templateUrl: './buttonBar.template.html',
-    styleUrls: ['./buttonBar.style.css']
+    templateUrl: './button-bar.template.html',
+    styleUrls: ['./button-bar.style.css']
 })
 export class ButtonBarComponent {
     @Input() title: string;
-    @Input() nextText: string = "Next >";
-    @Input() newText: string = "New";
+    @Input() nextText: string = 'Next >';
+    @Input() newText: string = 'New';
     @Input() editing: boolean = false;
     @Input() buttons: string[] = [];
     @Input() valid: boolean = true;
-    
+
     @Output() backClicked = new EventEmitter;
     @Output() nextClicked = new EventEmitter;
     @Output() newClicked = new EventEmitter;
     @Output() saveClicked = new EventEmitter;
     @Output() cancelClicked = new EventEmitter;
-    
-    public backRequest(){
 
-        this.backClicked.emit({})
+    public backRequest() {
+        this.backClicked.emit({});
     }
-    
-    public nextRequest(){
-        this.nextClicked.emit({})
+
+    public nextRequest() {
+        this.nextClicked.emit({});
     }
-    
-    public saveRequest(event: Event){
+
+    public saveRequest(event: Event) {
         event.stopPropagation();
-        this.saveClicked.emit({})
+        this.saveClicked.emit({});
     }
-    
-    public cancelRequest(event: Event){
+
+    public cancelRequest(event: Event) {
         event.stopPropagation();
-        this.cancelClicked.emit({})
+        this.cancelClicked.emit({});
     }
-    
-    public newRequest(){
-        this.newClicked.emit({})
+
+    public newRequest() {
+        this.newClicked.emit({});
     }
 }

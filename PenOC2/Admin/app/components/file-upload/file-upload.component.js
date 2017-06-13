@@ -67,12 +67,12 @@ var FileUploadComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'file-upload',
-            templateUrl: './fileUpload.template.html',
-            styleUrls: ['./fileUpload.style.css']
+            templateUrl: './file-upload.template.html',
+            styleUrls: ['./file-upload.style.css']
         }), 
         __metadata('design:paramtypes', [upload_service_1.UploadService])
     ], FileUploadComponent);
     return FileUploadComponent;
 }());
 exports.FileUploadComponent = FileUploadComponent;
-//# sourceMappingURL=fileUpload.component.js.map
+//# sourceMappingURL=file-upload.component.js.map

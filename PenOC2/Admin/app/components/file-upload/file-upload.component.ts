@@ -4,8 +4,8 @@ import { UploadService } from '../../services/upload.service';
 @Component({
     moduleId: module.id,
     selector: 'file-upload',
-    templateUrl: './fileUpload.template.html',
-    styleUrls: ['./fileUpload.style.css']
+    templateUrl: './file-upload.template.html',
+    styleUrls: ['./file-upload.style.css']
 })
 export class FileUploadComponent {
     @ViewChild('fileInput') fileInput: any;

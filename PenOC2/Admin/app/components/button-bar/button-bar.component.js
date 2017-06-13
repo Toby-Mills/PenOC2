@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ButtonBarComponent = (function () {
     function ButtonBarComponent() {
-        this.nextText = "Next >";
-        this.newText = "New";
+        this.nextText = 'Next >';
+        this.newText = 'New';
         this.editing = false;
         this.buttons = [];
         this.valid = true;
@@ -87,12 +87,12 @@ var ButtonBarComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'button-bar',
-            templateUrl: './buttonBar.template.html',
-            styleUrls: ['./buttonBar.style.css']
+            templateUrl: './button-bar.template.html',
+            styleUrls: ['./button-bar.style.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ButtonBarComponent);
     return ButtonBarComponent;
 }());
 exports.ButtonBarComponent = ButtonBarComponent;
-//# sourceMappingURL=buttonBar.component.js.map
+//# sourceMappingURL=button-bar.component.js.map
