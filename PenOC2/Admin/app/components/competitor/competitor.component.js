@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var lookup_service_1 = require('../../services/lookup.service');
-var competitor_service_1 = require('../../services/competitor.service');
-var competitor_model_1 = require('../../models/competitor.model');
-var people_pipe_1 = require('../../pipes/people.pipe');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var lookup_service_1 = require("../../services/lookup.service");
+var competitor_service_1 = require("../../services/competitor.service");
+var competitor_model_1 = require("../../models/competitor.model");
+var people_pipe_1 = require("../../pipes/people.pipe");
 var CompetitorComponent = (function () {
     function CompetitorComponent(lookupService, competitorService) {
         this.lookupService = lookupService;
@@ -146,32 +147,32 @@ var CompetitorComponent = (function () {
             _this.competitorService.getAllCompetitors();
         });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], CompetitorComponent.prototype, "competitorId", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], CompetitorComponent.prototype, "peopleOnly", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], CompetitorComponent.prototype, "competitorIdChange", void 0);
-    __decorate([
-        core_1.ViewChild('searchBox'), 
-        __metadata('design:type', Object)
-    ], CompetitorComponent.prototype, "searchBox", void 0);
-    CompetitorComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'competitor',
-            templateUrl: './competitor.template.html',
-            styleUrls: ['./competitor.style.css']
-        }), 
-        __metadata('design:paramtypes', [lookup_service_1.LookupService, competitor_service_1.CompetitorService])
-    ], CompetitorComponent);
     return CompetitorComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], CompetitorComponent.prototype, "competitorId", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], CompetitorComponent.prototype, "peopleOnly", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CompetitorComponent.prototype, "competitorIdChange", void 0);
+__decorate([
+    core_1.ViewChild('searchBox'),
+    __metadata("design:type", Object)
+], CompetitorComponent.prototype, "searchBox", void 0);
+CompetitorComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'competitor',
+        templateUrl: './competitor.template.html',
+        styleUrls: ['./competitor.style.css']
+    }),
+    __metadata("design:paramtypes", [lookup_service_1.LookupService, competitor_service_1.CompetitorService])
+], CompetitorComponent);
 exports.CompetitorComponent = CompetitorComponent;
 //# sourceMappingURL=competitor.component.js.map

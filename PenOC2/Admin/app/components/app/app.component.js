@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var AppComponent = (function () {
     function AppComponent(router) {
         this.router = router;
@@ -17,16 +18,16 @@ var AppComponent = (function () {
     AppComponent.prototype.homeClicked = function () {
         this.router.navigate(['']);
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: './app.template.html',
-            styleUrls: ['./app.style.css']
-        }), 
-        __metadata('design:paramtypes', [router_1.Router])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'my-app',
+        templateUrl: './app.template.html',
+        styleUrls: ['./app.style.css']
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

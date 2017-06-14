@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/Rx');
-var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
-var url_service_1 = require('../services/url.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/Rx");
+var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
+var url_service_1 = require("../services/url.service");
 var LookupService = (function () {
     function LookupService(http, urlService) {
         this.http = http;
@@ -126,11 +127,11 @@ var LookupService = (function () {
             _this.genderList.next(genderData.json());
         }); });
     };
-    LookupService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, url_service_1.UrlService])
-    ], LookupService);
     return LookupService;
 }());
+LookupService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, url_service_1.UrlService])
+], LookupService);
 exports.LookupService = LookupService;
 //# sourceMappingURL=lookup.service.js.map

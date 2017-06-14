@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var UploadService = (function () {
     function UploadService(http) {
         this.http = http;
@@ -20,11 +21,11 @@ var UploadService = (function () {
         return this.http
             .post("/penoc2/api/newsItems/images", input);
     };
-    UploadService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], UploadService);
     return UploadService;
 }());
+UploadService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], UploadService);
 exports.UploadService = UploadService;
 //# sourceMappingURL=upload.service.js.map

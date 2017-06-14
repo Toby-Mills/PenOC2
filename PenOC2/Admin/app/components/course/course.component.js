@@ -8,13 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var course_model_1 = require('../../models/course.model');
-var course_service_1 = require('../../services/course.service');
-var result_service_1 = require('../../services/result.service');
-var lookup_service_1 = require('../../services/lookup.service');
-var router_1 = require('@angular/router');
-var result_list_component_1 = require('../result-list/result-list.component');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var course_model_1 = require("../../models/course.model");
+var course_service_1 = require("../../services/course.service");
+var result_service_1 = require("../../services/result.service");
+var lookup_service_1 = require("../../services/lookup.service");
+var router_1 = require("@angular/router");
+var result_list_component_1 = require("../result-list/result-list.component");
 var CourseComponent = (function () {
     function CourseComponent(courseService, resultService, lookupService, router, route) {
         this.courseService = courseService;
@@ -97,20 +98,21 @@ var CourseComponent = (function () {
         this.resultService.putCourseResults(this.course.id, this.resultList)
             .then(function (data) { return data.subscribe(function (data) { }); });
     };
-    __decorate([
-        core_1.ViewChild('results'), 
-        __metadata('design:type', result_list_component_1.ResultListComponent)
-    ], CourseComponent.prototype, "results", void 0);
-    CourseComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'course',
-            templateUrl: './course.template.html',
-            styleUrls: ['./course.style.css']
-        }), 
-        __metadata('design:paramtypes', [course_service_1.CourseService, result_service_1.ResultService, lookup_service_1.LookupService, router_1.Router, router_1.ActivatedRoute])
-    ], CourseComponent);
     return CourseComponent;
 }());
+__decorate([
+    core_1.ViewChild('results'),
+    __metadata("design:type", result_list_component_1.ResultListComponent)
+], CourseComponent.prototype, "results", void 0);
+CourseComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'course',
+        templateUrl: './course.template.html',
+        styleUrls: ['./course.style.css']
+    }),
+    __metadata("design:paramtypes", [course_service_1.CourseService, result_service_1.ResultService,
+        lookup_service_1.LookupService, router_1.Router, router_1.ActivatedRoute])
+], CourseComponent);
 exports.CourseComponent = CourseComponent;
 //# sourceMappingURL=course.component.js.map

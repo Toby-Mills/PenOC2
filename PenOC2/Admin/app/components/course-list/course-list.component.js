@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var oevent_service_1 = require('../../services/oevent.service');
-var course_service_1 = require('../../services/course.service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var oevent_service_1 = require("../../services/oevent.service");
+var course_service_1 = require("../../services/course.service");
+var router_1 = require("@angular/router");
 var CourseListComponent = (function () {
     function CourseListComponent(oeventService, courseService, router, route) {
         this.oeventService = oeventService;
@@ -60,15 +61,16 @@ var CourseListComponent = (function () {
             });
         });
     };
-    CourseListComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'course-list',
-            templateUrl: './course-list.template.html'
-        }), 
-        __metadata('design:paramtypes', [oevent_service_1.OEventService, course_service_1.CourseService, router_1.Router, router_1.ActivatedRoute])
-    ], CourseListComponent);
     return CourseListComponent;
 }());
+CourseListComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'course-list',
+        templateUrl: './course-list.template.html'
+    }),
+    __metadata("design:paramtypes", [oevent_service_1.OEventService, course_service_1.CourseService,
+        router_1.Router, router_1.ActivatedRoute])
+], CourseListComponent);
 exports.CourseListComponent = CourseListComponent;
 //# sourceMappingURL=course-list.component.js.map

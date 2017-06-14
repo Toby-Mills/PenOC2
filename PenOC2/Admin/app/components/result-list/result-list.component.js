@@ -8,13 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var result_service_1 = require('../../services/result.service');
-var course_model_1 = require('../../models/course.model');
-var result_model_1 = require('../../models/result.model');
-var lookup_service_1 = require('../../services/lookup.service');
-var forms_1 = require('@angular/forms');
-var ResultListComponent = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var result_service_1 = require("../../services/result.service");
+var course_model_1 = require("../../models/course.model");
+var result_model_1 = require("../../models/result.model");
+var lookup_service_1 = require("../../services/lookup.service");
+var forms_1 = require("@angular/forms");
+var ResultListComponent = ResultListComponent_1 = (function () {
     function ResultListComponent(resultService, lookupService) {
         this.resultService = resultService;
         this.lookupService = lookupService;
@@ -70,27 +71,28 @@ var ResultListComponent = (function () {
         this.renumberPostitions();
         this.propagateChange(this.resultList);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', course_model_1.CourseModel)
-    ], ResultListComponent.prototype, "course", void 0);
-    ResultListComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'result-list',
-            templateUrl: './result-list.template.html',
-            styleUrls: ['./result-list.style.css'],
-            providers: [
-                {
-                    provide: forms_1.NG_VALUE_ACCESSOR,
-                    useExisting: core_1.forwardRef(function () { return ResultListComponent; }),
-                    multi: true
-                }
-            ]
-        }), 
-        __metadata('design:paramtypes', [result_service_1.ResultService, lookup_service_1.LookupService])
-    ], ResultListComponent);
     return ResultListComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", course_model_1.CourseModel)
+], ResultListComponent.prototype, "course", void 0);
+ResultListComponent = ResultListComponent_1 = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'result-list',
+        templateUrl: './result-list.template.html',
+        styleUrls: ['./result-list.style.css'],
+        providers: [
+            {
+                provide: forms_1.NG_VALUE_ACCESSOR,
+                useExisting: core_1.forwardRef(function () { return ResultListComponent_1; }),
+                multi: true
+            }
+        ]
+    }),
+    __metadata("design:paramtypes", [result_service_1.ResultService, lookup_service_1.LookupService])
+], ResultListComponent);
 exports.ResultListComponent = ResultListComponent;
+var ResultListComponent_1;
 //# sourceMappingURL=result-list.component.js.map

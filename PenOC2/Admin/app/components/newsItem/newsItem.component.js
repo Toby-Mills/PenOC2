@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var news_model_1 = require('../../models/news.model');
-var router_1 = require('@angular/router');
-var news_service_1 = require('../../services/news.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var news_model_1 = require("../../models/news.model");
+var router_1 = require("@angular/router");
+var news_service_1 = require("../../services/news.service");
 var NewsItemComponent = (function () {
     function NewsItemComponent(newsService, router, route) {
         this.newsService = newsService;
@@ -66,16 +67,16 @@ var NewsItemComponent = (function () {
             data.subscribe(function () { _this.loadNewsItem(); });
         });
     };
-    NewsItemComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'news-item',
-            templateUrl: './newsItem.template.html',
-            styleUrls: ['./newsItem.style.css']
-        }), 
-        __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router, router_1.ActivatedRoute])
-    ], NewsItemComponent);
     return NewsItemComponent;
 }());
+NewsItemComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'news-item',
+        templateUrl: './newsItem.template.html',
+        styleUrls: ['./newsItem.style.css']
+    }),
+    __metadata("design:paramtypes", [news_service_1.NewsService, router_1.Router, router_1.ActivatedRoute])
+], NewsItemComponent);
 exports.NewsItemComponent = NewsItemComponent;
 //# sourceMappingURL=newsItem.component.js.map

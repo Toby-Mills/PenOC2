@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var lookup_service_1 = require('../../services/lookup.service');
-var oevent_model_1 = require('../../models/oevent.model');
-var oevent_service_1 = require('../../services/oevent.service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var lookup_service_1 = require("../../services/lookup.service");
+var oevent_model_1 = require("../../models/oevent.model");
+var oevent_service_1 = require("../../services/oevent.service");
+var router_1 = require("@angular/router");
 var OEventComponent = (function () {
     function OEventComponent(lookupService, oeventService, router, route) {
         this.lookupService = lookupService;
@@ -101,16 +102,19 @@ var OEventComponent = (function () {
             });
         });
     };
-    OEventComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'oevent',
-            templateUrl: './oevent.template.html',
-            styleUrls: ['./oevent.style.css']
-        }), 
-        __metadata('design:paramtypes', [lookup_service_1.LookupService, oevent_service_1.OEventService, router_1.Router, router_1.ActivatedRoute])
-    ], OEventComponent);
     return OEventComponent;
 }());
+OEventComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'oevent',
+        templateUrl: './oevent.template.html',
+        styleUrls: ['./oevent.style.css']
+    }),
+    __metadata("design:paramtypes", [lookup_service_1.LookupService,
+        oevent_service_1.OEventService,
+        router_1.Router,
+        router_1.ActivatedRoute])
+], OEventComponent);
 exports.OEventComponent = OEventComponent;
 //# sourceMappingURL=oevent.component.js.map

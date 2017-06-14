@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var oevent_service_1 = require('../../services/oevent.service');
-var router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var oevent_service_1 = require("../../services/oevent.service");
+var router_1 = require("@angular/router");
 var OEventListComponent = (function () {
     function OEventListComponent(oeventService, router) {
         this.oeventService = oeventService;
@@ -76,16 +77,16 @@ var OEventListComponent = (function () {
     OEventListComponent.prototype.newOEvent = function () {
         this.router.navigate(['/events', '0']);
     };
-    OEventListComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'oevent-list',
-            templateUrl: './oevent-list.template.html',
-            styleUrls: ['./oevent-list.style.css']
-        }), 
-        __metadata('design:paramtypes', [oevent_service_1.OEventService, router_1.Router])
-    ], OEventListComponent);
     return OEventListComponent;
 }());
+OEventListComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'oevent-list',
+        templateUrl: './oevent-list.template.html',
+        styleUrls: ['./oevent-list.style.css']
+    }),
+    __metadata("design:paramtypes", [oevent_service_1.OEventService, router_1.Router])
+], OEventListComponent);
 exports.OEventListComponent = OEventListComponent;
 //# sourceMappingURL=oevent-list.component.js.map
