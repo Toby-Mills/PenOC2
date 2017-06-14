@@ -29,4 +29,4 @@ var MatchingCompetitorsPipe = (function () {
     return MatchingCompetitorsPipe;
 }());
 exports.MatchingCompetitorsPipe = MatchingCompetitorsPipe;
-//# sourceMappingURL=matchingCompetitors.pipe.js.map
+//# sourceMappingURL=matching-competitors.pipe.js.map

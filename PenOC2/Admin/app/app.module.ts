@@ -11,14 +11,14 @@ import { OEventComponent } from './components/oevent/oevent.component';
 import { OEventListComponent } from './components/oevent-list/oevent-list.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { CourseComponent } from './components/course/course.component';
-import { ResultListComponent } from './components/resultList/resultList.component';
+import { ResultListComponent } from './components/result-list/result-list.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsItemComponent } from './components/newsItem/newsItem.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { LookupEditorComponent } from './components/lookup-editor/lookup-editor.component';
 
 import { resultTime } from './pipes/resultTime.pipe';
-import { DateString } from './pipes/dateString.pipe';
+import { DateString } from './pipes/date-string.pipe';
 
 import { CourseService } from './services/course.service';
 import { LookupService } from './services/lookup.service';
@@ -30,7 +30,7 @@ import { UrlService } from './services/url.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { UploadService } from './services/upload.service';
 
-import { MatchingCompetitorsPipe } from './pipes/matchingCompetitors.pipe';
+import { MatchingCompetitorsPipe } from './pipes/matching-competitors.pipe';
 import { PeoplePipe } from './pipes/people.pipe';
 
 @NgModule({

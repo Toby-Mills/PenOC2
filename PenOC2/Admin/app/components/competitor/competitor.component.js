@@ -13,14 +13,13 @@ var lookup_service_1 = require('../../services/lookup.service');
 var competitor_service_1 = require('../../services/competitor.service');
 var competitor_model_1 = require('../../models/competitor.model');
 var people_pipe_1 = require('../../pipes/people.pipe');
-//---------------------------------------------------------------------------------------
 var CompetitorComponent = (function () {
     function CompetitorComponent(lookupService, competitorService) {
         this.lookupService = lookupService;
         this.competitorService = competitorService;
         this.peopleOnly = false;
         this.competitorIdChange = new core_1.EventEmitter();
-        this.searchString = "";
+        this.searchString = '';
         this.matchIndex = -1;
         this.competitor = new competitor_model_1.CompetitorModel;
     }
@@ -160,7 +159,7 @@ var CompetitorComponent = (function () {
         __metadata('design:type', Object)
     ], CompetitorComponent.prototype, "competitorIdChange", void 0);
     __decorate([
-        core_1.ViewChild("searchBox"), 
+        core_1.ViewChild('searchBox'), 
         __metadata('design:type', Object)
     ], CompetitorComponent.prototype, "searchBox", void 0);
     CompetitorComponent = __decorate([

@@ -16,10 +16,10 @@ var DateString = (function () {
     DateString.prototype.transform = function (dateString, format) {
         var parsedDate = Date.parse(dateString);
         if (isNaN(parsedDate)) {
-            return "";
+            return '';
         }
         else {
-            return new common_1.DatePipe("za").transform(new Date(parsedDate), format);
+            return new common_1.DatePipe('za').transform(new Date(parsedDate), format);
         }
     };
     DateString = __decorate([
@@ -29,4 +29,4 @@ var DateString = (function () {
     return DateString;
 }());
 exports.DateString = DateString;
-//# sourceMappingURL=dateString.pipe.js.map
+//# sourceMappingURL=date-string.pipe.js.map

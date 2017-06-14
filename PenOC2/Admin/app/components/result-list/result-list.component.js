@@ -78,8 +78,8 @@ var ResultListComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'result-list',
-            templateUrl: './resultList.template.html',
-            styleUrls: ['./resultList.style.css'],
+            templateUrl: './result-list.template.html',
+            styleUrls: ['./result-list.style.css'],
             providers: [
                 {
                     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -93,4 +93,4 @@ var ResultListComponent = (function () {
     return ResultListComponent;
 }());
 exports.ResultListComponent = ResultListComponent;
-//# sourceMappingURL=resultList.component.js.map
+//# sourceMappingURL=result-list.component.js.map

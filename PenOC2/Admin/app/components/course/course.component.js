@@ -14,7 +14,7 @@ var course_service_1 = require('../../services/course.service');
 var result_service_1 = require('../../services/result.service');
 var lookup_service_1 = require('../../services/lookup.service');
 var router_1 = require('@angular/router');
-var resultList_component_1 = require('../resultList/resultList.component');
+var result_list_component_1 = require('../result-list/result-list.component');
 var CourseComponent = (function () {
     function CourseComponent(courseService, resultService, lookupService, router, route) {
         this.courseService = courseService;
@@ -99,7 +99,7 @@ var CourseComponent = (function () {
     };
     __decorate([
         core_1.ViewChild('results'), 
-        __metadata('design:type', resultList_component_1.ResultListComponent)
+        __metadata('design:type', result_list_component_1.ResultListComponent)
     ], CourseComponent.prototype, "results", void 0);
     CourseComponent = __decorate([
         core_1.Component({

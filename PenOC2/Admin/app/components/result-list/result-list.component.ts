@@ -9,10 +9,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
     moduleId: module.id,
     selector: 'result-list',
-    templateUrl: './resultList.template.html',
-    styleUrls: ['./resultList.style.css'],
+    templateUrl: './result-list.template.html',
+    styleUrls: ['./result-list.style.css'],
     providers: [
-    { 
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ResultListComponent),
       multi: true

@@ -5,7 +5,7 @@ import { CourseService } from '../../services/course.service';
 import { ResultService } from '../../services/result.service';
 import { LookupService } from '../../services/lookup.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ResultListComponent } from '../resultList/resultList.component';
+import { ResultListComponent } from '../result-list/result-list.component';
 
 @Component({
     moduleId: module.id,
@@ -19,8 +19,8 @@ export class CourseComponent {
     public technicalDifficultyList: Array<Object>;
     @ViewChild('results') results: ResultListComponent;
 
-    constructor(private courseService: CourseService, private resultService: ResultService, private lookupService: LookupService, private router: Router, private route: ActivatedRoute) {
-
+    constructor(private courseService: CourseService, private resultService: ResultService,
+        private lookupService: LookupService, private router: Router, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -28,7 +28,7 @@ export class CourseComponent {
 
         this.route.params.forEach((params: Params) => {
             this.loadCourse();
-        })
+        });
     }
 
     private loadCourse() {

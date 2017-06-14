@@ -3,9 +3,7 @@ import { LookupService } from '../../services/lookup.service';
 import { CompetitorService } from '../../services/competitor.service';
 import { CompetitorModel } from '../../models/competitor.model';
 import { PeoplePipe } from '../../pipes/people.pipe';
-import { Observable } from 'rxjs';
 
-//---------------------------------------------------------------------------------------
 @Component({
     moduleId: module.id,
     selector: 'competitor',
@@ -16,10 +14,10 @@ export class CompetitorComponent {
     @Input() competitorId: Number;
     @Input() peopleOnly: boolean = false;
     @Output() competitorIdChange = new EventEmitter();
-    @ViewChild("searchBox") searchBox: any;
+    @ViewChild('searchBox') searchBox: any;
 
     public competitor: CompetitorModel;
-    public searchString: String = "";
+    public searchString: String = '';
     public searchActive: boolean;
     public matchIndex: number = -1;
     public newCompetitor: CompetitorModel;
