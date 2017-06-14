@@ -30,14 +30,38 @@ var LookupService = (function () {
     }
     LookupService.prototype.getVenueList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Venues')).then(function (data) { return data.subscribe(function (venueData) {
-            _this.venueList.next(venueData.json());
+        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Venues')).then(function (data) { return data.subscribe(function (response) {
+            var venueData = response.json();
+            venueData.sort(function (a, b) {
+                if (a.name < b.name) {
+                    return -1;
+                }
+                ;
+                if (a.name > b.name) {
+                    return 1;
+                }
+                ;
+                return 0;
+            });
+            _this.venueList.next(venueData);
         }); });
     };
     LookupService.prototype.getClubList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (clubData) {
-            _this.clubList.next(clubData.json());
+        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (response) {
+            var clubData = response.json();
+            clubData.sort(function (a, b) {
+                if (a.shortName < b.shortName) {
+                    return -1;
+                }
+                ;
+                if (a.shortName > b.shortName) {
+                    return 1;
+                }
+                ;
+                return 0;
+            });
+            _this.clubList.next(clubData);
         }); });
     };
     LookupService.prototype.postClub = function (club) {

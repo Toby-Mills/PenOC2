@@ -30,20 +30,32 @@ export class LookupService {
         Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/Venues')
         ).then(data => data.subscribe(
-            venueData => {
-                this.venueList.next(venueData.json());
+            response => {
+                let venueData: Array<VenueModel> =  response.json();
+                venueData.sort(function(a: VenueModel, b: VenueModel){
+                    if ( a.name < b.name ) {return -1; };
+                    if ( a.name > b.name ) {return 1; };
+                    return 0;
+                });
+                this.venueList.next(venueData);
             }
-        ))
+        ));
     }
 
     getClubList() {
         Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/Clubs')
         ).then(data => data.subscribe(
-            clubData => {
-                this.clubList.next(clubData.json());
+            response => {
+                let clubData: Array<ClubModel> = response.json();
+                clubData.sort(function(a: ClubModel, b: ClubModel){
+                    if ( a.shortName < b.shortName ) {return -1; };
+                    if ( a.shortName > b.shortName ) {return 1; };
+                    return 0;
+                });
+                this.clubList.next(clubData);
             }
-        ))
+        ));
     }
 
     postClub(club: ClubModel) {
@@ -68,7 +80,7 @@ export class LookupService {
 
     deleteClub(clubId: Number) {
         Promise.resolve(
-            this.http.delete(this.urlService.apiUrl() +' /Clubs/' + clubId)
+            this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
