@@ -66,7 +66,7 @@ export class ResultListComponent implements ControlValueAccessor {
     }
 
     public correctTime(index: number, timeString: string) {
-        var newTimeString: string;
+        let newTimeString: string;
 
         if (!isNaN(Number(timeString))) {
             if (timeString.length < 6) {

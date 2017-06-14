@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
-var DateString = (function () {
-    function DateString() {
+var DateStringPipe = (function () {
+    function DateStringPipe() {
     }
-    DateString.prototype.transform = function (dateString, format) {
+    DateStringPipe.prototype.transform = function (dateString, format) {
         var parsedDate = Date.parse(dateString);
         if (isNaN(parsedDate)) {
             return '';
@@ -22,11 +22,11 @@ var DateString = (function () {
             return new common_1.DatePipe('za').transform(new Date(parsedDate), format);
         }
     };
-    DateString = __decorate([
+    DateStringPipe = __decorate([
         core_1.Pipe({ name: 'dateString' }), 
         __metadata('design:paramtypes', [])
-    ], DateString);
-    return DateString;
+    ], DateStringPipe);
+    return DateStringPipe;
 }());
-exports.DateString = DateString;
+exports.DateStringPipe = DateStringPipe;
 //# sourceMappingURL=date-string.pipe.js.map

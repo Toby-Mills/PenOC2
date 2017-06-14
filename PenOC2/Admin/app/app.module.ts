@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './components/app/app.component';
 import { ButtonBarComponent } from './components/button-bar/button-bar.component';
@@ -17,8 +18,10 @@ import { NewsItemComponent } from './components/newsItem/newsItem.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { LookupEditorComponent } from './components/lookup-editor/lookup-editor.component';
 
-import { resultTime } from './pipes/resultTime.pipe';
-import { DateString } from './pipes/date-string.pipe';
+import { ResultTimePipe } from './pipes/result-time.pipe';
+import { DateStringPipe } from './pipes/date-string.pipe';
+import { MatchingCompetitorsPipe } from './pipes/matching-competitors.pipe';
+import { PeoplePipe } from './pipes/people.pipe';
 
 import { CourseService } from './services/course.service';
 import { LookupService } from './services/lookup.service';
@@ -27,11 +30,7 @@ import { OEventService } from './services/oevent.service';
 import { ResultService } from './services/result.service';
 import { NewsService } from './services/news.service';
 import { UrlService } from './services/url.service';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { UploadService } from './services/upload.service';
-
-import { MatchingCompetitorsPipe } from './pipes/matching-competitors.pipe';
-import { PeoplePipe } from './pipes/people.pipe';
 
 @NgModule({
   imports: [BrowserModule,
@@ -57,14 +56,14 @@ import { PeoplePipe } from './pipes/people.pipe';
     CourseListComponent,
     CourseComponent,
     ResultListComponent,
-    DateString,
-    resultTime,
     NewsListComponent,
     NewsItemComponent,
-    PeoplePipe,
-    MatchingCompetitorsPipe,
     FileUploadComponent,
-    LookupEditorComponent],   // components and directives
+    LookupEditorComponent,
+    DateStringPipe,
+    ResultTimePipe,
+    PeoplePipe,
+    MatchingCompetitorsPipe],
   bootstrap: [AppComponent],     // root component
   providers: [OEventService,
     CourseService,

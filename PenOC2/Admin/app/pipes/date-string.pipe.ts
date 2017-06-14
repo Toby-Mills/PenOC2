@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {DatePipe} from '@angular/common';
 
 @Pipe({ name: 'dateString' })
-export class DateString implements PipeTransform {
+export class DateStringPipe implements PipeTransform {
     transform(dateString: string, format: string): string {
         let parsedDate = Date.parse(dateString);
         if (isNaN(parsedDate)) {

@@ -9,27 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var resultTime = (function () {
-    function resultTime() {
+var ResultTimePipe = (function () {
+    function ResultTimePipe() {
     }
-    resultTime.prototype.transform = function (dateString) {
+    ResultTimePipe.prototype.transform = function (dateString) {
         var parsedString = Date.parse(dateString);
         var parsedDate = new Date();
         var returnString;
         if (isNaN(parsedString)) {
-            return "";
+            return '';
         }
         else {
             parsedDate = new Date(parsedString);
-            returnString = parsedDate.getUTCHours() + ":" + parsedDate.getMinutes() + ":" + parsedDate.getSeconds();
+            returnString = parsedDate.getUTCHours() + ':' + parsedDate.getMinutes() + ':' + parsedDate.getSeconds();
             return returnString;
         }
     };
-    resultTime = __decorate([
-        core_1.Pipe({ name: 'resultTime' }), 
+    ResultTimePipe = __decorate([
+        core_1.Pipe({ name: 'ResultTime' }), 
         __metadata('design:paramtypes', [])
-    ], resultTime);
-    return resultTime;
+    ], ResultTimePipe);
+    return ResultTimePipe;
 }());
-exports.resultTime = resultTime;
-//# sourceMappingURL=resultTime.pipe.js.map
+exports.ResultTimePipe = ResultTimePipe;
+//# sourceMappingURL=result-time.pipe.js.map

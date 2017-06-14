@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
 var app_component_1 = require('./components/app/app.component');
 var button_bar_component_1 = require('./components/button-bar/button-bar.component');
 var competitor_component_1 = require('./components/competitor/competitor.component');
@@ -25,8 +26,10 @@ var news_list_component_1 = require('./components/news-list/news-list.component'
 var newsItem_component_1 = require('./components/newsItem/newsItem.component');
 var file_upload_component_1 = require('./components/file-upload/file-upload.component');
 var lookup_editor_component_1 = require('./components/lookup-editor/lookup-editor.component');
-var resultTime_pipe_1 = require('./pipes/resultTime.pipe');
+var result_time_pipe_1 = require('./pipes/result-time.pipe');
 var date_string_pipe_1 = require('./pipes/date-string.pipe');
+var matching_competitors_pipe_1 = require('./pipes/matching-competitors.pipe');
+var people_pipe_1 = require('./pipes/people.pipe');
 var course_service_1 = require('./services/course.service');
 var lookup_service_1 = require('./services/lookup.service');
 var competitor_service_1 = require('./services/competitor.service');
@@ -34,10 +37,7 @@ var oevent_service_1 = require('./services/oevent.service');
 var result_service_1 = require('./services/result.service');
 var news_service_1 = require('./services/news.service');
 var url_service_1 = require('./services/url.service');
-var common_1 = require('@angular/common');
 var upload_service_1 = require('./services/upload.service');
-var matching_competitors_pipe_1 = require('./pipes/matching-competitors.pipe');
-var people_pipe_1 = require('./pipes/people.pipe');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -66,14 +66,14 @@ var AppModule = (function () {
                 course_list_component_1.CourseListComponent,
                 course_component_1.CourseComponent,
                 result_list_component_1.ResultListComponent,
-                date_string_pipe_1.DateString,
-                resultTime_pipe_1.resultTime,
                 news_list_component_1.NewsListComponent,
                 newsItem_component_1.NewsItemComponent,
-                people_pipe_1.PeoplePipe,
-                matching_competitors_pipe_1.MatchingCompetitorsPipe,
                 file_upload_component_1.FileUploadComponent,
-                lookup_editor_component_1.LookupEditorComponent],
+                lookup_editor_component_1.LookupEditorComponent,
+                date_string_pipe_1.DateStringPipe,
+                result_time_pipe_1.ResultTimePipe,
+                people_pipe_1.PeoplePipe,
+                matching_competitors_pipe_1.MatchingCompetitorsPipe],
             bootstrap: [app_component_1.AppComponent],
             providers: [oevent_service_1.OEventService,
                 course_service_1.CourseService,
