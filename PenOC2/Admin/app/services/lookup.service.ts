@@ -26,24 +26,26 @@ export class LookupService {
         this.getVenueList();
     }
 
-    getVenueList() {
-        Promise.resolve(
+    getVenueList(): Promise<Boolean> {
+        return Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/Venues')
         ).then(data => data.subscribe(
             response => {
                 let venueData: Array<VenueModel> =  response.json();
                 venueData.sort(function(a: VenueModel, b: VenueModel){
-                    if ( a.name < b.name ) {return -1; };
-                    if ( a.name > b.name ) {return 1; };
+                    if (a.name === null) {a.name = ''; } ;
+                    if (b.name === null) {b.name = ''; } ;
+                    if ( a.name.toLowerCase() < b.name.toLowerCase() ) {return -1; };
+                    if ( a.name.toLowerCase() > b.name.toLowerCase() ) {return 1; };
                     return 0;
                 });
                 this.venueList.next(venueData);
             }
-        ));
+        )).then(success => {return true; });
     }
 
-    getClubList() {
-        Promise.resolve(
+    getClubList(): Promise<Boolean> {
+        return Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/Clubs')
         ).then(data => data.subscribe(
             response => {
@@ -55,88 +57,86 @@ export class LookupService {
                 });
                 this.clubList.next(clubData);
             }
-        ));
+        )).then(success => {return true; });
     }
 
-    postClub(club: ClubModel) {
-        Promise.resolve(
+    postClub(club: ClubModel): Promise<Boolean> {
+        return Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
                 });
-            });
+            }).then(data => { return true; });
     }
 
-    putClub(club: ClubModel) {
-        Promise.resolve(
+    putClub(club: ClubModel): Promise<Boolean> {
+        return Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
                 });
-            });
+            }).then(success => {return true; });
     }
 
-    deleteClub(clubId: Number) {
-        Promise.resolve(
+    deleteClub(clubId: Number): Promise<Boolean> {
+        return Promise.resolve(
             this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
                 });
-            });
+            }).then(success => {return true; });
     }
 
-    postVenue(venue: VenueModel) {
-        Promise.resolve(
+    postVenue(venue: VenueModel): Promise<Boolean> {
+        return Promise.resolve(
             this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
                 });
-            });
+            }).then(data => { return true; });
     }
 
-    putVenue(venue: VenueModel) {
-        console.log(venue.name);
-        console.log('put Venue:' + this.urlService.apiUrl() + '/Venues');
-        Promise.resolve(
+    putVenue(venue: VenueModel): Promise<Boolean> {
+        return Promise.resolve(
             this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
                 });
-            });
+            }).then(success => {return true; });
     }
 
-    deleteVenue(venueId: Number) {
-        Promise.resolve(
+    deleteVenue(venueId: Number): Promise<Boolean> {
+        return Promise.resolve(
             this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
                 });
-            });
+            }).then(success => {return true; });
     }
 
-    getTechnicalDifficultyList() {
-        Promise.resolve(
+    getTechnicalDifficultyList(): Promise<Boolean> {
+        return Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/TechnicalDifficulties')
         ).then(data => data.subscribe(
             technicalDifficultyData => {
                 this.technicalDifficultyList.next(technicalDifficultyData.json());
             }
-        ));
+        )).then(success => {return true; });
     }
 
-    getGenderList() {
-        Promise.resolve(
+    getGenderList(): Promise<Boolean> {
+        return Promise.resolve(
             this.http.get(this.urlService.apiUrl() + '/Genders')
         ).then(data => data.subscribe(
             genderData => {
                 this.genderList.next(genderData.json());
             }
-        ));
+        )).then(success => {return true; });
     }
 }

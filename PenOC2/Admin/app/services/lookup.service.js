@@ -31,25 +31,33 @@ var LookupService = (function () {
     }
     LookupService.prototype.getVenueList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Venues')).then(function (data) { return data.subscribe(function (response) {
+        return Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Venues')).then(function (data) { return data.subscribe(function (response) {
             var venueData = response.json();
             venueData.sort(function (a, b) {
-                if (a.name < b.name) {
+                if (a.name === null) {
+                    a.name = '';
+                }
+                ;
+                if (b.name === null) {
+                    b.name = '';
+                }
+                ;
+                if (a.name.toLowerCase() < b.name.toLowerCase()) {
                     return -1;
                 }
                 ;
-                if (a.name > b.name) {
+                if (a.name.toLowerCase() > b.name.toLowerCase()) {
                     return 1;
                 }
                 ;
                 return 0;
             });
             _this.venueList.next(venueData);
-        }); });
+        }); }).then(function (success) { return true; });
     };
     LookupService.prototype.getClubList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (response) {
+        return Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (response) {
             var clubData = response.json();
             clubData.sort(function (a, b) {
                 if (a.shortName < b.shortName) {
@@ -63,69 +71,67 @@ var LookupService = (function () {
                 return 0;
             });
             _this.clubList.next(clubData);
-        }); });
+        }); }).then(function (success) { return true; });
     };
     LookupService.prototype.postClub = function (club) {
         var _this = this;
-        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(function (data) {
+        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(function (data) {
             data.subscribe(function (response) {
                 _this.getClubList();
             });
-        });
+        }).then(function (data) { return true; });
     };
     LookupService.prototype.putClub = function (club) {
         var _this = this;
-        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(function (data) {
+        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })).then(function (data) {
             data.subscribe(function (response) {
                 _this.getClubList();
             });
-        });
+        }).then(function (success) { return true; });
     };
     LookupService.prototype.deleteClub = function (clubId) {
         var _this = this;
-        Promise.resolve(this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)).then(function (data) {
+        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)).then(function (data) {
             data.subscribe(function (response) {
                 _this.getClubList();
             });
-        });
+        }).then(function (success) { return true; });
     };
     LookupService.prototype.postVenue = function (venue) {
         var _this = this;
-        Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
+        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
             data.subscribe(function (response) {
                 _this.getVenueList();
             });
-        });
+        }).then(function (data) { return true; });
     };
     LookupService.prototype.putVenue = function (venue) {
         var _this = this;
-        console.log(venue.name);
-        console.log('put Venue:' + this.urlService.apiUrl() + '/Venues');
-        Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
+        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })).then(function (data) {
             data.subscribe(function (response) {
                 _this.getVenueList();
             });
-        });
+        }).then(function (success) { return true; });
     };
     LookupService.prototype.deleteVenue = function (venueId) {
         var _this = this;
-        Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)).then(function (data) {
+        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Venues/' + venueId)).then(function (data) {
             data.subscribe(function (response) {
                 _this.getVenueList();
             });
-        });
+        }).then(function (success) { return true; });
     };
     LookupService.prototype.getTechnicalDifficultyList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/TechnicalDifficulties')).then(function (data) { return data.subscribe(function (technicalDifficultyData) {
+        return Promise.resolve(this.http.get(this.urlService.apiUrl() + '/TechnicalDifficulties')).then(function (data) { return data.subscribe(function (technicalDifficultyData) {
             _this.technicalDifficultyList.next(technicalDifficultyData.json());
-        }); });
+        }); }).then(function (success) { return true; });
     };
     LookupService.prototype.getGenderList = function () {
         var _this = this;
-        Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Genders')).then(function (data) { return data.subscribe(function (genderData) {
+        return Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Genders')).then(function (data) { return data.subscribe(function (genderData) {
             _this.genderList.next(genderData.json());
-        }); });
+        }); }).then(function (success) { return true; });
     };
     return LookupService;
 }());
