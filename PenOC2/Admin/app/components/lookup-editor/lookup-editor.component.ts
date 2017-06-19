@@ -12,6 +12,7 @@ import { VenueModel } from '../../models/venue.model';
 export class LookupEditorComponent {
     public clubList: Array<ClubModel>;
     public venueList: Array<VenueModel>;
+    public newVenue: VenueModel;
     public tab: string = 'venues';
 
     constructor(public lookupService: LookupService) {
@@ -21,6 +22,7 @@ export class LookupEditorComponent {
     ngOnInit() {
         this.lookupService.clubList.subscribe(data => this.clubList = data);
         this.lookupService.venueList.subscribe(data => this.venueList = data);
+        this.newVenue = new VenueModel;
     }
 
     saveClub(club: ClubModel, shortName: string, fullName: string) {
@@ -40,11 +42,11 @@ export class LookupEditorComponent {
         this.lookupService.putVenue(venue);
     }
 
-    createVenue(name: string) {
-        let venue = new VenueModel();
-        venue.name = name;
+    createVenue() {
 
-        this.lookupService.postVenue(venue);
+        this.lookupService.postVenue(this.newVenue).then(success => {
+            if (success) {this.newVenue = new VenueModel(); };
+        });
     }
 
     deleteVenue(venue: VenueModel) {

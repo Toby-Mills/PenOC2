@@ -10,7 +10,7 @@
     </div>
 </div>
 <div *ngIf="tab == 'venues'">
-    <span>New Venue:</span><input type="text" #newVenue /><button class="btn btn-primary" (click)="createVenue(newVenue.value)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+    <span>New Venue:</span><input type="text" [(ngModel)]="newVenue.name" /><button class="btn btn-primary" (click)="createVenue()"><span class="glyphicon glyphicon-floppy-disk"></span></button>
     <div *ngFor="let venue of venueList"><input type="text" #name [value]="venue.name" />
         <button class="btn btn-primary" (click)="saveVenue(venue, name.value)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
         <button class="btn btn-primary" (click)="deleteVenue(venue)"><span class="glyphicon glyphicon-remove"></span></button>

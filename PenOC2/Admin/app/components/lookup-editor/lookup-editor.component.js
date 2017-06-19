@@ -21,6 +21,7 @@ var LookupEditorComponent = (function () {
         var _this = this;
         this.lookupService.clubList.subscribe(function (data) { return _this.clubList = data; });
         this.lookupService.venueList.subscribe(function (data) { return _this.venueList = data; });
+        this.newVenue = new venue_model_1.VenueModel;
     };
     LookupEditorComponent.prototype.saveClub = function (club, shortName, fullName) {
         club.shortName = shortName;
@@ -34,10 +35,14 @@ var LookupEditorComponent = (function () {
         venue.name = name;
         this.lookupService.putVenue(venue);
     };
-    LookupEditorComponent.prototype.createVenue = function (name) {
-        var venue = new venue_model_1.VenueModel();
-        venue.name = name;
-        this.lookupService.postVenue(venue);
+    LookupEditorComponent.prototype.createVenue = function () {
+        var _this = this;
+        this.lookupService.postVenue(this.newVenue).then(function (success) {
+            if (success) {
+                _this.newVenue = new venue_model_1.VenueModel();
+            }
+            ;
+        });
     };
     LookupEditorComponent.prototype.deleteVenue = function (venue) {
         this.lookupService.deleteVenue(venue.id);
