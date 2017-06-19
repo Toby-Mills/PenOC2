@@ -4,14 +4,14 @@
     <li class="nav" [class.active]="tab == 'clubs'" (click)="tab = 'clubs'"><a>Clubs</a></li>
 </ul>
 <div *ngIf="tab == 'clubs'">
-    <div *ngFor="let club of clubList"><input type="text" #shortName [value]="club.shortName" /><input type="text" #fullName [value]="club.fullName" />
+    <div *ngFor="let club of clubList" class="club"><input type="text" #shortName [value]="club.shortName" /><input type="text" #fullName [value]="club.fullName" class="club-fullname"/>
         <button class="btn btn-primary" (click)="saveClub(club, shortName.value, fullName.value)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
         <button class="btn btn-primary" (click)="deleteClub(club)"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
 </div>
 <div *ngIf="tab == 'venues'">
-    <span>New Venue:</span><input type="text" [(ngModel)]="newVenue.name" /><button class="btn btn-primary" (click)="createVenue()"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-    <div *ngFor="let venue of venueList"><input type="text" #name [value]="venue.name" />
+    <span>New Venue:</span><input type="text" [(ngModel)]="newVenue.name" class="new-venue-name"/><button class="btn btn-primary" (click)="createVenue()"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+    <div *ngFor="let venue of venueList" class="venue"><input type="text" #name [value]="venue.name" class="venue-name"/>
         <button class="btn btn-primary" (click)="saveVenue(venue, name.value)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
         <button class="btn btn-primary" (click)="deleteVenue(venue)"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
