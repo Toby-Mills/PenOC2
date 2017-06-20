@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NewsListComponent {
     private newsList: Array<NewsModel>= new Array();
 
- public constructor(public newsService: NewsService, private router:Router) {}
+ public constructor(public newsService: NewsService, private router: Router) {}
 
     ngOnInit() {
         this.newsService.getNewsItems(null, null, new Date()).then(data => data.subscribe(newsData => {

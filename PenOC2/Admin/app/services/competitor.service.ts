@@ -34,11 +34,11 @@ export class CompetitorService {
                 competitors.sort((a, b) => {
                     if (a.genderId === 3 && b.genderId !== 3) {return 1; }
                     if (a.genderId !== 3 && b.genderId === 3) {return -1; }
-                    if (a.fullName.toLowerCase() < b.fullName.toLowerCase()){return 1; }
-                    if (a.fullName.toLowerCase() === b.fullName.toLowerCase()){return 0; }
-                    if (a.fullName.toLowerCase() > b.fullName.toLowerCase()){return -1; }
+                    if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {return -1; }
+                    if (a.fullName.toLowerCase() === b.fullName.toLowerCase()) {return 0; }
+                    if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {return 1; }
                 });
-                this.allCompetitors.next(competitorData.json());
+                this.allCompetitors.next(competitors);
             }
         ))
     }

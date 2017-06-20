@@ -44,16 +44,16 @@ var CompetitorService = (function () {
                     return -1;
                 }
                 if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {
-                    return 1;
+                    return -1;
                 }
                 if (a.fullName.toLowerCase() === b.fullName.toLowerCase()) {
                     return 0;
                 }
                 if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {
-                    return -1;
+                    return 1;
                 }
             });
-            _this.allCompetitors.next(competitorData.json());
+            _this.allCompetitors.next(competitors);
         }); });
     };
     CompetitorService.prototype.getIndividual = function (name) {

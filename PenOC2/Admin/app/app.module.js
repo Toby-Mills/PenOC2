@@ -14,6 +14,7 @@ var common_1 = require("@angular/common");
 var app_component_1 = require("./components/app/app.component");
 var button_bar_component_1 = require("./components/button-bar/button-bar.component");
 var competitor_component_1 = require("./components/competitor/competitor.component");
+var competitor_list_component_1 = require("./components/competitor-list/competitor-list.component");
 var oevent_component_1 = require("./components/oevent/oevent.component");
 var oevent_list_component_1 = require("./components/oevent-list/oevent-list.component");
 var course_list_component_1 = require("./components/course-list/course-list.component");
@@ -55,10 +56,12 @@ AppModule = __decorate([
                 { path: 'news', component: news_list_component_1.NewsListComponent },
                 { path: 'news/:id', component: newsItem_component_1.NewsItemComponent },
                 { path: 'news/new', component: newsItem_component_1.NewsItemComponent },
-                { path: 'lookups', component: lookup_editor_component_1.LookupEditorComponent }
+                { path: 'lookups', component: lookup_editor_component_1.LookupEditorComponent },
+                { path: 'competitors', component: competitor_list_component_1.CompetitorListComponent }
             ])],
         declarations: [app_component_1.AppComponent,
             competitor_component_1.CompetitorComponent,
+            competitor_list_component_1.CompetitorListComponent,
             button_bar_component_1.ButtonBarComponent,
             oevent_component_1.OEventComponent,
             oevent_list_component_1.OEventListComponent,
