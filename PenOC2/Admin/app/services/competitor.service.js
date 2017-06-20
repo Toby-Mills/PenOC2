@@ -34,6 +34,25 @@ var CompetitorService = (function () {
     CompetitorService.prototype.getAllCompetitors = function () {
         var _this = this;
         this.getCompetitor().then(function (data) { return data.subscribe(function (competitorData) {
+            var competitors;
+            competitors = competitorData.json();
+            competitors.sort(function (a, b) {
+                if (a.genderId === 3 && b.genderId !== 3) {
+                    return 1;
+                }
+                if (a.genderId !== 3 && b.genderId === 3) {
+                    return -1;
+                }
+                if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {
+                    return 1;
+                }
+                if (a.fullName.toLowerCase() === b.fullName.toLowerCase()) {
+                    return 0;
+                }
+                if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {
+                    return -1;
+                }
+            });
             _this.allCompetitors.next(competitorData.json());
         }); });
     };

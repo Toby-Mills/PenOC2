@@ -17,40 +17,49 @@ export class CompetitorService {
     }
 
     getCompetitor(competitorId?: Number, name?: String) {
-        var url = this.urlService.apiUrl() + '/Competitors?';
-        if (competitorId != null) { url += 'idCompetitor=' + competitorId }
-        if (name != null) { url += '&name=' + name }
+        let  url = this.urlService.apiUrl() + '/Competitors?';
+        if (competitorId != null) { url += 'idCompetitor=' + competitorId; }
+        if (name != null) { url += '&name=' + name; }
 
         return Promise.resolve(
             this.http.get(url)
-        )
+        );
     }
 
     getAllCompetitors(): void {
         this.getCompetitor().then(data => data.subscribe(
             competitorData => {
+                let competitors: Array<CompetitorModel>;
+                competitors = competitorData.json();
+                competitors.sort((a, b) => {
+                    if (a.genderId === 3 && b.genderId !== 3) {return 1; }
+                    if (a.genderId !== 3 && b.genderId === 3) {return -1; }
+                    if (a.fullName.toLowerCase() < b.fullName.toLowerCase()){return 1; }
+                    if (a.fullName.toLowerCase() === b.fullName.toLowerCase()){return 0; }
+                    if (a.fullName.toLowerCase() > b.fullName.toLowerCase()){return -1; }
+                });
                 this.allCompetitors.next(competitorData.json());
             }
         ))
     }
 
     getIndividual(name?: String) {
-        var url = this.urlService.apiUrl() + '/Competitors/Individuals?';
-        if (name != null) { url += '&name=' + name }
+        let url = this.urlService.apiUrl() + '/Competitors/Individuals?';
+        if (name != null) { url += '&name=' + name; }
 
         return Promise.resolve(
             this.http.get(url)
-        )
+        );
     }
 
     putCompetitor(competitor: CompetitorModel) {
         return Promise.resolve(
-            this.http.put(this.urlService.apiUrl()+ '/Competitors/', JSON.stringify(competitor), { headers: this.headers })
-        )
+            this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers })
+        );
     }
 
-    postCompetitor(competitor: CompetitorModel):Observable<Response> {
-        var obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
+    postCompetitor(competitor: CompetitorModel): Observable<Response> {
+        let obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
         this.getAllCompetitors();
         return obs;
     }
