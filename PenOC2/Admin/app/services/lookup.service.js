@@ -59,11 +59,19 @@ var LookupService = (function () {
         return Promise.resolve(this.http.get(this.urlService.apiUrl() + '/Clubs')).then(function (data) { return data.subscribe(function (response) {
             var clubData = response.json();
             clubData.sort(function (a, b) {
-                if (a.shortName < b.shortName) {
+                if (a.shortName === null) {
+                    a.shortName = '';
+                }
+                ;
+                if (b.shortName === null) {
+                    b.shortName = '';
+                }
+                ;
+                if (a.shortName.toLowerCase() < b.shortName.toLowerCase()) {
                     return -1;
                 }
                 ;
-                if (a.shortName > b.shortName) {
+                if (a.shortName.toLowerCase() > b.shortName.toLowerCase()) {
                     return 1;
                 }
                 ;
@@ -90,7 +98,7 @@ var LookupService = (function () {
     };
     LookupService.prototype.deleteClub = function (clubId) {
         var _this = this;
-        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)).then(function (data) {
+        return Promise.resolve(this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId)).then(function (data) {
             data.subscribe(function (response) {
                 _this.getClubList();
             });

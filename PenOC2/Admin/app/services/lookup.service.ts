@@ -84,7 +84,7 @@ export class LookupService {
 
     deleteClub(clubId: Number): Promise<Boolean> {
         return Promise.resolve(
-            this.http.delete(this.urlService.apiUrl() + ' /Clubs/' + clubId)
+            this.http.delete(this.urlService.apiUrl() + '/Clubs/' + clubId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
