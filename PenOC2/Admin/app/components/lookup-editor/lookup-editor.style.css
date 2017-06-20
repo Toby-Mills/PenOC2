@@ -3,7 +3,7 @@ input{
     padding-left: 2px;
 }
 
-input.club-fullname{
+input.club-fullname, input.new-club-fullname{
     width: 300px;
 }
 

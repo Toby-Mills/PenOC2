@@ -4,6 +4,10 @@
     <li class="nav" [class.active]="tab == 'clubs'" (click)="tab = 'clubs'"><a>Clubs</a></li>
 </ul>
 <div *ngIf="tab == 'clubs'">
+        <span>New Club:</span>
+        <input type="text" [(ngModel)]="newClub.shortName" class="new-club-shortname" placeholder="short name"/>
+        <input type="text" [(ngModel)]="newClub.fullName" class="new-club-fullname" placeholder="full name"/>
+        <button class="btn btn-primary" (click)="createClub()"><span class="glyphicon glyphicon-floppy-disk"></span></button>
     <div *ngFor="let club of clubList" class="club"><input type="text" #shortName [value]="club.shortName" /><input type="text" #fullName [value]="club.fullName" class="club-fullname"/>
         <button class="btn btn-primary" (click)="saveClub(club, shortName.value, fullName.value)"><span class="glyphicon glyphicon-floppy-disk"></span></button>
         <button class="btn btn-danger" (click)="deleteClub(club)"><span class="glyphicon glyphicon-remove"></span></button>

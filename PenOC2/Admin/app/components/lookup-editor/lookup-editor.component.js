@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var lookup_service_1 = require("../../services/lookup.service");
+var club_model_1 = require("../../models/club.model");
 var venue_model_1 = require("../../models/venue.model");
 var LookupEditorComponent = (function () {
     function LookupEditorComponent(lookupService) {
@@ -19,6 +20,7 @@ var LookupEditorComponent = (function () {
     LookupEditorComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.lookupService.clubList.subscribe(function (data) { return _this.clubList = data; });
+        this.newClub = new club_model_1.ClubModel;
         this.lookupService.venueList.subscribe(function (data) { return _this.venueList = data; });
         this.newVenue = new venue_model_1.VenueModel;
     };
@@ -26,6 +28,15 @@ var LookupEditorComponent = (function () {
         club.shortName = shortName;
         club.fullName = fullName;
         this.lookupService.putClub(club);
+    };
+    LookupEditorComponent.prototype.createClub = function () {
+        var _this = this;
+        this.lookupService.postClub(this.newClub).then(function (success) {
+            if (success) {
+                _this.newClub = new club_model_1.ClubModel();
+            }
+            ;
+        });
     };
     LookupEditorComponent.prototype.deleteClub = function (club) {
         this.lookupService.deleteClub(club.id);
