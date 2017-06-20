@@ -51,8 +51,10 @@ export class LookupService {
             response => {
                 let clubData: Array<ClubModel> = response.json();
                 clubData.sort(function(a: ClubModel, b: ClubModel){
-                    if ( a.shortName < b.shortName ) {return -1; };
-                    if ( a.shortName > b.shortName ) {return 1; };
+                    if (a.shortName === null) {a.shortName = ''; } ;
+                    if (b.shortName === null) {b.shortName = ''; } ;
+                    if ( a.shortName.toLowerCase() < b.shortName.toLowerCase() ) {return -1; };
+                    if ( a.shortName.toLowerCase() > b.shortName.toLowerCase() ) {return 1; };
                     return 0;
                 });
                 this.clubList.next(clubData);
