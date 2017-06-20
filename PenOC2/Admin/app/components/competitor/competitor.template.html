@@ -7,7 +7,7 @@
             <input id="searchBox" type="text" #searchBox [(ngModel)]="searchString" (keyup)="keyPressed($event);" class="form-control search-input" name="fakeusername"/>
         </div>
         <div class="clear-button-container">
-            <button [hidden]="searchString" class="btn btn-primary new-button" (click)="newClicked($event);"><span class="glyphicon glyphicon-plus" title="new"></span></button>
+            <button class="btn btn-primary new-button" (click)="newClicked($event);"><span class="glyphicon glyphicon-plus" title="new"></span></button>
         </div> 
         <div *ngIf="allCompetitors && !newCompetitor" class="match-list-container drop-panel"> 
             <ul>
