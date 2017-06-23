@@ -13,6 +13,7 @@ var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var app_component_1 = require("./components/app/app.component");
 var button_bar_component_1 = require("./components/button-bar/button-bar.component");
+var competitor_editor_component_1 = require("./components/competitor-editor/competitor-editor.component");
 var competitor_component_1 = require("./components/competitor/competitor.component");
 var competitor_list_component_1 = require("./components/competitor-list/competitor-list.component");
 var oevent_component_1 = require("./components/oevent/oevent.component");
@@ -60,6 +61,7 @@ AppModule = __decorate([
                 { path: 'competitors', component: competitor_list_component_1.CompetitorListComponent }
             ])],
         declarations: [app_component_1.AppComponent,
+            competitor_editor_component_1.CompetitorEditorComponent,
             competitor_component_1.CompetitorComponent,
             competitor_list_component_1.CompetitorListComponent,
             button_bar_component_1.ButtonBarComponent,

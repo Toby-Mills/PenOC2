@@ -64,11 +64,15 @@ var CompetitorService = (function () {
         return Promise.resolve(this.http.get(url));
     };
     CompetitorService.prototype.putCompetitor = function (competitor) {
-        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers }));
+        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
+        return obs;
     };
     CompetitorService.prototype.postCompetitor = function (competitor) {
         var obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
-        this.getAllCompetitors();
+        return obs;
+    };
+    CompetitorService.prototype.deleteCompetitor = function (competitorId) {
+        var obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId);
         return obs;
     };
     return CompetitorService;

@@ -7,6 +7,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './components/app/app.component';
 import { ButtonBarComponent } from './components/button-bar/button-bar.component';
+import { CompetitorEditorComponent } from './components/competitor-editor/competitor-editor.component';
 import { CompetitorComponent } from './components/competitor/competitor.component';
 import { CompetitorListComponent } from './components/competitor-list/competitor-list.component';
 import { OEventComponent } from './components/oevent/oevent.component';
@@ -47,10 +48,11 @@ import { UploadService } from './services/upload.service';
       { path: 'news', component: NewsListComponent },
       { path: 'news/:id', component: NewsItemComponent },
       { path: 'news/new', component: NewsItemComponent },
-      { path: 'lookups', component: LookupEditorComponent }
+      { path: 'lookups', component: LookupEditorComponent },
       { path: 'competitors', component: CompetitorListComponent}
     ])],       // module dependencies
   declarations: [AppComponent,
+    CompetitorEditorComponent,
     CompetitorComponent,
     CompetitorListComponent,
     ButtonBarComponent,

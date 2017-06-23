@@ -59,7 +59,7 @@ export class CompetitorComponent {
             clearTimeout(self.delayedHide);
             self.delayedDisplay = setTimeout(function () {
                 if (!self.searchActive) { self.activateSearch(true) }
-            }, 300)
+            }, 300);
         } else {
             clearTimeout(self.delayedDisplay);
             self.delayedHide = setTimeout(function () {
@@ -82,7 +82,7 @@ export class CompetitorComponent {
         if (active) {
             let self: any;
             self = this;
-            setTimeout(function () { self.searchInput.nativeElement.focus() }, 0);
+            setTimeout(function () { self.searchInput.nativeElement.focus(); }, 0);
         }
     }
 
@@ -153,6 +153,6 @@ export class CompetitorComponent {
         this.competitorService.postCompetitor(this.newCompetitor).subscribe(data => {
             this.selectCompetitor(data.json());
             this.competitorService.getAllCompetitors();
-        })
+        });
     }
 }

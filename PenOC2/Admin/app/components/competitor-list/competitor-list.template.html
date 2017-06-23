@@ -1,16 +1,23 @@
 <button-bar [title]="'Competitors'" [buttons]="['new']" [newText]="'New Competitor'" (newClicked)="newCompetitor()"></button-bar>
+<div *ngIf="editingCompetitor">
+	<competitor-editor [competitor]="editingCompetitor" (saved)="competitorSaved()" (cancelled)="editCancelled()"></competitor-editor>
+</div>
 <div *ngIf="allCompetitors">
 	<div class="table-responsive">
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>id</th>
-				<th>Full Name</th>
+				<th>First Name</th>
+				<th>Surname / Group Name</th>
 				<th>Gender</th>
+				<th></th>
 			</tr>
-			<tr *ngFor="let competitor of allCompetitors" (click)="competitorClick(competitor.id)" class="clickable">
+			<tr *ngFor="let competitor of allCompetitors" class="clickable" (click)="editCompetitor(competitor.id);">
 				<td>{{competitor.id}}</td>
-				<td>{{competitor.fullName}}</td>
-				<td>{{competitor.Gender}}</td>
+				<td>{{competitor.firstName}}</td>
+				<td>{{competitor.surname}}</td>
+				<td>{{competitor.gender}}</td>
+				<td><button (click)="deleteCompetitor(competitor.id);" class="btn competitor-delete"><span class="glyphicon glyphicon-delete"></span></button></td>
 			</tr>
 		</table>
 	</div>

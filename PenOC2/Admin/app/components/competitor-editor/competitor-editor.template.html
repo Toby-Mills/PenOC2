@@ -1,0 +1,21 @@
+ <div id="divModalBackground" *ngIf="competitor" class="competitor-panel-container" (click)="modalClicked($event);">
+     <div class="competitor-panel drop-panel"> 
+        <span class="new-competitor-title">Competitor</span><br />
+        <span  *ngFor="let gender of genderList">
+            <input  type="radio" [(ngModel)]="competitor.genderId"  name="sex" [value]="gender.id" />{{gender.name}}<br>
+        </span>
+        <div [hidden]="competitor.genderId < 1 || competitor.genderId == 3">
+            <div><input [(ngModel)]="competitor.firstName" [hidden]="competitor.genderId == 3" class="form-control" placeholder="first name"/></div>
+            <div><input [(ngModel)]="competitor.surname" class="form-control" placeholder="surname" /></div>
+        </div>
+        <div  [hidden]="competitor.genderId != 3">
+            <input [(ngModel)]="competitor.surname" class="form-control" placeholder="group name" />
+        </div>
+        <button type="button" value="Cancel" (click)="cancelClicked();" class="btn btn-danger" title="cancel" >
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+        <button type="button" value="Save" (click)="saveClicked();" class="btn btn-success" title="save" >
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save
+        </button>
+    </div>
+</div>

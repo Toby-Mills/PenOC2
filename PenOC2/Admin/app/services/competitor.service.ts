@@ -40,7 +40,7 @@ export class CompetitorService {
                 });
                 this.allCompetitors.next(competitors);
             }
-        ))
+        ));
     }
 
     getIndividual(name?: String) {
@@ -53,14 +53,17 @@ export class CompetitorService {
     }
 
     putCompetitor(competitor: CompetitorModel) {
-        return Promise.resolve(
-            this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers })
-        );
+        let obs = this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
+        return obs;
     }
 
     postCompetitor(competitor: CompetitorModel): Observable<Response> {
         let obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
-        this.getAllCompetitors();
+        return obs;
+    }
+
+    deleteCompetitor(competitorId: Number): Observable<Response> {
+        let obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId);
         return obs;
     }
 }
