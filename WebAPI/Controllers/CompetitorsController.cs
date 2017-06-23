@@ -134,5 +134,43 @@ namespace WebAPI.Controllers
             }
 
         }
+
+        //---------------------------------------------------------------------------------
+        [HttpDelete]
+        [Route("competitors/{idCompetitor}")]
+        public IHttpActionResult DeleteVenue(int idCompetitor)
+        {
+            PenOCDataContext db = new PenOCDataContext();
+
+            IQueryable<tblCompetitor> queryCompetitors = db.tblCompetitors.Where(competitor => competitor.idCompetitor == idCompetitor);
+            db.tblCompetitors.DeleteAllOnSubmit(queryCompetitors);
+
+            db.SubmitChanges();
+
+            return Ok();
+
+        }
+
+        //---------------------------------------------------------------------------------
+        [HttpPut]
+        [Route("competitors/{id1}/merge/{id2}")]
+        public IHttpActionResult UpdateCompetitor(int id1, int id2)
+        {
+            PenOCDataContext db = new PenOCDataContext();
+           IQueryable<tblResult>    qryResult;
+
+            qryResult = from result in db.tblResults
+                                where result.intCompetitor == id1
+                                select result;
+
+            foreach (tblResult Result in qryResult)
+            {
+                Result.intCompetitor = id2;
+            }
+
+            db.SubmitChanges();
+
+            return Ok();
+        }
     }
 }
