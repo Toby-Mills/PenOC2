@@ -32,13 +32,11 @@
     <div class="table-responsive">
     <table class="table table-striped table-hover">
         <tr>
-            <th>ID</th>
             <th>Date</th>
             <th>Name</th>
             <th>Venue</th>
         </tr>
         <tr *ngFor="let oevent of oeventList" (click)="oeventClick(oevent.id)" class="clickable">
-            <td><a href='' >{{oevent.id}}</a></td>
             <td>{{oevent.date | dateString:'dd MMM yy'}}</td>
             <td>{{oevent.name}}</td>
             <td>{{oevent.venue}}</td>

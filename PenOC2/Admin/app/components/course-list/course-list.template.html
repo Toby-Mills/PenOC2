@@ -5,12 +5,10 @@
     <table class="table table-striped table-hover">
         <tr>
             <th></th>
-            <th>ID</th>
             <th>Name</th>
         </tr>
         <tr *ngFor="let course of courseList" class="clickable" (click)="courseClicked(course.id)">
             <td><button (click)="deleteCourse($event, course.id);" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
-            <td><a href='' >{{course.id}}</a></td>
             <td>{{course.name}}</td>
         </tr>
     </table>
