@@ -36,3 +36,10 @@ div.club input, div.venue input{
 div.club:hover input, div.venue:hover input{
     border-color: #CCCCCC;
 }
+
+div.new {
+    background-color: lightgreen;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
