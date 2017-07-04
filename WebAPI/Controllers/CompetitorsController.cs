@@ -138,7 +138,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpDelete]
         [Route("competitors/{idCompetitor}")]
-        public IHttpActionResult DeleteVenue(int idCompetitor)
+        public IHttpActionResult DeleteCompetitor(int idCompetitor)
         {
             PenOCDataContext db = new PenOCDataContext();
 
@@ -154,23 +154,65 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Route("competitors/{id1}/merge/{id2}")]
-        public IHttpActionResult UpdateCompetitor(int id1, int id2)
+        public IHttpActionResult UpdateCompetitor(int primaryId, int secondaryId)
         {
             PenOCDataContext db = new PenOCDataContext();
-           IQueryable<tblResult>    qryResult;
 
-            qryResult = from result in db.tblResults
-                                where result.intCompetitor == id1
-                                select result;
+            // Find all results belonging to secondary Id, to be updated
+            var results = (from result in db.tblResults where result.intCompetitor == secondaryId select new {
+                intCompetitor = primaryId,
+                intCategory = result.intCategory,
+                blnDisqualified = result.blnDisqualified,
+                dteTime = result.dteTime,
+                intClub = result.intClub,
+                intCourse = result.intCourse,
+                intPoints = result.intPoints,
+                intPosition = result.intPosition,
+                strComment = result.strComment,
+                strRaceNumber = result.strRaceNumber
 
-            foreach (tblResult Result in qryResult)
+            }).ToList();
+
+            // For each result, insert a new result with the Primary ID
+            foreach (var newResult in results)
             {
-                Result.intCompetitor = id2;
+                tblResult result = new tblResult();
+                result.intCompetitor = primaryId;
+                result.intCategory = newResult.intCategory;
+                result.blnDisqualified = newResult.blnDisqualified;
+                result.dteTime = newResult.dteTime;
+                result.intClub = newResult.intClub;
+                result.intCourse = newResult.intCourse;
+                result.intPoints = newResult.intPoints;
+                result.intPosition = newResult.intPosition;
+                result.strComment = newResult.strComment;
+                result.strRaceNumber = newResult.strRaceNumber;
+                db.tblResults.InsertOnSubmit(result);
             }
+
+            // Delete all results belonging to the secondary Id
+            db.tblResults.DeleteAllOnSubmit(from result in db.tblResults where result.intCompetitor == secondaryId select result);
+
+            // Update each event planned by the secondary Id
+            var eventsPlanned = (from @event in db.tblEvents where @event.intPlanner == secondaryId select @event);
+            foreach (var @event in eventsPlanned){
+                @event.intPlanner = secondaryId;
+            };
+
+            // Update each event controlled by the secondary Id
+            var eventsControlled = (from @event in db.tblEvents where @event.intController == secondaryId select @event);
+            foreach (var @event in eventsControlled)
+            {
+                @event.intController = secondaryId;
+            };
+            
+            // Delete the secondary competitor record
+            db.tblCompetitors.DeleteAllOnSubmit(from competitor in db.tblCompetitors where competitor.idCompetitor == secondaryId select competitor);
 
             db.SubmitChanges();
 
             return Ok();
         }
     }
+    internal class ResultWrapper : tblResult { }
 }
