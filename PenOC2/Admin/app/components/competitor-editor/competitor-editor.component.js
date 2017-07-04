@@ -57,10 +57,10 @@ var CompetitorEditorComponent = (function () {
         event.preventDefault();
         this.mode = 'merge';
     };
-    CompetitorEditorComponent.prototype.mergeClicked = function (mergeTargetId) {
+    CompetitorEditorComponent.prototype.mergeClicked = function () {
         var _this = this;
-        if (mergeTargetId > 0) {
-            this.competitorService.mergeCompetitors(this.competitor.id, mergeTargetId)
+        if (this.mergeTarget.id > 0) {
+            this.competitorService.mergeCompetitors(this.competitor.id, this.mergeTarget.id)
                 .subscribe(function (data) {
                 _this.mode = 'edit';
                 _this.competitor = undefined;
@@ -70,13 +70,14 @@ var CompetitorEditorComponent = (function () {
     };
     CompetitorEditorComponent.prototype.mergeTargetKeyPressed = function (mergeTargetId) {
         var _this = this;
-        console.log('yupp');
-        this.competitorService.getCompetitor(mergeTargetId).then(function (res) {
-            res.subscribe(function (data) {
-                _this.mergeTarget = data.json()[0];
-                console.log(_this.mergeTarget);
+        this.mergeTarget = undefined;
+        if (mergeTargetId > 0) {
+            this.competitorService.getCompetitor(mergeTargetId).then(function (res) {
+                res.subscribe(function (data) {
+                    _this.mergeTarget = data.json()[0];
+                });
             });
-        });
+        }
     };
     return CompetitorEditorComponent;
 }());

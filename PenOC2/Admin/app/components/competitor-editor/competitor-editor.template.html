@@ -29,9 +29,10 @@
          
         <div id="divMerge" *ngIf="mode=='merge' && competitor.id > 0"><span>Merge with competitor: </span><br>
             <input type="text" placeholder="competitor ID" #mergeTargetId (keyup)="mergeTargetKeyPressed(mergeTargetId.value);" /><br>
-            <span *ngIf="mergeTarget">{{mergeTarget.fullName}}</span>
+            <span *ngIf="mergeTarget">{{mergeTarget.fullName}}({{mergeTarget.gender}})</span>
+            <span *ngIf="!mergeTarget">no competitor selected</span>
             <div id="divMergeSave">
-                <button type="button" (click)="mergeClicked(mergeTargetId.value);" class="btn btn-success" title="save" >
+                <button *ngIf="mergeTarget" type="button" (click)="mergeClicked();" class="btn btn-success" title="save" >
                     <span class="glyphicon glyphicon-floppy-disk"></span> Merge
                 </button>
             </div>

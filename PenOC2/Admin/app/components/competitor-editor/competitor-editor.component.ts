@@ -59,9 +59,9 @@ export class CompetitorEditorComponent {
         event.preventDefault();
         this.mode = 'merge';
     }
-    public mergeClicked(mergeTargetId: Number) {
-        if (mergeTargetId > 0) {
-            this.competitorService.mergeCompetitors(this.competitor.id, mergeTargetId)
+    public mergeClicked() {
+        if (this.mergeTarget.id > 0) {
+            this.competitorService.mergeCompetitors(this.competitor.id, this.mergeTarget.id)
             .subscribe(data => {
                 this.mode = 'edit';
                 this.competitor = undefined;
@@ -70,13 +70,14 @@ export class CompetitorEditorComponent {
         }
     }
 
-    public mergeTargetKeyPressed(mergeTargetId: Number) {
-        console.log('yupp');
-        this.competitorService.getCompetitor(mergeTargetId).then(res => {
-            res.subscribe(data => {
-                this.mergeTarget = data.json()[0];
-                console.log(this.mergeTarget);
+    public mergeTargetKeyPressed(mergeTargetId: number) {
+        this.mergeTarget = undefined;
+        if (mergeTargetId > 0) {
+            this.competitorService.getCompetitor(mergeTargetId).then(res => {
+                res.subscribe(data => {
+                    this.mergeTarget = data.json()[0];
+                });
             });
-        });
+        }
     }
 }
