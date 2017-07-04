@@ -11,7 +11,7 @@
 				<th>Gender</th>
 				<th></th>
 			</tr>
-			<tr *ngFor="let competitor of allCompetitors" class="clickable" (click)="editCompetitor(competitor.id);">
+			<tr *ngFor="let competitor of allCompetitors" class="clickable" (click)="editCompetitor($event, competitor.id);">
 				<td>{{competitor.firstName}}</td>
 				<td>{{competitor.surname}}</td>
 				<td>{{competitor.gender}}</td>

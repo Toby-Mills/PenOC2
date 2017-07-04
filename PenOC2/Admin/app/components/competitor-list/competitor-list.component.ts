@@ -21,16 +21,17 @@ public constructor(public competitorService: CompetitorService, private router: 
     ngOnInit() {
         this.competitorService.allCompetitors.subscribe(data => {
             this.allCompetitors = data;
-            console.log('updated');
         });
     }
 
-    public editCompetitor(competitorId: Number) {
-        this.competitorService.getCompetitor(competitorId).then(data => data.subscribe(
-            competitorData => {
-                this.editingCompetitor = competitorData.json()[0];
-            }
-        ));
+    public editCompetitor(event: MouseEvent, competitorId: Number) {
+        if (event.srcElement.nodeName.toLowerCase() === 'td'){
+            this.competitorService.getCompetitor(competitorId).then(data => data.subscribe(
+                competitorData => {
+                    this.editingCompetitor = competitorData.json()[0];
+                }
+            ));
+        }
     }
 
     public competitorSaved() {
@@ -46,7 +47,6 @@ public constructor(public competitorService: CompetitorService, private router: 
     }
 
     public deleteCompetitor(competitorId: Number) {
-        console.log ('delete');
         this.competitorService.deleteCompetitor(competitorId).subscribe(data => { this.competitorService.getAllCompetitors(); });
     }
 }

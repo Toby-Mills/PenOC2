@@ -21,14 +21,15 @@ var CompetitorListComponent = (function () {
         var _this = this;
         this.competitorService.allCompetitors.subscribe(function (data) {
             _this.allCompetitors = data;
-            console.log('updated');
         });
     };
-    CompetitorListComponent.prototype.editCompetitor = function (competitorId) {
+    CompetitorListComponent.prototype.editCompetitor = function (event, competitorId) {
         var _this = this;
-        this.competitorService.getCompetitor(competitorId).then(function (data) { return data.subscribe(function (competitorData) {
-            _this.editingCompetitor = competitorData.json()[0];
-        }); });
+        if (event.srcElement.nodeName.toLowerCase() === 'td') {
+            this.competitorService.getCompetitor(competitorId).then(function (data) { return data.subscribe(function (competitorData) {
+                _this.editingCompetitor = competitorData.json()[0];
+            }); });
+        }
     };
     CompetitorListComponent.prototype.competitorSaved = function () {
         this.editingCompetitor = undefined;
@@ -41,7 +42,6 @@ var CompetitorListComponent = (function () {
     };
     CompetitorListComponent.prototype.deleteCompetitor = function (competitorId) {
         var _this = this;
-        console.log('delete');
         this.competitorService.deleteCompetitor(competitorId).subscribe(function (data) { _this.competitorService.getAllCompetitors(); });
     };
     return CompetitorListComponent;
