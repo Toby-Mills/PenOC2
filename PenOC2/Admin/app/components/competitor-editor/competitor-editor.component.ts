@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LookupService } from '../../services/lookup.service';
 import { CompetitorService } from '../../services/competitor.service';
 import { CompetitorModel } from '../../models/competitor.model';
@@ -13,7 +13,9 @@ export class CompetitorEditorComponent {
     @Input() competitor: CompetitorModel;
     @Output() saved = new EventEmitter();
     @Output() cancelled= new EventEmitter();
+    public mergeTarget: CompetitorModel;
     public genderList: Array<Object>;
+    public mode: String = 'edit';
 
     public constructor(public competitorService: CompetitorService, private lookupService: LookupService){
 
@@ -24,7 +26,7 @@ export class CompetitorEditorComponent {
     }
 
     public saveClicked() {
-        if (this.competitor.id > 0){
+        if (this.competitor.id > 0) {
             this.competitorService.putCompetitor(this.competitor)
             .subscribe(data => {
                 this.competitorService.getAllCompetitors();
@@ -40,7 +42,6 @@ export class CompetitorEditorComponent {
     }
 
     public modalClicked(event: MouseEvent) {
-        console.log(event.srcElement.id);
         if (event.srcElement.id === 'divModalBackground') {
             this.cancel();
         };
@@ -52,5 +53,30 @@ export class CompetitorEditorComponent {
 
     private cancel() {
         this.cancelled.emit();
+    }
+
+    public mergeModeClicked (event: MouseEvent) {
+        event.preventDefault();
+        this.mode = 'merge';
+    }
+    public mergeClicked(mergeTargetId: Number) {
+        if (mergeTargetId > 0) {
+            this.competitorService.mergeCompetitors(this.competitor.id, mergeTargetId)
+            .subscribe(data => {
+                this.mode = 'edit';
+                this.competitor = undefined;
+                this.competitorService.getAllCompetitors();
+            });
+        }
+    }
+
+    public mergeTargetKeyPressed(mergeTargetId: Number) {
+        console.log('yupp');
+        this.competitorService.getCompetitor(mergeTargetId).then(res => {
+            res.subscribe(data => {
+                this.mergeTarget = data.json()[0];
+                console.log(this.mergeTarget);
+            });
+        });
     }
 }

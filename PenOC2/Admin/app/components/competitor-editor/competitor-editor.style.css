@@ -13,4 +13,27 @@
     background-color: white;
     margin: 15% auto;
     width: 400px;
+    overflow: auto;
+}
+
+.competitor-name{
+    float:left;
+}
+
+.cancel, #divSave, #divMergeSave{
+    float:right;
+}
+
+#divEdit, #divMerge{
+    clear:both;
+}
+
+.new-competitor-title{
+    font-size: 1.5em;
+    font-weight: 600;
+
+}
+
+input {
+    margin:3px;
 }

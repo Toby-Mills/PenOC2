@@ -18,6 +18,7 @@ var CompetitorEditorComponent = (function () {
         this.lookupService = lookupService;
         this.saved = new core_1.EventEmitter();
         this.cancelled = new core_1.EventEmitter();
+        this.mode = 'edit';
     }
     CompetitorEditorComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -41,7 +42,6 @@ var CompetitorEditorComponent = (function () {
         }
     };
     CompetitorEditorComponent.prototype.modalClicked = function (event) {
-        console.log(event.srcElement.id);
         if (event.srcElement.id === 'divModalBackground') {
             this.cancel();
         }
@@ -52,6 +52,31 @@ var CompetitorEditorComponent = (function () {
     };
     CompetitorEditorComponent.prototype.cancel = function () {
         this.cancelled.emit();
+    };
+    CompetitorEditorComponent.prototype.mergeModeClicked = function (event) {
+        event.preventDefault();
+        this.mode = 'merge';
+    };
+    CompetitorEditorComponent.prototype.mergeClicked = function (mergeTargetId) {
+        var _this = this;
+        if (mergeTargetId > 0) {
+            this.competitorService.mergeCompetitors(this.competitor.id, mergeTargetId)
+                .subscribe(function (data) {
+                _this.mode = 'edit';
+                _this.competitor = undefined;
+                _this.competitorService.getAllCompetitors();
+            });
+        }
+    };
+    CompetitorEditorComponent.prototype.mergeTargetKeyPressed = function (mergeTargetId) {
+        var _this = this;
+        console.log('yupp');
+        this.competitorService.getCompetitor(mergeTargetId).then(function (res) {
+            res.subscribe(function (data) {
+                _this.mergeTarget = data.json()[0];
+                console.log(_this.mergeTarget);
+            });
+        });
     };
     return CompetitorEditorComponent;
 }());
