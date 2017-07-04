@@ -6,16 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var UrlService = (function () {
     function UrlService() {
     }
     UrlService.prototype.apiUrl = function () {
-        if (location.host.toLowerCase().startsWith("localhost")) {
-            return "http://localhost/penoc2/api";
+        if (location.host.toLowerCase().startsWith('localhost')) {
+            return 'http://localhost/penoc2/api';
         }
         else {
-            return "http://www.penoc.org.za/api";
+            return 'http://www.penoc.org.za/api';
         }
+    };
+    UrlService.prototype.apiHeaders = function () {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('API_KEY', 'Orienteering');
+        return headers;
     };
     return UrlService;
 }());
