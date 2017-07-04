@@ -66,4 +66,9 @@ export class CompetitorService {
         let obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId);
         return obs;
     }
+
+    mergeCompetitors(competitorId: Number, mergeTargetId: Number): Observable<Response>{
+        let obs = this.http.put(this.urlService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined, { headers: this.headers });
+        return obs;
+    }
 }

@@ -75,6 +75,10 @@ var CompetitorService = (function () {
         var obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId);
         return obs;
     };
+    CompetitorService.prototype.mergeCompetitors = function (competitorId, mergeTargetId) {
+        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined, { headers: this.headers });
+        return obs;
+    };
     return CompetitorService;
 }());
 CompetitorService = __decorate([
