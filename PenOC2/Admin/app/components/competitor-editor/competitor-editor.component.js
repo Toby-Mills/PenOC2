@@ -19,6 +19,7 @@ var CompetitorEditorComponent = (function () {
         this.saved = new core_1.EventEmitter();
         this.cancelled = new core_1.EventEmitter();
         this.mode = 'edit';
+        this.mergeStyle = '';
     }
     CompetitorEditorComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -59,11 +60,22 @@ var CompetitorEditorComponent = (function () {
     };
     CompetitorEditorComponent.prototype.mergeClicked = function () {
         var _this = this;
+        var primary;
+        var secondary;
         if (this.mergeTarget.id > 0) {
-            this.competitorService.mergeCompetitors(this.competitor.id, this.mergeTarget.id)
+            if (this.mergeStyle = 'primary') {
+                primary = this.mergeTarget.id;
+                secondary = this.competitor.id;
+            }
+            else {
+                primary = this.competitor.id;
+                secondary = this.mergeTarget.id;
+            }
+            this.competitorService.mergeCompetitors(primary, secondary)
                 .subscribe(function (data) {
                 _this.mode = 'edit';
                 _this.competitor = undefined;
+                _this.mergeStyle = '';
                 _this.competitorService.getAllCompetitors();
             });
         }

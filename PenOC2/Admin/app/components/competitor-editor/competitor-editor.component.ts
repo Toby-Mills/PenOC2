@@ -16,6 +16,7 @@ export class CompetitorEditorComponent {
     public mergeTarget: CompetitorModel;
     public genderList: Array<Object>;
     public mode: String = 'edit';
+    public mergeStyle: String = '';
 
     public constructor(public competitorService: CompetitorService, private lookupService: LookupService){
 
@@ -59,12 +60,26 @@ export class CompetitorEditorComponent {
         event.preventDefault();
         this.mode = 'merge';
     }
+
     public mergeClicked() {
+        let primary: number;
+        let secondary: number;
+
         if (this.mergeTarget.id > 0) {
-            this.competitorService.mergeCompetitors(this.competitor.id, this.mergeTarget.id)
+            if (this.mergeStyle = 'primary') {
+                primary = this.mergeTarget.id;
+                secondary = this.competitor.id;
+
+            } else {
+                primary = this.competitor.id;
+                secondary = this.mergeTarget.id;
+            }
+
+            this.competitorService.mergeCompetitors(primary, secondary)
             .subscribe(data => {
                 this.mode = 'edit';
                 this.competitor = undefined;
+                this.mergeStyle = '';
                 this.competitorService.getAllCompetitors();
             });
         }
