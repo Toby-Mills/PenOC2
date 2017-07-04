@@ -17,8 +17,6 @@ var CompetitorService = (function () {
         this.http = http;
         this.urlService = urlService;
         this.allCompetitors = new BehaviorSubject_1.BehaviorSubject(null);
-        this.headers = new http_1.Headers();
-        this.headers.append('Content-Type', 'application/json');
         this.getAllCompetitors();
     }
     CompetitorService.prototype.getCompetitor = function (competitorId, name) {
@@ -29,7 +27,7 @@ var CompetitorService = (function () {
         if (name != null) {
             url += '&name=' + name;
         }
-        return Promise.resolve(this.http.get(url));
+        return Promise.resolve(this.http.get(url, { headers: this.urlService.apiHeaders() }));
     };
     CompetitorService.prototype.getAllCompetitors = function () {
         var _this = this;
@@ -61,22 +59,22 @@ var CompetitorService = (function () {
         if (name != null) {
             url += '&name=' + name;
         }
-        return Promise.resolve(this.http.get(url));
+        return Promise.resolve(this.http.get(url, { headers: this.urlService.apiHeaders() }));
     };
     CompetitorService.prototype.putCompetitor = function (competitor) {
-        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
+        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.urlService.apiHeaders() });
         return obs;
     };
     CompetitorService.prototype.postCompetitor = function (competitor) {
-        var obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.headers });
+        var obs = this.http.post(this.urlService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.urlService.apiHeaders() });
         return obs;
     };
     CompetitorService.prototype.deleteCompetitor = function (competitorId) {
-        var obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId);
+        var obs = this.http.delete(this.urlService.apiUrl() + '/Competitors/' + competitorId, { headers: this.urlService.apiHeaders() });
         return obs;
     };
     CompetitorService.prototype.mergeCompetitors = function (competitorId, mergeTargetId) {
-        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined, { headers: this.headers });
+        var obs = this.http.put(this.urlService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined, { headers: this.urlService.apiHeaders() });
         return obs;
     };
     return CompetitorService;
