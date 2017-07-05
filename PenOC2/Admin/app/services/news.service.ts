@@ -3,14 +3,14 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NewsModel } from '../models/news.model';
-import { UrlService } from '../services/url.service';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class NewsService {
 
     private headers: Headers;
 
-    constructor(private http: Http, private urlService:UrlService) {
+    constructor(private http: Http, private apiService: ApiService) {
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
@@ -18,26 +18,25 @@ export class NewsService {
 
     getNewsItems(newsItemId?: Number,  dateFrom?: Date, dateTo?: Date) {
 
-         var url = this.urlService.apiUrl() + '/NewsItems?';
-         if (newsItemId != null){url += 'id=' + newsItemId}
-         if (dateFrom != null){url += '&dateFrom=' + dateFrom.getFullYear() + '-' + (dateFrom.getMonth() + 1) + '-' + dateFrom.getDate()}
-         if (dateTo != null){url += '&dateTo=' + dateTo.getFullYear() + '-' + (dateTo.getMonth() + 1) + '-' + dateTo.getDate()}
+         let url = this.apiService.apiUrl() + '/NewsItems?';
+         if (newsItemId != null) {url += 'id=' + newsItemId; }
+         if (dateFrom != null) {url += '&dateFrom=' + dateFrom.getFullYear() + '-' + (dateFrom.getMonth() + 1) + '-' + dateFrom.getDate(); }
+         if (dateTo != null) {url += '&dateTo=' + dateTo.getFullYear() + '-' + (dateTo.getMonth() + 1) + '-' + dateTo.getDate(); }
 
-        return Promise.resolve(         
+        return Promise.resolve(
                 this.http.get( url)
-        )
+        );
     }
 
-    putNewsItem(newsItem: NewsModel){
+    putNewsItem(newsItem: NewsModel) {
         return Promise.resolve(
-            this.http.put(this.urlService.apiUrl() + '/NewsItems',JSON.stringify(newsItem), { headers: this.headers })
+            this.http.put(this.apiService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), { headers: this.headers })
         )
     }
 
-    postNewsItem(newsItem: NewsModel){
+    postNewsItem(newsItem: NewsModel) {
         return Promise.resolve(
-            this.http.post(this.urlService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), {headers: this.headers})
-        )
+            this.http.post(this.apiService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), {headers: this.headers})
+        );
     }
-
 }

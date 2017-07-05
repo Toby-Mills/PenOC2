@@ -35,7 +35,7 @@ var competitor_service_1 = require("./services/competitor.service");
 var oevent_service_1 = require("./services/oevent.service");
 var result_service_1 = require("./services/result.service");
 var news_service_1 = require("./services/news.service");
-var url_service_1 = require("./services/url.service");
+var api_service_1 = require("./services/api.service");
 var upload_service_1 = require("./services/upload.service");
 var AppModule = (function () {
     function AppModule() {
@@ -85,7 +85,7 @@ AppModule = __decorate([
             competitor_service_1.CompetitorService,
             result_service_1.ResultService,
             news_service_1.NewsService,
-            url_service_1.UrlService,
+            api_service_1.ApiService,
             upload_service_1.UploadService,
             { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }] // services
     })

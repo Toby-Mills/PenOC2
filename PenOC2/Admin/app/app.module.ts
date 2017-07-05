@@ -31,7 +31,7 @@ import { CompetitorService } from './services/competitor.service';
 import { OEventService } from './services/oevent.service';
 import { ResultService } from './services/result.service';
 import { NewsService } from './services/news.service';
-import { UrlService } from './services/url.service';
+import { ApiService } from './services/api.service';
 import { UploadService } from './services/upload.service';
 
 @NgModule({
@@ -76,7 +76,7 @@ import { UploadService } from './services/upload.service';
     CompetitorService,
     ResultService,
     NewsService,
-    UrlService,
+    ApiService,
     UploadService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}] // services
 })

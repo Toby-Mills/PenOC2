@@ -16,9 +16,9 @@ var UploadService = (function () {
     }
     UploadService.prototype.uploadNewsImage = function (fileToUpload) {
         var input = new FormData();
-        input.append("file", fileToUpload);
+        input.append('file', fileToUpload);
         return this.http
-            .post("/penoc2/api/newsItems/images", input);
+            .post('/penoc2/api/newsItems/images', input);
     };
     return UploadService;
 }());

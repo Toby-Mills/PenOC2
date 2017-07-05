@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers } from '@angular/http';
 
 @Injectable()
-export class UrlService {
+export class ApiService {
     apiUrl(): string {
         if (location.host.toLowerCase().startsWith('localhost')) {
             return 'http://localhost/penoc2/api'

@@ -10,16 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var url_service_1 = require("../services/url.service");
+var api_service_1 = require("../services/api.service");
 var NewsService = (function () {
-    function NewsService(http, urlService) {
+    function NewsService(http, apiService) {
         this.http = http;
-        this.urlService = urlService;
+        this.apiService = apiService;
         this.headers = new http_1.Headers();
         this.headers.append('Content-Type', 'application/json');
     }
     NewsService.prototype.getNewsItems = function (newsItemId, dateFrom, dateTo) {
-        var url = this.urlService.apiUrl() + '/NewsItems?';
+        var url = this.apiService.apiUrl() + '/NewsItems?';
         if (newsItemId != null) {
             url += 'id=' + newsItemId;
         }
@@ -32,16 +32,16 @@ var NewsService = (function () {
         return Promise.resolve(this.http.get(url));
     };
     NewsService.prototype.putNewsItem = function (newsItem) {
-        return Promise.resolve(this.http.put(this.urlService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), { headers: this.headers }));
+        return Promise.resolve(this.http.put(this.apiService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), { headers: this.headers }));
     };
     NewsService.prototype.postNewsItem = function (newsItem) {
-        return Promise.resolve(this.http.post(this.urlService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), { headers: this.headers }));
+        return Promise.resolve(this.http.post(this.apiService.apiUrl() + '/NewsItems', JSON.stringify(newsItem), { headers: this.headers }));
     };
     return NewsService;
 }());
 NewsService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, url_service_1.UrlService])
+    __metadata("design:paramtypes", [http_1.Http, api_service_1.ApiService])
 ], NewsService);
 exports.NewsService = NewsService;
 //# sourceMappingURL=news.service.js.map

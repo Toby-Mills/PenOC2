@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
 import {OEventModel} from '../models/oevent.model';
-import { UrlService } from '../services/url.service';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class OEventService {
     private headers: Headers;
 
-    constructor(private http: Http, private urlService: UrlService) {
+    constructor(private http: Http, private apiService: ApiService) {
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
      }
 
     getOEvent(oeventId?: Number, name?: String, venue?: String, dateFrom?: Date, dateTo?: Date) {
-         let url = this.urlService.apiUrl() + '/OEvents?';
+         let url = this.apiService.apiUrl() + '/OEvents?';
          if (oeventId != null) {url += 'id=' + oeventId; }
          if (name != null) {url += '&name=' + name; }
          if (venue != null) {url += '&venue=' + venue; }
@@ -27,15 +27,15 @@ export class OEventService {
         );
     }
 
-    putOEvent(oevent: OEventModel){
+    putOEvent(oevent: OEventModel) {
         return Promise.resolve(
-           this.http.put(this.urlService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers })
+           this.http.put(this.apiService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers })
         );
     }
 
     postOEvent(oevent: OEventModel) {
         return Promise.resolve(
-            this.http.post(this.urlService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers })
+            this.http.post(this.apiService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers })
         );
     }
 }

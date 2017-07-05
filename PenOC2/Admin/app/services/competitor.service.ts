@@ -3,23 +3,23 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CompetitorModel } from '../models/competitor.model';
-import { UrlService } from '../services/url.service';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class CompetitorService {
     public allCompetitors: BehaviorSubject<CompetitorModel[]> = new BehaviorSubject<CompetitorModel[]>(null);
 
-    constructor(private http: Http, private urlService: UrlService) {
+    constructor(private http: Http, private apiService: ApiService) {
         this.getAllCompetitors();
     }
 
     getCompetitor(competitorId?: Number, name?: String) {
-        let  url = this.urlService.apiUrl() + '/Competitors?';
+        let  url = this.apiService.apiUrl() + '/Competitors?';
         if (competitorId != null) { url += 'idCompetitor=' + competitorId; }
         if (name != null) { url += '&name=' + name; }
 
         return Promise.resolve(
-            this.http.get(url, {headers: this.urlService.apiHeaders()})
+            this.http.get(url, {headers: this.apiService.apiHeaders()})
         );
     }
 
@@ -41,45 +41,45 @@ export class CompetitorService {
     }
 
     getIndividual(name?: String) {
-        let url = this.urlService.apiUrl() + '/Competitors/Individuals?';
+        let url = this.apiService.apiUrl() + '/Competitors/Individuals?';
         if (name != null) { url += '&name=' + name; }
 
         return Promise.resolve(
-            this.http.get(url, {headers: this.urlService.apiHeaders()})
+            this.http.get(url, {headers: this.apiService.apiHeaders()})
         );
     }
 
     putCompetitor(competitor: CompetitorModel) {
         let obs = this.http.put(
-            this.urlService.apiUrl() + '/Competitors/',
+            this.apiService.apiUrl() + '/Competitors/',
             JSON.stringify(competitor),
-            { headers: this.urlService.apiHeaders() }
+            { headers: this.apiService.apiHeaders() }
         );
         return obs;
     }
 
     postCompetitor(competitor: CompetitorModel): Observable<Response> {
         let obs = this.http.post(
-            this.urlService.apiUrl() + '/Competitors/',
+            this.apiService.apiUrl() + '/Competitors/',
             JSON.stringify(competitor),
-            { headers: this.urlService.apiHeaders() }
+            { headers: this.apiService.apiHeaders() }
         );
         return obs;
     }
 
     deleteCompetitor(competitorId: Number): Observable<Response> {
         let obs = this.http.delete(
-            this.urlService.apiUrl() + '/Competitors/' + competitorId,
-            { headers: this.urlService.apiHeaders() }
+            this.apiService.apiUrl() + '/Competitors/' + competitorId,
+            { headers: this.apiService.apiHeaders() }
         );
         return obs;
     }
 
     mergeCompetitors(competitorId: Number, mergeTargetId: Number): Observable<Response>{
         let obs = this.http.put(
-            this.urlService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId,
+            this.apiService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId,
              undefined,
-             { headers: this.urlService.apiHeaders() }
+             { headers: this.apiService.apiHeaders() }
         );
         return obs;
     }

@@ -7,10 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var UrlService = (function () {
-    function UrlService() {
+var ApiService = (function () {
+    function ApiService() {
     }
-    UrlService.prototype.apiUrl = function () {
+    ApiService.prototype.apiUrl = function () {
         if (location.host.toLowerCase().startsWith('localhost')) {
             return 'http://localhost/penoc2/api';
         }
@@ -18,16 +18,16 @@ var UrlService = (function () {
             return 'http://www.penoc.org.za/api';
         }
     };
-    UrlService.prototype.apiHeaders = function () {
+    ApiService.prototype.apiHeaders = function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('API_KEY', 'Orienteering');
         return headers;
     };
-    return UrlService;
+    return ApiService;
 }());
-UrlService = __decorate([
+ApiService = __decorate([
     core_1.Injectable()
-], UrlService);
-exports.UrlService = UrlService;
-//# sourceMappingURL=url.service.js.map
+], ApiService);
+exports.ApiService = ApiService;
+//# sourceMappingURL=api.service.js.map
