@@ -12,7 +12,8 @@ namespace WebAPI
             // Web API configuration and services
 
             //enable cors
-            config.EnableCors();
+            var cors = new System.Web.Http.Cors.EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
