@@ -9,22 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
+var api_service_1 = require("../services/api.service");
 var UploadService = (function () {
-    function UploadService(http) {
-        this.http = http;
+    function UploadService(apiService) {
+        this.apiService = apiService;
     }
     UploadService.prototype.uploadNewsImage = function (fileToUpload) {
         var input = new FormData();
         input.append('file', fileToUpload);
-        return this.http
-            .post('/penoc2/api/newsItems/images', input);
+        return this.apiService.post('/newsItems/images', input);
     };
     return UploadService;
 }());
 UploadService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [api_service_1.ApiService])
 ], UploadService);
 exports.UploadService = UploadService;
 //# sourceMappingURL=upload.service.js.map

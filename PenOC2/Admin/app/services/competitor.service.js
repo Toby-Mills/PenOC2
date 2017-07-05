@@ -9,25 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var api_service_1 = require("../services/api.service");
 var CompetitorService = (function () {
-    function CompetitorService(http, apiService) {
-        this.http = http;
+    function CompetitorService(apiService) {
         this.apiService = apiService;
         this.allCompetitors = new BehaviorSubject_1.BehaviorSubject(null);
         this.getAllCompetitors();
     }
     CompetitorService.prototype.getCompetitor = function (competitorId, name) {
-        var url = this.apiService.apiUrl() + '/Competitors?';
+        var url = '/Competitors?';
         if (competitorId != null) {
             url += 'idCompetitor=' + competitorId;
         }
         if (name != null) {
             url += '&name=' + name;
         }
-        return Promise.resolve(this.http.get(url, { headers: this.apiService.apiHeaders() }));
+        return Promise.resolve(this.apiService.get(url));
     };
     CompetitorService.prototype.getAllCompetitors = function () {
         var _this = this;
@@ -55,33 +53,29 @@ var CompetitorService = (function () {
         }); });
     };
     CompetitorService.prototype.getIndividual = function (name) {
-        var url = this.apiService.apiUrl() + '/Competitors/Individuals?';
+        var url = '/Competitors/Individuals?';
         if (name != null) {
             url += '&name=' + name;
         }
-        return Promise.resolve(this.http.get(url, { headers: this.apiService.apiHeaders() }));
+        return Promise.resolve(this.apiService.get(url));
     };
     CompetitorService.prototype.putCompetitor = function (competitor) {
-        var obs = this.http.put(this.apiService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.apiService.apiHeaders() });
-        return obs;
+        return this.apiService.put('/Competitors/', JSON.stringify(competitor));
     };
     CompetitorService.prototype.postCompetitor = function (competitor) {
-        var obs = this.http.post(this.apiService.apiUrl() + '/Competitors/', JSON.stringify(competitor), { headers: this.apiService.apiHeaders() });
-        return obs;
+        return this.apiService.post('/Competitors/', JSON.stringify(competitor));
     };
     CompetitorService.prototype.deleteCompetitor = function (competitorId) {
-        var obs = this.http.delete(this.apiService.apiUrl() + '/Competitors/' + competitorId, { headers: this.apiService.apiHeaders() });
-        return obs;
+        return this.apiService.delete('/Competitors/' + competitorId);
     };
     CompetitorService.prototype.mergeCompetitors = function (competitorId, mergeTargetId) {
-        var obs = this.http.put(this.apiService.apiUrl() + '/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined, { headers: this.apiService.apiHeaders() });
-        return obs;
+        return this.apiService.put('/Competitors/' + competitorId + '/merge/' + mergeTargetId, undefined);
     };
     return CompetitorService;
 }());
 CompetitorService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, api_service_1.ApiService])
+    __metadata("design:paramtypes", [api_service_1.ApiService])
 ], CompetitorService);
 exports.CompetitorService = CompetitorService;
 //# sourceMappingURL=competitor.service.js.map

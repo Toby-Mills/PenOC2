@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class UploadService {
-    constructor(private http: Http) {}
+    constructor(private apiService: ApiService) {}
 
     uploadNewsImage(fileToUpload: any) {
         let input = new FormData();
         input.append('file', fileToUpload);
 
-        return this.http
-            .post('/penoc2/api/newsItems/images', input);
+        return this.apiService.post('/newsItems/images', input);
     }
 }

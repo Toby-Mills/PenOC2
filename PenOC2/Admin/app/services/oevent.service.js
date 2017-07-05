@@ -9,18 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
 require("rxjs/Rx");
 var api_service_1 = require("../services/api.service");
 var OEventService = (function () {
-    function OEventService(http, apiService) {
-        this.http = http;
+    function OEventService(apiService) {
         this.apiService = apiService;
-        this.headers = new http_1.Headers();
-        this.headers.append('Content-Type', 'application/json');
     }
     OEventService.prototype.getOEvent = function (oeventId, name, venue, dateFrom, dateTo) {
-        var url = this.apiService.apiUrl() + '/OEvents?';
+        var url = '/OEvents?';
         if (oeventId != null) {
             url += 'id=' + oeventId;
         }
@@ -36,19 +32,19 @@ var OEventService = (function () {
         if (dateTo != null) {
             url += '&dateTo=' + dateTo.getFullYear() + '-' + (dateTo.getMonth() + 1) + '-' + dateTo.getDate();
         }
-        return Promise.resolve(this.http.get(url));
+        return Promise.resolve(this.apiService.get(url));
     };
     OEventService.prototype.putOEvent = function (oevent) {
-        return Promise.resolve(this.http.put(this.apiService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers }));
+        return Promise.resolve(this.apiService.put('/OEvents/', JSON.stringify(oevent)));
     };
     OEventService.prototype.postOEvent = function (oevent) {
-        return Promise.resolve(this.http.post(this.apiService.apiUrl() + '/OEvents/', JSON.stringify(oevent), { headers: this.headers }));
+        return Promise.resolve(this.apiService.post('/OEvents/', JSON.stringify(oevent)));
     };
     return OEventService;
 }());
 OEventService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, api_service_1.ApiService])
+    __metadata("design:paramtypes", [api_service_1.ApiService])
 ], OEventService);
 exports.OEventService = OEventService;
 //# sourceMappingURL=oevent.service.js.map

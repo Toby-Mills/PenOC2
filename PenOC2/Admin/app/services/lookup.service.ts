@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ApiService } from '../services/api.service';
@@ -13,12 +12,8 @@ export class LookupService {
     public clubList: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
     public venueList: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
 
-    private headers: Headers;
 
-    constructor(private http: Http, private apiService: ApiService) {
-
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
+    constructor(private apiService: ApiService) {
 
         this.getGenderList();
         this.getTechnicalDifficultyList();
@@ -28,7 +23,7 @@ export class LookupService {
 
     getVenueList(): Promise<Boolean> {
         return Promise.resolve(
-            this.http.get(this.apiService.apiUrl() + '/Venues')
+            this.apiService.get('/Venues')
         ).then(data => data.subscribe(
             response => {
                 let venueData: Array<VenueModel> =  response.json();
@@ -46,7 +41,7 @@ export class LookupService {
 
     getClubList(): Promise<Boolean> {
         return Promise.resolve(
-            this.http.get(this.apiService.apiUrl() + '/Clubs')
+            this.apiService.get('/Clubs')
         ).then(data => data.subscribe(
             response => {
                 let clubData: Array<ClubModel> = response.json();
@@ -64,7 +59,7 @@ export class LookupService {
 
     postClub(club: ClubModel): Promise<Boolean> {
         return Promise.resolve(
-            this.http.post(this.apiService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
+            this.apiService.post('/Clubs', JSON.stringify(club))
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
@@ -74,7 +69,7 @@ export class LookupService {
 
     putClub(club: ClubModel): Promise<Boolean> {
         return Promise.resolve(
-            this.http.put(this.apiService.apiUrl() + '/Clubs', JSON.stringify(club), { headers: this.headers })
+            this.apiService.put( '/Clubs', JSON.stringify(club))
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
@@ -84,7 +79,7 @@ export class LookupService {
 
     deleteClub(clubId: Number): Promise<Boolean> {
         return Promise.resolve(
-            this.http.delete(this.apiService.apiUrl() + '/Clubs/' + clubId)
+            this.apiService.delete( '/Clubs/' + clubId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getClubList();
@@ -94,7 +89,7 @@ export class LookupService {
 
     postVenue(venue: VenueModel): Promise<Boolean> {
         return Promise.resolve(
-            this.http.post(this.apiService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
+            this.apiService.post('/Venues', JSON.stringify(venue))
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
@@ -104,7 +99,7 @@ export class LookupService {
 
     putVenue(venue: VenueModel): Promise<Boolean> {
         return Promise.resolve(
-            this.http.put(this.apiService.apiUrl() + '/Venues', JSON.stringify(venue), { headers: this.headers })
+            this.apiService.put('/Venues', JSON.stringify(venue))
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
@@ -114,7 +109,7 @@ export class LookupService {
 
     deleteVenue(venueId: Number): Promise<Boolean> {
         return Promise.resolve(
-            this.http.delete(this.apiService.apiUrl() + '/Venues/' + venueId)
+            this.apiService.delete('/Venues/' + venueId)
         ).then(data => {
                 data.subscribe(response => {
                     this.getVenueList();
@@ -124,7 +119,7 @@ export class LookupService {
 
     getTechnicalDifficultyList(): Promise<Boolean> {
         return Promise.resolve(
-            this.http.get(this.apiService.apiUrl() + '/TechnicalDifficulties')
+            this.apiService.get('/TechnicalDifficulties')
         ).then(data => data.subscribe(
             technicalDifficultyData => {
                 this.technicalDifficultyList.next(technicalDifficultyData.json());
@@ -134,7 +129,7 @@ export class LookupService {
 
     getGenderList(): Promise<Boolean> {
         return Promise.resolve(
-            this.http.get(this.apiService.apiUrl() + '/Genders')
+            this.apiService.get('/Genders')
         ).then(data => data.subscribe(
             genderData => {
                 this.genderList.next(genderData.json());

@@ -9,32 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
 var api_service_1 = require("../services/api.service");
 var ResultService = (function () {
-    function ResultService(http, apiService) {
-        this.http = http;
+    function ResultService(apiService) {
         this.apiService = apiService;
-        this.headers = new http_1.Headers();
-        this.headers.append('Content-Type', 'application/json');
     }
     ResultService.prototype.getCourseResults = function (idCourse) {
-        return Promise.resolve(this.http.get(this.apiService.apiUrl() + '/Courses/' + idCourse + '/Results'));
+        return Promise.resolve(this.apiService.get('/Courses/' + idCourse + '/Results'));
     };
     ResultService.prototype.putResult = function (result) {
-        return Promise.resolve(this.http.put(this.apiService.apiUrl() + '/Results/', JSON.stringify(result), { headers: this.headers }));
+        return Promise.resolve(this.apiService.put('/Results/', JSON.stringify(result)));
     };
     ResultService.prototype.postResult = function (result) {
-        return Promise.resolve(this.http.post(this.apiService.apiUrl() + '/Results/', JSON.stringify(result), { headers: this.headers }));
+        return Promise.resolve(this.apiService.post('/Results/', JSON.stringify(result)));
     };
     ResultService.prototype.putCourseResults = function (courseId, results) {
-        return Promise.resolve(this.http.put(this.apiService.apiUrl() + '/Courses/' + courseId + '/Results', JSON.stringify(results), { headers: this.headers }));
+        return Promise.resolve(this.apiService.put('/Courses/' + courseId + '/Results', JSON.stringify(results)));
     };
     return ResultService;
 }());
 ResultService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, api_service_1.ApiService])
+    __metadata("design:paramtypes", [api_service_1.ApiService])
 ], ResultService);
 exports.ResultService = ResultService;
 //# sourceMappingURL=result.service.js.map
