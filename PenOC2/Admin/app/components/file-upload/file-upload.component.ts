@@ -19,8 +19,6 @@ export class FileUploadComponent {
     }
 
     copy() {
-        console.log(this.tagLabel.nativeElement.textContent);
-
         let range = document.createRange();
         let label = document.querySelector('#tagLabel');
 
@@ -32,7 +30,6 @@ export class FileUploadComponent {
             // Now that we've selected the anchor text, execute the copy command  
             let successful = document.execCommand('copy');
             let msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copy command was ' + msg);
         } catch (err) {
             console.log('Oops, unable to copy');
         }

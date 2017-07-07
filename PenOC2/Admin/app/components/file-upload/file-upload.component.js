@@ -16,7 +16,6 @@ var FileUploadComponent = (function () {
         this.tagStyle = 'image';
     }
     FileUploadComponent.prototype.copy = function () {
-        console.log(this.tagLabel.nativeElement.textContent);
         var range = document.createRange();
         var label = document.querySelector('#tagLabel');
         window.getSelection().removeAllRanges();
@@ -26,7 +25,6 @@ var FileUploadComponent = (function () {
             // Now that we've selected the anchor text, execute the copy command  
             var successful = document.execCommand('copy');
             var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copy command was ' + msg);
         }
         catch (err) {
             console.log('Oops, unable to copy');
