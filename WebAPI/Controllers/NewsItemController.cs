@@ -6,10 +6,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.IO;
 using System.Web.Http.Cors;
+using WebAPI.Filters;
 
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [JwtAuthentication]
+    [Authorize]
     public class NewsItemController : ApiController
     {
         

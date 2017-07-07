@@ -12,6 +12,7 @@ namespace WebAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new WebAPI.MessageHandlers.APIKeyHandler());
         }
     }
 }
