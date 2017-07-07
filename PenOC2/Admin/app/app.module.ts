@@ -39,7 +39,6 @@ import { UploadService } from './services/upload.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/events', pathMatch: 'full' },
       { path: 'events', component: OEventListComponent },
       { path: 'events/:eventId', component: OEventComponent },
       { path: 'events/:eventId/courses', component: CourseListComponent },
@@ -80,5 +79,5 @@ import { UploadService } from './services/upload.service';
     UploadService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}] // services
 })
-export class AppModule { }
+export class AppModule {}
 

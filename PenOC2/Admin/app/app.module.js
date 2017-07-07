@@ -48,7 +48,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             router_1.RouterModule.forRoot([
-                { path: '', redirectTo: '/events', pathMatch: 'full' },
                 { path: 'events', component: oevent_list_component_1.OEventListComponent },
                 { path: 'events/:eventId', component: oevent_component_1.OEventComponent },
                 { path: 'events/:eventId/courses', component: course_list_component_1.CourseListComponent },
