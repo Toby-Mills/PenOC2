@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ApiService {
     private apiUrl: string;
+    private token: any;
+    public authenticated: boolean = false;
 
     public constructor(public http: Http) {
         if (location.host.toLowerCase().startsWith('localhost')) {
@@ -19,6 +21,7 @@ export class ApiService {
         options.headers = options.headers || new Headers();
         options.headers.append('Content-Type', 'application/json');
         options.headers.append('API_KEY', 'Orienteering');
+        options.headers.append('Authorization', 'Bearer ' + this.token);
 
         return options;
     }
@@ -47,7 +50,21 @@ export class ApiService {
         return this.http.delete(url, options);
     }
 
-    public signIn(userName: String, password: String): Observable<Response> {
-        return this.post(this.apiUrl + '/authenticate', {username: userName, password: password});
+    public signIn(userName: String, password: String): Observable<boolean> {
+
+          return this.post('/authenticate', {username: userName, password: password}).map(response => {
+              if (response.status === 200) {
+                  this.token = response.json(); this.authenticated = true;
+                } else {
+                    this.token = undefined; this.authenticated = false;
+                }
+
+                return this.authenticated;
+            });
+    }
+
+    public signOut() {
+        this.token = undefined;
+        this.authenticated = false;
     }
 }

@@ -13,6 +13,7 @@ var http_1 = require("@angular/http");
 var ApiService = (function () {
     function ApiService(http) {
         this.http = http;
+        this.authenticated = false;
         if (location.host.toLowerCase().startsWith('localhost')) {
             this.apiUrl = 'http://localhost/penoc2/api';
         }
@@ -25,6 +26,7 @@ var ApiService = (function () {
         options.headers = options.headers || new http_1.Headers();
         options.headers.append('Content-Type', 'application/json');
         options.headers.append('API_KEY', 'Orienteering');
+        options.headers.append('Authorization', 'Bearer ' + this.token);
         return options;
     };
     ApiService.prototype.get = function (url, options) {
@@ -48,7 +50,22 @@ var ApiService = (function () {
         return this.http.delete(url, options);
     };
     ApiService.prototype.signIn = function (userName, password) {
-        return this.post(this.apiUrl + '/authenticate', { username: userName, password: password });
+        var _this = this;
+        return this.post('/authenticate', { username: userName, password: password }).map(function (response) {
+            if (response.status === 200) {
+                _this.token = response.json();
+                _this.authenticated = true;
+            }
+            else {
+                _this.token = undefined;
+                _this.authenticated = false;
+            }
+            return _this.authenticated;
+        });
+    };
+    ApiService.prototype.signOut = function () {
+        this.token = undefined;
+        this.authenticated = false;
     };
     return ApiService;
 }());
