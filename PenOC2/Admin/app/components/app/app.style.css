@@ -1,7 +1,58 @@
-h1:hover{
+h1:hover {
     cursor: pointer;
     color: blue;
 }
-#divPage{
+#divPage {
     background-color: white;
+    min-height: 800px;
+}
+
+#divTitle {
+    float:left;
+    margin-bottom:10px;
+}
+
+#divSignout {
+    float:right;
+}
+
+.clearfix {
+    clear: both;
+}
+
+#divSignin {
+    width: 400px;
+    margin: 100px auto 10px auto ;
+    border: 1px solid #b7cbdc;
+    border-radius: 5px;
+    padding: 0px;
+    background-color: #F0F0F0;
+    box-shadow: lightgray 9px 9px 20px 0px;
+}
+
+#divSignin input {
+    margin: 5px;
+    width: 200px;
+}
+
+#divSignin input[type="button"] {
+    width: initial;
+}
+
+#divSignin-Heading {
+    background-color: #b7cbdc;
+    color: white;
+    margin: 0px;
+    padding: 5px;
+}
+
+#divSignin-Heading span {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#divSignin-Content {
+    padding: 5px;
+    padding-left: 20px;
+
 }

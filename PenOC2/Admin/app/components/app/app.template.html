@@ -1,15 +1,31 @@
 <div id="divPage" class="container">
-	<div style="margin-bottom:10px;" (click)="homeClicked()" style=":hover { color: red; }">
+	<div id="divTitle" style="" (click)="homeClicked()">
 		<h1>PenOC Website Admin</h1>
 	</div>
-	<ul class="nav nav-tabs">
-		<li [routerLinkActive]="['active']"><a routerLink="/events">Events</a></li>
-		<li [routerLinkActive]="['active']"><a routerLink="/news">News</a></li>
-		<li [routerLinkActive]="['active']"><a routerLink="/lookups">Lookups</a></li>
-		<li [routerLinkActive]="['active']"><a routerLink="/competitors">Competitors</a></li>
-	</ul>
-	<div>
-		<br>
-		<router-outlet></router-outlet>
+	<div id="divSignout" *ngIf="isAuthenticated"><a href="" (click)="signOutClicked($event)">sign out</a></div>
+	<div class="clearfix"></div>
+	<div id="divSignin" *ngIf="!isAuthenticated">
+		<div id="divSignin-Heading"><span>Sign In</span></div>
+		<div id="divSignin-Content">
+			<span>User Name</span><br>
+			<input type="text" #userName /><br>
+			<span>Password</span><br>
+			<input type="password"  #password /><br>
+			<div *ngIf="authenticationFailed"><span class="alert-danger">Invalid user name or password</span></div>
+			<input type="button" value="Sign In" class="btn btn-primary" (click)="signInClicked(userName.value, password.value)" />
+		</div>
 	</div>
+	<div *ngIf="isAuthenticated">
+		<ul class="nav nav-tabs">
+			<li [routerLinkActive]="['active']"><a routerLink="/events">Events</a></li>
+			<li [routerLinkActive]="['active']"><a routerLink="/news">News</a></li>
+			<li [routerLinkActive]="['active']"><a routerLink="/lookups">Lookups</a></li>
+			<li [routerLinkActive]="['active']"><a routerLink="/competitors">Competitors</a></li>
+		</ul>
+		<div>
+			<br>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+	
 </div>
