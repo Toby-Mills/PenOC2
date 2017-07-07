@@ -4,17 +4,7 @@
 	</div>
 	<div id="divSignout" *ngIf="isAuthenticated"><a href="" (click)="signOutClicked($event)">sign out</a></div>
 	<div class="clearfix"></div>
-	<div id="divSignin" *ngIf="!isAuthenticated">
-		<div id="divSignin-Heading"><span>Sign In</span></div>
-		<div id="divSignin-Content">
-			<span>User Name</span><br>
-			<input type="text" #userName /><br>
-			<span>Password</span><br>
-			<input type="password"  #password /><br>
-			<div *ngIf="authenticationFailed"><span class="alert-danger">Invalid user name or password</span></div>
-			<input type="button" value="Sign In" class="btn btn-primary" (click)="signInClicked(userName.value, password.value)" />
-		</div>
-	</div>
+	<sign-in *ngIf="!isAuthenticated" (authenticated)="authenticated()"></sign-in>
 	<div *ngIf="isAuthenticated">
 		<ul class="nav nav-tabs">
 			<li [routerLinkActive]="['active']"><a routerLink="/events">Events</a></li>

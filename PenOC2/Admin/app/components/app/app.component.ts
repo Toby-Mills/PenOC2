@@ -10,26 +10,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 private isAuthenticated = false;
-private authenticationFailed = false;
+
     constructor(public router: Router, private apiService: ApiService) {
     }
 
-    public signInClicked(userName: string, password: string) {
-        this.apiService.signIn(userName, password).subscribe(authenticated => {
-            this.isAuthenticated = authenticated;
-            if (authenticated) {
-                this.authenticationFailed = false;
-                setTimeout(function(auth, theRouter ){
-                theRouter.navigate(['events']);
-                },
-                0,
-                authenticated,
-                this.router);
-            }
-        },
-        error => {
-            this.authenticationFailed = true;
-        });
+    public authenticated() {
+        this.isAuthenticated = true;
+        setTimeout(function(router){
+            router.navigate(['/events']);
+        }, 0, this.router);
     }
 
     public signOutClicked(event: Event) {
@@ -40,6 +29,10 @@ private authenticationFailed = false;
     }
 
     public homeClicked() {
-        this.router.navigate(['']);
+        if (this.isAuthenticated){
+            this.router.navigate(['/events']);
+        } else {
+            this.router.navigate(['']);
+        }
     }
 }

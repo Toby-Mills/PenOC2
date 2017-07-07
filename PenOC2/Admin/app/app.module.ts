@@ -19,6 +19,7 @@ import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsItemComponent } from './components/newsItem/newsItem.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { LookupEditorComponent } from './components/lookup-editor/lookup-editor.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 import { ResultTimePipe } from './pipes/result-time.pipe';
 import { DateStringPipe } from './pipes/date-string.pipe';
@@ -64,6 +65,7 @@ import { UploadService } from './services/upload.service';
     NewsItemComponent,
     FileUploadComponent,
     LookupEditorComponent,
+    SignInComponent,
     DateStringPipe,
     ResultTimePipe,
     PeoplePipe,

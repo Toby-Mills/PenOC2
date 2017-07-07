@@ -16,21 +16,12 @@ var AppComponent = (function () {
         this.router = router;
         this.apiService = apiService;
         this.isAuthenticated = false;
-        this.authenticationFailed = false;
     }
-    AppComponent.prototype.signInClicked = function (userName, password) {
-        var _this = this;
-        this.apiService.signIn(userName, password).subscribe(function (authenticated) {
-            _this.isAuthenticated = authenticated;
-            if (authenticated) {
-                _this.authenticationFailed = false;
-                setTimeout(function (auth, theRouter) {
-                    theRouter.navigate(['events']);
-                }, 0, authenticated, _this.router);
-            }
-        }, function (error) {
-            _this.authenticationFailed = true;
-        });
+    AppComponent.prototype.authenticated = function () {
+        this.isAuthenticated = true;
+        setTimeout(function (router) {
+            router.navigate(['/events']);
+        }, 0, this.router);
     };
     AppComponent.prototype.signOutClicked = function (event) {
         event.preventDefault();
@@ -39,7 +30,12 @@ var AppComponent = (function () {
         this.router.navigate(['']);
     };
     AppComponent.prototype.homeClicked = function () {
-        this.router.navigate(['']);
+        if (this.isAuthenticated) {
+            this.router.navigate(['/events']);
+        }
+        else {
+            this.router.navigate(['']);
+        }
     };
     return AppComponent;
 }());

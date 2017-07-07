@@ -25,6 +25,7 @@ var news_list_component_1 = require("./components/news-list/news-list.component"
 var newsItem_component_1 = require("./components/newsItem/newsItem.component");
 var file_upload_component_1 = require("./components/file-upload/file-upload.component");
 var lookup_editor_component_1 = require("./components/lookup-editor/lookup-editor.component");
+var sign_in_component_1 = require("./components/sign-in/sign-in.component");
 var result_time_pipe_1 = require("./pipes/result-time.pipe");
 var date_string_pipe_1 = require("./pipes/date-string.pipe");
 var matching_competitors_pipe_1 = require("./pipes/matching-competitors.pipe");
@@ -73,6 +74,7 @@ AppModule = __decorate([
             newsItem_component_1.NewsItemComponent,
             file_upload_component_1.FileUploadComponent,
             lookup_editor_component_1.LookupEditorComponent,
+            sign_in_component_1.SignInComponent,
             date_string_pipe_1.DateStringPipe,
             result_time_pipe_1.ResultTimePipe,
             people_pipe_1.PeoplePipe,
