@@ -32,31 +32,37 @@ export class CourseComponent {
     }
 
     private loadCourse() {
-        var courseId: number;
-        var eventId: number;
+        let courseId: number;
+        let eventId: number;
 
         this.route.params.forEach((params: Params) => {
             courseId = + params['courseId'];
             eventId = + params['eventId'];
 
-        })
+        });
+
         if (courseId > 0) {
             this.courseService.getCourse(courseId).then((response) => {
                 response.subscribe((courseData) => {
                     this.course = courseData.json()[0];
-                })
-            })
+                });
+            });
 
             this.resultService.getCourseResults(courseId).then((response) => {
                 response.subscribe((resultsData) => {
                     this.resultList = resultsData.json();
                     this.resultList.forEach(
                         function (result, resultIndex) {
-                            result.time = new Date(result.time).toISOString().substring(11, 19);
+                            let resultTime =  new Date(result.time);
+                            console.log (result.time);
+                            // add 2 hours (in milliseconds) for South African Time Zone
+                            resultTime.setTime(resultTime.getTime() + 2 * 60 * 60 * 1000);
+                            // truncate to only the time portion
+                            result.time = resultTime.toISOString().substring(11, 19);
                         }
-                    )
-                })
-            })
+                    );
+                });
+            });
         } else {
             this.course = new CourseModel();
             this.course.eventId = eventId;
@@ -71,7 +77,7 @@ export class CourseComponent {
                     courseData => {
                         this.loadCourse();
                     }
-                )
+                );
             });
 
         this.saveResults();
@@ -104,8 +110,6 @@ export class CourseComponent {
     private saveResults() {
         this.resultList.map(result => result.courseId = this.course.id);
         this.resultService.putCourseResults(this.course.id, this.resultList)
-            .then(
-            data => data.subscribe(data => { })
-            )
+            .then(data => data.subscribe(response => { }));
     }
 }

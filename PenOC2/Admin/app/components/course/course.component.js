@@ -48,7 +48,12 @@ var CourseComponent = (function () {
                 response.subscribe(function (resultsData) {
                     _this.resultList = resultsData.json();
                     _this.resultList.forEach(function (result, resultIndex) {
-                        result.time = new Date(result.time).toISOString().substring(11, 19);
+                        var resultTime = new Date(result.time);
+                        console.log(result.time);
+                        // add 2 hours (in milliseconds) for South African Time Zone
+                        resultTime.setTime(resultTime.getTime() + 2 * 60 * 60 * 1000);
+                        // truncate to only the time portion
+                        result.time = resultTime.toISOString().substring(11, 19);
                     });
                 });
             });
@@ -95,7 +100,7 @@ var CourseComponent = (function () {
         var _this = this;
         this.resultList.map(function (result) { return result.courseId = _this.course.id; });
         this.resultService.putCourseResults(this.course.id, this.resultList)
-            .then(function (data) { return data.subscribe(function (data) { }); });
+            .then(function (data) { return data.subscribe(function (response) { }); });
     };
     return CourseComponent;
 }());
