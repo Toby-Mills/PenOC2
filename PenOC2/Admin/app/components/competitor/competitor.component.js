@@ -112,6 +112,7 @@ var CompetitorComponent = (function () {
                 }
                 break;
             case 'Enter':
+            case 'Tab':
                 var peopleOnly = void 0;
                 peopleOnly = new people_pipe_1.PeoplePipe();
                 this.selectCompetitor(peopleOnly.transform(this.allCompetitors, this.peopleOnly)

@@ -64,7 +64,7 @@ export class CompetitorComponent {
             clearTimeout(self.delayedDisplay);
             self.delayedHide = setTimeout(function () {
                 self.activateSearch(false);
-            }, 500)
+            }, 500);
         }
     }
 
@@ -119,6 +119,7 @@ export class CompetitorComponent {
                 }
                 break;
             case 'Enter':
+            case 'Tab':
                 let peopleOnly: PeoplePipe;
                 peopleOnly = new PeoplePipe();
                 this.selectCompetitor(
@@ -155,4 +156,5 @@ export class CompetitorComponent {
             this.competitorService.getAllCompetitors();
         });
     }
+
 }
