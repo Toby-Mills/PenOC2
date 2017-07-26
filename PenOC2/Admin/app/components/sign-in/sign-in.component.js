@@ -16,6 +16,9 @@ var SignInComponent = (function () {
         this.authenticationFailed = false;
         this.authenticated = new core_1.EventEmitter;
     }
+    SignInComponent.prototype.ngAfterViewInit = function () {
+        this.userName.nativeElement.focus();
+    };
     SignInComponent.prototype.signIn = function (userName, password) {
         var _this = this;
         this.authenticationFailed = false;
@@ -41,6 +44,10 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", core_1.EventEmitter)
 ], SignInComponent.prototype, "authenticated", void 0);
+__decorate([
+    core_1.ViewChild('userName'),
+    __metadata("design:type", Object)
+], SignInComponent.prototype, "userName", void 0);
 SignInComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

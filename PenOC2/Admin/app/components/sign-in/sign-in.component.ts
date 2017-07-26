@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -10,9 +10,14 @@ import { ApiService } from '../../services/api.service';
 export class SignInComponent {
     private authenticationFailed = false;
     @Output() public authenticated: EventEmitter<any> = new EventEmitter;
+    @ViewChild('userName') userName: any;
 
     public constructor(public apiService: ApiService) {
 
+    }
+
+    ngAfterViewInit() {
+        this.userName.nativeElement.focus();
     }
 
     private signIn(userName: string, password: string) {
