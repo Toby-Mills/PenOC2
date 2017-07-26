@@ -6,7 +6,7 @@
 	<div class='row'>
 		<div class='col-xs-12 col-md-4'>
 			<dl>
-				<dt><span>Order:</span></dt>
+				<dt><span>Display order:</span></dt>
 				<dd><input class='form-control' name="listOrder" [(ngModel)]="course.listOrder" required /></dd>
 				<dt><span>Name:</span></dt>
 				<dd><input class='form-control' name="name" [(ngModel)]="course.name" required /></dd>
@@ -14,15 +14,15 @@
 		</div>
 		<div class='col-xs-12 col-md-4'>
 			<dl>
-				<dt><span>Length:</span></dt>
+				<dt><span>Length (m):</span></dt>
 				<dd><input class='form-control' name="length" [(ngModel)]="course.length" /></dd>
-				<dt><span>Controls:</span></dt>
+				<dt><span>No. Controls:</span></dt>
 				<dd><input class='form-control' name="controls" [(ngModel)]="course.controls" /></dd>
 			</dl>
 		</div>
 		<div class='col-xs-12 col-md-4'>
 			<dl>
-				<dt><span>Climb:</span></dt>
+				<dt><span>Climb (m):</span></dt>
 				<dd><input class='form-control' name="climb" [(ngModel)]="course.climb" /></dd>
 				<dt><span>Difficulty:</span></dt>
 				<dd><select class='form-control' name="difficulty" [(ngModel)]="course.difficultyId">
