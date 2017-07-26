@@ -15,16 +15,27 @@ export class SignInComponent {
 
     }
 
+    private signIn(userName: string, password: string) {
+    this.authenticationFailed = false;
+            this.apiService.signIn(userName, password).subscribe(authenticated => {
+                if (authenticated) {
+                    this.authenticated.emit(true);
+                }
+            },
+            error => {
+                this.authenticationFailed = true;
+            });
+    }
+
     public signInClicked(userName: string, password: string) {
-        this.authenticationFailed = false;
-        this.apiService.signIn(userName, password).subscribe(authenticated => {
-            if (authenticated) {
-                this.authenticated.emit(true);
-            }
-        },
-        error => {
-            this.authenticationFailed = true;
-        });
+       this.signIn(userName, password);
+    }
+
+    public passwordKeyPressed(event: any, userName: string, password: string){
+        switch (event.key) {
+            case 'Enter': this.signIn(userName, password);
+        }
     }
 
 }
+

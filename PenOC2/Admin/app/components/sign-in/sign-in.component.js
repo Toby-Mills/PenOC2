@@ -16,7 +16,7 @@ var SignInComponent = (function () {
         this.authenticationFailed = false;
         this.authenticated = new core_1.EventEmitter;
     }
-    SignInComponent.prototype.signInClicked = function (userName, password) {
+    SignInComponent.prototype.signIn = function (userName, password) {
         var _this = this;
         this.authenticationFailed = false;
         this.apiService.signIn(userName, password).subscribe(function (authenticated) {
@@ -26,6 +26,14 @@ var SignInComponent = (function () {
         }, function (error) {
             _this.authenticationFailed = true;
         });
+    };
+    SignInComponent.prototype.signInClicked = function (userName, password) {
+        this.signIn(userName, password);
+    };
+    SignInComponent.prototype.passwordKeyPressed = function (event, userName, password) {
+        switch (event.key) {
+            case 'Enter': this.signIn(userName, password);
+        }
     };
     return SignInComponent;
 }());
