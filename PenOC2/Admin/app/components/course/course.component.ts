@@ -54,7 +54,6 @@ export class CourseComponent {
                     this.resultList.forEach(
                         function (result, resultIndex) {
                             let resultTime =  new Date(result.time);
-                            console.log (result.time);
                             // add 2 hours (in milliseconds) for South African Time Zone
                             resultTime.setTime(resultTime.getTime() + 2 * 60 * 60 * 1000);
                             // truncate to only the time portion
@@ -88,7 +87,7 @@ export class CourseComponent {
             .then(data => {
                 data.subscribe(courseData => {
                     this.course.id = courseData.json().id;
-                    this.saveResults()
+                    this.saveResults();
                     this.loadCourse();
                 });
 

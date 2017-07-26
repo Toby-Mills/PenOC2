@@ -49,7 +49,6 @@ var CourseComponent = (function () {
                     _this.resultList = resultsData.json();
                     _this.resultList.forEach(function (result, resultIndex) {
                         var resultTime = new Date(result.time);
-                        console.log(result.time);
                         // add 2 hours (in milliseconds) for South African Time Zone
                         resultTime.setTime(resultTime.getTime() + 2 * 60 * 60 * 1000);
                         // truncate to only the time portion
