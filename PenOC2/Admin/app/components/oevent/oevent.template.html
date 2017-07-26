@@ -1,6 +1,6 @@
 <div *ngIf="oevent"> 
     <form #oeventForm="ngForm" (ngSubmit)="oeventForm.reset();">  
-        <button-bar [title]="'Event Notice: ' + oevent.name + ' | ' + oevent.venue" [buttons]="['save', 'cancel', 'next']" [nextText]="'Courses'"
+        <button-bar [title]="'Event Notice: ' + oevent.name + ' | ' + oevent.venue" [buttons]="['save', 'cancel', 'next']" [nextText]="'Courses & Results'"
 (saveClicked)="saveClicked()"  (cancelClicked)="cancelClicked()"  (nextClicked)="coursesClicked()"
             [editing]="oeventForm.form.dirty"></button-bar>
         <div class="row">
