@@ -14,10 +14,10 @@
         <h2>{{title}}</h2>
     </div>
     <div class="col-xs-9 col-md-4" style="text-align:right;">
-        <button *ngIf="buttons.includes('save') && editing && valid" type="submit" value="Save" (click)="saveRequest($event);" class="btn btn-success">
+        <button *ngIf="buttons.includes('save') && editing && valid" type="button" value="Save" (click)="saveRequest($event);" class="btn btn-success">
             <span class="glyphicon glyphicon-floppy-disk"></span> Save
         </button>
-        <button *ngIf="buttons.includes('cancel') && editing" type="submit" value="Cancel" (click)="cancelRequest($event);" class="btn btn-danger">
+        <button *ngIf="buttons.includes('cancel') && editing" type="button" value="Cancel" (click)="cancelRequest($event);" class="btn btn-danger">
             <span class="glyphicon glyphicon-remove"></span> Cancel
         </button>
         <button *ngIf="buttons.includes('new')" type="button" (click)='newRequest();' class="btn btn-default btn-primary">
