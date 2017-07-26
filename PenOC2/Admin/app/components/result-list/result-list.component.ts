@@ -81,7 +81,13 @@ export class ResultListComponent implements ControlValueAccessor {
         }
     }
 
-    public deleteResult(position: number) {
+    public deleteClicked(event: MouseEvent, position: number) {
+        if (event.buttons > 0) {
+            this.deleteResult(position);
+        }
+    }
+
+    private deleteResult(position: number) {
         this.resultList.splice(
             this.resultList.findIndex(result => result.position === position), 1
         );

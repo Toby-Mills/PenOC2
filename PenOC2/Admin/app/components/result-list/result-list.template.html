@@ -15,7 +15,7 @@
                 <th>Comment</th>
             </tr>
             <tr *ngFor="let result of resultList; let resultIndex = index">
-                <td class='col-xs-1'><button (click)="deleteResult(result.position);" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+                <td class='col-xs-1'><button (click)="deleteClicked($event, result.position);" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
                 <td class='col-xs-1'>{{result.position}}</td>
                 <td class='col-xs-2'><competitor [competitorId]="result.competitorId" (competitorIdChange)="setCompetitor(resultIndex, $event.value)" ></competitor></td>
                 <td class='col-xs-1'><select class='form-control' [(ngModel)]="result.clubId">
