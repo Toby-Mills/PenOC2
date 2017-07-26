@@ -1,6 +1,7 @@
 "use strict";
 var ResultModel = (function () {
     function ResultModel() {
+        this.points = 0;
     }
     return ResultModel;
 }());

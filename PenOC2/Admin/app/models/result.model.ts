@@ -1,4 +1,4 @@
-export class ResultModel{
+export class ResultModel {
     oeventId: number;
     courseId: number;
     course: string;
@@ -6,6 +6,11 @@ export class ResultModel{
     competitor: string;
     position: number;
     time: string;
+    points: number;
     disqualified: boolean;
     comment: string;
+
+    constructor(){
+        this.points = 0;
+    }
 }
