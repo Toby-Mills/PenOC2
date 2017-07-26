@@ -66,9 +66,7 @@ var ResultListComponent = ResultListComponent_1 = (function () {
         }
     };
     ResultListComponent.prototype.deleteClicked = function (event, position) {
-        if (event.buttons > 0) {
-            this.deleteResult(position);
-        }
+        this.deleteResult(position);
     };
     ResultListComponent.prototype.deleteResult = function (position) {
         this.resultList.splice(this.resultList.findIndex(function (result) { return result.position === position; }), 1);
