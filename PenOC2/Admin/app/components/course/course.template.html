@@ -1,6 +1,6 @@
 <div *ngIf="!course">loading course...</div>
 <div *ngIf="course">
-    <form #courseForm="ngForm" (ngSubmit)="courseForm.reset();loadCourse();">  
+    <form #courseForm="ngForm">  
 	<button-bar [title]="'Course: ' + course.name" [buttons]="['save', 'cancel']" (backClicked)="backClicked()" (saveClicked)="upsertCourse()"
 		(cancelClicked)="cancelClicked()" [editing]="courseForm.dirty" [valid]="courseForm.form.valid"></button-bar>
 	<div class='row'>
