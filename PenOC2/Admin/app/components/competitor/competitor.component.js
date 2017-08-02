@@ -125,7 +125,7 @@ var CompetitorComponent = (function () {
                 this.activateSearch(false);
                 break;
             default:
-                this.matchIndex = -1;
+                this.matchIndex = 0;
         }
     };
     CompetitorComponent.prototype.newClicked = function (event) {

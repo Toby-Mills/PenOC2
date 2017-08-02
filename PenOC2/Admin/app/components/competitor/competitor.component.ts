@@ -134,7 +134,7 @@ export class CompetitorComponent {
                 this.activateSearch(false);
                 break;
             default:
-                this.matchIndex = -1;
+                this.matchIndex = 0;
         }
     }
 
