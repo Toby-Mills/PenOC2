@@ -27,7 +27,6 @@ var FileUploadComponent = (function () {
             var msg = successful ? 'successful' : 'unsuccessful';
         }
         catch (err) {
-            console.log('Oops, unable to copy');
         }
         // Remove the selections - NOTE: Should use
         // removeRange(range) when it is supported  
