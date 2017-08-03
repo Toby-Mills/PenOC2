@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CompetitorModel } from '../../models/competitor.model';
 import { CompetitorService } from '../../services/competitor.service';
 import { Router } from '@angular/router';
-//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { CompetitorComponent } from '../competitor/competitor.component';
 
 @Component({
     moduleId: module.id,
