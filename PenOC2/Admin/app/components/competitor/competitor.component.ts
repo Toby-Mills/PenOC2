@@ -3,6 +3,7 @@ import { LookupService } from '../../services/lookup.service';
 import { CompetitorService } from '../../services/competitor.service';
 import { CompetitorModel } from '../../models/competitor.model';
 import { PeoplePipe } from '../../pipes/people.pipe';
+import { CompetitorEditorComponent } from '../competitor-editor/competitor-editor.component';
 
 @Component({
     moduleId: module.id,
@@ -15,6 +16,7 @@ export class CompetitorComponent {
     @Input() peopleOnly: boolean = false;
     @Output() competitorIdChange = new EventEmitter();
     @ViewChild('searchBox') searchBox: any;
+    @ViewChild('competitorEditor') competitorEditor: CompetitorEditorComponent;
 
     public competitor: CompetitorModel;
     public searchString: String = '';
@@ -143,18 +145,11 @@ export class CompetitorComponent {
         event.preventDefault();
     }
 
-    public cancelNewCompetitor() {
-        this.newCompetitor = null;
-    }
+    public newCompetitorSaved(event: any) {
+        let newCompetitor: CompetitorModel;
 
-    public saveNewCompetitor() {
-        if (this.newCompetitor.genderId === 3) { this.newCompetitor.firstName = ''; }
-        this.newCompetitor.fullName = (this.newCompetitor.firstName > '' ? this.newCompetitor.firstName + ' ' : '');
-        this.newCompetitor.fullName = this.newCompetitor.fullName + this.newCompetitor.surname;
-        this.competitorService.postCompetitor(this.newCompetitor).subscribe(data => {
-            this.selectCompetitor(data.json());
-            this.competitorService.getAllCompetitors();
-        });
+        newCompetitor = event[0];
+        this.selectCompetitor(newCompetitor);
     }
 
 }

@@ -13,6 +13,7 @@ var lookup_service_1 = require("../../services/lookup.service");
 var competitor_service_1 = require("../../services/competitor.service");
 var competitor_model_1 = require("../../models/competitor.model");
 var people_pipe_1 = require("../../pipes/people.pipe");
+var competitor_editor_component_1 = require("../competitor-editor/competitor-editor.component");
 var CompetitorComponent = (function () {
     function CompetitorComponent(lookupService, competitorService) {
         this.lookupService = lookupService;
@@ -132,20 +133,10 @@ var CompetitorComponent = (function () {
         this.newCompetitor = new competitor_model_1.CompetitorModel;
         event.preventDefault();
     };
-    CompetitorComponent.prototype.cancelNewCompetitor = function () {
-        this.newCompetitor = null;
-    };
-    CompetitorComponent.prototype.saveNewCompetitor = function () {
-        var _this = this;
-        if (this.newCompetitor.genderId === 3) {
-            this.newCompetitor.firstName = '';
-        }
-        this.newCompetitor.fullName = (this.newCompetitor.firstName > '' ? this.newCompetitor.firstName + ' ' : '');
-        this.newCompetitor.fullName = this.newCompetitor.fullName + this.newCompetitor.surname;
-        this.competitorService.postCompetitor(this.newCompetitor).subscribe(function (data) {
-            _this.selectCompetitor(data.json());
-            _this.competitorService.getAllCompetitors();
-        });
+    CompetitorComponent.prototype.newCompetitorSaved = function (event) {
+        var newCompetitor;
+        newCompetitor = event[0];
+        this.selectCompetitor(newCompetitor);
     };
     return CompetitorComponent;
 }());
@@ -165,6 +156,10 @@ __decorate([
     core_1.ViewChild('searchBox'),
     __metadata("design:type", Object)
 ], CompetitorComponent.prototype, "searchBox", void 0);
+__decorate([
+    core_1.ViewChild('competitorEditor'),
+    __metadata("design:type", competitor_editor_component_1.CompetitorEditorComponent)
+], CompetitorComponent.prototype, "competitorEditor", void 0);
 CompetitorComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

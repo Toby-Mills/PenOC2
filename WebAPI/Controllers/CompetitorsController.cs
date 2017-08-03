@@ -105,6 +105,8 @@ namespace WebAPI.Controllers
 
             db.SubmitChanges();
 
+            competitor.fullName = competitorRecord.strReadOnlyFullName;
+
             return Ok(competitor);
         }
 
@@ -127,9 +129,13 @@ namespace WebAPI.Controllers
                 db.tblCompetitors.InsertOnSubmit(competitorRecord);
                 db.SubmitChanges();
 
-                competitor.id = competitorRecord.idCompetitor;
+                IQueryable<Competitor> queryCompetitors;
+                queryCompetitors = QueryCompetitors();
 
-                return Ok(competitor);
+                queryCompetitors = queryCompetitors.Where(competitor2 => competitor2.id == competitorRecord.idCompetitor).Take(1);
+
+                return Ok(queryCompetitors);
+
             }
             catch(Exception e)
             {

@@ -37,8 +37,9 @@ var CompetitorEditorComponent = (function () {
         else {
             this.competitorService.postCompetitor(this.competitor)
                 .subscribe(function (data) {
+                _this.competitor = data.json();
                 _this.competitorService.getAllCompetitors();
-                _this.saved.emit();
+                _this.saved.emit(_this.competitor);
             });
         }
     };

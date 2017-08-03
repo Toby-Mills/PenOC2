@@ -2,9 +2,9 @@
     <div id="nameLabel" class="competitor-label-box" (click)="activateSearch(true);">
         <span *ngIf="competitor">{{competitor.fullName}}</span>
     </div>
-    <div [hidden]="!searchActive" (mouseenter)="maintainActive();"  class="competitor-lookup-panel">
+    <div [hidden]="!searchActive" (mouseenter)="maintainActive();"  class="competitor-lookup-panel" >
         <div >
-            <input id="searchBox" type="text" #searchBox [(ngModel)]="searchString" (keydown)="keyPressed($event);" class="form-control search-input" (focusout)="delayedActivateSearch(false);"/>
+            <input id="searchBox" type="text" placeholder="search" #searchBox [(ngModel)]="searchString" (keydown)="keyPressed($event);" class="form-control search-input"/>
         </div>
         <div class="clear-button-container">
             <button class="btn btn-primary new-button" (click)="newClicked($event);"><span class="glyphicon glyphicon-plus" title="new"></span></button>
@@ -16,23 +16,7 @@
             </ul>
         </div>
         <div *ngIf="newCompetitor" class="new-competitor-panel drop-panel">
-            <span class="new-competitor-title">New Competitor</span><br />
-            <span  *ngFor="let gender of genderList">
-                <input  type="radio" [(ngModel)]="newCompetitor.genderId"  name="sex" [value]="gender.id" />{{gender.name}}
-            </span>
-            <div [hidden]="newCompetitor.genderId < 1 || newCompetitor.genderId == 3">
-                <div><input [(ngModel)]="newCompetitor.firstName" [hidden]="newCompetitor.genderId == 3" class="form-control" placeholder="first name"/></div>
-                <div><input [(ngModel)]="newCompetitor.surname" class="form-control" placeholder="surname" /></div>
-            </div>
-            <div  [hidden]="newCompetitor.genderId != 3">
-                <input [(ngModel)]="newCompetitor.surname" class="form-control" placeholder="group name" />
-            </div>
-            <button type="button" value="Cancel" (click)="cancelNewCompetitor();" class="btn btn-danger" title="cancel" >
-                <span class="glyphicon glyphicon-remove"></span> Cancel
-            </button>
-            <button type="button" value="Save" (click)="saveNewCompetitor();" class="btn btn-success" title="save" >
-                <span class="glyphicon glyphicon-floppy-disk"></span> Save
-            </button>
+            <competitor-editor [competitor]="newCompetitor" (saved)="newCompetitorSaved($event)" (cancelled)="newCompetitorCancelled()"></competitor-editor>
         </div>
     </div>
 </div>

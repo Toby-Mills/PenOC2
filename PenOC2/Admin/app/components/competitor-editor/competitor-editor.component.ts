@@ -36,8 +36,9 @@ export class CompetitorEditorComponent {
         } else {
             this.competitorService.postCompetitor(this.competitor)
             .subscribe(data => {
+                this.competitor = data.json();
                 this.competitorService.getAllCompetitors();
-                this.saved.emit();
+                this.saved.emit(this.competitor);
             });
         }
     }
