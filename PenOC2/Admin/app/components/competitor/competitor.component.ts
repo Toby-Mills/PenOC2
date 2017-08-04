@@ -145,11 +145,8 @@ export class CompetitorComponent {
         event.preventDefault();
     }
 
-    public newCompetitorSaved(event: any) {
-        let newCompetitor: CompetitorModel;
-
-        newCompetitor = event[0];
-        this.selectCompetitor(newCompetitor);
+    public newCompetitorSaved(competitor: CompetitorModel) {
+        this.selectCompetitor(competitor);
     }
 
 }

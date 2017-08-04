@@ -133,10 +133,8 @@ var CompetitorComponent = (function () {
         this.newCompetitor = new competitor_model_1.CompetitorModel;
         event.preventDefault();
     };
-    CompetitorComponent.prototype.newCompetitorSaved = function (event) {
-        var newCompetitor;
-        newCompetitor = event[0];
-        this.selectCompetitor(newCompetitor);
+    CompetitorComponent.prototype.newCompetitorSaved = function (competitor) {
+        this.selectCompetitor(competitor);
     };
     return CompetitorComponent;
 }());
