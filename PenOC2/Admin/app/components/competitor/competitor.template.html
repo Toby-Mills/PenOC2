@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" tabindex="0" (focus)="activateSearch(true);">
     <div id="nameLabel" class="competitor-label-box" (click)="activateSearch(true);">
         <span *ngIf="competitor">{{competitor.fullName}}</span>
     </div>

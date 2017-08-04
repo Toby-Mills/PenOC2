@@ -76,6 +76,7 @@ export class CompetitorComponent {
             if (this.competitor) {
                 this.searchString = this.competitor.fullName;
                 this.lookupName(this.searchString);
+                this.matchIndex = 0;
             }
         } else {
             this.newCompetitor = null;
@@ -152,4 +153,5 @@ export class CompetitorComponent {
     public newCompetitorCancelled() {
         this.newCompetitor = undefined;
     }
+
 }
