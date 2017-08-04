@@ -136,6 +136,9 @@ var CompetitorComponent = (function () {
     CompetitorComponent.prototype.newCompetitorSaved = function (competitor) {
         this.selectCompetitor(competitor);
     };
+    CompetitorComponent.prototype.newCompetitorCancelled = function () {
+        this.newCompetitor = undefined;
+    };
     return CompetitorComponent;
 }());
 __decorate([

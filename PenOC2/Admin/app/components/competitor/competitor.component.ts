@@ -149,4 +149,7 @@ export class CompetitorComponent {
         this.selectCompetitor(competitor);
     }
 
+    public newCompetitorCancelled() {
+        this.newCompetitor = undefined;
+    }
 }
