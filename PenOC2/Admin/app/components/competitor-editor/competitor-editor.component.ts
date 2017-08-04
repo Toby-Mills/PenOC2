@@ -30,13 +30,14 @@ export class CompetitorEditorComponent {
         if (this.competitor.id > 0) {
             this.competitorService.putCompetitor(this.competitor)
             .subscribe(data => {
+                this.competitor = data.json()[0];
                 this.competitorService.getAllCompetitors();
-                this.saved.emit();
+                this.saved.emit(this.competitor);
             });
         } else {
             this.competitorService.postCompetitor(this.competitor)
             .subscribe(data => {
-                this.competitor = data.json();
+                this.competitor = data.json()[0];
                 this.competitorService.getAllCompetitors();
                 this.saved.emit(this.competitor);
             });

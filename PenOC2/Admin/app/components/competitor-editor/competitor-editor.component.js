@@ -30,14 +30,15 @@ var CompetitorEditorComponent = (function () {
         if (this.competitor.id > 0) {
             this.competitorService.putCompetitor(this.competitor)
                 .subscribe(function (data) {
+                _this.competitor = data.json()[0];
                 _this.competitorService.getAllCompetitors();
-                _this.saved.emit();
+                _this.saved.emit(_this.competitor);
             });
         }
         else {
             this.competitorService.postCompetitor(this.competitor)
                 .subscribe(function (data) {
-                _this.competitor = data.json();
+                _this.competitor = data.json()[0];
                 _this.competitorService.getAllCompetitors();
                 _this.saved.emit(_this.competitor);
             });
