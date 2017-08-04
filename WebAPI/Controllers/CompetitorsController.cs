@@ -105,9 +105,11 @@ namespace WebAPI.Controllers
 
             db.SubmitChanges();
 
-            competitor.fullName = competitorRecord.strReadOnlyFullName;
+            IQueryable<Competitor> queryCompetitors;
+            queryCompetitors = QueryCompetitors();
+            queryCompetitors = queryCompetitors.Where(competitorFromDB => competitorFromDB.id == competitorRecord.idCompetitor);
 
-            return Ok(competitor);
+            return Ok(queryCompetitors);
         }
 
         //---------------------------------------------------------------------------------
@@ -131,8 +133,7 @@ namespace WebAPI.Controllers
 
                 IQueryable<Competitor> queryCompetitors;
                 queryCompetitors = QueryCompetitors();
-
-                queryCompetitors = queryCompetitors.Where(competitor2 => competitor2.id == competitorRecord.idCompetitor).Take(1);
+                queryCompetitors = queryCompetitors.Where(competitorFromDB => competitorFromDB.id == competitorRecord.idCompetitor);
 
                 return Ok(queryCompetitors);
 
