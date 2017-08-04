@@ -1,6 +1,7 @@
  <div id="divModalBackground" *ngIf="competitor" class="competitor-panel-container" (click)="modalClicked($event);">
      <div class="competitor-panel drop-panel"> 
         <div class="competitor-name">
+            <span *ngIf="competitor.id == undefined" class="new-competitor-title">New Competitor</span>
             <span *ngIf="competitor.id > 0" class="new-competitor-title">{{competitor.fullName}} <i>({{competitor.id}})</i></span>
         </div>
         <div class="cancel">
@@ -10,7 +11,7 @@
         </div>
         <div id="divEdit" *ngIf="mode=='edit'">      
             <span  *ngFor="let gender of genderList">
-                <input  type="radio" [(ngModel)]="competitor.genderId"  name="sex" [value]="gender.id" />{{gender.name}}<br>
+                <input  type="radio" [(ngModel)]="competitor.genderId"  name="sex" [value]="gender.id" [id]="'gender_' + gender.id"/><label [for]="'gender_' + gender.id">{{gender.name}}</label><br>
             </span>
             <div [hidden]="competitor.genderId == 3">
                 <div><input [(ngModel)]="competitor.firstName" [hidden]="competitor.genderId == 3" class="form-control" placeholder="first name"/></div>

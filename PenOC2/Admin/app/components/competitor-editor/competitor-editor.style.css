@@ -16,8 +16,9 @@
     overflow: auto;
 }
 
-.competitor-name{
+div.competitor-name{
     float:left;
+    margin-bottom: 10px;
 }
 
 .cancel, #divSave, #divMergeSave{
@@ -26,6 +27,9 @@
 
 #divEdit, #divMerge{
     clear:both;
+    border-top: 1pt #BBBBBB solid;
+    margin-top: 5px;
+    padding-top: 5px;
 }
 
 .new-competitor-title{
