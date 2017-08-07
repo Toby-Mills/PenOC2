@@ -62,6 +62,7 @@ export class ResultListComponent implements ControlValueAccessor {
 
     public renumberPostitions() {
         this.resultList.map(function (result, index) { result.position = index + 1; });
+        this.propagateChange(this.resultList);
     }
 
     public newResult(event: Event) {
@@ -106,6 +107,16 @@ export class ResultListComponent implements ControlValueAccessor {
             this.resultList.findIndex(result => result.position === position), 1
         );
         this.renumberPostitions();
-        this.propagateChange(this.resultList);
+    }
+
+    private sortByTime() {
+        this.resultList.sort(function(result1, result2) {
+            if (result1.disqualified) {return 1; }
+            if (result2.disqualified) {return -1; }
+            if (result1.time > result2.time) {return 1; }
+            if (result1.time < result2.time) {return -1; }
+            if (result1.time = result2.time) {return 0; }
+        });
+        this.renumberPostitions();
     }
 }

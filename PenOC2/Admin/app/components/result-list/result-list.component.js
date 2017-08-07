@@ -48,6 +48,7 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     };
     ResultListComponent.prototype.renumberPostitions = function () {
         this.resultList.map(function (result, index) { result.position = index + 1; });
+        this.propagateChange(this.resultList);
     };
     ResultListComponent.prototype.newResult = function (event) {
         this.resultList.push(new result_model_1.ResultModel);
@@ -84,7 +85,26 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     ResultListComponent.prototype.deleteResult = function (position) {
         this.resultList.splice(this.resultList.findIndex(function (result) { return result.position === position; }), 1);
         this.renumberPostitions();
-        this.propagateChange(this.resultList);
+    };
+    ResultListComponent.prototype.sortByTime = function () {
+        this.resultList.sort(function (result1, result2) {
+            if (result1.disqualified) {
+                return 1;
+            }
+            if (result2.disqualified) {
+                return -1;
+            }
+            if (result1.time > result2.time) {
+                return 1;
+            }
+            if (result1.time < result2.time) {
+                return -1;
+            }
+            if (result1.time = result2.time) {
+                return 0;
+            }
+        });
+        this.renumberPostitions();
     };
     return ResultListComponent;
 }());
