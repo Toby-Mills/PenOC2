@@ -14,12 +14,14 @@ var course_model_1 = require("../../models/course.model");
 var result_model_1 = require("../../models/result.model");
 var lookup_service_1 = require("../../services/lookup.service");
 var forms_1 = require("@angular/forms");
+var competitor_component_1 = require("../competitor/competitor.component");
 var ResultListComponent = ResultListComponent_1 = (function () {
     function ResultListComponent(resultService, lookupService) {
         this.resultService = resultService;
         this.lookupService = lookupService;
         this.propagateChange = function (_) { };
     }
+    // *** Control Value Accessor *************************************
     ResultListComponent.prototype.writeValue = function (value) {
         if (value !== undefined) {
             this.resultList = value;
@@ -28,10 +30,21 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     ResultListComponent.prototype.registerOnChange = function (fn) {
         this.propagateChange = fn;
     };
-    ResultListComponent.prototype.registerOnTouched = function () { };
+    ResultListComponent.prototype.registerOnTouched = function () {
+    };
+    // *****************************************************************
     ResultListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.lookupService.clubList.subscribe(function (clubData) { return _this.clubList = clubData; });
+    };
+    ResultListComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.competitorSelectors.changes.subscribe(function (queryList) {
+            var competitorSeletor = _this.competitorSelectors.last;
+            if (competitorSeletor !== undefined) {
+                competitorSeletor.delayedActivateSearch(true);
+            }
+        });
     };
     ResultListComponent.prototype.renumberPostitions = function () {
         this.resultList.map(function (result, index) { result.position = index + 1; });
@@ -79,6 +92,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", course_model_1.CourseModel)
 ], ResultListComponent.prototype, "course", void 0);
+__decorate([
+    core_1.ViewChildren(competitor_component_1.CompetitorComponent),
+    __metadata("design:type", core_1.QueryList)
+], ResultListComponent.prototype, "competitorSelectors", void 0);
 ResultListComponent = ResultListComponent_1 = __decorate([
     core_1.Component({
         moduleId: module.id,

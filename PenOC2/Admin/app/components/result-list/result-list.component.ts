@@ -1,10 +1,11 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ResultService } from '../../services/result.service';
 import { CourseModel } from '../../models/course.model';
 import { ResultModel } from '../../models/result.model';
 import { CompetitorModel } from '../../models/competitor.model';
 import { LookupService } from '../../services/lookup.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CompetitorComponent } from '../competitor/competitor.component';
 
 @Component({
     moduleId: module.id,
@@ -21,9 +22,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class ResultListComponent implements ControlValueAccessor {
     @Input() course: CourseModel;
+    @ViewChildren(CompetitorComponent) competitorSelectors: QueryList<CompetitorComponent>;
     public clubList: Array<any>;
     private resultList: ResultModel[];
     private propagateChange = (_: any) => {};
+
+    constructor(private resultService: ResultService, private lookupService: LookupService) {
+    }
+
+    // *** Control Value Accessor *************************************
 
     public writeValue(value: ResultModel[]) {
         if (value !== undefined) {
@@ -31,17 +38,26 @@ export class ResultListComponent implements ControlValueAccessor {
         }
     }
 
-  registerOnChange(fn: any) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() {}
-
-    constructor(private resultService: ResultService, private lookupService: LookupService) {
+    registerOnChange(fn: any) {
+        this.propagateChange = fn;
     }
+
+    registerOnTouched() {
+
+    }
+    // *****************************************************************
 
     ngOnInit() {
         this.lookupService.clubList.subscribe(clubData => this.clubList = clubData);
+    }
+
+    ngAfterViewInit() {
+        this.competitorSelectors.changes.subscribe(queryList => {
+            let competitorSeletor: CompetitorComponent = this.competitorSelectors.last;
+            if (competitorSeletor !== undefined) {
+                competitorSeletor.delayedActivateSearch(true);
+            }
+        });
     }
 
     public renumberPostitions() {
