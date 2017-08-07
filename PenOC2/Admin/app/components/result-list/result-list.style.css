@@ -1,3 +1,12 @@
 input[type='checkbox']{
     margin-top: 0px;
 }
+
+th {
+    white-space: nowrap;
+}
+
+th button {
+    margin-left: 10px;
+}
+
