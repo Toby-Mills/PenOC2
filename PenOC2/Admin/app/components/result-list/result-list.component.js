@@ -19,6 +19,7 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     function ResultListComponent(resultService, lookupService) {
         this.resultService = resultService;
         this.lookupService = lookupService;
+        this.newResultToEdit = false;
         this.propagateChange = function (_) { };
     }
     // *** Control Value Accessor *************************************
@@ -40,9 +41,12 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     ResultListComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.competitorSelectors.changes.subscribe(function (queryList) {
-            var competitorSeletor = _this.competitorSelectors.last;
-            if (competitorSeletor !== undefined) {
-                competitorSeletor.delayedActivateSearch(true);
+            if (_this.newResultToEdit === true) {
+                var competitorSeletor = _this.competitorSelectors.last;
+                if (competitorSeletor !== undefined) {
+                    competitorSeletor.delayedActivateSearch(true);
+                }
+                _this.newResultToEdit = false;
             }
         });
     };
@@ -51,6 +55,7 @@ var ResultListComponent = ResultListComponent_1 = (function () {
         this.propagateChange(this.resultList);
     };
     ResultListComponent.prototype.newResult = function (event) {
+        this.newResultToEdit = true;
         this.resultList.push(new result_model_1.ResultModel);
         this.resultList[this.resultList.length - 1].position = this.resultList.length;
         this.propagateChange(this.resultList);

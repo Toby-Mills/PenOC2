@@ -25,6 +25,7 @@ export class ResultListComponent implements ControlValueAccessor {
     @ViewChildren(CompetitorComponent) competitorSelectors: QueryList<CompetitorComponent>;
     public clubList: Array<any>;
     private resultList: ResultModel[];
+    private newResultToEdit: boolean = false;
     private propagateChange = (_: any) => {};
 
     constructor(private resultService: ResultService, private lookupService: LookupService) {
@@ -53,9 +54,12 @@ export class ResultListComponent implements ControlValueAccessor {
 
     ngAfterViewInit() {
         this.competitorSelectors.changes.subscribe(queryList => {
-            let competitorSeletor: CompetitorComponent = this.competitorSelectors.last;
-            if (competitorSeletor !== undefined) {
-                competitorSeletor.delayedActivateSearch(true);
+            if (this.newResultToEdit === true) {
+                let competitorSeletor: CompetitorComponent = this.competitorSelectors.last;
+                if (competitorSeletor !== undefined) {
+                    competitorSeletor.delayedActivateSearch(true);
+                }
+                this.newResultToEdit = false;
             }
         });
     }
@@ -66,6 +70,7 @@ export class ResultListComponent implements ControlValueAccessor {
     }
 
     public newResult(event: Event) {
+        this.newResultToEdit = true;
         this.resultList.push(new ResultModel);
         this.resultList[this.resultList.length - 1].position = this.resultList.length;
         this.propagateChange(this.resultList);
