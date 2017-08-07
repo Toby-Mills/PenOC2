@@ -93,10 +93,10 @@ var ResultListComponent = ResultListComponent_1 = (function () {
     };
     ResultListComponent.prototype.sortByTime = function () {
         this.resultList.sort(function (result1, result2) {
-            if (result1.disqualified) {
+            if (result1.disqualified && !result2.disqualified) {
                 return 1;
             }
-            if (result2.disqualified) {
+            if (result2.disqualified && !result1.disqualified) {
                 return -1;
             }
             if (result1.time > result2.time) {
@@ -105,7 +105,27 @@ var ResultListComponent = ResultListComponent_1 = (function () {
             if (result1.time < result2.time) {
                 return -1;
             }
-            if (result1.time = result2.time) {
+            if (result1.time === result2.time) {
+                return 0;
+            }
+        });
+        this.renumberPostitions();
+    };
+    ResultListComponent.prototype.sortByPoints = function () {
+        this.resultList.sort(function (result1, result2) {
+            if (result1.disqualified && !result2.disqualified) {
+                return 1;
+            }
+            if (result2.disqualified && !result1.disqualified) {
+                return -1;
+            }
+            if (Number(result1.points) > Number(result2.points)) {
+                return -1;
+            }
+            if (Number(result1.points) < Number(result2.points)) {
+                return 1;
+            }
+            if (Number(result1.points) === Number(result2.points)) {
                 return 0;
             }
         });

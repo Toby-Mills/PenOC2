@@ -114,13 +114,24 @@ export class ResultListComponent implements ControlValueAccessor {
         this.renumberPostitions();
     }
 
-    private sortByTime() {
+    public sortByTime() {
         this.resultList.sort(function(result1, result2) {
-            if (result1.disqualified) {return 1; }
-            if (result2.disqualified) {return -1; }
+            if (result1.disqualified && !result2.disqualified) {return 1; }
+            if (result2.disqualified && !result1.disqualified) {return -1; }
             if (result1.time > result2.time) {return 1; }
             if (result1.time < result2.time) {return -1; }
-            if (result1.time = result2.time) {return 0; }
+            if (result1.time === result2.time) {return 0; }
+        });
+        this.renumberPostitions();
+    }
+
+        public sortByPoints() {
+        this.resultList.sort(function(result1, result2) {
+            if (result1.disqualified && !result2.disqualified) {return 1; }
+            if (result2.disqualified && !result1.disqualified) {return -1; }
+            if (Number(result1.points) > Number(result2.points)) {return -1; }
+            if (Number(result1.points) < Number(result2.points)) {return 1; }
+            if (Number(result1.points) === Number(result2.points)) {return 0; }
         });
         this.renumberPostitions();
     }
