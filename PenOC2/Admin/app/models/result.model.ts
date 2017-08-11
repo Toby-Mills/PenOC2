@@ -9,8 +9,10 @@ export class ResultModel {
     points: number;
     disqualified: boolean;
     comment: string;
+    validTime: boolean;
 
     constructor(){
         this.points = 0;
+        this.validTime = true;
     }
 }
