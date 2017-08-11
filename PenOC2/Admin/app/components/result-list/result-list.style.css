@@ -10,3 +10,6 @@ th button {
     margin-left: 10px;
 }
 
+.invalidTime{
+    background-color: red;
+}

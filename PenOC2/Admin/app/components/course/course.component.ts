@@ -58,6 +58,7 @@ export class CourseComponent {
                             resultTime.setTime(resultTime.getTime() + 2 * 60 * 60 * 1000);
                             // truncate to only the time portion
                             result.time = resultTime.toISOString().substring(11, 19);
+                            result.validTime = true;
                         }
                     );
                 });

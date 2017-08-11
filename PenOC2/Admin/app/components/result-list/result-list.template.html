@@ -23,7 +23,7 @@
                     <option *ngFor="let club of clubList" [value]="club.id">{{club.shortName}}</option>
                 </select>
                 <td class='col-xs-1'><input [(ngModel)]="result.raceNumber" class="form-control" /></td>
-                <td class='col-xs-2'><input #time required [(ngModel)]="result.time" (blur)="correctTime(resultIndex, time.value);" class="form-control" /></td>
+                <td class='col-xs-2'><input #time required [(ngModel)]="result.time" (blur)="correctTime(resultIndex, time.value);" class="form-control" [ngClass]="{'invalidTime': !result.validTime}" /></td>
                 <td class='col-xs-1'><input required [(ngModel)]="result.points" class="form-control" /></td>
                 <td class='col-xs-1'><input type="checkbox"  [(ngModel)]="result.disqualified" class="form-control" /></td>
                 <td class='col-xs-2'><input [(ngModel)]="result.comment" class="form-control" /></td>   

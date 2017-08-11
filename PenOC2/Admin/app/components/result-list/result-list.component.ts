@@ -6,6 +6,7 @@ import { CompetitorModel } from '../../models/competitor.model';
 import { LookupService } from '../../services/lookup.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CompetitorComponent } from '../competitor/competitor.component';
+import { ResultTimePipe } from '../../pipes/result-time.pipe';
 
 @Component({
     moduleId: module.id,
@@ -26,9 +27,10 @@ export class ResultListComponent implements ControlValueAccessor {
     public clubList: Array<any>;
     private resultList: ResultModel[];
     private newResultToEdit: boolean = false;
+    private resultTimePipe: ResultTimePipe = new ResultTimePipe();
     private propagateChange = (_: any) => {};
 
-    constructor(private resultService: ResultService, private lookupService: LookupService) {
+    constructor(private resultService: ResultService, private lookupService: LookupService ) {
     }
 
     // *** Control Value Accessor *************************************
@@ -89,6 +91,11 @@ export class ResultListComponent implements ControlValueAccessor {
 
     public correctTime(index: number, timeString: string) {
         let newTimeString: string;
+        let validTime: Boolean = true;
+        let hours: number;
+        let minutes: number;
+        let seconds: number;
+
 
         if (!isNaN(Number(timeString))) {
             if (timeString.length < 6) {
@@ -99,8 +106,31 @@ export class ResultListComponent implements ControlValueAccessor {
             newTimeString = timeString.substr(0, 2) + ':' + newTimeString; // hours
 
             this.resultList[index].time = newTimeString;
-            this.propagateChange(this.resultList);
+        } else {
+            newTimeString = timeString;
         }
+
+        hours = Number(newTimeString.substr(0, 2));
+        minutes = Number(newTimeString.substr(3, 2));
+        seconds = (Number(newTimeString.substr(6, 2)));
+        console.log(hours + ' ' + minutes + ' ' + seconds);
+        switch (true) {
+            case isNaN(hours):
+            case hours > 23:
+            case hours < 0:
+            case isNaN(minutes):
+            case minutes > 59:
+            case minutes < 0:
+            case isNaN(seconds):
+            case seconds > 59:
+            case seconds < 0:
+            validTime = false;
+            break;
+        }
+
+        this.resultList[index].validTime = validTime;
+
+        this.propagateChange(this.resultList);
     }
 
     public deleteClicked(event: any, position: number) {
