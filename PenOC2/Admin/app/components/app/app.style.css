@@ -19,3 +19,17 @@ h1:hover {
 .clearfix {
     clear: both;
 }
+
+.spin {
+    animation: spinner 1s infinite linear;
+    transform-origin: 50% 50%;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
