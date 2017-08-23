@@ -20,3 +20,17 @@ body{
 .table-hover>tbody>tr:hover>th{
         background-color: inherit !important;
 }
+
+.spin {
+    animation: spinner 1s infinite linear;
+    transform-origin: 50% 50%;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
