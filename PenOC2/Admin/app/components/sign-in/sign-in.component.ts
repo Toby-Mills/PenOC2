@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class SignInComponent {
     private authenticationFailed = false;
+    private authenticating = false;
     @Output() public authenticated: EventEmitter<any> = new EventEmitter;
     @ViewChild('userName') userName: any;
 
@@ -22,13 +23,16 @@ export class SignInComponent {
 
     private signIn(userName: string, password: string) {
     this.authenticationFailed = false;
+    this.authenticating = true;
             this.apiService.signIn(userName, password).subscribe(authenticated => {
                 if (authenticated) {
                     this.authenticated.emit(true);
+                    this.authenticating = false;
                 }
             },
             error => {
                 this.authenticationFailed = true;
+                //this.authenticating = false;
             });
     }
 

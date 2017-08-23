@@ -1,11 +1,12 @@
 <div id="divSignin" *ngIf="!isAuthenticated">
-		<div id="divSignin-Heading"><span>Sign In</span></div>
-		<div id="divSignin-Content">
-			<span>User Name</span><br>
-			<input type="text" #userName /><br>
-			<span>Password</span><br>
-			<input type="password"  #password (keyup)="passwordKeyPressed($event, userName.value, password.value)" /><br>			
-			<input type="button" value="Sign In" class="btn btn-primary" (click)="signInClicked(userName.value, password.value)" />
-            <div *ngIf="authenticationFailed"><span class="alert-danger">Invalid user name or password</span></div>
-		</div>
+	<div id="divSignin-Heading"><span>Sign In</span></div>
+	<div id="divSignin-Content">
+		<span>User Name</span><br>
+		<input type="text" #userName /><br>
+		<span>Password</span><br>
+		<input type="password"  #password (keyup)="passwordKeyPressed($event, userName.value, password.value)" /><br>			
+		<input type="button" value="Sign In" class="btn btn-primary" (click)="signInClicked(userName.value, password.value)" />
+		<span *ngIf="authenticating"><span class="glyphicon glyphicon-refresh spin"></span><span> authenicating...</span></span>
+		<div *ngIf="authenticationFailed"><span class="alert-danger">Invalid user name or password</span></div>
 	</div>
+</div>

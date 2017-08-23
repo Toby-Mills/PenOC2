@@ -14,6 +14,7 @@ var SignInComponent = (function () {
     function SignInComponent(apiService) {
         this.apiService = apiService;
         this.authenticationFailed = false;
+        this.authenticating = false;
         this.authenticated = new core_1.EventEmitter;
     }
     SignInComponent.prototype.ngAfterViewInit = function () {
@@ -22,12 +23,15 @@ var SignInComponent = (function () {
     SignInComponent.prototype.signIn = function (userName, password) {
         var _this = this;
         this.authenticationFailed = false;
+        this.authenticating = true;
         this.apiService.signIn(userName, password).subscribe(function (authenticated) {
             if (authenticated) {
                 _this.authenticated.emit(true);
+                _this.authenticating = false;
             }
         }, function (error) {
             _this.authenticationFailed = true;
+            //this.authenticating = false;
         });
     };
     SignInComponent.prototype.signInClicked = function (userName, password) {
