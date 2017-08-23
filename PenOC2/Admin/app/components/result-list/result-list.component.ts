@@ -91,7 +91,7 @@ export class ResultListComponent implements ControlValueAccessor {
 
     public correctTime(index: number, timeString: string) {
         let newTimeString: string;
-        let validTime: Boolean = true;
+        let validTime = true;
         let hours: number;
         let minutes: number;
         let seconds: number;

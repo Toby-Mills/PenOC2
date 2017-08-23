@@ -16,7 +16,7 @@ export class ResultService {
 
     putResult(result: ResultModel){
         return Promise.resolve(
-           this.apiService.put('/Results/',JSON.stringify(result))
+           this.apiService.put('/Results/', JSON.stringify(result))
         );
     }
 
