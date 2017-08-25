@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var competitor_model_1 = require("../../models/competitor.model");
 var competitor_service_1 = require("../../services/competitor.service");
 var router_1 = require("@angular/router");
+var modal_message_box_component_1 = require("../modal-message-box/modal-message-box.component");
 var CompetitorListComponent = (function () {
     function CompetitorListComponent(competitorService, router) {
         this.competitorService = competitorService;
@@ -40,12 +41,24 @@ var CompetitorListComponent = (function () {
     CompetitorListComponent.prototype.newCompetitor = function () {
         this.editingCompetitor = new competitor_model_1.CompetitorModel();
     };
+    CompetitorListComponent.prototype.deleteClicked = function (competitor) {
+        this.deletingCompetitor = competitor.id;
+        this.confirmDelete.messageText = 'Are you sure you want to delete competitor "' + competitor.fullName + '"?';
+        this.confirmDelete.display();
+    };
     CompetitorListComponent.prototype.deleteCompetitor = function (competitorId) {
         var _this = this;
         this.competitorService.deleteCompetitor(competitorId).subscribe(function (data) { _this.competitorService.getAllCompetitors(); });
     };
+    CompetitorListComponent.prototype.deleteCompetitorConfirmed = function () {
+        this.deleteCompetitor(this.deletingCompetitor);
+    };
     return CompetitorListComponent;
 }());
+__decorate([
+    core_1.ViewChild(modal_message_box_component_1.ModalMessageBoxComponent),
+    __metadata("design:type", modal_message_box_component_1.ModalMessageBoxComponent)
+], CompetitorListComponent.prototype, "confirmDelete", void 0);
 CompetitorListComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

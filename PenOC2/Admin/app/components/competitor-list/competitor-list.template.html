@@ -15,8 +15,9 @@
 				<td>{{competitor.firstName}}</td>
 				<td>{{competitor.surname}}</td>
 				<td>{{competitor.gender}}</td>
-				<td><button (click)="deleteCompetitor(competitor.id);" class="btn btn-danger competitor-delete"><span class="glyphicon glyphicon-remove"></span></button></td>
+				<td><button (click)="deleteClicked(competitor);" class="btn btn-danger competitor-delete"><span class="glyphicon glyphicon-remove"></span></button></td>
 			</tr>
 		</table>
 	</div>
 </div>
+<modal-message-box id="confirmDelete" [titleText]="'Confirm delete of competitor'" [messageText]="'Are you sure you want to delete this competitor?'" [okButtonText]="'Delete'" [cancelButtonText]="'Cancel'" (okClicked)="deleteCompetitorConfirmed();"></modal-message-box>
