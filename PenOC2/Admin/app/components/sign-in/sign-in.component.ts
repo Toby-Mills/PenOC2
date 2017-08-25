@@ -32,7 +32,7 @@ export class SignInComponent {
             },
             error => {
                 this.authenticationFailed = true;
-                //this.authenticating = false;
+                this.authenticating = false;
             });
     }
 

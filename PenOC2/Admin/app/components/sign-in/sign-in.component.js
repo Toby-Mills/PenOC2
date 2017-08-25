@@ -31,7 +31,7 @@ var SignInComponent = (function () {
             }
         }, function (error) {
             _this.authenticationFailed = true;
-            //this.authenticating = false;
+            _this.authenticating = false;
         });
     };
     SignInComponent.prototype.signInClicked = function (userName, password) {
