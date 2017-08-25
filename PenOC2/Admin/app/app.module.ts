@@ -20,7 +20,7 @@ import { NewsItemComponent } from './components/newsItem/newsItem.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { LookupEditorComponent } from './components/lookup-editor/lookup-editor.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-
+import { ModalMessageBoxComponent } from './components/modal-message-box/modal-message-box.component';
 import { ResultTimePipe } from './pipes/result-time.pipe';
 import { DateStringPipe } from './pipes/date-string.pipe';
 import { MatchingCompetitorsPipe } from './pipes/matching-competitors.pipe';
@@ -66,6 +66,7 @@ import { UploadService } from './services/upload.service';
     FileUploadComponent,
     LookupEditorComponent,
     SignInComponent,
+    ModalMessageBoxComponent,
     DateStringPipe,
     ResultTimePipe,
     PeoplePipe,
