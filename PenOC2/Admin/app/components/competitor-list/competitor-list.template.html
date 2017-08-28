@@ -20,4 +20,5 @@
 		</table>
 	</div>
 </div>
+<div *ngIf="!allCompetitors"><span class="glyphicon glyphicon-refresh spin"></span><span> loading competitors...</span></div> 
 <modal-message-box id="confirmDelete" [titleText]="'Confirm delete of competitor'" [messageText]="'Are you sure you want to delete this competitor?'" [okButtonText]="'Delete'" [cancelButtonText]="'Cancel'" (okClicked)="deleteCompetitorConfirmed();"></modal-message-box>
