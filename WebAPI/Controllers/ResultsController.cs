@@ -129,11 +129,11 @@ namespace WebAPI.Controllers
                     blnDisqualified = courseResult.disqualified,
                     strComment = courseResult.comment
                 };
-
                 db.tblResults.InsertOnSubmit(resultRecord);
-                db.SubmitChanges();
             };
-            
+
+            db.SubmitChanges();
+
             return Ok();
         }
 
