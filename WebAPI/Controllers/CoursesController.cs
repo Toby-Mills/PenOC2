@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class CoursesController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -59,6 +58,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("courses")]
         public IHttpActionResult UpdateCourse(Course course)
         {
@@ -82,6 +82,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("courses")]
         public IHttpActionResult InsertCourse(Course course)
         {
@@ -110,6 +111,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpDelete]
         [Authorize]
+        [JwtAuthentication]
         [Route("courses/{courseId}")]
         public IHttpActionResult DeleteCourse(int courseId)
         {

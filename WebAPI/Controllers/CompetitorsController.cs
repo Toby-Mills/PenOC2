@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class CompetitorsController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -87,6 +86,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("competitors")]
         public IHttpActionResult UpdateCompetitor(Competitor competitor)
         {
@@ -115,6 +115,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("competitors")]
         public IHttpActionResult InsertCompetitor(Competitor competitor)
         {
@@ -149,6 +150,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpDelete]
         [Authorize]
+        [JwtAuthentication]
         [Route("competitors/{idCompetitor}")]
         public IHttpActionResult DeleteCompetitor(int idCompetitor)
         {
@@ -166,6 +168,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("competitors/{id1}/merge/{id2}")]
         public IHttpActionResult UpdateCompetitor(int primaryId, int secondaryId)
         {

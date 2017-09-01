@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class CategoriesController : ApiController
     {
         //---------------------------------------------------------------------------------

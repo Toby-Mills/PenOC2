@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class ClubsController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -34,6 +33,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("clubs")]
         public IHttpActionResult InsertClub(Club club)
         {
@@ -56,6 +56,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("clubs")]
         public IHttpActionResult UpdateClub(Club club)
         {
@@ -73,6 +74,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpDelete]
         [Authorize]
+        [JwtAuthentication]
         [Route("clubs/{clubId}")]
         public IHttpActionResult DeleteClub(int clubId)
         {

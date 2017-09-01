@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class VenuesController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -33,6 +32,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("venues")]
         public IHttpActionResult InsertVenue(Venue venue)
         {
@@ -54,6 +54,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("venues")]
         public IHttpActionResult UpdateVenue(Venue venue)
         {
@@ -71,6 +72,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpDelete]
         [Authorize]
+        [JwtAuthentication]
         [Route("venues/{venueId}")]
         public IHttpActionResult DeleteVenue(int venueId)
         {

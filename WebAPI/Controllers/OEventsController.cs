@@ -12,7 +12,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class OEventsController : ApiController
 
     {
@@ -83,6 +82,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("oevents")]
         public IHttpActionResult InsertOEvent(OEvent oevent)
         {
@@ -121,6 +121,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("oevents")]
         public IHttpActionResult UpdateOEvent(OEvent oevent)
         {

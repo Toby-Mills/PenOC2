@@ -11,7 +11,6 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [JwtAuthentication]
     public class NewsItemController : ApiController
     {
         
@@ -48,6 +47,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("newsItems")]
         public IHttpActionResult InsertNewsItem(NewsItem newsItem)
         {
@@ -71,6 +71,7 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         [HttpPut]
         [Authorize]
+        [JwtAuthentication]
         [Route("newsItems")]
         public IHttpActionResult UpdateNewsItem(NewsItem newsItem)
         {
@@ -91,6 +92,7 @@ namespace WebAPI.Controllers
         [FileUpload.MimeMultipart]
         [HttpPost]
         [Authorize]
+        [JwtAuthentication]
         [Route("newsItems/images")]
         public async Task<FileUpload.FileUploadResult> SaveFile()
         {
