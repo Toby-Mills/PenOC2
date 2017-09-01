@@ -12,7 +12,6 @@ namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [JwtAuthentication]
-    [Authorize]
     public class GendersController : ApiController
     {
         //---------------------------------------------------------------------------------

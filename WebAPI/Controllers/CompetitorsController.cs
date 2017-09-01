@@ -12,7 +12,6 @@ namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [JwtAuthentication]
-    [Authorize]
     public class CompetitorsController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -87,6 +86,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPut]
+        [Authorize]
         [Route("competitors")]
         public IHttpActionResult UpdateCompetitor(Competitor competitor)
         {
@@ -114,6 +114,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPost]
+        [Authorize]
         [Route("competitors")]
         public IHttpActionResult InsertCompetitor(Competitor competitor)
         {
@@ -147,6 +148,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpDelete]
+        [Authorize]
         [Route("competitors/{idCompetitor}")]
         public IHttpActionResult DeleteCompetitor(int idCompetitor)
         {
@@ -163,6 +165,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPut]
+        [Authorize]
         [Route("competitors/{id1}/merge/{id2}")]
         public IHttpActionResult UpdateCompetitor(int primaryId, int secondaryId)
         {

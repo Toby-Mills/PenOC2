@@ -13,7 +13,6 @@ namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [JwtAuthentication]
-    [Authorize]
     public class OEventsController : ApiController
 
     {
@@ -83,6 +82,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPost]
+        [Authorize]
         [Route("oevents")]
         public IHttpActionResult InsertOEvent(OEvent oevent)
         {
@@ -120,6 +120,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPut]
+        [Authorize]
         [Route("oevents")]
         public IHttpActionResult UpdateOEvent(OEvent oevent)
         {

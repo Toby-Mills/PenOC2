@@ -12,7 +12,6 @@ namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [JwtAuthentication]
-    [Authorize]
     public class VenuesController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -33,6 +32,7 @@ namespace WebAPI.Controllers
         }
         //---------------------------------------------------------------------------------
         [HttpPost]
+        [Authorize]
         [Route("venues")]
         public IHttpActionResult InsertVenue(Venue venue)
         {
@@ -53,6 +53,7 @@ namespace WebAPI.Controllers
         }
         //---------------------------------------------------------------------------------
         [HttpPut]
+        [Authorize]
         [Route("venues")]
         public IHttpActionResult UpdateVenue(Venue venue)
         {
@@ -69,6 +70,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpDelete]
+        [Authorize]
         [Route("venues/{venueId}")]
         public IHttpActionResult DeleteVenue(int venueId)
         {

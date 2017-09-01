@@ -12,7 +12,6 @@ namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [JwtAuthentication]
-    [Authorize]
     public class CoursesController : ApiController
     {
         //---------------------------------------------------------------------------------
@@ -59,6 +58,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPut]
+        [Authorize]
         [Route("courses")]
         public IHttpActionResult UpdateCourse(Course course)
         {
@@ -81,6 +81,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpPost]
+        [Authorize]
         [Route("courses")]
         public IHttpActionResult InsertCourse(Course course)
         {
@@ -108,6 +109,7 @@ namespace WebAPI.Controllers
 
         //---------------------------------------------------------------------------------
         [HttpDelete]
+        [Authorize]
         [Route("courses/{courseId}")]
         public IHttpActionResult DeleteCourse(int courseId)
         {
