@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NewsModel } from '../../models/news.model';
-import { NewsService } from '../../services/news.service';
+import { NewsModel } from '../../../penoc-sdk/models/news.model';
+import { NewsService } from '../../../penoc-sdk/services/news.service';
 import { Router } from '@angular/router';
 
 @Component({

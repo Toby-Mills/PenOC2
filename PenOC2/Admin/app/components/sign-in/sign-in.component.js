@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var api_service_1 = require("../../services/api.service");
+var api_service_1 = require("../../../penoc-sdk/services/api.service");
 var SignInComponent = (function () {
     function SignInComponent(apiService) {
         this.apiService = apiService;

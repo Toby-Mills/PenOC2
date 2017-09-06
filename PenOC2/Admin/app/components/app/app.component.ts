@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../penoc-sdk/services/api.service';
 
 @Component({
     moduleId: module.id,

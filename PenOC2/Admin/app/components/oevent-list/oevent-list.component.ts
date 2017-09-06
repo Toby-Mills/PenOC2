@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
-import { OEventModel } from '../../models/oevent.model';
-import { OEventService } from '../../services/oevent.service';
+import { OEventModel } from '../../../penoc-sdk/models/oevent.model';
+import { OEventService } from '../../../penoc-sdk/services/oevent.service';
 import { Router } from '@angular/router';
 
 @Component({

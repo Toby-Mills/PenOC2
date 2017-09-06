@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var lookup_service_1 = require("../../services/lookup.service");
-var competitor_service_1 = require("../../services/competitor.service");
-var competitor_model_1 = require("../../models/competitor.model");
+var lookup_service_1 = require("../../../penoc-sdk/services/lookup.service");
+var competitor_service_1 = require("../../../penoc-sdk/services/competitor.service");
+var competitor_model_1 = require("../../../penoc-sdk/models/competitor.model");
 var people_pipe_1 = require("../../pipes/people.pipe");
 var competitor_editor_component_1 = require("../competitor-editor/competitor-editor.component");
 var CompetitorComponent = (function () {

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { CompetitorModel } from '../../models/competitor.model';
-import { CompetitorService } from '../../services/competitor.service';
+import { CompetitorModel } from '../../../penoc-sdk/models/competitor.model';
+import { CompetitorService } from '../../../penoc-sdk/services/competitor.service';
 import { Router } from '@angular/router';
 import { ModalMessageBoxComponent } from '../modal-message-box/modal-message-box.component';
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CompetitorModel } from '../models/competitor.model';
+import { CompetitorModel } from '../../penoc-sdk/models/competitor.model';
 
 //---------------------------------------------------------------------------------------
 @Pipe({ name: 'people' })

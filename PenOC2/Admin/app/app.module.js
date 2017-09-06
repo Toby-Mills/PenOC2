@@ -31,14 +31,7 @@ var result_time_pipe_1 = require("./pipes/result-time.pipe");
 var date_string_pipe_1 = require("./pipes/date-string.pipe");
 var matching_competitors_pipe_1 = require("./pipes/matching-competitors.pipe");
 var people_pipe_1 = require("./pipes/people.pipe");
-var course_service_1 = require("./services/course.service");
-var lookup_service_1 = require("./services/lookup.service");
-var competitor_service_1 = require("./services/competitor.service");
-var oevent_service_1 = require("./services/oevent.service");
-var result_service_1 = require("./services/result.service");
-var news_service_1 = require("./services/news.service");
-var api_service_1 = require("./services/api.service");
-var upload_service_1 = require("./services/upload.service");
+var penoc_sdk_module_1 = require("./../penoc-sdk/penoc-sdk.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -49,6 +42,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
+            penoc_sdk_module_1.PenocSdkModule.forRoot(),
             router_1.RouterModule.forRoot([
                 { path: 'events', component: oevent_list_component_1.OEventListComponent },
                 { path: 'events/:eventId', component: oevent_component_1.OEventComponent },
@@ -82,15 +76,7 @@ AppModule = __decorate([
             people_pipe_1.PeoplePipe,
             matching_competitors_pipe_1.MatchingCompetitorsPipe],
         bootstrap: [app_component_1.AppComponent],
-        providers: [oevent_service_1.OEventService,
-            course_service_1.CourseService,
-            lookup_service_1.LookupService,
-            competitor_service_1.CompetitorService,
-            result_service_1.ResultService,
-            news_service_1.NewsService,
-            api_service_1.ApiService,
-            upload_service_1.UploadService,
-            { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }] // services
+        providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }] // services
     })
 ], AppModule);
 exports.AppModule = AppModule;

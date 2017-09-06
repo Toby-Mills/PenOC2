@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var news_model_1 = require("../../models/news.model");
+var news_model_1 = require("../../../penoc-sdk/models/news.model");
 var router_1 = require("@angular/router");
-var news_service_1 = require("../../services/news.service");
+var news_service_1 = require("../../../penoc-sdk/services/news.service");
 var NewsItemComponent = (function () {
     function NewsItemComponent(newsService, router, route) {
         this.newsService = newsService;

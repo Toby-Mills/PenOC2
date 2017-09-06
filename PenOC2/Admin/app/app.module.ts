@@ -25,20 +25,13 @@ import { ResultTimePipe } from './pipes/result-time.pipe';
 import { DateStringPipe } from './pipes/date-string.pipe';
 import { MatchingCompetitorsPipe } from './pipes/matching-competitors.pipe';
 import { PeoplePipe } from './pipes/people.pipe';
-
-import { CourseService } from './services/course.service';
-import { LookupService } from './services/lookup.service';
-import { CompetitorService } from './services/competitor.service';
-import { OEventService } from './services/oevent.service';
-import { ResultService } from './services/result.service';
-import { NewsService } from './services/news.service';
-import { ApiService } from './services/api.service';
-import { UploadService } from './services/upload.service';
+import { PenocSdkModule } from './../penoc-sdk/penoc-sdk.module';
 
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
     HttpModule,
+    PenocSdkModule.forRoot(),
     RouterModule.forRoot([
       { path: 'events', component: OEventListComponent },
       { path: 'events/:eventId', component: OEventComponent },
@@ -72,15 +65,7 @@ import { UploadService } from './services/upload.service';
     PeoplePipe,
     MatchingCompetitorsPipe],
   bootstrap: [AppComponent],     // root component
-  providers: [OEventService,
-    CourseService,
-    LookupService,
-    CompetitorService,
-    ResultService,
-    NewsService,
-    ApiService,
-    UploadService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}] // services
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}] // services
 })
 export class AppModule {}
 

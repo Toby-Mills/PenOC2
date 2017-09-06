@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var competitor_model_1 = require("../../models/competitor.model");
-var competitor_service_1 = require("../../services/competitor.service");
+var competitor_model_1 = require("../../../penoc-sdk/models/competitor.model");
+var competitor_service_1 = require("../../../penoc-sdk/services/competitor.service");
 var router_1 = require("@angular/router");
 var modal_message_box_component_1 = require("../modal-message-box/modal-message-box.component");
 var CompetitorListComponent = (function () {

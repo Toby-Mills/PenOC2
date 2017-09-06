@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
-import { OEventService } from '../../services/oevent.service';
-import { CourseService } from '../../services/course.service';
-import { OEventModel } from '../../models/oevent.model';
-import { CourseModel } from '../../models/course.model';
+import { OEventService } from '../../../penoc-sdk/services/oevent.service';
+import { CourseService } from '../../../penoc-sdk/services/course.service';
+import { OEventModel } from '../../../penoc-sdk/models/oevent.model';
+import { CourseModel } from '../../../penoc-sdk/models/course.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({

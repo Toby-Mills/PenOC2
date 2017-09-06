@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
-import { LookupService } from '../../services/lookup.service';
-import { OEventModel } from '../../models/oevent.model';
-import { CompetitorModel } from '../../models/competitor.model';
-import { OEventService } from '../../services/oevent.service';
+import { LookupService } from '../../../penoc-sdk/services/lookup.service';
+import { OEventModel } from '../../../penoc-sdk/models/oevent.model';
+import { CompetitorModel } from '../../../penoc-sdk/models/competitor.model';
+import { OEventService } from '../../../penoc-sdk/services/oevent.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({

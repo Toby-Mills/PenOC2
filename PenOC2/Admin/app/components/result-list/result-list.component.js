@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var result_service_1 = require("../../services/result.service");
-var course_model_1 = require("../../models/course.model");
-var result_model_1 = require("../../models/result.model");
-var lookup_service_1 = require("../../services/lookup.service");
+var result_service_1 = require("../../../penoc-sdk/services/result.service");
+var course_model_1 = require("../../../penoc-sdk/models/course.model");
+var result_model_1 = require("../../../penoc-sdk/models/result.model");
+var lookup_service_1 = require("../../../penoc-sdk/services/lookup.service");
 var forms_1 = require("@angular/forms");
 var competitor_component_1 = require("../competitor/competitor.component");
 var result_time_pipe_1 = require("../../pipes/result-time.pipe");

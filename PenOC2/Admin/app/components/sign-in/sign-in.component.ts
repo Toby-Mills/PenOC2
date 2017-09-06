@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../penoc-sdk/services/api.service';
 
 @Component({
     moduleId: module.id,

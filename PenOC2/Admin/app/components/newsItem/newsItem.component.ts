@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NewsModel } from '../../models/news.model';
+import { NewsModel } from '../../../penoc-sdk/models/news.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NewsService } from '../../services/news.service';
+import { NewsService } from '../../../penoc-sdk/services/news.service';
 
 @Component({
     moduleId: module.id,

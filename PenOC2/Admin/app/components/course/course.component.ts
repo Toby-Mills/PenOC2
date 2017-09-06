@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { CourseModel } from '../../models/course.model';
-import { ResultModel } from '../../models/result.model';
-import { CourseService } from '../../services/course.service';
-import { ResultService } from '../../services/result.service';
-import { LookupService } from '../../services/lookup.service';
+import { CourseModel } from '../../../penoc-sdk/models/course.model';
+import { ResultModel } from '../../../penoc-sdk/models/result.model';
+import { CourseService } from '../../../penoc-sdk/services/course.service';
+import { ResultService } from '../../../penoc-sdk/services/result.service';
+import { LookupService } from '../../../penoc-sdk/services/lookup.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ResultListComponent } from '../result-list/result-list.component';
 

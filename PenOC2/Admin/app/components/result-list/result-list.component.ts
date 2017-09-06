@@ -1,9 +1,9 @@
 import { Component, Input, forwardRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
-import { ResultService } from '../../services/result.service';
-import { CourseModel } from '../../models/course.model';
-import { ResultModel } from '../../models/result.model';
-import { CompetitorModel } from '../../models/competitor.model';
-import { LookupService } from '../../services/lookup.service';
+import { ResultService } from '../../../penoc-sdk/services/result.service';
+import { CourseModel } from '../../../penoc-sdk/models/course.model';
+import { ResultModel } from '../../../penoc-sdk/models/result.model';
+import { CompetitorModel } from '../../../penoc-sdk/models/competitor.model';
+import { LookupService } from '../../../penoc-sdk/services/lookup.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CompetitorComponent } from '../competitor/competitor.component';
 import { ResultTimePipe } from '../../pipes/result-time.pipe';

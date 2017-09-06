@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { LookupService } from '../../services/lookup.service';
-import { ClubModel } from '../../models/club.model';
-import { VenueModel } from '../../models/venue.model';
+import { LookupService } from '../../../penoc-sdk/services/lookup.service';
+import { ClubModel } from '../../../penoc-sdk/models/club.model';
+import { VenueModel } from '../../../penoc-sdk/models/venue.model';
 
 @Component({
     moduleId: module.id,

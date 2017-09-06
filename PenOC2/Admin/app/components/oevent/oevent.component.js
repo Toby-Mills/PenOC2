@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var lookup_service_1 = require("../../services/lookup.service");
-var oevent_model_1 = require("../../models/oevent.model");
-var oevent_service_1 = require("../../services/oevent.service");
+var lookup_service_1 = require("../../../penoc-sdk/services/lookup.service");
+var oevent_model_1 = require("../../../penoc-sdk/models/oevent.model");
+var oevent_service_1 = require("../../../penoc-sdk/services/oevent.service");
 var router_1 = require("@angular/router");
 var OEventComponent = (function () {
     function OEventComponent(lookupService, oeventService, router, route) {
