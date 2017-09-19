@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 export class ApiService {
     private apiUrl: string;
     private token: any;
-    public authenticated: boolean = false;
+    public authenticated: false;
 
     public constructor(public http: Http) {
         if (location.host.toLowerCase().startsWith('localhost')) {
