@@ -25,8 +25,8 @@
             It does not matter how young, old or fit you are - you can run, walk or jog the course and progress at your own pace.</p>
         <span id='spanWhatIs' class='clickable'>read more...</span></p> <span class="cardTitle">Stay in touch</span>
         <p>
-            Our email list will keep you informed of event details and results as they become available. To subscribe, send an email to: <a href='mailto:penoc+subscribe@googlegroups.com'>
-                penoc+subscribe@googlegroups.com</a>
+            Our email list will keep you informed of event details and results as they become available. Subscribe to the <a href='https://penoc.us18.list-manage.com/subscribe/post?u=930cfaff6a9f183c90d5a414b&amp;id=ac40b7f57f' target="_blank">
+                Mailing List</a>
         </p>
         <p>
             <a href="https://www.facebook.com/PeninsulaOrienteeringClub/" target="_blank">

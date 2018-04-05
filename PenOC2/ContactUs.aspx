@@ -16,10 +16,7 @@
             <h1><img src="Styles/Images/Email.svg" />
                 Mailing List</h1>
             <span>To receive occassional emails with details of upcoming events, as well as results, join our mailing list.</span><br />
-            <span>Subscribe:</span><br />
-            <span class="clickable"><a href="mailto:penoc+subscribe@googlegroups.com">penoc+subscribe@googlegroups.com</a></span><br />
-            <span>Unsubscribe:</span><br />
-            <span class="clickable"><a href="mailto:penoc+unsubscribe@googlegroups.com">penoc+unsubscribe@googlegroups.com</a></span>
+            <span class="clickable"><a href="https://penoc.us18.list-manage.com/subscribe/post?u=930cfaff6a9f183c90d5a414b&amp;id=ac40b7f57f" target="_blank">Subscribe to List</a></span><br />
         </div>
         
         <div>
