@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         [Route("categories")]
         public IHttpActionResult GetCategories()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var categories = from category in db.lutCategories
+            var categories = from category in db.lutCategory
                          select new LookupValue
                          {
                              name = category.strCategory,

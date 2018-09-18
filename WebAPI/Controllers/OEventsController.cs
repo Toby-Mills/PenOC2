@@ -16,11 +16,11 @@ namespace WebAPI.Controllers
 
     {
         //---------------------------------------------------------------------------------
-        private static IQueryable<OEvent> QueryOEvents()
+        public static IQueryable<OEvent> QueryOEvents()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            return (from @event in db.tblEvents
+            return (from @event in db.tblEvent
                     select new OEvent
                     {
                         id = @event.idEvent,
@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
                         venueId = @event.intVenue,
                         courses = @event.strCourses,
                         plannerId = @event.intPlanner,
-                        planner = @event.tblCompetitorPlanner.strReadOnlyFullName,
+                        planner = @event.tblCompetitor_Planner.strReadOnlyFullName,
                         controllerId = @event.intController,
-                        controller = @event.tblCompetitorController.strReadOnlyFullName,
+                        controller = @event.tblCompetitor_Controller.strReadOnlyFullName,
                         plannerReport = @event.strPlannerReport,
                         controllerReport = @event.strControllerReport,
                         specialNote = @event.strSpecialNote,
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         [Route("oevents/{idEvent}")]
         public IHttpActionResult GetOEvents(int idEvent)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             IQueryable<OEvent> queryEvents = QueryOEvents().Where(@event => @event.id == idEvent);
             
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
         [Route("oevents")]
         public IHttpActionResult InsertOEvent(OEvent oevent)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             tblEvent eventRecord = new tblEvent
             {
@@ -110,8 +110,8 @@ namespace WebAPI.Controllers
             intOrganisingClub = oevent.organizingClubId
         };
 
-            db.tblEvents.InsertOnSubmit(eventRecord);
-            db.SubmitChanges();
+            db.tblEvent.Add(eventRecord);
+            db.SaveChanges();
 
             oevent.id = eventRecord.idEvent;
 
@@ -125,9 +125,9 @@ namespace WebAPI.Controllers
         [Route("oevents")]
         public IHttpActionResult UpdateOEvent(OEvent oevent)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            tblEvent eventRecord = db.tblEvents.Single(e => e.idEvent == oevent.id);
+            tblEvent eventRecord = db.tblEvent.Single(e => e.idEvent == oevent.id);
 
             eventRecord.strName = oevent.name;
             eventRecord.intVenue = oevent.venueId;
@@ -148,7 +148,7 @@ namespace WebAPI.Controllers
             eventRecord.strControllerReport = oevent.controllerReport;
             eventRecord.intOrganisingClub = oevent.organizingClubId;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(oevent);
         }

@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         [Route("genders")]
         public IHttpActionResult GetVenues()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var genders = from gender in db.lutGenders
+            var genders = from gender in db.lutGender
                          select new LookupValue
                          {
                              name = gender.strGender,

@@ -33,9 +33,9 @@ namespace WebAPI.Controllers
 
         public User authenticateUser(string username, string password)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var users = from user in db.tblUsers
+            var users = from user in db.tblUser
                         where (user.strUserName == username && user.strPassword == password)
                         select new User
                         {

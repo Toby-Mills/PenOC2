@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Penoc" Class="PenOCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Penoc" Class="PenocEntities" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=SDRSA50\SQL2014;Initial Catalog=Penoc;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PenocConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.lutCategory" Member="lutCategories">
     <Type Name="lutCategory">

@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         [Route("clubs")]
         public IHttpActionResult GetClubs()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var clubs = from club in db.lutClubs
+            var clubs = from club in db.lutClub
                              select new Club
                              {
                                  fullName = club.strFullName,
@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         [Route("clubs")]
         public IHttpActionResult InsertClub(Club club)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             lutClub clubRecord = new lutClub
             {
@@ -46,8 +46,8 @@ namespace WebAPI.Controllers
 
             };
 
-            db.lutClubs.InsertOnSubmit(clubRecord);
-            db.SubmitChanges();
+            db.lutClub.Add(clubRecord);
+            db.SaveChanges();
 
             club.id = clubRecord.idClub;
 
@@ -60,14 +60,14 @@ namespace WebAPI.Controllers
         [Route("clubs")]
         public IHttpActionResult UpdateClub(Club club)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            lutClub clubRecord = db.lutClubs.Single(c => c.idClub == club.id);
+            lutClub clubRecord = db.lutClub.Single(c => c.idClub == club.id);
 
             clubRecord.strFullName = club.fullName;
             clubRecord.strShortName = club.shortName;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(club);
         }
@@ -78,12 +78,12 @@ namespace WebAPI.Controllers
         [Route("clubs/{clubId}")]
         public IHttpActionResult DeleteClub(int clubId)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<lutClub> queryResults = db.lutClubs.Where(club => club.idClub == clubId);
-            db.lutClubs.DeleteAllOnSubmit(queryResults);
+            IQueryable<lutClub> queryResults = db.lutClub.Where(club => club.idClub == clubId);
+            db.lutClub.RemoveRange(queryResults);
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok();
 

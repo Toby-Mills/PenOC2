@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         [Route("venues")]
         public IHttpActionResult GetVenues()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var venues = from venue in db.tblVenues
+            var venues = from venue in db.tblVenue
                          select new LookupValue
                          {
                              name = venue.strName,
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         [Route("venues")]
         public IHttpActionResult InsertVenue(Venue venue)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             tblVenue venueRecord = new tblVenue
             {
@@ -44,8 +44,8 @@ namespace WebAPI.Controllers
 
             };
 
-            db.tblVenues.InsertOnSubmit(venueRecord);
-            db.SubmitChanges();
+            db.tblVenue.Add(venueRecord);
+            db.SaveChanges();
 
             venue.id = venueRecord.idVenue;
 
@@ -58,13 +58,13 @@ namespace WebAPI.Controllers
         [Route("venues")]
         public IHttpActionResult UpdateVenue(Venue venue)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            tblVenue venueRecord = db.tblVenues.Single(v => v.idVenue == venue.id);
+            tblVenue venueRecord = db.tblVenue.Single(v => v.idVenue == venue.id);
 
             venueRecord.strName = venue.name;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(venue);
         }
@@ -76,12 +76,12 @@ namespace WebAPI.Controllers
         [Route("venues/{venueId}")]
         public IHttpActionResult DeleteVenue(int venueId)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<tblVenue> queryResults = db.tblVenues.Where(venue => venue.idVenue == venueId);
-            db.tblVenues.DeleteAllOnSubmit(queryResults);
+            IQueryable<tblVenue> queryResults = db.tblVenue.Where(venue => venue.idVenue == venueId);
+            db.tblVenue.RemoveRange(queryResults);
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok();
 

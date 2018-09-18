@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
         
         private static IQueryable<NewsItem> QueryNewsItem()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             return (from newsItem in db.tblNews
                     select new NewsItem
@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
         [Route("newsItems")]
         public IHttpActionResult InsertNewsItem(NewsItem newsItem)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             tblNews newsItemRecord = new tblNews
             {
@@ -60,8 +60,8 @@ namespace WebAPI.Controllers
                 strNews = newsItem.news
             };
 
-            db.tblNews.InsertOnSubmit(newsItemRecord);
-            db.SubmitChanges();
+            db.tblNews.Add(newsItemRecord);
+            db.SaveChanges();
 
             newsItem.id = newsItemRecord.idNews;
 
@@ -75,7 +75,7 @@ namespace WebAPI.Controllers
         [Route("newsItems")]
         public IHttpActionResult UpdateNewsItem(NewsItem newsItem)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             tblNews newsItemRecord = db.tblNews.Single(n => n.idNews == newsItem.id);
 
@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
             newsItemRecord.strTitle = newsItem.title;
             newsItemRecord.strNews = newsItem.news;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(newsItem);
         }

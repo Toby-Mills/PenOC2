@@ -16,9 +16,9 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         private static IQueryable<Course> QueryCourses()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            return (from course in db.tblCourses
+            return (from course in db.tblCourse
                     orderby course.intListOrder
                     select new Course
                     {
@@ -62,9 +62,9 @@ namespace WebAPI.Controllers
         [Route("courses")]
         public IHttpActionResult UpdateCourse(Course course)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            tblCourse theCourse = db.tblCourses.Single(c => c.idCourse == course.id);
+            tblCourse theCourse = db.tblCourse.Single(c => c.idCourse == course.id);
             
             theCourse.intEvent = course.eventId;
             theCourse.strName = course.name;
@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
             theCourse.intTechnical = course.difficultyId;
             theCourse.intListOrder = course.listOrder;
             
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(course);
         }
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
         [Route("courses")]
         public IHttpActionResult InsertCourse(Course course)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             tblCourse courseRecord = new tblCourse
             {
@@ -99,8 +99,8 @@ namespace WebAPI.Controllers
                 intListOrder = course.listOrder
             };
 
-            db.tblCourses.InsertOnSubmit(courseRecord);
-            db.SubmitChanges();
+            db.tblCourse.Add(courseRecord);
+            db.SaveChanges();
 
             course.id = courseRecord.idCourse;
 
@@ -115,15 +115,15 @@ namespace WebAPI.Controllers
         [Route("courses/{courseId}")]
         public IHttpActionResult DeleteCourse(int courseId)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<tblResult> queryResults = db.tblResults.Where(result => result.intCourse == courseId);
-            db.tblResults.DeleteAllOnSubmit(queryResults);
+            IQueryable<tblResult> queryResults = db.tblResult.Where(result => result.intCourse == courseId);
+            db.tblResult.RemoveRange(queryResults);
 
-            IQueryable<tblCourse> queryCourses = db.tblCourses.Where(course => course.idCourse == courseId);
-            db.tblCourses.DeleteAllOnSubmit(queryCourses);
+            IQueryable<tblCourse> queryCourses = db.tblCourse.Where(course => course.idCourse == courseId);
+            db.tblCourse.RemoveRange(queryCourses);
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok();
 

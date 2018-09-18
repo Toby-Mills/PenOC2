@@ -16,9 +16,9 @@ namespace WebAPI.Controllers
         //---------------------------------------------------------------------------------
         private static IQueryable<Result> QueryResults()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            return (from result in db.tblResults
+            return (from result in db.tblResult
                     orderby result.intPosition
                     select new Result
                     {
@@ -55,14 +55,14 @@ namespace WebAPI.Controllers
         [Route("courses/{idCourse}/results")]
         public IHttpActionResult DeleteCourseResults(int idCourse)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<tblResult> queryResults = db.tblResults.Where(r => r.intCourse == idCourse);
+            IQueryable<tblResult> queryResults = db.tblResult.Where(r => r.intCourse == idCourse);
 
-            db.tblResults.DeleteAllOnSubmit(queryResults);
+            db.tblResult.RemoveRange(queryResults);
 
             // Ask the DataContext to save all the changes.
-            db.SubmitChanges();
+            db.SaveChanges();
             return Ok();
         }
 
@@ -84,9 +84,9 @@ namespace WebAPI.Controllers
         [Route("results")]
         public IHttpActionResult UpdateResult(Result result)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            tblResult resultRecord = db.tblResults.Single(r => r.intCourse == result.courseId && r.intCompetitor == result.competitorId);
+            tblResult resultRecord = db.tblResult.Single(r => r.intCourse == result.courseId && r.intCompetitor == result.competitorId);
 
             resultRecord.intCategory = result.categoryId;
             resultRecord.intClub = result.clubId;
@@ -97,7 +97,7 @@ namespace WebAPI.Controllers
             resultRecord.blnDisqualified = result.disqualified;
             resultRecord.dteTime = result.time;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok(result);
         }
@@ -110,10 +110,10 @@ namespace WebAPI.Controllers
         public IHttpActionResult UpdateResult(int courseId, Result[] courseResults)
         {
 
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<tblResult> queryResults = db.tblResults.Where(r => r.intCourse == courseId);
-            db.tblResults.DeleteAllOnSubmit(queryResults);
+            IQueryable<tblResult> queryResults = db.tblResult.Where(r => r.intCourse == courseId);
+            db.tblResult.RemoveRange(queryResults);
 
             foreach (Result courseResult in courseResults) {
                 tblResult resultRecord = new tblResult
@@ -129,10 +129,10 @@ namespace WebAPI.Controllers
                     blnDisqualified = courseResult.disqualified,
                     strComment = courseResult.comment
                 };
-                db.tblResults.InsertOnSubmit(resultRecord);
+                db.tblResult.Add(resultRecord);
             };
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok();
         }

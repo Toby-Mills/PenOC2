@@ -15,9 +15,9 @@ namespace WebAPI.Controllers
     {
         //---------------------------------------------------------------------------------
         private static IQueryable<Competitor> QueryCompetitors(){
-             PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-           return (from competitor in db.tblCompetitors      
+           return (from competitor in db.tblCompetitor      
                    orderby competitor.strReadOnlyFullName          
                                             select new Competitor
                                             {
@@ -90,9 +90,9 @@ namespace WebAPI.Controllers
         [Route("competitors")]
         public IHttpActionResult UpdateCompetitor(Competitor competitor)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            tblCompetitor competitorRecord = db.tblCompetitors.Single(c => c.idCompetitor == competitor.id);
+            tblCompetitor competitorRecord = db.tblCompetitor.Single(c => c.idCompetitor == competitor.id);
 
             competitorRecord.strFirstName = competitor.firstName;
             competitorRecord.strSurname = competitor.surname;
@@ -103,7 +103,7 @@ namespace WebAPI.Controllers
             competitorRecord.strTelephone1 = competitor.telephone1;
             competitorRecord.strTelephone2 = competitor.telephone2;
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             IQueryable<Competitor> queryCompetitors;
             queryCompetitors = QueryCompetitors();
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
         [Route("competitors")]
         public IHttpActionResult InsertCompetitor(Competitor competitor)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             try
             {
@@ -130,8 +130,8 @@ namespace WebAPI.Controllers
                     intGender = competitor.genderId,
                 };
 
-                db.tblCompetitors.InsertOnSubmit(competitorRecord);
-                db.SubmitChanges();
+                db.tblCompetitor.Add(competitorRecord);
+                db.SaveChanges();
 
                 IQueryable<Competitor> queryCompetitors;
                 queryCompetitors = QueryCompetitors();
@@ -154,12 +154,11 @@ namespace WebAPI.Controllers
         [Route("competitors/{idCompetitor}")]
         public IHttpActionResult DeleteCompetitor(int idCompetitor)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            IQueryable<tblCompetitor> queryCompetitors = db.tblCompetitors.Where(competitor => competitor.idCompetitor == idCompetitor);
-            db.tblCompetitors.DeleteAllOnSubmit(queryCompetitors);
-
-            db.SubmitChanges();
+            IQueryable<tblCompetitor> queryCompetitors = db.tblCompetitor.Where(competitor => competitor.idCompetitor == idCompetitor);
+            db.tblCompetitor.RemoveRange(queryCompetitors);
+            db.SaveChanges();
 
             return Ok();
 
@@ -172,10 +171,10 @@ namespace WebAPI.Controllers
         [Route("competitors/{id1}/merge/{id2}")]
         public IHttpActionResult UpdateCompetitor(int primaryId, int secondaryId)
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
             // Find all results belonging to secondary Id, to be updated
-            var results = (from result in db.tblResults where result.intCompetitor == secondaryId select new {
+            var results = (from result in db.tblResult where result.intCompetitor == secondaryId select new {
                 intCompetitor = primaryId,
                 intCategory = result.intCategory,
                 blnDisqualified = result.blnDisqualified,
@@ -203,29 +202,29 @@ namespace WebAPI.Controllers
                 result.intPosition = newResult.intPosition;
                 result.strComment = newResult.strComment;
                 result.strRaceNumber = newResult.strRaceNumber;
-                db.tblResults.InsertOnSubmit(result);
+                db.tblResult.Add(result);
             }
 
             // Delete all results belonging to the secondary Id
-            db.tblResults.DeleteAllOnSubmit(from result in db.tblResults where result.intCompetitor == secondaryId select result);
+            db.tblResult.RemoveRange(from result in db.tblResult where result.intCompetitor == secondaryId select result);
 
             // Update each event planned by the secondary Id
-            var eventsPlanned = (from @event in db.tblEvents where @event.intPlanner == secondaryId select @event);
+            var eventsPlanned = (from @event in db.tblEvent where @event.intPlanner == secondaryId select @event);
             foreach (var @event in eventsPlanned){
                 @event.intPlanner = secondaryId;
             };
 
             // Update each event controlled by the secondary Id
-            var eventsControlled = (from @event in db.tblEvents where @event.intController == secondaryId select @event);
+            var eventsControlled = (from @event in db.tblEvent where @event.intController == secondaryId select @event);
             foreach (var @event in eventsControlled)
             {
                 @event.intController = secondaryId;
             };
             
             // Delete the secondary competitor record
-            db.tblCompetitors.DeleteAllOnSubmit(from competitor in db.tblCompetitors where competitor.idCompetitor == secondaryId select competitor);
+            db.tblCompetitor.RemoveRange(from competitor in db.tblCompetitor where competitor.idCompetitor == secondaryId select competitor);
 
-            db.SubmitChanges();
+            db.SaveChanges();
 
             return Ok();
         }

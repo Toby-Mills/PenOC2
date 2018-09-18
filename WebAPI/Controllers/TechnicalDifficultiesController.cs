@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         [Route("technicalDifficulties")]
         public IHttpActionResult GetTechnicalDifficulties()
         {
-            PenOCDataContext db = new PenOCDataContext();
+            PenocEntities db = new PenocEntities();
 
-            var difficulties = from difficulty in db.lutTechnicals
+            var difficulties = from difficulty in db.lutTechnical
                          select new LookupValue
                          {
                              name = difficulty.strTechnical,
