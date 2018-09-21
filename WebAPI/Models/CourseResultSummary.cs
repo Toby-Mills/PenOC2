@@ -8,6 +8,6 @@ namespace WebAPI.Models
     public class CourseResultSummary
     {
         public Course course;
-        public List<Result> topResults;
+        public List<Result> results;
     }
 }

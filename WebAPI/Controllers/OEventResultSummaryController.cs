@@ -13,7 +13,8 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OEventResultSummaryController : ApiController
     {
-        private static IQueryable<OEventResultSummary> QueryResultSummary(){
+        private static IQueryable<OEventResultSummary> QueryResultSummary()
+        {
             PenocEntities db = new PenocEntities();
 
             return (from @event in db.tblEvent
@@ -24,8 +25,11 @@ namespace WebAPI.Controllers
                             id = @event.idEvent,
                             name = @event.strName,
                             date = @event.dteDate,
-                            venue = @event.tblVenue.strName
-
+                            venue = @event.tblVenue.strName,
+                            plannerReport = @event.strPlannerReport,
+                            controllerReport = @event.strControllerReport,
+                            planner = @event.tblCompetitor_Planner.strReadOnlyFullName,
+                            controller = @event.tblCompetitor_Controller.strReadOnlyFullName
                         },
                         courseResults = (from @course in db.tblCourse
                                          orderby @course.intListOrder
@@ -34,9 +38,12 @@ namespace WebAPI.Controllers
                                          {
                                              course = new Course
                                              {
-                                                 name = @course.strName
+                                                 name = @course.strName,
+                                                 length = @course.intLength,
+                                                 climb = @course.intClimb,
+                                                 difficulty = @course.lutTechnical.strTechnical
                                              },
-                                             topResults = (from @result in db.tblResult
+                                             results = (from @result in db.tblResult
                                                         orderby @result.intPosition
                                                         where @result.intCourse == @course.idCourse
                                                         select new Result
@@ -44,8 +51,11 @@ namespace WebAPI.Controllers
                                                             competitor = @result.tblCompetitor.strReadOnlyFullName,
                                                             courseId = @result.intCourse,
                                                             position = @result.intPosition,
-                                                            time = @result.dteTime
-                                                        }).Take(3).ToList()
+                                                            time = @result.dteTime,
+                                                            points = @result.intPoints,
+                                                            comment = @result.strComment,
+                                                            disqualified = @result.blnDisqualified
+                                                        }).ToList()
                                          }).ToList()
                     });
         }
