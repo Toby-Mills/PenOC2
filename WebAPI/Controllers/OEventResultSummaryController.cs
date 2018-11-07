@@ -13,9 +13,10 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OEventResultSummaryController : ApiController
     {
-        private static IQueryable<OEventResultSummary> QueryResultSummary()
+        private static IQueryable<OEventResultSummary> QueryResultSummary(int? maximumResults = 1000)
         {
             PenocEntities db = new PenocEntities();
+
 
             return (from @event in db.tblEvent
                     select new OEventResultSummary
@@ -55,19 +56,35 @@ namespace WebAPI.Controllers
                                                             points = @result.intPoints,
                                                             comment = @result.strComment,
                                                             disqualified = @result.blnDisqualified
-                                                        }).ToList()
+                                                        }).Take(maximumResults.Value)
+                                                        .ToList()
                                          }).ToList()
                     });
         }
 
         //---------------------------------------------------------------------------------
         [HttpGet]
-        [Route("oevents/{idEvent}/resultsummary")]
-        public IHttpActionResult GetOEventResultSummary(int idEvent)
+        [Route("resultsummaries/{idEvent}")]
+        public IHttpActionResult GetOEventResultSummary(int idEvent, int? maximumResults = 1000)
         {
-            IQueryable<OEventResultSummary> queryResultSummary = QueryResultSummary().Where(r => r.oEvent.id == idEvent);
+            IQueryable<OEventResultSummary> queryResultSummary = QueryResultSummary(maximumResults).Where(r => r.oEvent.id == idEvent);
 
             return Ok(queryResultSummary);
         }
+
+        //---------------------------------------------------------------------------------
+        [HttpGet]
+        [Route("resultsummaries")]
+        public IHttpActionResult GetOEventResultSummary(string name = null, string venue = null, DateTime? dateFrom = null, DateTime? dateTo = null, int? maximumResults = -1)
+        {
+            IQueryable<OEventResultSummary> queryResultSummary = QueryResultSummary(maximumResults);
+            if (name != null) { queryResultSummary = queryResultSummary.Where(r => r.oEvent.name.Contains(name)); };
+            if (venue != null) { queryResultSummary = queryResultSummary.Where(r => r.oEvent.venue.Contains(venue)); };
+            if (dateFrom != null) { queryResultSummary = queryResultSummary.Where(r => r.oEvent.date >= dateFrom); };
+            if (dateTo != null) { queryResultSummary = queryResultSummary.Where(r => r.oEvent.date <= dateTo); };
+
+            return Ok(queryResultSummary);
+        }
+
     }
 }
