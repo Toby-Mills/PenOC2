@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Penoc" Class="PenocEntities" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SDRSA50\SQL2014;Initial Catalog=Penoc;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PenocConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.lutCategory" Member="lutCategories">
+    <Type Name="lutCategory">
+      <Column Name="idCategory" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="strCategory" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="intGender" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="lutCategory_tblCompetitor" Member="tblCompetitors" ThisKey="idCategory" OtherKey="intCategory" Type="tblCompetitor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVenue" Member="tblVenues">
+    <Type Name="tblVenue">
+      <Column Name="idVenue" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblVenue_tblEvent" Member="tblEvents" ThisKey="idVenue" OtherKey="intVenue" Type="tblEvent" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lutClub" Member="lutClubs">
+    <Type Name="lutClub">
+      <Column Name="idClub" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strFullName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="strShortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="lutClub_tblEvent" Member="tblEvents" ThisKey="idClub" OtherKey="intOrganisingClub" Type="tblEvent" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lutEventType" Member="lutEventTypes">
+    <Type Name="lutEventType">
+      <Column Name="idEventType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strEventType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strEventTypeIcon" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lutGender" Member="lutGenders">
+    <Type Name="lutGender">
+      <Column Name="idGender" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="strGender" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="lutGender_tblCompetitor" Member="tblCompetitors" ThisKey="idGender" OtherKey="intGender" Type="tblCompetitor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lutTechnical" Member="lutTechnicals">
+    <Type Name="lutTechnical">
+      <Column Name="idTechnical" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="strTechnical" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="decScaleFactor" Type="System.Decimal" DbType="Decimal(3,2)" CanBeNull="true" />
+      <Association Name="lutTechnical_tblCourse" Member="tblCourses" ThisKey="idTechnical" OtherKey="intTechnical" Type="tblCourse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCommittee" Member="tblCommittees">
+    <Type Name="tblCommittee">
+      <Column Name="intCompetitor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="strPosition" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCompetitor" Member="tblCompetitors">
+    <Type Name="tblCompetitor">
+      <Column Name="idCompetitor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strFirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="strSurname" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="intGender" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dteBirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="strTelephone1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strTelephone2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strEmail" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="strReadOnlyFullName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="intEmitNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="strReadOnlyFirstNameMatch" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="strReadOnlySurnameMatch" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tblCompetitor_tblEvent" Member="tblEventsPlanner" ThisKey="idCompetitor" OtherKey="intPlanner" Type="tblEvent" />
+      <Association Name="tblCompetitor_tblEvent1" Member="tblEventsController" ThisKey="idCompetitor" OtherKey="intController" Type="tblEvent" />
+      <Association Name="tblCompetitor_tblResult" Member="tblResults" ThisKey="idCompetitor" OtherKey="intCompetitor" Type="tblResult" />
+      <Association Name="tblCompetitor_tblUser" Member="tblUser" ThisKey="idCompetitor" OtherKey="intCompetitor" Type="tblUser" Cardinality="One" />
+      <Association Name="lutCategory_tblCompetitor" Member="lutCategory" ThisKey="intCategory" OtherKey="idCategory" Type="lutCategory" IsForeignKey="true" />
+      <Association Name="lutGender_tblCompetitor" Member="lutGender" ThisKey="intGender" OtherKey="idGender" Type="lutGender" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCourse" Member="tblCourses">
+    <Type Name="tblCourse">
+      <Column Name="idCourse" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="intEvent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="intLength" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="intClimb" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="intControls" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="intTechnical" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intLog" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strSplitsURL" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="intListOrder" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="lutTechnical_tblCourse" Member="lutTechnical" ThisKey="intTechnical" OtherKey="idTechnical" Type="lutTechnical" IsForeignKey="true" />
+      <Association Name="tblEvent_tblCourse" Member="tblEvent" ThisKey="intEvent" OtherKey="idEvent" Type="tblEvent" IsForeignKey="true" />
+      <Association Name="tblLog_tblCourse" Member="tblLog" ThisKey="intLog" OtherKey="idLog" Type="tblLog" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDownload" Member="tblDownloads">
+    <Type Name="tblDownload">
+      <Column Name="idDownload" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strTitle" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="strDescription" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="intFile" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEvent" Member="tblEvents">
+    <Type Name="tblEvent">
+      <Column Name="idEvent" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dteDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="intVenue" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strContact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="intPlanner" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intController" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strResults" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="strPhotos" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="strPlannerReport" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="strControllerReport" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="strSpecialNote" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="strRegTime" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="strStarts" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="strClose" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="strDirections" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="strCourses" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="strNotice" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="intMaxPoints" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intOrganisingClub" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strCost1" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="decCoordinateLat" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="decCoordinateLong" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="strCost" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tblEvent_tblCourse" Member="tblCourses" ThisKey="idEvent" OtherKey="intEvent" Type="tblCourse" />
+      <Association Name="lutClub_tblEvent" Member="lutClub" ThisKey="intOrganisingClub" OtherKey="idClub" Type="lutClub" IsForeignKey="true" />
+      <Association Name="tblVenue_tblEvent" Member="tblVenue" ThisKey="intVenue" OtherKey="idVenue" Type="tblVenue" IsForeignKey="true" />
+      <Association Name="tblCompetitor_tblEvent" Member="tblCompetitorPlanner" ThisKey="intPlanner" OtherKey="idCompetitor" Type="tblCompetitor" IsForeignKey="true" />
+      <Association Name="tblCompetitor_tblEvent1" Member="tblCompetitorController" ThisKey="intController" OtherKey="idCompetitor" Type="tblCompetitor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblEvent_EventType" Member="tblEvent_EventTypes">
+    <Type Name="tblEvent_EventType">
+      <Column Name="intEvent" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="intEventType" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblFile" Member="tblFiles">
+    <Type Name="tblFile">
+      <Column Name="idFile" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strFileName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="imgFile" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="strdescription" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblLog" Member="tblLogs">
+    <Type Name="tblLog">
+      <Column Name="idLog" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="intYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="strLog" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="intDisregardWorst" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="blnCurrent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tblLog_tblCourse" Member="tblCourses" ThisKey="idLog" OtherKey="intLog" Type="tblCourse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblNews" Member="tblNews">
+    <Type Name="tblNews">
+      <Column Name="idNews" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strNews" Type="System.String" DbType="VarChar(8000) NOT NULL" CanBeNull="false" />
+      <Column Name="dteDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="strTitle" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblResult" Member="tblResults">
+    <Type Name="tblResult">
+      <Column Name="intCompetitor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="intCourse" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="intClub" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dteTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="blnDisqualified" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="strComment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="intPosition" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="intPoints" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strRaceNumber" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="tblCompetitor_tblResult" Member="tblCompetitor" ThisKey="intCompetitor" OtherKey="idCompetitor" Type="tblCompetitor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUser" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="intCompetitor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="strUserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strPassword" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="blnEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="blnAdministrator" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tblCompetitor_tblUser" Member="tblCompetitor" ThisKey="intCompetitor" OtherKey="idCompetitor" Type="tblCompetitor" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

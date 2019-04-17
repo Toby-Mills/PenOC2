@@ -1,0 +1,1454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PenocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="lutCategory">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" Nullable="false" />
+          <Property Name="strCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="intGender" Type="int" />
+        </EntityType>
+        <EntityType Name="lutClub">
+          <Key>
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="idClub" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strFullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="strShortName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="lutEventType">
+          <Key>
+            <PropertyRef Name="idEventType" />
+          </Key>
+          <Property Name="idEventType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strEventType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="strEventTypeIcon" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="lutGender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="strGender" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lutTechnical">
+          <Key>
+            <PropertyRef Name="idTechnical" />
+          </Key>
+          <Property Name="idTechnical" Type="int" Nullable="false" />
+          <Property Name="strTechnical" Type="nvarchar" MaxLength="50" />
+          <Property Name="decScaleFactor" Type="numeric" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblCommittee">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+          </Key>
+          <Property Name="intCompetitor" Type="int" Nullable="false" />
+          <Property Name="strPosition" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblCompetitor">
+          <Key>
+            <PropertyRef Name="idCompetitor" />
+          </Key>
+          <Property Name="idCompetitor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="strSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="intGender" Type="int" />
+          <Property Name="intCategory" Type="int" />
+          <Property Name="dteBirthDate" Type="datetime" />
+          <Property Name="strTelephone1" Type="varchar" MaxLength="50" />
+          <Property Name="strTelephone2" Type="varchar" MaxLength="50" />
+          <Property Name="strEmail" Type="varchar" MaxLength="200" />
+          <Property Name="strReadOnlyFullName" Type="varchar" MaxLength="200" />
+          <Property Name="intEmitNumber" Type="bigint" />
+          <Property Name="strReadOnlyFirstNameMatch" Type="nvarchar" MaxLength="100" />
+          <Property Name="strReadOnlySurnameMatch" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="idCourse" />
+          </Key>
+          <Property Name="idCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intEvent" Type="int" />
+          <Property Name="strName" Type="nvarchar" MaxLength="50" />
+          <Property Name="intLength" Type="smallint" />
+          <Property Name="intClimb" Type="smallint" />
+          <Property Name="intControls" Type="smallint" />
+          <Property Name="intTechnical" Type="int" />
+          <Property Name="intLog" Type="int" />
+          <Property Name="strSplitsURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="intListOrder" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDownload">
+          <Key>
+            <PropertyRef Name="idDownload" />
+          </Key>
+          <Property Name="idDownload" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strTitle" Type="varchar" MaxLength="100" />
+          <Property Name="strDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="intFile" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="idEvent" />
+          </Key>
+          <Property Name="idEvent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strName" Type="nvarchar" MaxLength="50" />
+          <Property Name="dteDate" Type="smalldatetime" />
+          <Property Name="intVenue" Type="int" />
+          <Property Name="strContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="intPlanner" Type="int" />
+          <Property Name="intController" Type="int" />
+          <Property Name="strResults" Type="nvarchar" MaxLength="255" />
+          <Property Name="strPhotos" Type="nvarchar" MaxLength="255" />
+          <Property Name="strPlannerReport" Type="varchar" MaxLength="8000" />
+          <Property Name="strControllerReport" Type="varchar" MaxLength="8000" />
+          <Property Name="strSpecialNote" Type="varchar" MaxLength="8000" />
+          <Property Name="strRegTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="strStarts" Type="nvarchar" MaxLength="100" />
+          <Property Name="strClose" Type="nvarchar" MaxLength="50" />
+          <Property Name="strDirections" Type="varchar" MaxLength="8000" />
+          <Property Name="strCourses" Type="varchar" MaxLength="8000" />
+          <Property Name="strNotice" Type="nvarchar" MaxLength="255" />
+          <Property Name="intMaxPoints" Type="int" />
+          <Property Name="intOrganisingClub" Type="int" />
+          <Property Name="strCost1" Type="varchar" MaxLength="500" />
+          <Property Name="decCoordinateLat" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="decCoordinateLong" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="strCost" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="tblEvent_EventType">
+          <Key>
+            <PropertyRef Name="intEvent" />
+            <PropertyRef Name="intEventType" />
+          </Key>
+          <Property Name="intEvent" Type="int" Nullable="false" />
+          <Property Name="intEventType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFile">
+          <Key>
+            <PropertyRef Name="idFile" />
+          </Key>
+          <Property Name="idFile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strFileName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="imgFile" Type="image" Nullable="false" />
+          <Property Name="strdescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblForum">
+          <Key>
+            <PropertyRef Name="idForum" />
+          </Key>
+          <Property Name="idForum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strForumName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLog">
+          <Key>
+            <PropertyRef Name="idLog" />
+          </Key>
+          <Property Name="idLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="intYear" Type="int" Nullable="false" />
+          <Property Name="strLog" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="intDisregardWorst" Type="int" Nullable="false" />
+          <Property Name="blnCurrent" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMembership">
+          <Key>
+            <PropertyRef Name="idMembership" />
+          </Key>
+          <Property Name="idMembership" Type="int" Nullable="false" />
+          <Property Name="intClub" Type="int" />
+          <Property Name="intYear" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMessage">
+          <Key>
+            <PropertyRef Name="idMessage" />
+          </Key>
+          <Property Name="idMessage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dteDate" Type="datetime" Nullable="false" />
+          <Property Name="intUser" Type="int" Nullable="false" />
+          <Property Name="strMessage" Type="ntext" />
+          <Property Name="intThread" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMinutes">
+          <Key>
+            <PropertyRef Name="idMinutes" />
+          </Key>
+          <Property Name="idMinutes" Type="int" Nullable="false" />
+          <Property Name="dteDate" Type="smalldatetime" />
+          <Property Name="strName" Type="nvarchar" MaxLength="50" />
+          <Property Name="strFileName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="idNews" />
+          </Key>
+          <Property Name="idNews" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNews" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="dteDate" Type="datetime" Nullable="false" />
+          <Property Name="strTitle" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblResult">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+            <PropertyRef Name="intCourse" />
+          </Key>
+          <Property Name="intCompetitor" Type="int" Nullable="false" />
+          <Property Name="intCourse" Type="int" Nullable="false" />
+          <Property Name="intClub" Type="int" />
+          <Property Name="intCategory" Type="int" />
+          <Property Name="dteTime" Type="datetime" />
+          <Property Name="blnDisqualified" Type="bit" Nullable="false" />
+          <Property Name="strComment" Type="nvarchar" MaxLength="255" />
+          <Property Name="intPosition" Type="int" />
+          <Property Name="intPoints" Type="int" />
+          <Property Name="strRaceNumber" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblSplit">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+            <PropertyRef Name="intCourse" />
+            <PropertyRef Name="intSplitNumber" />
+          </Key>
+          <Property Name="intCompetitor" Type="int" Nullable="false" />
+          <Property Name="intCourse" Type="int" Nullable="false" />
+          <Property Name="intSplitNumber" Type="int" Nullable="false" />
+          <Property Name="strSplitName" Type="nvarchar" MaxLength="50" />
+          <Property Name="dteSplitTime" Type="smalldatetime" />
+          <Property Name="dteCumTime" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tblThread">
+          <Key>
+            <PropertyRef Name="idThread" />
+          </Key>
+          <Property Name="idThread" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strThread" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="intForum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+          </Key>
+          <Property Name="intCompetitor" Type="int" Nullable="false" />
+          <Property Name="strUserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="strPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="blnEnabled" Type="bit" Nullable="false" />
+          <Property Name="blnAdministrator" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVenue">
+          <Key>
+            <PropertyRef Name="idVenue" />
+          </Key>
+          <Property Name="idVenue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Penoc.dbo.tblWorkItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblWorkItem">
+          <Key>
+            <PropertyRef Name="idWorkItem" />
+            <PropertyRef Name="strWorkItem" />
+            <PropertyRef Name="blnResolved" />
+          </Key>
+          <Property Name="idWorkItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strWorkItem" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="blnResolved" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCompetitor_lutCategory">
+          <End Role="lutCategory" Type="Self.lutCategory" Multiplicity="0..1" />
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutCategory">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="tblCompetitor">
+              <PropertyRef Name="intCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompetitor_lutGender">
+          <End Role="lutGender" Type="Self.lutGender" Multiplicity="0..1" />
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutGender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="tblCompetitor">
+              <PropertyRef Name="intGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_lutTechnical">
+          <End Role="lutTechnical" Type="Self.lutTechnical" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutTechnical">
+              <PropertyRef Name="idTechnical" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intTechnical" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_tblEvent">
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="idEvent" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intEvent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_tblLog">
+          <End Role="tblLog" Type="Self.tblLog" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLog">
+              <PropertyRef Name="idLog" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intLog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_lutClub">
+          <End Role="lutClub" Type="Self.lutClub" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutClub">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intOrganisingClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblCompetitor_Controller">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intController" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblCompetitor_Planner">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intPlanner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblVenue">
+          <End Role="tblVenue" Type="Self.tblVenue" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVenue">
+              <PropertyRef Name="idVenue" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intVenue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembership_lutClub">
+          <End Role="lutClub" Type="Self.lutClub" Multiplicity="0..1" />
+          <End Role="tblMembership" Type="Self.tblMembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutClub">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="tblMembership">
+              <PropertyRef Name="intClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMessage_tblThread">
+          <End Role="tblThread" Type="Self.tblThread" Multiplicity="1" />
+          <End Role="tblMessage" Type="Self.tblMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThread">
+              <PropertyRef Name="idThread" />
+            </Principal>
+            <Dependent Role="tblMessage">
+              <PropertyRef Name="intThread" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMessage_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblMessage" Type="Self.tblMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="intCompetitor" />
+            </Principal>
+            <Dependent Role="tblMessage">
+              <PropertyRef Name="intUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResult_tblCompetitor">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="1" />
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblResult">
+              <PropertyRef Name="intCompetitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResult_tblCourse">
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="1" />
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="idCourse" />
+            </Principal>
+            <Dependent Role="tblResult">
+              <PropertyRef Name="intCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSplit_tblResult">
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="1" />
+          <End Role="tblSplit" Type="Self.tblSplit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblResult">
+              <PropertyRef Name="intCompetitor" />
+              <PropertyRef Name="intCourse" />
+            </Principal>
+            <Dependent Role="tblSplit">
+              <PropertyRef Name="intCompetitor" />
+              <PropertyRef Name="intCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblThread_tblForum">
+          <End Role="tblForum" Type="Self.tblForum" Multiplicity="1" />
+          <End Role="tblThread" Type="Self.tblThread" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblForum">
+              <PropertyRef Name="idForum" />
+            </Principal>
+            <Dependent Role="tblThread">
+              <PropertyRef Name="intForum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblCompetitor">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="intCompetitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PenocModelStoreContainer">
+          <EntitySet Name="lutCategory" EntityType="Self.lutCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lutClub" EntityType="Self.lutClub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lutEventType" EntityType="Self.lutEventType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lutGender" EntityType="Self.lutGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lutTechnical" EntityType="Self.lutTechnical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCommittee" EntityType="Self.tblCommittee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompetitor" EntityType="Self.tblCompetitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCourse" EntityType="Self.tblCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDownload" EntityType="Self.tblDownload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent" EntityType="Self.tblEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent_EventType" EntityType="Self.tblEvent_EventType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFile" EntityType="Self.tblFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblForum" EntityType="Self.tblForum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLog" EntityType="Self.tblLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMembership" EntityType="Self.tblMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMessage" EntityType="Self.tblMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMinutes" EntityType="Self.tblMinutes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblResult" EntityType="Self.tblResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSplit" EntityType="Self.tblSplit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblThread" EntityType="Self.tblThread" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVenue" EntityType="Self.tblVenue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWorkItem" EntityType="Self.tblWorkItem" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblWorkItem].[idWorkItem] AS [idWorkItem], 
+    [tblWorkItem].[strWorkItem] AS [strWorkItem], 
+    [tblWorkItem].[blnResolved] AS [blnResolved]
+    FROM [dbo].[tblWorkItem] AS [tblWorkItem]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblCompetitor_lutCategory" Association="Self.FK_tblCompetitor_lutCategory">
+            <End Role="lutCategory" EntitySet="lutCategory" />
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompetitor_lutGender" Association="Self.FK_tblCompetitor_lutGender">
+            <End Role="lutGender" EntitySet="lutGender" />
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_lutTechnical" Association="Self.FK_tblCourse_lutTechnical">
+            <End Role="lutTechnical" EntitySet="lutTechnical" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_tblEvent" Association="Self.FK_tblCourse_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvent" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_tblLog" Association="Self.FK_tblCourse_tblLog">
+            <End Role="tblLog" EntitySet="tblLog" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_lutClub" Association="Self.FK_tblEvent_lutClub">
+            <End Role="lutClub" EntitySet="lutClub" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblCompetitor_Controller" Association="Self.FK_tblEvent_tblCompetitor_Controller">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblCompetitor_Planner" Association="Self.FK_tblEvent_tblCompetitor_Planner">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblVenue" Association="Self.FK_tblEvent_tblVenue">
+            <End Role="tblVenue" EntitySet="tblVenue" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembership_lutClub" Association="Self.FK_tblMembership_lutClub">
+            <End Role="lutClub" EntitySet="lutClub" />
+            <End Role="tblMembership" EntitySet="tblMembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMessage_tblThread" Association="Self.FK_tblMessage_tblThread">
+            <End Role="tblThread" EntitySet="tblThread" />
+            <End Role="tblMessage" EntitySet="tblMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMessage_tblUser" Association="Self.FK_tblMessage_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblMessage" EntitySet="tblMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResult_tblCompetitor" Association="Self.FK_tblResult_tblCompetitor">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblResult" EntitySet="tblResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResult_tblCourse" Association="Self.FK_tblResult_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourse" />
+            <End Role="tblResult" EntitySet="tblResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSplit_tblResult" Association="Self.FK_tblSplit_tblResult">
+            <End Role="tblResult" EntitySet="tblResult" />
+            <End Role="tblSplit" EntitySet="tblSplit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblThread_tblForum" Association="Self.FK_tblThread_tblForum">
+            <End Role="tblForum" EntitySet="tblForum" />
+            <End Role="tblThread" EntitySet="tblThread" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblCompetitor" Association="Self.FK_tblUser_tblCompetitor">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PenocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="lutCategory">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" />
+          <Property Name="strCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="intGender" Type="Int32" />
+          <NavigationProperty Name="tblCompetitor" Relationship="Self.FK_tblCompetitor_lutCategory" FromRole="lutCategory" ToRole="tblCompetitor" />
+        </EntityType>
+        <EntityType Name="lutClub">
+          <Key>
+            <PropertyRef Name="idClub" />
+          </Key>
+          <Property Name="idClub" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="strShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblEvent" Relationship="Self.FK_tblEvent_lutClub" FromRole="lutClub" ToRole="tblEvent" />
+          <NavigationProperty Name="tblMembership" Relationship="Self.FK_tblMembership_lutClub" FromRole="lutClub" ToRole="tblMembership" />
+        </EntityType>
+        <EntityType Name="lutEventType">
+          <Key>
+            <PropertyRef Name="idEventType" />
+          </Key>
+          <Property Name="idEventType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strEventType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strEventTypeIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="lutGender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="strGender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblCompetitor" Relationship="Self.FK_tblCompetitor_lutGender" FromRole="lutGender" ToRole="tblCompetitor" />
+        </EntityType>
+        <EntityType Name="lutTechnical">
+          <Key>
+            <PropertyRef Name="idTechnical" />
+          </Key>
+          <Property Name="idTechnical" Type="Int32" Nullable="false" />
+          <Property Name="strTechnical" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="decScaleFactor" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="tblCourse" Relationship="Self.FK_tblCourse_lutTechnical" FromRole="lutTechnical" ToRole="tblCourse" />
+        </EntityType>
+        <EntityType Name="tblCommittee">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+          </Key>
+          <Property Name="intCompetitor" Type="Int32" Nullable="false" />
+          <Property Name="strPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblCompetitor">
+          <Key>
+            <PropertyRef Name="idCompetitor" />
+          </Key>
+          <Property Name="idCompetitor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="strSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="intGender" Type="Int32" />
+          <Property Name="intCategory" Type="Int32" />
+          <Property Name="dteBirthDate" Type="DateTime" Precision="3" />
+          <Property Name="strTelephone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strTelephone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="strReadOnlyFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="intEmitNumber" Type="Int64" />
+          <Property Name="strReadOnlyFirstNameMatch" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="strReadOnlySurnameMatch" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="lutCategory" Relationship="Self.FK_tblCompetitor_lutCategory" FromRole="tblCompetitor" ToRole="lutCategory" />
+          <NavigationProperty Name="lutGender" Relationship="Self.FK_tblCompetitor_lutGender" FromRole="tblCompetitor" ToRole="lutGender" />
+          <NavigationProperty Name="tblResult" Relationship="Self.FK_tblResult_tblCompetitor" FromRole="tblCompetitor" ToRole="tblResult" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUser_tblCompetitor" FromRole="tblCompetitor" ToRole="tblUser" />
+          <NavigationProperty Name="tblEvent" Relationship="PenocModel.FK_tblEvent_tblCompetitor_Controller" FromRole="tblCompetitor" ToRole="tblEvent" />
+          <NavigationProperty Name="tblEvent1" Relationship="PenocModel.FK_tblEvent_tblCompetitor_Planner" FromRole="tblCompetitor" ToRole="tblEvent" />
+        </EntityType>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="idCourse" />
+          </Key>
+          <Property Name="idCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intEvent" Type="Int32" />
+          <Property Name="strName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="intLength" Type="Int16" />
+          <Property Name="intClimb" Type="Int16" />
+          <Property Name="intControls" Type="Int16" />
+          <Property Name="intTechnical" Type="Int32" />
+          <Property Name="intLog" Type="Int32" />
+          <Property Name="strSplitsURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="intListOrder" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="lutTechnical" Relationship="Self.FK_tblCourse_lutTechnical" FromRole="tblCourse" ToRole="lutTechnical" />
+          <NavigationProperty Name="tblEvent" Relationship="Self.FK_tblCourse_tblEvent" FromRole="tblCourse" ToRole="tblEvent" />
+          <NavigationProperty Name="tblLog" Relationship="Self.FK_tblCourse_tblLog" FromRole="tblCourse" ToRole="tblLog" />
+          <NavigationProperty Name="tblResult" Relationship="Self.FK_tblResult_tblCourse" FromRole="tblCourse" ToRole="tblResult" />
+        </EntityType>
+        <EntityType Name="tblDownload">
+          <Key>
+            <PropertyRef Name="idDownload" />
+          </Key>
+          <Property Name="idDownload" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="strDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="intFile" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="idEvent" />
+          </Key>
+          <Property Name="idEvent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dteDate" Type="DateTime" Precision="0" />
+          <Property Name="intVenue" Type="Int32" />
+          <Property Name="strContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="intPlanner" Type="Int32" />
+          <Property Name="intController" Type="Int32" />
+          <Property Name="strResults" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="strPhotos" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="strPlannerReport" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="strControllerReport" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="strSpecialNote" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="strRegTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="strStarts" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="strClose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="strDirections" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="strCourses" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="strNotice" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="intMaxPoints" Type="Int32" />
+          <Property Name="intOrganisingClub" Type="Int32" />
+          <Property Name="strCost1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="decCoordinateLat" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="decCoordinateLong" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="strCost" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="lutClub" Relationship="Self.FK_tblEvent_lutClub" FromRole="tblEvent" ToRole="lutClub" />
+          <NavigationProperty Name="tblCourse" Relationship="Self.FK_tblCourse_tblEvent" FromRole="tblEvent" ToRole="tblCourse" />
+          <NavigationProperty Name="tblVenue" Relationship="Self.FK_tblEvent_tblVenue" FromRole="tblEvent" ToRole="tblVenue" />
+          <NavigationProperty Name="tblCompetitor_Controller" Relationship="PenocModel.FK_tblEvent_tblCompetitor_Controller" FromRole="tblEvent" ToRole="tblCompetitor" />
+          <NavigationProperty Name="tblCompetitor_Planner" Relationship="PenocModel.FK_tblEvent_tblCompetitor_Planner" FromRole="tblEvent" ToRole="tblCompetitor" />
+        </EntityType>
+        <EntityType Name="tblEvent_EventType">
+          <Key>
+            <PropertyRef Name="intEvent" />
+            <PropertyRef Name="intEventType" />
+          </Key>
+          <Property Name="intEvent" Type="Int32" Nullable="false" />
+          <Property Name="intEventType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFile">
+          <Key>
+            <PropertyRef Name="idFile" />
+          </Key>
+          <Property Name="idFile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strFileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imgFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="strdescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblForum">
+          <Key>
+            <PropertyRef Name="idForum" />
+          </Key>
+          <Property Name="idForum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strForumName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblThread" Relationship="Self.FK_tblThread_tblForum" FromRole="tblForum" ToRole="tblThread" />
+        </EntityType>
+        <EntityType Name="tblLog">
+          <Key>
+            <PropertyRef Name="idLog" />
+          </Key>
+          <Property Name="idLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="intYear" Type="Int32" Nullable="false" />
+          <Property Name="strLog" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="intDisregardWorst" Type="Int32" Nullable="false" />
+          <Property Name="blnCurrent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCourse" Relationship="Self.FK_tblCourse_tblLog" FromRole="tblLog" ToRole="tblCourse" />
+        </EntityType>
+        <EntityType Name="tblMembership">
+          <Key>
+            <PropertyRef Name="idMembership" />
+          </Key>
+          <Property Name="idMembership" Type="Int32" Nullable="false" />
+          <Property Name="intClub" Type="Int32" />
+          <Property Name="intYear" Type="Int32" />
+          <NavigationProperty Name="lutClub" Relationship="Self.FK_tblMembership_lutClub" FromRole="tblMembership" ToRole="lutClub" />
+        </EntityType>
+        <EntityType Name="tblMessage">
+          <Key>
+            <PropertyRef Name="idMessage" />
+          </Key>
+          <Property Name="idMessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="intUser" Type="Int32" Nullable="false" />
+          <Property Name="strMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="intThread" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblThread" Relationship="Self.FK_tblMessage_tblThread" FromRole="tblMessage" ToRole="tblThread" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblMessage_tblUser" FromRole="tblMessage" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblMinutes">
+          <Key>
+            <PropertyRef Name="idMinutes" />
+          </Key>
+          <Property Name="idMinutes" Type="Int32" Nullable="false" />
+          <Property Name="dteDate" Type="DateTime" Precision="0" />
+          <Property Name="strName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="strFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="idNews" />
+          </Key>
+          <Property Name="idNews" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNews" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dteDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="strTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblResult">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+            <PropertyRef Name="intCourse" />
+          </Key>
+          <Property Name="intCompetitor" Type="Int32" Nullable="false" />
+          <Property Name="intCourse" Type="Int32" Nullable="false" />
+          <Property Name="intClub" Type="Int32" />
+          <Property Name="intCategory" Type="Int32" />
+          <Property Name="dteTime" Type="DateTime" Precision="3" />
+          <Property Name="blnDisqualified" Type="Boolean" Nullable="false" />
+          <Property Name="strComment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="intPosition" Type="Int32" />
+          <Property Name="intPoints" Type="Int32" />
+          <Property Name="strRaceNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCompetitor" Relationship="Self.FK_tblResult_tblCompetitor" FromRole="tblResult" ToRole="tblCompetitor" />
+          <NavigationProperty Name="tblCourse" Relationship="Self.FK_tblResult_tblCourse" FromRole="tblResult" ToRole="tblCourse" />
+          <NavigationProperty Name="tblSplit" Relationship="Self.FK_tblSplit_tblResult" FromRole="tblResult" ToRole="tblSplit" />
+        </EntityType>
+        <EntityType Name="tblSplit">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+            <PropertyRef Name="intCourse" />
+            <PropertyRef Name="intSplitNumber" />
+          </Key>
+          <Property Name="intCompetitor" Type="Int32" Nullable="false" />
+          <Property Name="intCourse" Type="Int32" Nullable="false" />
+          <Property Name="intSplitNumber" Type="Int32" Nullable="false" />
+          <Property Name="strSplitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dteSplitTime" Type="DateTime" Precision="0" />
+          <Property Name="dteCumTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblResult" Relationship="Self.FK_tblSplit_tblResult" FromRole="tblSplit" ToRole="tblResult" />
+        </EntityType>
+        <EntityType Name="tblThread">
+          <Key>
+            <PropertyRef Name="idThread" />
+          </Key>
+          <Property Name="idThread" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strThread" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="intForum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblForum" Relationship="Self.FK_tblThread_tblForum" FromRole="tblThread" ToRole="tblForum" />
+          <NavigationProperty Name="tblMessage" Relationship="Self.FK_tblMessage_tblThread" FromRole="tblThread" ToRole="tblMessage" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="intCompetitor" />
+          </Key>
+          <Property Name="intCompetitor" Type="Int32" Nullable="false" />
+          <Property Name="strUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="blnEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="blnAdministrator" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCompetitor" Relationship="Self.FK_tblUser_tblCompetitor" FromRole="tblUser" ToRole="tblCompetitor" />
+          <NavigationProperty Name="tblMessage" Relationship="Self.FK_tblMessage_tblUser" FromRole="tblUser" ToRole="tblMessage" />
+        </EntityType>
+        <EntityType Name="tblVenue">
+          <Key>
+            <PropertyRef Name="idVenue" />
+          </Key>
+          <Property Name="idVenue" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblEvent" Relationship="Self.FK_tblEvent_tblVenue" FromRole="tblVenue" ToRole="tblEvent" />
+        </EntityType>
+        <EntityType Name="tblWorkItem">
+          <Key>
+            <PropertyRef Name="idWorkItem" />
+            <PropertyRef Name="strWorkItem" />
+            <PropertyRef Name="blnResolved" />
+          </Key>
+          <Property Name="idWorkItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strWorkItem" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="blnResolved" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCompetitor_lutCategory">
+          <End Role="lutCategory" Type="Self.lutCategory" Multiplicity="0..1" />
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutCategory">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="tblCompetitor">
+              <PropertyRef Name="intCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_lutClub">
+          <End Role="lutClub" Type="Self.lutClub" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutClub">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intOrganisingClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembership_lutClub">
+          <End Role="lutClub" Type="Self.lutClub" Multiplicity="0..1" />
+          <End Role="tblMembership" Type="Self.tblMembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutClub">
+              <PropertyRef Name="idClub" />
+            </Principal>
+            <Dependent Role="tblMembership">
+              <PropertyRef Name="intClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompetitor_lutGender">
+          <End Role="lutGender" Type="Self.lutGender" Multiplicity="0..1" />
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutGender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="tblCompetitor">
+              <PropertyRef Name="intGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_lutTechnical">
+          <End Role="lutTechnical" Type="Self.lutTechnical" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lutTechnical">
+              <PropertyRef Name="idTechnical" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intTechnical" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResult_tblCompetitor">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="1" />
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblResult">
+              <PropertyRef Name="intCompetitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblCompetitor">
+          <End Role="tblCompetitor" Type="Self.tblCompetitor" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="intCompetitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_tblEvent">
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="idEvent" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intEvent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCourse_tblLog">
+          <End Role="tblLog" Type="Self.tblLog" Multiplicity="0..1" />
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLog">
+              <PropertyRef Name="idLog" />
+            </Principal>
+            <Dependent Role="tblCourse">
+              <PropertyRef Name="intLog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResult_tblCourse">
+          <End Role="tblCourse" Type="Self.tblCourse" Multiplicity="1" />
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="idCourse" />
+            </Principal>
+            <Dependent Role="tblResult">
+              <PropertyRef Name="intCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblVenue">
+          <End Role="tblVenue" Type="Self.tblVenue" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVenue">
+              <PropertyRef Name="idVenue" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intVenue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblThread_tblForum">
+          <End Role="tblForum" Type="Self.tblForum" Multiplicity="1" />
+          <End Role="tblThread" Type="Self.tblThread" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblForum">
+              <PropertyRef Name="idForum" />
+            </Principal>
+            <Dependent Role="tblThread">
+              <PropertyRef Name="intForum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMessage_tblThread">
+          <End Role="tblThread" Type="Self.tblThread" Multiplicity="1" />
+          <End Role="tblMessage" Type="Self.tblMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThread">
+              <PropertyRef Name="idThread" />
+            </Principal>
+            <Dependent Role="tblMessage">
+              <PropertyRef Name="intThread" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMessage_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblMessage" Type="Self.tblMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="intCompetitor" />
+            </Principal>
+            <Dependent Role="tblMessage">
+              <PropertyRef Name="intUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSplit_tblResult">
+          <End Role="tblResult" Type="Self.tblResult" Multiplicity="1" />
+          <End Role="tblSplit" Type="Self.tblSplit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblResult">
+              <PropertyRef Name="intCompetitor" />
+              <PropertyRef Name="intCourse" />
+            </Principal>
+            <Dependent Role="tblSplit">
+              <PropertyRef Name="intCompetitor" />
+              <PropertyRef Name="intCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PenocEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lutCategory" EntityType="Self.lutCategory" />
+          <EntitySet Name="lutClub" EntityType="Self.lutClub" />
+          <EntitySet Name="lutEventType" EntityType="Self.lutEventType" />
+          <EntitySet Name="lutGender" EntityType="Self.lutGender" />
+          <EntitySet Name="lutTechnical" EntityType="Self.lutTechnical" />
+          <EntitySet Name="tblCommittee" EntityType="Self.tblCommittee" />
+          <EntitySet Name="tblCompetitor" EntityType="Self.tblCompetitor" />
+          <EntitySet Name="tblCourse" EntityType="Self.tblCourse" />
+          <EntitySet Name="tblDownload" EntityType="Self.tblDownload" />
+          <EntitySet Name="tblEvent" EntityType="Self.tblEvent" />
+          <EntitySet Name="tblEvent_EventType" EntityType="Self.tblEvent_EventType" />
+          <EntitySet Name="tblFile" EntityType="Self.tblFile" />
+          <EntitySet Name="tblForum" EntityType="Self.tblForum" />
+          <EntitySet Name="tblLog" EntityType="Self.tblLog" />
+          <EntitySet Name="tblMembership" EntityType="Self.tblMembership" />
+          <EntitySet Name="tblMessage" EntityType="Self.tblMessage" />
+          <EntitySet Name="tblMinutes" EntityType="Self.tblMinutes" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" />
+          <EntitySet Name="tblResult" EntityType="Self.tblResult" />
+          <EntitySet Name="tblSplit" EntityType="Self.tblSplit" />
+          <EntitySet Name="tblThread" EntityType="Self.tblThread" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+          <EntitySet Name="tblVenue" EntityType="Self.tblVenue" />
+          <EntitySet Name="tblWorkItem" EntityType="Self.tblWorkItem" />
+          <AssociationSet Name="FK_tblCompetitor_lutCategory" Association="Self.FK_tblCompetitor_lutCategory">
+            <End Role="lutCategory" EntitySet="lutCategory" />
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_lutClub" Association="Self.FK_tblEvent_lutClub">
+            <End Role="lutClub" EntitySet="lutClub" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembership_lutClub" Association="Self.FK_tblMembership_lutClub">
+            <End Role="lutClub" EntitySet="lutClub" />
+            <End Role="tblMembership" EntitySet="tblMembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompetitor_lutGender" Association="Self.FK_tblCompetitor_lutGender">
+            <End Role="lutGender" EntitySet="lutGender" />
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_lutTechnical" Association="Self.FK_tblCourse_lutTechnical">
+            <End Role="lutTechnical" EntitySet="lutTechnical" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResult_tblCompetitor" Association="Self.FK_tblResult_tblCompetitor">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblResult" EntitySet="tblResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblCompetitor" Association="Self.FK_tblUser_tblCompetitor">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_tblEvent" Association="Self.FK_tblCourse_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvent" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCourse_tblLog" Association="Self.FK_tblCourse_tblLog">
+            <End Role="tblLog" EntitySet="tblLog" />
+            <End Role="tblCourse" EntitySet="tblCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResult_tblCourse" Association="Self.FK_tblResult_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourse" />
+            <End Role="tblResult" EntitySet="tblResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblVenue" Association="Self.FK_tblEvent_tblVenue">
+            <End Role="tblVenue" EntitySet="tblVenue" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblThread_tblForum" Association="Self.FK_tblThread_tblForum">
+            <End Role="tblForum" EntitySet="tblForum" />
+            <End Role="tblThread" EntitySet="tblThread" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMessage_tblThread" Association="Self.FK_tblMessage_tblThread">
+            <End Role="tblThread" EntitySet="tblThread" />
+            <End Role="tblMessage" EntitySet="tblMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMessage_tblUser" Association="Self.FK_tblMessage_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblMessage" EntitySet="tblMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSplit_tblResult" Association="Self.FK_tblSplit_tblResult">
+            <End Role="tblResult" EntitySet="tblResult" />
+            <End Role="tblSplit" EntitySet="tblSplit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblCompetitor_Controller" Association="PenocModel.FK_tblEvent_tblCompetitor_Controller">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblCompetitor_Planner" Association="PenocModel.FK_tblEvent_tblCompetitor_Planner">
+            <End Role="tblCompetitor" EntitySet="tblCompetitor" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblEvent_tblCompetitor_Controller">
+          <End Type="PenocModel.tblCompetitor" Role="tblCompetitor" Multiplicity="0..1" />
+          <End Type="PenocModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intController" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblCompetitor_Planner">
+          <End Type="PenocModel.tblCompetitor" Role="tblCompetitor" Multiplicity="0..1" />
+          <End Type="PenocModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetitor">
+              <PropertyRef Name="idCompetitor" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="intPlanner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PenocModelStoreContainer" CdmEntityContainer="PenocEntities">
+          <EntitySetMapping Name="lutCategory">
+            <EntityTypeMapping TypeName="PenocModel.lutCategory">
+              <MappingFragment StoreEntitySet="lutCategory">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="strCategory" ColumnName="strCategory" />
+                <ScalarProperty Name="intGender" ColumnName="intGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lutClub">
+            <EntityTypeMapping TypeName="PenocModel.lutClub">
+              <MappingFragment StoreEntitySet="lutClub">
+                <ScalarProperty Name="idClub" ColumnName="idClub" />
+                <ScalarProperty Name="strFullName" ColumnName="strFullName" />
+                <ScalarProperty Name="strShortName" ColumnName="strShortName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lutEventType">
+            <EntityTypeMapping TypeName="PenocModel.lutEventType">
+              <MappingFragment StoreEntitySet="lutEventType">
+                <ScalarProperty Name="idEventType" ColumnName="idEventType" />
+                <ScalarProperty Name="strEventType" ColumnName="strEventType" />
+                <ScalarProperty Name="strEventTypeIcon" ColumnName="strEventTypeIcon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lutGender">
+            <EntityTypeMapping TypeName="PenocModel.lutGender">
+              <MappingFragment StoreEntitySet="lutGender">
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="strGender" ColumnName="strGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lutTechnical">
+            <EntityTypeMapping TypeName="PenocModel.lutTechnical">
+              <MappingFragment StoreEntitySet="lutTechnical">
+                <ScalarProperty Name="idTechnical" ColumnName="idTechnical" />
+                <ScalarProperty Name="strTechnical" ColumnName="strTechnical" />
+                <ScalarProperty Name="decScaleFactor" ColumnName="decScaleFactor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCommittee">
+            <EntityTypeMapping TypeName="PenocModel.tblCommittee">
+              <MappingFragment StoreEntitySet="tblCommittee">
+                <ScalarProperty Name="intCompetitor" ColumnName="intCompetitor" />
+                <ScalarProperty Name="strPosition" ColumnName="strPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompetitor">
+            <EntityTypeMapping TypeName="PenocModel.tblCompetitor">
+              <MappingFragment StoreEntitySet="tblCompetitor">
+                <ScalarProperty Name="idCompetitor" ColumnName="idCompetitor" />
+                <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+                <ScalarProperty Name="strSurname" ColumnName="strSurname" />
+                <ScalarProperty Name="intGender" ColumnName="intGender" />
+                <ScalarProperty Name="intCategory" ColumnName="intCategory" />
+                <ScalarProperty Name="dteBirthDate" ColumnName="dteBirthDate" />
+                <ScalarProperty Name="strTelephone1" ColumnName="strTelephone1" />
+                <ScalarProperty Name="strTelephone2" ColumnName="strTelephone2" />
+                <ScalarProperty Name="strEmail" ColumnName="strEmail" />
+                <ScalarProperty Name="strReadOnlyFullName" ColumnName="strReadOnlyFullName" />
+                <ScalarProperty Name="intEmitNumber" ColumnName="intEmitNumber" />
+                <ScalarProperty Name="strReadOnlyFirstNameMatch" ColumnName="strReadOnlyFirstNameMatch" />
+                <ScalarProperty Name="strReadOnlySurnameMatch" ColumnName="strReadOnlySurnameMatch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCourse">
+            <EntityTypeMapping TypeName="PenocModel.tblCourse">
+              <MappingFragment StoreEntitySet="tblCourse">
+                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
+                <ScalarProperty Name="intEvent" ColumnName="intEvent" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="intLength" ColumnName="intLength" />
+                <ScalarProperty Name="intClimb" ColumnName="intClimb" />
+                <ScalarProperty Name="intControls" ColumnName="intControls" />
+                <ScalarProperty Name="intTechnical" ColumnName="intTechnical" />
+                <ScalarProperty Name="intLog" ColumnName="intLog" />
+                <ScalarProperty Name="strSplitsURL" ColumnName="strSplitsURL" />
+                <ScalarProperty Name="intListOrder" ColumnName="intListOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDownload">
+            <EntityTypeMapping TypeName="PenocModel.tblDownload">
+              <MappingFragment StoreEntitySet="tblDownload">
+                <ScalarProperty Name="idDownload" ColumnName="idDownload" />
+                <ScalarProperty Name="strTitle" ColumnName="strTitle" />
+                <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+                <ScalarProperty Name="intFile" ColumnName="intFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvent">
+            <EntityTypeMapping TypeName="PenocModel.tblEvent">
+              <MappingFragment StoreEntitySet="tblEvent">
+                <ScalarProperty Name="idEvent" ColumnName="idEvent" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="dteDate" ColumnName="dteDate" />
+                <ScalarProperty Name="intVenue" ColumnName="intVenue" />
+                <ScalarProperty Name="strContact" ColumnName="strContact" />
+                <ScalarProperty Name="intPlanner" ColumnName="intPlanner" />
+                <ScalarProperty Name="intController" ColumnName="intController" />
+                <ScalarProperty Name="strResults" ColumnName="strResults" />
+                <ScalarProperty Name="strPhotos" ColumnName="strPhotos" />
+                <ScalarProperty Name="strPlannerReport" ColumnName="strPlannerReport" />
+                <ScalarProperty Name="strControllerReport" ColumnName="strControllerReport" />
+                <ScalarProperty Name="strSpecialNote" ColumnName="strSpecialNote" />
+                <ScalarProperty Name="strRegTime" ColumnName="strRegTime" />
+                <ScalarProperty Name="strStarts" ColumnName="strStarts" />
+                <ScalarProperty Name="strClose" ColumnName="strClose" />
+                <ScalarProperty Name="strDirections" ColumnName="strDirections" />
+                <ScalarProperty Name="strCourses" ColumnName="strCourses" />
+                <ScalarProperty Name="strNotice" ColumnName="strNotice" />
+                <ScalarProperty Name="intMaxPoints" ColumnName="intMaxPoints" />
+                <ScalarProperty Name="intOrganisingClub" ColumnName="intOrganisingClub" />
+                <ScalarProperty Name="strCost1" ColumnName="strCost1" />
+                <ScalarProperty Name="decCoordinateLat" ColumnName="decCoordinateLat" />
+                <ScalarProperty Name="decCoordinateLong" ColumnName="decCoordinateLong" />
+                <ScalarProperty Name="strCost" ColumnName="strCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvent_EventType">
+            <EntityTypeMapping TypeName="PenocModel.tblEvent_EventType">
+              <MappingFragment StoreEntitySet="tblEvent_EventType">
+                <ScalarProperty Name="intEvent" ColumnName="intEvent" />
+                <ScalarProperty Name="intEventType" ColumnName="intEventType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFile">
+            <EntityTypeMapping TypeName="PenocModel.tblFile">
+              <MappingFragment StoreEntitySet="tblFile">
+                <ScalarProperty Name="idFile" ColumnName="idFile" />
+                <ScalarProperty Name="strFileName" ColumnName="strFileName" />
+                <ScalarProperty Name="imgFile" ColumnName="imgFile" />
+                <ScalarProperty Name="strdescription" ColumnName="strdescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblForum">
+            <EntityTypeMapping TypeName="PenocModel.tblForum">
+              <MappingFragment StoreEntitySet="tblForum">
+                <ScalarProperty Name="idForum" ColumnName="idForum" />
+                <ScalarProperty Name="strForumName" ColumnName="strForumName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLog">
+            <EntityTypeMapping TypeName="PenocModel.tblLog">
+              <MappingFragment StoreEntitySet="tblLog">
+                <ScalarProperty Name="idLog" ColumnName="idLog" />
+                <ScalarProperty Name="intYear" ColumnName="intYear" />
+                <ScalarProperty Name="strLog" ColumnName="strLog" />
+                <ScalarProperty Name="intDisregardWorst" ColumnName="intDisregardWorst" />
+                <ScalarProperty Name="blnCurrent" ColumnName="blnCurrent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMembership">
+            <EntityTypeMapping TypeName="PenocModel.tblMembership">
+              <MappingFragment StoreEntitySet="tblMembership">
+                <ScalarProperty Name="idMembership" ColumnName="idMembership" />
+                <ScalarProperty Name="intClub" ColumnName="intClub" />
+                <ScalarProperty Name="intYear" ColumnName="intYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMessage">
+            <EntityTypeMapping TypeName="PenocModel.tblMessage">
+              <MappingFragment StoreEntitySet="tblMessage">
+                <ScalarProperty Name="idMessage" ColumnName="idMessage" />
+                <ScalarProperty Name="dteDate" ColumnName="dteDate" />
+                <ScalarProperty Name="intUser" ColumnName="intUser" />
+                <ScalarProperty Name="strMessage" ColumnName="strMessage" />
+                <ScalarProperty Name="intThread" ColumnName="intThread" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMinutes">
+            <EntityTypeMapping TypeName="PenocModel.tblMinutes">
+              <MappingFragment StoreEntitySet="tblMinutes">
+                <ScalarProperty Name="idMinutes" ColumnName="idMinutes" />
+                <ScalarProperty Name="dteDate" ColumnName="dteDate" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="strFileName" ColumnName="strFileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNews">
+            <EntityTypeMapping TypeName="PenocModel.tblNews">
+              <MappingFragment StoreEntitySet="tblNews">
+                <ScalarProperty Name="idNews" ColumnName="idNews" />
+                <ScalarProperty Name="strNews" ColumnName="strNews" />
+                <ScalarProperty Name="dteDate" ColumnName="dteDate" />
+                <ScalarProperty Name="strTitle" ColumnName="strTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblResult">
+            <EntityTypeMapping TypeName="PenocModel.tblResult">
+              <MappingFragment StoreEntitySet="tblResult">
+                <ScalarProperty Name="intCompetitor" ColumnName="intCompetitor" />
+                <ScalarProperty Name="intCourse" ColumnName="intCourse" />
+                <ScalarProperty Name="intClub" ColumnName="intClub" />
+                <ScalarProperty Name="intCategory" ColumnName="intCategory" />
+                <ScalarProperty Name="dteTime" ColumnName="dteTime" />
+                <ScalarProperty Name="blnDisqualified" ColumnName="blnDisqualified" />
+                <ScalarProperty Name="strComment" ColumnName="strComment" />
+                <ScalarProperty Name="intPosition" ColumnName="intPosition" />
+                <ScalarProperty Name="intPoints" ColumnName="intPoints" />
+                <ScalarProperty Name="strRaceNumber" ColumnName="strRaceNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSplit">
+            <EntityTypeMapping TypeName="PenocModel.tblSplit">
+              <MappingFragment StoreEntitySet="tblSplit">
+                <ScalarProperty Name="intCompetitor" ColumnName="intCompetitor" />
+                <ScalarProperty Name="intCourse" ColumnName="intCourse" />
+                <ScalarProperty Name="intSplitNumber" ColumnName="intSplitNumber" />
+                <ScalarProperty Name="strSplitName" ColumnName="strSplitName" />
+                <ScalarProperty Name="dteSplitTime" ColumnName="dteSplitTime" />
+                <ScalarProperty Name="dteCumTime" ColumnName="dteCumTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblThread">
+            <EntityTypeMapping TypeName="PenocModel.tblThread">
+              <MappingFragment StoreEntitySet="tblThread">
+                <ScalarProperty Name="idThread" ColumnName="idThread" />
+                <ScalarProperty Name="strThread" ColumnName="strThread" />
+                <ScalarProperty Name="intForum" ColumnName="intForum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="PenocModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="intCompetitor" ColumnName="intCompetitor" />
+                <ScalarProperty Name="strUserName" ColumnName="strUserName" />
+                <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+                <ScalarProperty Name="blnEnabled" ColumnName="blnEnabled" />
+                <ScalarProperty Name="blnAdministrator" ColumnName="blnAdministrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVenue">
+            <EntityTypeMapping TypeName="PenocModel.tblVenue">
+              <MappingFragment StoreEntitySet="tblVenue">
+                <ScalarProperty Name="idVenue" ColumnName="idVenue" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWorkItem">
+            <EntityTypeMapping TypeName="PenocModel.tblWorkItem">
+              <MappingFragment StoreEntitySet="tblWorkItem">
+                <ScalarProperty Name="idWorkItem" ColumnName="idWorkItem" />
+                <ScalarProperty Name="strWorkItem" ColumnName="strWorkItem" />
+                <ScalarProperty Name="blnResolved" ColumnName="blnResolved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
