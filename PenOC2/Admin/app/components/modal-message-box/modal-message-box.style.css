@@ -1,0 +1,48 @@
+.modal-panel-container {
+    position: fixed;
+    left:0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-panel {
+    padding: 10px;
+    background-color: white;
+    margin: 15% auto;
+    width: 400px;
+    overflow: auto;
+}
+
+
+#divDialogue {
+    width: 400px;
+    margin: 100px auto 10px auto ;
+    border: 1px solid #b7cbdc;
+    border-radius: 5px;
+    padding: 0px;
+    background-color: #FFFFFF;
+}
+
+#divTitle{
+    background-color: #b7cbdc;
+    color:  #000033;
+    margin: 0px;
+    padding: 5px;
+}
+
+#divTitle span {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#divMessage{
+    margin: 10px;
+}
+
+#divButtons {
+    float:right;
+    margin: 10px;
+}

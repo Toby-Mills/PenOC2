@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
+body{
+    font-family: 'Open Sans', Verdana, Helvetica, sans-serif;
+    background-color: lightsteelblue;
+}
+    
+[hidden] {
+  display: none !important;
+}
+
+.filter-box {
+  background-color: #CCCCCC;
+  border-radius: 5px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.table-hover>tbody>tr:hover>th{
+        background-color: inherit !important;
+}
+
+.spin {
+    animation: spinner 1s infinite linear;
+    transform-origin: 50% 50%;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,28 @@
+<div class="row hidden-md hidden-xl hidden-lg">
+    <div class="col-xs-12">
+        <div>
+            <h2>{{title}}</h2>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-md-1">
+        <button *ngIf="buttons.includes('back')" type="button" (click)="backRequest();" class="btn btn-default btn-primary">
+            <span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+    </div>
+    <div class="col-xs-7 hidden-sm hidden-xs">
+        <h2>{{title}}</h2>
+    </div>
+    <div class="col-xs-9 col-md-4" style="text-align:right;">
+        <button *ngIf="buttons.includes('save') && editing && valid" type="button" value="Save" (click)="saveRequest($event);" class="btn btn-success">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Save
+        </button>
+        <button *ngIf="buttons.includes('cancel') && editing" type="button" value="Cancel" (click)="cancelRequest($event);" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+        </button>
+        <button *ngIf="buttons.includes('new')" type="button" (click)='newRequest();' class="btn btn-default btn-primary">
+            <span class="glyphicon glyphicon-plus"></span> {{newText}}</button>
+        <button *ngIf="buttons.includes('next') && !editing" type="button" (click)='nextRequest();' class="btn btn-default btn-primary">
+             {{nextText}} <span class="glyphicon glyphicon-chevron-right"></span> </button>
+    </div>
+</div>

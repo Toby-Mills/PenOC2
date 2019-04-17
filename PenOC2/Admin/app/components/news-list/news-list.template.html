@@ -1,0 +1,16 @@
+<button-bar [title]="'News'" [buttons]="['new']" [newText]="'New News Item'" (newClicked)="newNewsItem()"></button-bar>
+<div *ngIf="newsList">
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>Date</th>
+				<th>Title</th>
+			</tr>
+			<tr *ngFor="let newsItem of newsList" (click)="newsItemClick(newsItem.id)" class="clickable">
+				<td>{{newsItem.date| dateString:'dd MMM yy'}}</td>
+				<td>{{newsItem.title}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div *ngIf="!newsList"><span class="glyphicon glyphicon-refresh spin"></span><span> loading news articles...</span></div> 

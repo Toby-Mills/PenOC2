@@ -1,0 +1,14 @@
+ <div *ngIf="visible" id="divModalBackground" class="modal-panel-container" (click)="modalClicked($event);">
+     <div id="divDialogue" class="modal-panel drop-panel"> 
+         <div id="divTitle">
+             <span>{{titleText}}</span>
+        </div>
+        <div id="divMessage">
+            <span>{{messageText}}</span>
+        </div>
+        <div id="divButtons">
+            <button id="btnOK"(click)="okButtonClicked();">{{okButtonText}}</button>
+            <button id="btnCancel" (click)="cancelButtonClicked();">{{cancelButtonText}}</button>
+         </div>
+     </div>
+ </div>

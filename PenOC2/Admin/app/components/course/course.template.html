@@ -1,0 +1,37 @@
+<div *ngIf="!course">loading course...</div>
+<div *ngIf="course">
+    <form #courseForm="ngForm">  
+	<button-bar [title]="'Course: ' + course.name" [buttons]="['save', 'cancel']" (backClicked)="backClicked()" (saveClicked)="upsertCourse()"
+		(cancelClicked)="cancelClicked()" [editing]="courseForm.dirty" [valid]="courseForm.form.valid"></button-bar>
+	<div class='row'>
+		<div class='col-xs-12 col-md-4'>
+			<dl>
+				<dt><span>Display order:</span></dt>
+				<dd><input class='form-control' name="listOrder" [(ngModel)]="course.listOrder" required /></dd>
+				<dt><span>Name:</span></dt>
+				<dd><input class='form-control' name="name" [(ngModel)]="course.name" required /></dd>
+			</dl>
+		</div>
+		<div class='col-xs-12 col-md-4'>
+			<dl>
+				<dt><span>Length (m):</span></dt>
+				<dd><input class='form-control' name="length" [(ngModel)]="course.length" /></dd>
+				<dt><span>No. Controls:</span></dt>
+				<dd><input class='form-control' name="controls" [(ngModel)]="course.controls" /></dd>
+			</dl>
+		</div>
+		<div class='col-xs-12 col-md-4'>
+			<dl>
+				<dt><span>Climb (m):</span></dt>
+				<dd><input class='form-control' name="climb" [(ngModel)]="course.climb" /></dd>
+				<dt><span>Difficulty:</span></dt>
+				<dd><select class='form-control' name="difficulty" [(ngModel)]="course.difficultyId">
+                    <option *ngFor="let difficulty of technicalDifficultyList" [value]="difficulty.id">{{difficulty.name}}</option>
+                    </select>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<result-list name="results" [(ngModel)]="resultList" [course]="course"></result-list>
+    </form>
+</div> 

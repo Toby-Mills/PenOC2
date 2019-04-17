@@ -1,0 +1,35 @@
+<button-bar [title]="'Results'"></button-bar> 
+<div *ngIf="!resultList"><span class="glyphicon glyphicon-refresh spin"></span><span> loading results...</span></div>
+<div *ngIf="resultList"> 
+    <div style="padding-bottom: 100px;">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th></th>
+                <th>Pos.</th>
+                <th>Competitor</th>
+                <th>Club</th>
+                <th>Race No.</th>
+                <th>Time<button (click)="sortByTime()"><span class="glyphicon glyphicon-sort-by-attributes" title="sort by time, ascending"></span></button></th>
+                <th>Points<button (click)="sortByPoints()"><span class="glyphicon glyphicon-sort-by-attributes-alt" title="sort by points, descending"></span></button></th>
+                <th>Disq.</th>
+                <th>Comment</th>
+            </tr>
+            <tr *ngFor="let result of resultList; let resultIndex = index">
+                <td class='col-xs-1'><button type="button" (click)="deleteClicked($event, result.position);" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+                <td class='col-xs-1'>{{result.position}}</td>
+                <td class='col-xs-2'><competitor [competitorId]="result.competitorId" (competitorIdChange)="setCompetitor(resultIndex, $event.value)" ></competitor></td>
+                <td class='col-xs-1'><select class='form-control' [(ngModel)]="result.clubId">
+                    <option></option>
+                    <option *ngFor="let club of clubList" [value]="club.id">{{club.shortName}}</option>
+                </select>
+                <td class='col-xs-1'><input [(ngModel)]="result.raceNumber" class="form-control" /></td>
+                <td class='col-xs-2'><input #time required [(ngModel)]="result.time" (blur)="correctTime(resultIndex, time.value);" class="form-control" [ngClass]="{'invalidTime': !result.validTime}" /></td>
+                <td class='col-xs-1'><input required [(ngModel)]="result.points" class="form-control" /></td>
+                <td class='col-xs-1'><input type="checkbox"  [(ngModel)]="result.disqualified" class="form-control" /></td>
+                <td class='col-xs-2'><input [(ngModel)]="result.comment" class="form-control" /></td>   
+            </tr>
+        </table>
+        <button (click)="newResult($event);" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"></span> New Result</button>
+    </div>
+    
+</div>

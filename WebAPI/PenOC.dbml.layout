@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.125, 15.25" name="PenOC">
+  <DataContextMoniker Name="/PenOCDataContext" />
+  <nestedChildShapes>
+    <classShape Id="bdf3936a-f3af-4c3e-802e-78e1f92f8039" absoluteBounds="6.75, 11.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/PenOCDataContext/lutCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e05adf73-9c16-4e34-8794-e43b7f6771b7" absoluteBounds="6.765, 12.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bc4a844-6750-42e7-b68c-da934fe3b3eb" absoluteBounds="0.75, 3.875, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/PenOCDataContext/tblVenue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87a3eb1b-3438-4e8a-9ac8-97b4195db6a3" absoluteBounds="0.765, 4.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ba786b2e-3bc0-45bf-825f-e219140b70ef" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/PenOCDataContext/lutClub" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd63d9f2-14b1-45df-b55d-4addeafa253d" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bdca5c4f-7b06-4ecc-9bf1-fa52ad3d0ae8" absoluteBounds="8.75, 1.375, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/PenOCDataContext/lutEventType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="50e444f2-7d01-4223-88ec-2bec3d1fd125" absoluteBounds="8.765, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ec7321ea-341c-494a-bbd6-1ce45fd8e9a9" absoluteBounds="6.75, 8.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/PenOCDataContext/lutGender" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd190c7d-29a0-43a8-a1d0-c3a5c37af122" absoluteBounds="6.765, 9.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff281c39-7af9-4c2e-a895-ffe988a7d53f" absoluteBounds="3.5, 8.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/PenOCDataContext/lutTechnical" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d38edf08-3a90-4171-8706-df63d6b0418e" absoluteBounds="3.515, 8.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="01a3989f-7a43-46e8-a7f7-a2d82689b1e5" absoluteBounds="8.75, 4.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/PenOCDataContext/tblCommittee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="738e57c1-da9a-4ad5-a041-6bd224cac4c0" absoluteBounds="8.765, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a48431f4-1bb0-477c-be93-dbb028c5056f" absoluteBounds="10.625, 6, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/PenOCDataContext/tblCompetitor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54cdabe1-63d2-437c-91c4-760b32a2c9db" absoluteBounds="10.64, 6.4600000000000009, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="051c5799-7731-4ca0-82f8-47e659dfacb4" absoluteBounds="6.25, 3.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/PenOCDataContext/tblCourse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="77e8010e-a5ce-45a3-93d1-6948244ca03f" absoluteBounds="6.265, 3.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aeb616c1-054d-46cb-b367-97e63edf0765" absoluteBounds="11.75, 1.375, 2, 1.5785953776041668">
+      <DataClassMoniker Name="/PenOCDataContext/tblDownload" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38140b5d-1c5c-4d15-8b4b-79fc0b7bec3c" absoluteBounds="11.765, 1.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c61b7208-acf5-4b04-a071-946c3e305b3c" absoluteBounds="3.5, 1.75, 2, 5.4246240234375">
+      <DataClassMoniker Name="/PenOCDataContext/tblEvent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc005734-798a-4f22-bf76-de5f03130bb5" absoluteBounds="3.515, 2.21, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a2562a18-c2fb-41d4-a656-1981183385f4" absoluteBounds="11.75, 4.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/PenOCDataContext/tblEvent_EventType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9af83c8e-f286-4fba-b20f-f4ecbb290de5" absoluteBounds="11.765, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0139f91-9631-4e03-88e4-ba3493bbbcf0" absoluteBounds="9.75, 12.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PenOCDataContext/tblFile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1cd15ff5-839f-4572-880b-f4f03deea4b4" absoluteBounds="9.765, 12.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c16d3df1-41ab-405b-afa2-0260807faab9" absoluteBounds="3.5, 10.625, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/PenOCDataContext/tblLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7f1d78d-e6b9-437a-bede-7cfaa3e2890d" absoluteBounds="3.515, 11.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dd398514-f572-4687-b86b-002b93ae3f1a" absoluteBounds="3, 13.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PenOCDataContext/tblNews" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3ecc07a1-8e59-4f09-ac0b-cc8e39cc6ebd" absoluteBounds="3.015, 13.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6e1551e8-bd4b-4bd8-b1ae-396c8c5c4fdb" absoluteBounds="13.875, 5.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/PenOCDataContext/tblResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fe5c81b8-801f-489a-9a53-28ec6d08f138" absoluteBounds="13.89, 6.2100000000000009, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03a8d487-0358-4ab8-80ee-bc9c7493514b" absoluteBounds="12.75, 10.5, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/PenOCDataContext/tblUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d8e9d95-4c03-473f-8713-070ac3b7b955" absoluteBounds="12.765, 10.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.75 : 11.96875); (12.21875 : 11.96875); (12.21875 : 9.30930826822917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/lutCategory/lutCategory_tblCompetitor" />
+      <nodes>
+        <classShapeMoniker Id="bdf3936a-f3af-4c3e-802e-78e1f92f8039" />
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.75 : 8.96715413411458); (10.625 : 8.96715413411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/lutGender/lutGender_tblCompetitor" />
+      <nodes>
+        <classShapeMoniker Id="ec7321ea-341c-494a-bbd6-1ce45fd8e9a9" />
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.53125); (6.24478916666667 : 8.53125 : JumpStart); (6.41145583333333 : 8.53125 : JumpEnd); (6.46875 : 8.53125); (6.46875 : 5.85740397135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/lutTechnical/lutTechnical_tblCourse" />
+      <nodes>
+        <classShapeMoniker Id="ff281c39-7af9-4c2e-a895-ffe988a7d53f" />
+        <classShapeMoniker Id="051c5799-7731-4ca0-82f8-47e659dfacb4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.49120198567708); (6.25 : 4.49120198567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblEvent/tblEvent_tblCourse" />
+      <nodes>
+        <classShapeMoniker Id="c61b7208-acf5-4b04-a071-946c3e305b3c" />
+        <classShapeMoniker Id="051c5799-7731-4ca0-82f8-47e659dfacb4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.94314697265625); (3.5 : 1.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/lutClub/lutClub_tblEvent" />
+      <nodes>
+        <classShapeMoniker Id="ba786b2e-3bc0-45bf-825f-e219140b70ef" />
+        <classShapeMoniker Id="c61b7208-acf5-4b04-a071-946c3e305b3c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.47199625651042); (3.5 : 4.47199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblVenue/tblVenue_tblEvent" />
+      <nodes>
+        <classShapeMoniker Id="0bc4a844-6750-42e7-b68c-da934fe3b3eb" />
+        <classShapeMoniker Id="c61b7208-acf5-4b04-a071-946c3e305b3c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 11.09375); (6.3281225 : 11.09375); (6.3281225 : 5.85740397135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblLog/tblLog_tblCourse" />
+      <nodes>
+        <classShapeMoniker Id="c16d3df1-41ab-405b-afa2-0260807faab9" />
+        <classShapeMoniker Id="051c5799-7731-4ca0-82f8-47e659dfacb4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.3906225 : 9.30930826822917); (11.3906225 : 11.234375); (12.75 : 11.234375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblCompetitor/tblCompetitor_tblUser" />
+      <nodes>
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+        <classShapeMoniker Id="03a8d487-0358-4ab8-80ee-bc9c7493514b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.625 : 6.58731201171875); (6.41145583333333 : 6.58731201171875 : JumpStart); (6.24478916666667 : 6.58731201171875 : JumpEnd); (5.5 : 6.58731201171875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblCompetitor/tblCompetitor_tblEvent" />
+      <nodes>
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+        <classShapeMoniker Id="c61b7208-acf5-4b04-a071-946c3e305b3c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.625 : 6.23115600585937); (6.41145583333333 : 6.23115600585937 : JumpStart); (6.24478916666667 : 6.23115600585937 : JumpEnd); (5.5 : 6.23115600585937)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblCompetitor/tblCompetitor_tblEvent1" />
+      <nodes>
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+        <classShapeMoniker Id="c61b7208-acf5-4b04-a071-946c3e305b3c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.625 : 7.24120198567708); (13.875 : 7.24120198567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PenOCDataContext/tblCompetitor/tblCompetitor_tblResult" />
+      <nodes>
+        <classShapeMoniker Id="a48431f4-1bb0-477c-be93-dbb028c5056f" />
+        <classShapeMoniker Id="6e1551e8-bd4b-4bd8-b1ae-396c8c5c4fdb" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

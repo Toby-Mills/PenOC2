@@ -1,0 +1,49 @@
+ <div id="divModalBackground" *ngIf="competitor" class="competitor-panel-container" (click)="modalClicked($event);">
+     <div class="competitor-panel drop-panel"> 
+        <div class="competitor-name">
+            <span *ngIf="competitor.id == undefined" class="new-competitor-title">New Competitor</span>
+            <span *ngIf="competitor.id > 0" class="new-competitor-title">{{competitor.fullName}} <i>({{competitor.id}})</i></span>
+        </div>
+        <div class="cancel">
+            <button type="button" value="Cancel" (click)="cancelClicked();" class="btn btn-danger" title="cancel" >
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </div>
+        <div id="divEdit" *ngIf="mode=='edit'">      
+            <span  *ngFor="let gender of genderList">
+                <input  type="radio" [(ngModel)]="competitor.genderId"  name="sex" [value]="gender.id" [id]="'gender_' + gender.id"/><label [for]="'gender_' + gender.id">{{gender.name}}</label><br>
+            </span>
+            <div [hidden]="competitor.genderId == 3">
+                <div><input [(ngModel)]="competitor.firstName" [hidden]="competitor.genderId == 3" class="form-control" placeholder="first name"/></div>
+                <div><input [(ngModel)]="competitor.surname" class="form-control" placeholder="surname" /></div>
+            </div>
+            <div  [hidden]="competitor.genderId != 3">
+                <input [(ngModel)]="competitor.surname" class="form-control" placeholder="group name" />
+            </div>
+            <div id="divSave">
+                <button type="button" value="Save" (click)="saveClicked();" class="btn btn-success" title="save" >
+                    <span class="glyphicon glyphicon-floppy-disk"></span> Save
+                </button>
+            </div>
+            <a *ngIf="competitor.id > 0" href="" (click)="mergeModeClicked($event);">merge with another competitor</a>
+        </div>
+         
+        <div id="divMerge" *ngIf="mode=='merge' && competitor.id > 0"><span>Merge with competitor: </span><br>
+            <input type="text" placeholder="competitor ID" #mergeTargetId (keyup)="mergeTargetKeyPressed(mergeTargetId.value);" /><br>
+            <span *ngIf="mergeTarget">{{mergeTarget.fullName}} ({{mergeTarget.gender}})</span>
+            <span *ngIf="!mergeTarget">no competitor selected</span>
+            <div *ngIf="mergeTarget">
+                <input type="radio" [(ngModel)]="mergeStyle" value="primary"  />keep: {{competitor.fullName}} ({{competitor.gender}})<br>
+                <input type="radio" [(ngModel)]="mergeStyle" value="secondary" />keep: {{mergeTarget.fullName}} ({{mergeTarget.gender}})<br>
+                <div id="divMergeSave">
+                    <button *ngIf="mergeStyle !=''"  type="button" (click)="mergeClicked();" class="btn btn-success" title="save" >
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Merge
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,7 @@
+button.competitor-delete{
+    visibility: hidden;
+}
+
+tr:hover button.competitor-delete{
+    visibility: visible;
+}

@@ -1,0 +1,45 @@
+input{
+    margin: 2px;
+    padding-left: 2px;
+}
+
+input.club-fullname, input.new-club-fullname{
+    width: 300px;
+}
+
+div.club button{
+    visibility: hidden;
+}
+
+div.club:hover button{
+    visibility: visible;
+}
+
+div.venue button{
+    visibility: hidden;
+}
+
+div.venue:hover button{
+    visibility: visible;
+}
+
+input.venue-name, input.new-venue-name {
+    width: 300px;
+}
+
+div.club input, div.venue input{
+    border-color: #EEEEEE;
+    border-width: 1px;
+    border-style: solid;
+}
+
+div.club:hover input, div.venue:hover input{
+    border-color: #CCCCCC;
+}
+
+div.new {
+    background-color: lightgreen;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}

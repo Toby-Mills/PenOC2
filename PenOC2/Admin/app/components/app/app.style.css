@@ -1,0 +1,35 @@
+h1:hover {
+    cursor: pointer;
+    color: blue;
+}
+#divPage {
+    background-color: white;
+    min-height: 800px;
+}
+
+#divTitle {
+    float:left;
+    margin-bottom:10px;
+}
+
+#divSignout {
+    float:right;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.spin {
+    animation: spinner 1s infinite linear;
+    transform-origin: 50% 50%;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

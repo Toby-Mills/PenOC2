@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9ad7ecaf9924c5ca0daa517cee3b249" Name="Diagram1">
+        <EntityTypeShape EntityType="PenocModel.lutCategory" Width="1.5" PointX="8.625" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.lutClub" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.lutEventType" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.lutGender" Width="1.5" PointX="8.625" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.lutTechnical" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblCommittee" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblCompetitor" Width="1.5" PointX="6.625" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblCourse" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblDownload" Width="1.5" PointX="6.375" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblEvent" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblEvent_EventType" Width="1.5" PointX="11.375" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblFile" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblForum" Width="1.5" PointX="10.875" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblLog" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblMembership" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblMessage" Width="1.5" PointX="15.375" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblMinutes" Width="1.5" PointX="13" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblNews" Width="1.5" PointX="9.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblResult" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblSplit" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblThread" Width="1.5" PointX="13.125" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblUser" Width="1.5" PointX="13.125" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblVenue" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PenocModel.tblWorkItem" Width="1.5" PointX="11.75" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="PenocModel.FK_tblCompetitor_lutCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblEvent_lutClub" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblMembership_lutClub" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblCompetitor_lutGender" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblCourse_lutTechnical" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblResult_tblCompetitor" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblUser_tblCompetitor" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblCourse_tblEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblCourse_tblLog" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblResult_tblCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblEvent_tblVenue" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblThread_tblForum" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblMessage_tblThread" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblMessage_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblSplit_tblResult" ManuallyRouted="false" />
+        <AssociationConnector Association="PenocModel.FK_tblEvent_tblCompetitor_Controller" />
+        <AssociationConnector Association="PenocModel.FK_tblEvent_tblCompetitor_Planner" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

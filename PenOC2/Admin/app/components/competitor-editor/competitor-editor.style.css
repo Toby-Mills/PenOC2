@@ -1,0 +1,43 @@
+.competitor-panel-container{
+    position: fixed;
+    left:0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.competitor-panel{
+    padding: 10px;
+    background-color: white;
+    margin: 15% auto;
+    width: 400px;
+    overflow: auto;
+}
+
+div.competitor-name{
+    float:left;
+    margin-bottom: 10px;
+}
+
+.cancel, #divSave, #divMergeSave{
+    float:right;
+}
+
+#divEdit, #divMerge{
+    clear:both;
+    border-top: 1pt #BBBBBB solid;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.new-competitor-title{
+    font-size: 1.5em;
+    font-weight: 600;
+
+}
+
+input {
+    margin:3px;
+}
