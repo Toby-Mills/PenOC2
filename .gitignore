@@ -222,3 +222,8 @@ pip-log.txt
 ## Node Packages
 ################
 packages/
+
+################
+## Content
+################
+images/
